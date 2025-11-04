@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using Resource.Script.Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static Resource.Script.Defines;
-using Manager = Resource.Script.Managers.Managers;
 using KickAnimationModifier = Resource.Script.Animation.Modifier.KickAnimationModifier;
 using MoveAnimationModifier = Resource.Script.Animation.Modifier.MoveAnimationModifier;
 using OffsetAnimationModifier = Resource.Script.Animation.Modifier.OffsetAnimationModifier;
@@ -501,7 +501,7 @@ namespace Resource.Script.Animation
         /// </summary>
         public bool HasToAvoid()
         {
-            if (AlwaysStayIdle || Manager.Game.ProcAnimIsActive == false)
+            if (AlwaysStayIdle || SystemManager.Game.ProcAnimIsActive == false)
                 return true;
 
             var result = false;

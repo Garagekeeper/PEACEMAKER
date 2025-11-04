@@ -1153,6 +1153,8 @@ MonoBehaviour:
   gravity: 1
   maxFallSpeed: 350
   stickToGroundForce: 0.5
+  camobj: {fileID: 1281021895094020430}
+  camRootTransform: {fileID: 4881171474271531242}
 --- !u!1 &4259864158571798359
 GameObject:
   m_ObjectHideFlags: 0
@@ -1959,7 +1961,7 @@ Transform:
   m_GameObject: {fileID: 6297154882223817695}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.8, z: 0}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2702,6 +2704,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Assault Rifle_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 395104231899459405, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

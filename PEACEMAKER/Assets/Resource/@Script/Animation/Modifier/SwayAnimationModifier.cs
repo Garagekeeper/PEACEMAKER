@@ -1,6 +1,6 @@
+using Resource.Script.Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using MManger = Resource.Script.Managers.Managers;
 
 namespace Resource.Script.Animation.Modifier
 {
@@ -92,7 +92,7 @@ namespace Resource.Script.Animation.Modifier
             _resultRotation += resultRotationInputX + resultRotationInputY;
 
             // 일시 정지중이면 멈춤
-            if (MManger.Game.IsPaused)
+            if (SystemManager.Game.IsPaused)
             {
                 _resultPosition = Vector3.zero;
                 _resultRotation = Vector3.zero;

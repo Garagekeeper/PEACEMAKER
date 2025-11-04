@@ -29,5 +29,17 @@ namespace Resource.Script
 
             if (inputAction.IsPressed() == false) targetValue = false;
         }
+        
+        public static void SetRotation(this Transform transform, Quaternion rotation)
+        {
+            transform.localRotation = rotation;
+        }
+        
+        // public static void SetRotation(this Transform transform, Quaternion rotation, bool isLocal = false)
+        // {
+        //      if (local) transform.localRotation = rotation;
+        //
+        //      else transform.rotation = rotation;
+        // }
     }
 }

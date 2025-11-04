@@ -1,11 +1,11 @@
 using UnityEngine;
-
+using static Resource.Script.Utilities;
 namespace Resource.Script.Managers
 {
-    public class Managers : MonoBehaviour
+    public class SystemManager : MonoBehaviour
     {
-        private static Managers instance;
-        public static Managers Instance
+        private static SystemManager instance;
+        public static SystemManager Instance
         {
             get
             {
@@ -14,9 +14,9 @@ namespace Resource.Script.Managers
                 if (go == null)
                 {
                     go = new GameObject("@Managers");
-                    go.AddComponent<Managers>();
+                    go.AddComponent<SystemManager>();
                 }
-                instance = go.GetComponent<Managers>();
+                instance = go.GetComponent<SystemManager>();
                 return instance;
             }
         }
@@ -38,10 +38,10 @@ namespace Resource.Script.Managers
             if (go != null) return;
             
             go = new GameObject("@Manager");
-            go.AddComponent<Managers>();
+            go.AddComponent<SystemManager>();
             
             DontDestroyOnLoad(go);
-            instance = go.GetComponent<Managers>();
+            instance = go.GetComponent<SystemManager>();
         }
 
         private void Update()
