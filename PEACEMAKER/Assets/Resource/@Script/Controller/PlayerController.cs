@@ -1,10 +1,15 @@
 using Resource.Script.Managers;
 using UnityEngine;
+using UnityEngine.Events;
 using static Resource.Script.Defines;
 using static Resource.Script.Utilities;
 
 namespace Resource.Script.Controller
 {
+    /// <summary>
+    /// Player의 실제 이동과 관련한 클래스
+    /// 이동 점프 웅크리기 둘러보기
+    /// </summary>
     public class PlayerController : MonoBehaviour
     {
         [Header("Movement")]
@@ -20,34 +25,16 @@ namespace Resource.Script.Controller
         [Tooltip("Movement speed while sprinting.")]
         public float sprintSpeed = 10;
 
-        [Tooltip("Movement speed during tactical sprinting (faster than normal sprint).")]
-        public float tacticalSprintSpeed = 11;
-
         [Tooltip("How high the player can jump.")]
         public float jumpHeight = 6;
+
+        public float defaultHeight;
 
         [Tooltip("Player's height when crouched.")]
         public float crouchHeight = 1.5f;
 
         [Tooltip("Distance between footstep sounds (lower = more frequent).")]
         public float stepInterval = 7;
-
-        [Tooltip("Automatically detects and follows moving platforms.")]
-        public bool autoDetectMovingPlatforms = true;
-
-        [Tooltip("If true, maintains horizontal momentum when jumping or falling.")]
-        public bool preserveMomentum = true;
-
-        [Range(0f, 1f)]
-        [Tooltip("Fraction of momentum preserved when jumping or falling. For example, 0.2 means 20% is lost and 80% is carried over.")]
-        public float momentumLoss = 0.2f;
-        
-        [Header("Slopes")]
-        [Tooltip("If true, the player will slide down steep slopes automatically.")]
-        public bool slideDownSlopes = true;
-
-        [Tooltip("Speed at which the player slides down slopes.")]
-        public float slopeSlideSpeed = 1;
 
         [Space]
         [Tooltip("Strength of gravity applied to the player.")]
@@ -56,13 +43,17 @@ namespace Resource.Script.Controller
         [Tooltip("Maximum speed the player can fall.")]
         public float maxFallSpeed = 350;
 
-        [Tooltip("Extra downward force applied to keep the player grounded on slopes or uneven terrain.")]
-        public float stickToGroundForce = 0.5f;
-
         [Header("Camera")] [Tooltip("Camera For FPS")]
         public GameObject camobj;
         public Transform camRootTransform;
         public Camera FirstPersonCamera  { get; set; }
+        
+        [Header("Events")]
+        [Tooltip("Invoked when the character leaves the ground.")]
+        public UnityEvent onJump = new UnityEvent();
+
+        [Tooltip("Invoked when the character touches the ground.")]
+        public UnityEvent onLand = new UnityEvent();
         
         private Vector3 _finalVelocity;
         public Vector2 LookAfterModifySensitivity { get; set; }
@@ -75,10 +66,8 @@ namespace Resource.Script.Controller
         public bool IsCrouching { get; private set; } = false;
         public float SpeedMultiplier { get; private set; } = 1;
         
-        /// <summary>
-        /// 회전/이동의 기준이 되는 트랜스폼
-        /// </summary>
-        public Transform Orientation { get; set; }
+        public bool PrevGroundInfo { get; private set; }
+        
         
         /// <summary>
         ///  Controller for Player
@@ -93,39 +82,29 @@ namespace Resource.Script.Controller
             LookAfterModifySensitivity = Vector3.zero;
 
             FirstPersonCamera = camobj.GetComponent<Camera>();
-            
-            if (transform.Find("Orientation") != null)
-            {
-                Orientation = transform.Find("Orientation");
-            }
-            else
-            {
-                Orientation = new GameObject("Orientation").transform;
-                Orientation.parent = transform;
-                Orientation.localRotation = Quaternion.identity;
-            }
-            
+
         }
     
         // Start is called once before the first execution of Update after the MonoBehaviour is created
-        void Start()
+        private void Start()
         {
             CharacterController = GetComponent<CharacterController>();
+            defaultHeight = CharacterController.height;
         }
 
         // Update is called once per frame
-        void Update()
+        private void LateUpdate()
         {
             
             /*-------------------------
             *          Speed
-            ------------------------*/
+            -------------------------*/
             //float speed = 0f;
             //if (SystemManager.Input.SprintPressed ) speed = IsCrouching ? crouchSpeed * SpeedMultiplier : sprintSpeed * SpeedMultiplier;
             
             /*-------------------------
             *          Look
-            ------------------------*/
+            -------------------------*/
             Vector2 rawLookUnscaled = SystemManager.Input.Look;
             
             // 가로, 세로 감도를 곱하고 전체적인 감도를 곱해준다. (체감되도록 100을 곱한다)
@@ -154,8 +133,17 @@ namespace Resource.Script.Controller
             Vector2 calculatedLook = addedLookValue + (LookAfterModifySensitivity * finalSensitivity);
             FinalLook = (calculatedLook / 200f) + addedLookValue;
             //addedLookValue = Vector2.zero;
-            UpdateCameraRotation();
+            UpdateRotation();
             
+            /*-------------------------
+            *       Crouching
+            -------------------------*/
+            
+            IsCrouching = SystemManager.Input.CrouchToggle;
+            // 달리기나 점프중이면 웅크리기 해제
+            if (SystemManager.Input.SprintPressed && IsCrouching)
+                IsCrouching = false;
+            ApplyCrouching();
             
             /*-------------------------
             *          Move
@@ -166,19 +154,35 @@ namespace Resource.Script.Controller
                 // 그래서 w를 눌렀을때 camroot가 보는 방향으로 가기 위해서 보정을 해준다.
                 Vector3 moveDir = (camRootTransform.forward * SystemManager.Input.Move.y +
                                    camRootTransform.right * SystemManager.Input.Move.x).normalized;
+
+                float moveSpeedMultiplier = walkSpeed;
                 
-                _finalVelocity.x = moveDir.x * walkSpeed;
-                _finalVelocity.z = moveDir.z * walkSpeed;
+                if (SystemManager.Input.SprintPressed)
+                    moveSpeedMultiplier = sprintSpeed;
+                
+                if (IsCrouching)
+                    moveSpeedMultiplier = crouchSpeed;
+                
+                
+                _finalVelocity.x = moveDir.x * moveSpeedMultiplier;
+                _finalVelocity.z = moveDir.z * moveSpeedMultiplier;
                 
                 if (SystemManager.Input.JumpPressed)
                 // 점프키가 눌리면 점프 적용
                 {
+                    onJump?.Invoke();
+                    IsCrouching = false;
+                    ApplyCrouching();
                     _finalVelocity.y += jumpHeight - _finalVelocity.y;
+                    
                 }
                 else
-                // 땅에 붙어있어도 작은 중력이 작용
                 {
-                    _finalVelocity.y += Physics.gravity.y * 0.5f * Time.deltaTime;
+                    // 땅에 붙어있어도 작은 중력이 작용
+                    _finalVelocity.y = Physics.gravity.y * 0.5f;
+                    
+                    if (CharacterController.isGrounded && !PrevGroundInfo)
+                        onLand?.Invoke();
                 }
             }
             else if (CharacterController.velocity.magnitude * 3.5 < maxFallSpeed)
@@ -187,19 +191,11 @@ namespace Resource.Script.Controller
                 _finalVelocity.y += Physics.gravity.y * gravity * Time.deltaTime;
             }
             
+            PrevGroundInfo = CharacterController.isGrounded;
+            
             // 보정된 좌표로 이동
             CharacterController.Move(_finalVelocity * Time.deltaTime);
             //TODO 경사면 계산 추가
-            
-            if (SystemManager.Input.JumpPressed)
-                Jump();
-
-            //Fire는 인벤토리의 무기에서 처리
-            //if (SystemManager.Input.FirePressed)
-                //Fire();
-            
-            //if (move != Vector2.zero)
-                //Move(move);
 
         }
 
@@ -207,17 +203,12 @@ namespace Resource.Script.Controller
         {
             Debug.Log("Jump");
         }
-
-        private void Fire()
-        {
-            Debug.Log("Fire");
-        }
         
 
         /// <summary>
-        /// 카메라의 회전을 적용시키는 함수.
+        /// 실제 회전을 적용시키는 함수.
         /// </summary>
-        private void UpdateCameraRotation()
+        private void UpdateRotation()
         {
             // Look delta값 누적
             _currentYRotation += FinalLook.x;
@@ -234,8 +225,26 @@ namespace Resource.Script.Controller
             CameraRotation = Quaternion.Slerp(CameraRotation, Quaternion.Euler(_currentXRotation, _currentYRotation,0), Time.deltaTime * 100);
             PlayerRotation = Quaternion.Slerp(PlayerRotation, Quaternion.Euler(0, _currentYRotation,0), Time.deltaTime * 100);
             
-            Orientation.SetRotation(PlayerRotation);
             camRootTransform.transform.SetRotation(CameraRotation);
+        }
+
+        private void ApplyCrouching()
+        {
+            // 플레이어가 웅크린 상태면 높이 조절
+            float height;
+            if (IsCrouching && SystemManager.Input.CrouchToggle)
+            {
+                height = Mathf.Lerp(CharacterController.height, crouchHeight, Time.deltaTime * 15);
+            }
+            else
+            {
+                SystemManager.Input.CrouchToggle = false;
+                height = Mathf.Lerp(CharacterController.height, defaultHeight, Time.deltaTime * 15);
+            }
+
+            CharacterController.height = height;
+            CharacterController.center = Vector3.up * (CharacterController.height * 0.5f);
+            camRootTransform.position = transform.position + ((Vector3.up * (CharacterController.height - 1) + new Vector3(0, -0.05f, 0) + CharacterController.center));
         }
     }
 

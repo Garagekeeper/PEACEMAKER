@@ -827,8 +827,8 @@ MonoBehaviour:
   onJump:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Akila.FPSFramework.Animation.ProceduralAnimation,
+      - m_Target: {fileID: 8054807355392883913}
+        m_TargetAssemblyTypeName: Resource.Script.Animation.ProceduralAnimation,
           Assembly-CSharp
         m_MethodName: Play
         m_Mode: 4
@@ -843,8 +843,8 @@ MonoBehaviour:
   onLand:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Akila.FPSFramework.Animation.ProceduralAnimation,
+      - m_Target: {fileID: 7948655461331533445}
+        m_TargetAssemblyTypeName: Resource.Script.Animation.ProceduralAnimation,
           Assembly-CSharp
         m_MethodName: Play
         m_Mode: 4
@@ -1141,20 +1141,45 @@ MonoBehaviour:
   walkSpeed: 5
   crouchSpeed: 3
   sprintSpeed: 10
-  tacticalSprintSpeed: 11
   jumpHeight: 6
   crouchHeight: 1.5
   stepInterval: 7
-  autoDetectMovingPlatforms: 1
-  preserveMomentum: 1
-  momentumLoss: 0.2
-  slideDownSlopes: 1
-  slopeSlideSpeed: 1
   gravity: 1
   maxFallSpeed: 350
-  stickToGroundForce: 0.5
   camobj: {fileID: 1281021895094020430}
   camRootTransform: {fileID: 4881171474271531242}
+  onJump:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8054807355392883913}
+        m_TargetAssemblyTypeName: Resource.Script.Animation.ProceduralAnimation,
+          Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onLand:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7948655461331533445}
+        m_TargetAssemblyTypeName: Resource.Script.Animation.ProceduralAnimation,
+          Assembly-CSharp
+        m_MethodName: Play
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4259864158571798359
 GameObject:
   m_ObjectHideFlags: 0

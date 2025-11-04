@@ -18,15 +18,16 @@ namespace Resource.Script.Managers
             _playerInput.Player.Fire.performed += ctx => FirePressed = true;
             _playerInput.Player.Fire.canceled += ctx => FirePressed = false;
             
-            //Jump
-            _playerInput.Player.Jump.performed += ctx => JumpPressed = true;
-            _playerInput.Player.Jump.canceled += ctx => JumpPressed = false;
             
             // Pause
             _playerInput.Player.Pause.performed += ctx => Menu = true;
             
+            // Sprint
             _playerInput.Player.Sprint.performed += ctx => SprintPressed = true;
-            _playerInput.Player.Sprint.performed += ctx => SprintPressed = false;
+            _playerInput.Player.Sprint.canceled += ctx => SprintPressed = false;
+            
+            // Crouch
+            _playerInput.Player.Crouch.performed += ctx => CrouchToggle = !CrouchToggle;
         }
         
         public Vector2 Move {get ; private set;}
@@ -35,14 +36,14 @@ namespace Resource.Script.Managers
         public bool JumpPressed {get ; private set;}
         public bool Menu { get; private set; }   // Pause 토글 상태
         public bool SprintPressed {get ; private set;}
+        public bool CrouchToggle {get; set;}
         
         
         public void OnUpdate()
         {
             Move = _playerInput.Player.Move.ReadValue<Vector2>();
             Look = _playerInput.Player.Look.ReadValue<Vector2>();
-            //JumpPressed = _playerInput.Player.Jump.ReadValue<bool>();
-            //FirePressed = _playerInput.Player.Fire.ReadValue<bool>();
+            JumpPressed = _playerInput.Player.Jump.triggered;
             
             // 마우스 클릭 시 커서 잠금 복귀
             if (!IsCursorLocked && Mouse.current.leftButton.wasPressedThisFrame)
