@@ -170,8 +170,16 @@ namespace Resource.Script.Controller
                 _finalVelocity.x = moveDir.x * walkSpeed;
                 _finalVelocity.z = moveDir.z * walkSpeed;
                 
+                if (SystemManager.Input.JumpPressed)
+                // 점프키가 눌리면 점프 적용
+                {
+                    _finalVelocity.y += jumpHeight - _finalVelocity.y;
+                }
+                else
                 // 땅에 붙어있어도 작은 중력이 작용
-                _finalVelocity.y += Physics.gravity.y * 0.5f * Time.deltaTime;
+                {
+                    _finalVelocity.y += Physics.gravity.y * 0.5f * Time.deltaTime;
+                }
             }
             else if (CharacterController.velocity.magnitude * 3.5 < maxFallSpeed)
             {
