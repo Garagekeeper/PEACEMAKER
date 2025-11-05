@@ -659,7 +659,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 395104232373893061}
-  - component: {fileID: 7039333905868532247}
+  - component: {fileID: 32753311684740433}
   m_Layer: 9
   m_Name: Transforms
   m_TagString: Untagged
@@ -684,7 +684,7 @@ Transform:
   - {fileID: 7101878817252626289}
   m_Father: {fileID: 395104231899459404}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 4}
---- !u!114 &7039333905868532247
+--- !u!114 &32753311684740433
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -693,9 +693,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 395104232373893062}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b6e8cda3dce367540b14fb36bff20bf3, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e8405f602a849f4bc1373665e9038ee, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.ProceduralAnimator
   animationsHolder: {fileID: 1029722034764347535}
   frameRate: 120
   weight: 1

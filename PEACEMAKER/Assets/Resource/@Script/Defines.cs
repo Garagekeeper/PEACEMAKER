@@ -17,15 +17,25 @@
         public static float YSensitivityMultiplier { get; set; } = 1;
         
         /*-------------------------
-        *    Cursor Locke
-        ------------------------*/
+        *    Cursor Lock
+        -------------------------*/
         public static bool IsCursorLocked { get; set; } = true;
         
-        public enum UpdateMode
+        public enum EUpdateMode
         {
             Update,
             FixedUpdate,
             LateUpdate
+        }
+        
+        /*-------------------------
+        *    Creature Type
+        -------------------------*/
+        public enum ECreatureType
+        {
+            Player=0,
+            Enemy=1,
+            Npc=2,
         }
     }
 }

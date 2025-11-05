@@ -97,7 +97,7 @@ namespace Resource.Script.Animation
         /// <summary>
         /// Update, FixedUpdate, LateUpdate 중 어느 루프에서 Tick할지 설정
         /// </summary>
-        public Defines.UpdateMode updateMode;
+        public Defines.EUpdateMode updateMode;
 
         // ────────────────────────────────────────────────────────────────
         // 입력 트리거 관련
@@ -275,7 +275,7 @@ namespace Resource.Script.Animation
         // ────────────────────────────────────────────────────────────────
         private void Update()
         {
-            if (updateMode == Defines.UpdateMode.Update)
+            if (updateMode == Defines.EUpdateMode.Update)
                 Tick();
 
             if (gameObject.name == "Lean Right")
@@ -287,13 +287,13 @@ namespace Resource.Script.Animation
 
         private void FixedUpdate()
         {
-            if (updateMode == Defines.UpdateMode.FixedUpdate)
+            if (updateMode == Defines.EUpdateMode.FixedUpdate)
                 Tick();
         }
 
         private void LateUpdate()
         {
-            if (updateMode == Defines.UpdateMode.LateUpdate)
+            if (updateMode == Defines.EUpdateMode.LateUpdate)
                 Tick();
         }
 

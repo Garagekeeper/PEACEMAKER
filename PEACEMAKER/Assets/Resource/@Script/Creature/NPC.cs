@@ -1,7 +1,13 @@
-﻿namespace Resource.Script.Creature
+﻿using static Resource.Script.Defines;
+
+namespace Resource.Script.Creature
 {
-    public class NPC
+    public class NPC : Creature
     {
-        
+        protected override void Awake()
+        {
+            base.Awake();
+            CreatureType = ECreatureType.Npc;
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace Resource.Script.Animation.Modifier
     [AddComponentMenu("PEACEMAKER/Animation/Modifiers/Kick Animation Modifier")]
     public class KickAnimationModifier : ProceduralAnimationModifier
     {
-        public UpdateMode updateMode = UpdateMode.FixedUpdate;
+        public EUpdateMode updateMode = EUpdateMode.FixedUpdate;
         /// <summary>
         /// 위치 변화 가중치
         /// </summary>
@@ -55,7 +55,7 @@ namespace Resource.Script.Animation.Modifier
 
         private void Update()
         {
-            if (updateMode == UpdateMode.Update)
+            if (updateMode == EUpdateMode.Update)
             {
                 float deltaTime = Time.deltaTime * GlobalSpeed; // Scale time
 
@@ -72,7 +72,7 @@ namespace Resource.Script.Animation.Modifier
             _currentPosition = Vector3.Lerp(_currentPosition, Vector3.zero, 35 * fixedDeltaTime) * GlobalSpeed;
             _currentRotation = Vector3.Lerp(_currentRotation, Vector3.zero, 35 * fixedDeltaTime) * GlobalSpeed;
 
-            if (updateMode == UpdateMode.FixedUpdate)
+            if (updateMode == EUpdateMode.FixedUpdate)
             {
                 // 목표 위치/회전으로 보간
                 TargetPosition = Vector3.Slerp(TargetPosition, _currentPosition, positionRoughness * fixedDeltaTime) * (positionWeight * GlobalSpeed);
@@ -82,7 +82,7 @@ namespace Resource.Script.Animation.Modifier
 
         private void LateUpdate()
         {
-            if (updateMode == UpdateMode.LateUpdate)
+            if (updateMode == EUpdateMode.LateUpdate)
             {
                 float deltaTime = Time.deltaTime * GlobalSpeed; // Scale time
 
