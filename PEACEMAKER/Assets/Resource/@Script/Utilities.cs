@@ -28,5 +28,21 @@ namespace Resource.Script
             Cursor.visible = true;
             IsCursorLocked = false;
         }
+
+        public static Camera GetMainCamera()
+        {
+            return Camera.main != null ? Camera.main : Object.FindFirstObjectByType<Camera>();
+        }
+
+        /// <summary>
+        /// stateName의 애니메이션을플레이 하고 있는지 여부 반환.
+        /// </summary>
+        /// <param name="animator"></param>
+        /// <param name="stateName"></param>
+        /// <returns></returns>
+        public static bool CurrentPlayingAnim(this Animator animator, string stateName)
+        {
+            return animator.GetCurrentAnimatorStateInfo(0).IsName(stateName);
+        }
     };
 }

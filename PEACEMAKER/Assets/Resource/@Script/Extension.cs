@@ -41,5 +41,35 @@ namespace Resource.Script
         //
         //      else transform.rotation = rotation;
         // }
+        
+        
+        
+        /// <summary>
+        /// Tries to find a component of type <typeparamref name="T"/> on the current GameObject,
+        /// then its children, and then its parents.
+        /// Returns the first component found or null if none is found.
+        /// </summary>
+        /// <typeparam name="T">The type of component to search for.</typeparam>
+        /// <param name="component">The Component whose GameObject hierarchy to search.</param>
+        /// <param name="includeInactive">Whether to include inactive GameObjects when searching children and parents.</param>
+        /// <returns>The first found component of type T or null if none found.</returns>
+        public static T FindSelfChildParent<T>(this Component component, bool includeInactive = false, bool skipParent = false)
+        {
+            if (!component) return default(T);
+
+            var comp = component.GetComponent<T>();
+
+            if (comp != null) return comp;
+
+            var childComp = component.GetComponentInChildren<T>(includeInactive);
+
+            if (childComp != null) return childComp;
+
+            var parentComp = component.GetComponentInParent<T>(includeInactive);
+
+            if(parentComp != null && !skipParent) return parentComp;
+
+            return comp;
+        }
     }
 }

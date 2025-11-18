@@ -1,7 +1,15 @@
 ﻿namespace Resource.Script
 {
     public static class Defines
-    {
+    { 
+        /*-------------------------
+        *           Ammo
+        -------------------------*/
+        public enum EAmmoType
+        {
+            R556 = 0,
+        }
+        
         /*-------------------------
          *          Anim
          ------------------------*/

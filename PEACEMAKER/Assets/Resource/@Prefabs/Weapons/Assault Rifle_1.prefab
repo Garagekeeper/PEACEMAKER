@@ -3848,6 +3848,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Suppressor
       objectReference: {fileID: 0}
+    - target: {fileID: 1934124093166314006, guid: 173867b9650fbe74caf9766897e68d9c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1934124093166314007, guid: 173867b9650fbe74caf9766897e68d9c,
         type: 3}
       propertyPath: m_RootOrder

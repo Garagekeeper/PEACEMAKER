@@ -48,6 +48,11 @@ namespace Resource.Script.Managers
         {
             _input?.OnUpdate();
         }
+
+        private void LateUpdate()
+        {
+            _input?.LateUpdate();
+        }
         
     }
 

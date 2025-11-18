@@ -67,6 +67,8 @@ namespace Resource.Script.Controller
         public float SpeedMultiplier { get; private set; } = 1;
         
         public bool PrevGroundInfo { get; private set; }
+
+        //public EquipmentController equipment;
         
         
         /// <summary>
@@ -147,7 +149,7 @@ namespace Resource.Script.Controller
             
             /*-------------------------
             *          Move
-            ------------------------*/
+            -------------------------*/
             if (CharacterController.isGrounded)
             {
                 // 캐릭터 컨트롤러는 최상위에 달려있어서 camroot와 회전이 다르다.
@@ -163,12 +165,11 @@ namespace Resource.Script.Controller
                 if (IsCrouching)
                     moveSpeedMultiplier = crouchSpeed;
                 
-                
                 _finalVelocity.x = moveDir.x * moveSpeedMultiplier;
                 _finalVelocity.z = moveDir.z * moveSpeedMultiplier;
                 
-                if (SystemManager.Input.JumpPressed)
                 // 점프키가 눌리면 점프 적용
+                if (SystemManager.Input.JumpPressed)
                 {
                     onJump?.Invoke();
                     IsCrouching = false;

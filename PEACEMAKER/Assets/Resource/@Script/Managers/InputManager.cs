@@ -15,9 +15,14 @@ namespace Resource.Script.Managers
             _playerInput.Player.Enable();
             
             //Fire
+            // 단발
             _playerInput.Player.Fire.performed += ctx => FirePressed = true;
-            _playerInput.Player.Fire.canceled += ctx => FirePressed = false;
+            _playerInput.Player.Fire.canceled += ctx => FireReleased = true;
+            // 지속
+            _playerInput.Player.Fire.started += ctx => FireHeld = true;
+            _playerInput.Player.Fire.canceled += ctx => FireHeld = false;
             
+            // Reload
             
             // Pause
             _playerInput.Player.Pause.performed += ctx => Menu = true;
@@ -33,6 +38,9 @@ namespace Resource.Script.Managers
         public Vector2 Move {get ; private set;}
         public Vector2 Look {get ; private set;}
         public bool FirePressed {get ; private set;}
+        public bool FireReleased {get ; private set;}
+        public bool FireHeld{get ; private set;}
+        public bool ReloadPressed { get; private set; }
         public bool JumpPressed {get ; private set;}
         public bool Menu { get; private set; }   // Pause 토글 상태
         public bool SprintPressed {get ; private set;}
@@ -51,6 +59,14 @@ namespace Resource.Script.Managers
                 LockCursor();
             }
             
+        }
+
+        public void LateUpdate()
+        {
+            // 1프레임 입력만 유지되어야 하는 변수들만 초기화합니다.
+            FirePressed = false;
+            ReloadPressed = false;
+            FireReleased = false;
         }
         
         private void OnPausePressed()
