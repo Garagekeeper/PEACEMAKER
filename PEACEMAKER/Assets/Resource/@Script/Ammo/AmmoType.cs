@@ -33,5 +33,10 @@ namespace Resource.Script.Ammo
             this.DamageModifier = dmgMod;
             this.PenetrationModifier = PenMod;
         }
+
+        public float GetAmmoDmg()
+        {
+            return ammo.BaseDamage * DamageModifier;
+        }
     }
 }

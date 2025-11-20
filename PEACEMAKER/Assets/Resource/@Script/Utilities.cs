@@ -44,5 +44,60 @@ namespace Resource.Script
         {
             return animator.GetCurrentAnimatorStateInfo(0).IsName(stateName);
         }
+        
+        /// <summary>
+        /// projectile Decal
+        /// 총알 자국을 지정된 방향으로 변환하는 함수
+        /// </summary>
+        /// <param name="raycastHit"></param>
+        /// <param name="direction"></param>
+        /// <returns></returns>
+        public static Quaternion GetFromToRotation(RaycastHit raycastHit, EVector3Direction direction)
+        {
+            Quaternion result = new Quaternion();
+
+            switch (direction)
+            {
+                case EVector3Direction.Forward:
+                    result = Quaternion.FromToRotation(Vector3.forward, raycastHit.normal);
+                    break;
+
+                case EVector3Direction.Back:
+                    result = Quaternion.FromToRotation(Vector3.back, raycastHit.normal);
+                    break;
+
+                case EVector3Direction.Right:
+                    result = Quaternion.FromToRotation(Vector3.right, raycastHit.normal);
+                    break;
+
+                case EVector3Direction.Left:
+                    result = Quaternion.FromToRotation(Vector3.left, raycastHit.normal);
+                    break;
+
+                case EVector3Direction.Up:
+                    result = Quaternion.FromToRotation(Vector3.up, raycastHit.normal);
+                    break;
+
+                case EVector3Direction.Down:
+                    result = Quaternion.FromToRotation(Vector3.down, raycastHit.normal);
+                    break;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// hitscan Decal
+        /// </summary>
+        /// <param name="raycastHit"></param>
+        /// <returns></returns>
+        public static Quaternion GetHitRotation(RaycastHit raycastHit)
+        {
+            Vector3 normal = raycastHit.normal;
+            // normal이 위/아래 방향과 너무 일치하면 보정
+            Vector3 up = Mathf.Abs(normal.y) > 0.99f ? Vector3.forward : Vector3.up;
+
+            return Quaternion.LookRotation(normal, up);
+        }
     };
 }

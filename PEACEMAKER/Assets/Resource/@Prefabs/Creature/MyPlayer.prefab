@@ -2035,7 +2035,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6325995545137539628}
   - component: {fileID: 3440012521233825854}
-  - component: {fileID: 2271625008103090352}
   - component: {fileID: 6575162802602808519}
   m_Layer: 0
   m_Name: ViewAnimator
@@ -2079,44 +2078,6 @@ MonoBehaviour:
   overlayCamera: {fileID: 1371622626281754618}
   cameraShaker: {fileID: 9031545370948121297}
   fieldOfViewSmoothTime: 0.25
---- !u!114 &2271625008103090352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6382422741594351124}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56f5d46493eaa7d45a800630cb7f39ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputAction:
-    m_Name: Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: c35c07f1-0831-4c79-9401-006cabc7c3ab
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: d20c974b-87b9-4ff0-bad5-eedc23cfdb4c
-      m_Path: <Keyboard>/f1
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Input
-      m_Flags: 0
-    m_Flags: 0
-  pingableLayers:
-    serializedVersion: 2
-    m_Bits: 43071
-  ping: {fileID: 3140122644539666730, guid: 4ad2dac5baebfb0419acae38ce0f2cb9, type: 3}
-  canvas: {fileID: 6823606865599610970}
-  range: 100
-  pingLifetime: 15
-  maxPings: 5
-  pings: []
 --- !u!114 &6575162802602808519
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -327,13 +327,6 @@ namespace Resource.Script.Animation
         {
             clips = animationsHolder.GetComponentsInChildren<ProceduralAnimation>().ToList();
 
-            if (true)
-            {
-                foreach (var VARIABLE in clips)
-                {
-                    Debug.Log(VARIABLE.name);
-                }
-            }
             return clips.ToList();
         }
 

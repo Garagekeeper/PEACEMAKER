@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using static Resource.Script.Utilities;
+using static Resource.Script.Defines;
 
 namespace Resource.Script.Controller
 {
@@ -9,7 +10,7 @@ namespace Resource.Script.Controller
     {
         [Header("Base Settings")]
         public LayerMask hittableLayers = -1;
-        public Vector3Direction decalDirection = Vector3Direction.forward;
+        public EVector3Direction decalDirection = EVector3Direction.Forward;
         public float speed = 50;
         public float gravityMod = 1;
         public float force = 10;

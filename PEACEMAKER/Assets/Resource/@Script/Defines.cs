@@ -17,6 +17,7 @@
         public static int MaxAnimationFramerate = 120;
         public static float GlobalAnimationWeight = 1.0f;
         
+        
         /*-------------------------
          *    Mouse sensitivity
          ------------------------*/
@@ -44,6 +45,17 @@
             Player=0,
             Enemy=1,
             Npc=2,
+        }
+        
+        
+        public enum EVector3Direction
+        {
+            Forward = 0,
+            Back = 1,
+            Right = 2,
+            Left = 3,
+            Up = 4,
+            Down = 5
         }
     }
 }

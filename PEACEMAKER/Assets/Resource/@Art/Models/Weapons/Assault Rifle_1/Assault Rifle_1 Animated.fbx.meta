@@ -1,7 +1,15 @@
 fileFormatVersion: 2
-guid: da6c7ed6a6a865846b827a086289a71a
+guid: f07008da199341a4a90aab8b740d4dca
+AssetOrigin:
+  serializedVersion: 1
+  productId: 290322
+  packageName: FPS Framework Pro 2.0
+  packageVersion: 2.1.2
+  assetPath: Assets/Akila/FPS Framework/Art/Models/Weapons/Assault Rifle_1/Assault
+    Rifle_1 Animated.fbx
+  uploadId: 812064
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 24200
   internalIDToNameTable: []
   externalObjects:
   - first:
@@ -26,8 +34,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 1
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -306,6 +312,9 @@ ModelImporter:
     maxBonesPerVertex: 20
     minBoneWeight: 0.191
     optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
     meshOptimizationFlags: 0
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -743,8 +752,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: fe719bc6e3485b043872c877339328df,
-    type: 3}
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1

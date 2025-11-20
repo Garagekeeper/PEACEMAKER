@@ -22,6 +22,14 @@ namespace Resource.Script.Managers
             _playerInput.Player.Fire.started += ctx => FireHeld = true;
             _playerInput.Player.Fire.canceled += ctx => FireHeld = false;
             
+            //Fire
+            // 단발
+            _playerInput.Player.Aim.performed += ctx => AimPressed = true;
+            _playerInput.Player.Aim.canceled += ctx => AimReleased = true;
+            // 지속
+            _playerInput.Player.Aim.started += ctx => AimHeld = true;
+            _playerInput.Player.Aim.canceled += ctx => AimHeld = false;
+            
             // Reload
             
             // Pause
@@ -45,6 +53,10 @@ namespace Resource.Script.Managers
         public bool Menu { get; private set; }   // Pause 토글 상태
         public bool SprintPressed {get ; private set;}
         public bool CrouchToggle {get; set;}
+        
+        public bool AimPressed {get; private set;}
+        public bool AimReleased {get; private set;}
+        public bool AimHeld {get; private set;}
         
         
         public void OnUpdate()

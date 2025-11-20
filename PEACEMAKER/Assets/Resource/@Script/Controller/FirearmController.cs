@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using Akila.FPSFramework;
 using Resource.Script.Ammo;
 using Resource.Script.Animation;
+using Resource.Script.Animation.Modifier;
 using Resource.Script.Managers;
 using UnityEngine;
 using UnityEngine.Serialization;
 using static Resource.Script.Defines;
 using static Resource.Script.Utilities;
+using Object = UnityEngine.Object;
 
 namespace Resource.Script.Controller
 {
@@ -71,6 +73,7 @@ namespace Resource.Script.Controller
         
         public EFirearmStates FirearmState { get; set; }
         public EFirearmAimStates FirearmAimState { get; set; }
+        public EVector3Direction DecalDirection { get; set; }
         
         
         public ProceduralAnimator ProceduralAnimator { get; set; }
@@ -95,6 +98,8 @@ namespace Resource.Script.Controller
         public ProceduralAnimation SwayAimingAnimation { get; private set; }
         public ProceduralAnimation ReloadingAnimation { get; private set; }
         
+        private WaveAnimationModifier WalkingWaveAnimationModifier { get; set; }
+        
         private float _defaultAimingTime;
         
         public Animator animator;
@@ -103,6 +108,8 @@ namespace Resource.Script.Controller
         /***************************
          * common stat/variable
          **************************/
+        public GameObject defaultDecalPrefab;
+        
         [HideInInspector]
         public bool tracerRounds = true;
         [HideInInspector]
@@ -207,6 +214,11 @@ namespace Resource.Script.Controller
         /// 현재 장전된 탄창 내부의 탄약 수
         /// </summary>
         public int AmmoInMagazine { get; set; }
+        
+        [Header("Range Control")]
+        public float range = 300;
+        public LayerMask hittableLayers = -1;
+        public bool alwaysApplyFire = false;
 
         private void Awake()
         {
@@ -224,6 +236,7 @@ namespace Resource.Script.Controller
             ProceduralAnimator = GetComponentInChildren<ProceduralAnimator>();
             animator = GetComponentInChildren<Animator>();
             _characterController = GetComponentInParent<CharacterController>();
+            defaultDecalPrefab = Resources.Load<GameObject>("@Prefabs/Particle Systems/Bullet Impact/Stone Impact.prefab");
             
             // Initialize animations if proceduralAnimator exists
             if (ProceduralAnimator != null)
@@ -250,6 +263,8 @@ namespace Resource.Script.Controller
 
                 // Set default aiming time
                 if (AimingAnimation) _defaultAimingTime = AimingAnimation.length;
+                if (WalkingAnimation)
+                    WalkingWaveAnimationModifier = WalkingAnimation.GetComponent<WaveAnimationModifier>();
                 
                 // TODO 아무리 찾아봐도 이 애니메이션이 없는데
                 ReloadingAnimation = ProceduralAnimator.GetAnimation("Reloading");
@@ -291,19 +306,20 @@ namespace Resource.Script.Controller
             FirearmState = EFirearmStates.None;
             FirearmAimState = EFirearmAimStates.LowReady;
             FirePrevented = false;
-            FiringMode = EFiringMode.SemiAuto;
-            fireRate = 844;
-            ShotMechanism = EShotMechanism.Projectile;
+            FiringMode = EFiringMode.Auto;
+            fireRate = 850;
+            ShotMechanism = EShotMechanism.HitScan;
             impactForce = 10;
             shotDelay = 0;
             horizontalRecoil = 0.7f;
             verticalRecoil = 0.1f;
+            range = 300;
             
             // 총기 탄약 설정
             // setting ammo
             //TODO 현재는 돌격 소총만 있어서 여기에 쓰는데 나중에 화기별로 따로 만들면 
             // 자식 클래스에서 수정하자
-            requiredAmmoType = new AmmoType(EAmmoType.R556, 100, 0);
+            requiredAmmoType = new AmmoType(EAmmoType.R556, 25, 0);
             currentAmmo = new AmmoItem(requiredAmmoType, 30, 1, 1);
             MagazineCapacity = 30;
             AmmoInMagazine = MagazineCapacity;
@@ -311,7 +327,33 @@ namespace Resource.Script.Controller
             projectileSize = 0.01f;
             muzzleVelocity = 250;
             decalSize = 1;
-
+            hittableLayers = -1;
+            DecalDirection = EVector3Direction.Forward;
+        }
+        
+        private void UpdateLeanAnimations()
+        {
+            // // Update right and left leaning animations
+            // if (LeanRightAnimation != null)
+            // {
+            //     LeanRightAnimation.IsPlaying = SystemManager.Input.;
+            // }
+            //
+            // if (LeanLeftAnimation != null)
+            // {
+            //     LeanLeftAnimation.IsPlaying = characterInput.LeanLeftInput;
+            // }
+            //
+            // // Update right and left aiming lean animations
+            // if (LeanRightAimAnimation != null)
+            // {
+            //     LeanRightAimAnimation.IsPlaying = characterInput.LeanRightInput;
+            // }
+            //
+            // if (LeanLeftAimAnimation != null)
+            // {
+            //     LeanLeftAimAnimation.IsPlaying = characterInput.LeanLeftInput;
+            // }
         }
 
         /// <summary>
@@ -320,9 +362,90 @@ namespace Resource.Script.Controller
         /// </summary>
         private void Update()
         {
+            UpdateAnim();
             UpdateStatusWithInput();
             UpdateFire();
             UpdateReload();
+        }
+
+        public void UpdateAnim()
+        {
+             if (WalkingWaveAnimationModifier != null)
+             {
+                 // Update walking wave animation based on character velocity
+                 float characterVelocity = Owner.CharacterController.velocity.magnitude;
+                 WalkingWaveAnimationModifier.speedMultiplier = Mathf.Lerp(WalkingWaveAnimationModifier.speedMultiplier, characterVelocity, Time.deltaTime * 5);
+
+                 if (Owner.CharacterController.velocity.magnitude > 1 && Owner.CharacterController.isGrounded)
+                     WalkingWaveAnimationModifier.scaleMultiplier = Mathf.Lerp(WalkingWaveAnimationModifier.scaleMultiplier, characterVelocity, Time.deltaTime * 5);
+                 else
+                     WalkingWaveAnimationModifier.scaleMultiplier = Mathf.Lerp(WalkingWaveAnimationModifier.scaleMultiplier, 0, Time.deltaTime * 5);
+             }
+
+             if(SwayAnimation)
+             {
+                 SwayAnimation.SwayAnimationModifiers[0].InputX = (SystemManager.Input.Look.x / Time.deltaTime) * 0.5f;
+                 SwayAnimation.SwayAnimationModifiers[0].InputY = (SystemManager.Input.Look.y / Time.deltaTime) * 0.5f;
+             }
+
+             if (SwayAimingAnimation)
+             {
+                 SwayAimingAnimation.SwayAnimationModifiers[0].InputX = (SystemManager.Input.Look.x / Time.deltaTime) * 0.5f;
+                 SwayAimingAnimation.SwayAnimationModifiers[0].InputY = (SystemManager.Input.Look.y / Time.deltaTime) * 0.5f;
+             }
+
+             if (SprintingAnimation != null)
+             {
+                 SprintingAnimation.triggerType = ProceduralAnimation.InputActionType.None;
+                 SprintingAnimation.IsPlaying = SystemManager.Input.SprintPressed;
+             }
+
+             //TODO sprint doubletap 적용
+             if (TacticalSprintingAnimation != null)
+             {
+                 //TacticalSprintingAnimation.triggerType = ProceduralAnimation.InputActionType.None;
+                 //TacticalSprintingAnimation.IsPlaying = characterInput.TacticalSprintInput;
+             }
+
+             if (AimingAnimation != null)
+             {
+                 // Adjust aiming animation speed based on firearm aim speed
+                 //TODO 부착물에 따른 MOD
+                 if (false)
+                     AimingAnimation.length = _defaultAimingTime / 1;
+
+                 AimingAnimation.triggerType = ProceduralAnimation.InputActionType.None;
+                 AimingAnimation.IsPlaying = SystemManager.Input.AimHeld;
+             }
+
+             // Update crouch animation state
+             if (CrouchAnimation)
+             {
+                 CrouchAnimation.triggerType = ProceduralAnimation.InputActionType.None;
+                 CrouchAnimation.IsPlaying = SystemManager.Input.CrouchToggle;
+             }
+
+             // Update firearm-related animations based on reload and firing state
+ 
+             //TODO 추후 적용
+             // if (isReloading || attemptingToFire)
+             // {
+             //     //TODO 부착물에 따른 MOD
+             //     if (RecoilAnimation != null) RecoilAnimation.weight = 1;
+             //     if (RecoilAimAnimation != null) RecoilAnimation.weight = 1;
+             //
+             //     if (SprintingAnimation != null) SprintingAnimation.AlwaysStayIdle = true;
+             //     if (TacticalSprintingAnimation != null) TacticalSprintingAnimation.AlwaysStayIdle = true;
+             // }
+             // else
+             // {
+             //     if (SprintingAnimation != null) SprintingAnimation.AlwaysStayIdle = false;
+             //     if (TacticalSprintingAnimation != null) TacticalSprintingAnimation.AlwaysStayIdle = false;
+             // }
+             
+
+             // Handle leaning animations
+             UpdateLeanAnimations();
         }
 
         /// <summary>
@@ -334,7 +457,8 @@ namespace Resource.Script.Controller
             // Auto mode
             if (FiringMode == EFiringMode.Auto)
             {
-                FirearmState = SystemManager.Input.FireHeld ? FirearmState = EFirearmStates.Fire : FirearmState;
+                // : 뒷부분을 FirearmState로 두면 한번 클릭에 2번나가는 효과 발생
+                FirearmState = SystemManager.Input.FireHeld ? FirearmState = EFirearmStates.Fire : FirearmState = EFirearmStates.None;
             }
             // Semi auto or burst
             else if (FiringMode is EFiringMode.SemiAuto or EFiringMode.Burst)
@@ -358,7 +482,6 @@ namespace Resource.Script.Controller
             var firePosition = Vector3.zero;
             var fireRotation = Quaternion.identity;
             var fireDirection = Vector3.zero;
-            Debug.Log("test");
             
             // Muzzle to CamForward
             // 총구에서 카메라 중앙으로 투사체 발사.
@@ -388,19 +511,19 @@ namespace Resource.Script.Controller
         {
             // RPM보다 업데이트의 갱신이 빠르면 종료
             if (Time.time <= fireTimer) return;
-            
-            var finalDirVec = Vector3.zero;
-            fireTimer = Time.time + (60f/fireRate);
 
             // 줍기 뽑기등의 애니메이션을 재생중이 아니다.
             if (IsPlayingRestrictedAnimation() == false)
             {
                 ShotsFired = 0;
-                //TODO 여기서 반동 적용   
+                //TODO 여기서 반동(recoil) 적용  
+                //반동 적용
+                ApplyRecoil();
                 _originalFireDirection = fireDirection;
             }
             
             FireDone(firePosition, fireRotation, fireDirection);
+            fireTimer = Time.time + (60f/fireRate);
         }
         
         /// <summary>
@@ -426,7 +549,7 @@ namespace Resource.Script.Controller
             _currentFireDirection = direction;
             
             //TODO 멀티플레이 적용시 이벤트형식으로 변경
-            ProcessShotHit();
+            ProcessShotHit(direction);
 
             //ApplyFireOnce();
             ShotsFired++;
@@ -462,15 +585,20 @@ namespace Resource.Script.Controller
         /// <summary>
         /// 투사체 or Hitscan처리
         /// </summary>
-        private void ProcessShotHit()
+        /// <param name="direction"></param>
+        private void ProcessShotHit(Vector3 direction)
         {
-            //반동 적용
-            ApplyRecoil();
-            
             //0. HitScan
             if (ShotMechanism == EShotMechanism.HitScan)
             {
-                
+                Ray ray = new Ray(muzzle.position, direction);
+
+                if (Physics.Raycast(ray, out RaycastHit hit, range, hittableLayers))
+                {
+                    float calculatedDmg = currentAmmo.GetAmmoDmg();
+                    float finalDmg = alwaysApplyFire ? calculatedDmg : calculatedDmg / currentAmmo.ammo.BulletCountOnce;
+                    UpdateHits(defaultDecalPrefab, ray, hit, finalDmg, DecalDirection);
+                }
             }
             //1. Projctile
             else if (ShotMechanism == EShotMechanism.Projectile)
@@ -536,7 +664,7 @@ namespace Resource.Script.Controller
         /// <param name="hit">Information about the hit result.</param>
         /// <param name="damage">The amount of damage to apply.</param>
         /// <param name="decalDirection">The direction for orienting the decal.</param>
-        public void UpdateHits(GameObject defaultDecal, Ray ray, RaycastHit hit, float damage, Vector3Direction decalDirection)
+        public void UpdateHits(GameObject defaultDecal, Ray ray, RaycastHit hit, float damage, EVector3Direction decalDirection)
         {
             if(_characterController == null)
             {
@@ -607,7 +735,7 @@ namespace Resource.Script.Controller
             if (defaultDecal)
             {
                 Vector3 hitPoint = hit.point;
-                Quaternion decalRotation = FPSFrameworkCore.GetFromToRotation(hit, decalDirection);
+                Quaternion decalRotation = GetHitRotation(hit);
                 GameObject decalInstance = Instantiate(defaultDecal, hitPoint, decalRotation);
 
                 decalInstance.transform.localScale *= decalSize;
