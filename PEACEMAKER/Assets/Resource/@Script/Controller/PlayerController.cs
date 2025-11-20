@@ -68,6 +68,20 @@ namespace Resource.Script.Controller
         
         public bool PrevGroundInfo { get; private set; }
 
+        private Vector2 _addedLookValue;
+
+        protected virtual void AddLookValue(Vector2 value)
+        {
+            if (!SystemManager.Game.IsPaused)
+                _addedLookValue += value;
+        }
+        
+        public virtual void AddLookValue(float mouseX, float mouseY)
+        { 
+            AddLookValue(new Vector2(mouseX, mouseY));
+        }
+
+
         //public EquipmentController equipment;
         
         
@@ -82,6 +96,7 @@ namespace Resource.Script.Controller
             
             _finalVelocity = Vector3.zero;
             LookAfterModifySensitivity = Vector3.zero;
+            _addedLookValue = Vector2.zero;
 
             FirstPersonCamera = camobj.GetComponent<Camera>();
 
@@ -130,11 +145,11 @@ namespace Resource.Script.Controller
                 finalSensitivity = 0;
             
             // TODO addedLookValue의 기능 구현
-            Vector2 addedLookValue = Vector2.zero;
+            
             // 최종계산된 Look을 반영
-            Vector2 calculatedLook = addedLookValue + (LookAfterModifySensitivity * finalSensitivity);
-            FinalLook = (calculatedLook / 200f) + addedLookValue;
-            //addedLookValue = Vector2.zero;
+            Vector2 calculatedLook = _addedLookValue + (LookAfterModifySensitivity * finalSensitivity);
+            FinalLook = (calculatedLook / 200f) + _addedLookValue;
+            _addedLookValue = Vector2.zero;
             UpdateRotation();
             
             /*-------------------------

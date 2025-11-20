@@ -11,6 +11,7 @@ using static Resource.Script.Utilities;
 
 namespace Resource.Script.Controller
 {
+    [RequireComponent(typeof(ProceduralAnimation))]
     public class FirearmController : MonoBehaviour
     {
         [Tooltip("The Transform from which the shots are fired.")]
@@ -73,19 +74,63 @@ namespace Resource.Script.Controller
         
         
         public ProceduralAnimator ProceduralAnimator { get; set; }
-        private ProceduralAnimation _reloadingAnimation;
+        public ProceduralAnimation FiringAnimation { get; private set; }
+        public ProceduralAnimation AimFiringAnimation { get; private set; }
+        public ProceduralAnimation AimingAnimation { get; protected set; }
+        public ProceduralAnimation BreathingAnimation { get; private set; }
+        public ProceduralAnimation BreathingAimAnimation { get; private set; }
+        public ProceduralAnimation WalkingAnimation { get; private set; }
+        public ProceduralAnimation SprintingAnimation { get; private set; }
+        public ProceduralAnimation TacticalSprintingAnimation { get; private set; }
+        public ProceduralAnimation RecoilAnimation { get; private set; }
+        public ProceduralAnimation RecoilAimAnimation { get; private set; }
+        public ProceduralAnimation JumpAnimation { get; private set; }
+        public ProceduralAnimation LandAnimation { get; private set; }
+        public ProceduralAnimation LeanRightAnimation { get; private set; }
+        public ProceduralAnimation LeanLeftAnimation { get; private set; }
+        public ProceduralAnimation LeanRightAimAnimation { get; private set; }
+        public ProceduralAnimation LeanLeftAimAnimation { get; private set; }
+        public ProceduralAnimation CrouchAnimation { get; private set; }
+        public ProceduralAnimation SwayAnimation { get; private set; }
+        public ProceduralAnimation SwayAimingAnimation { get; private set; }
+        public ProceduralAnimation ReloadingAnimation { get; private set; }
+        
+        private float _defaultAimingTime;
+        
         public Animator animator;
         private CharacterController _characterController;
         
         /***************************
          * common stat/variable
          **************************/
+        [HideInInspector]
         public bool tracerRounds = true;
+        [HideInInspector]
         public float projectileSize = 0.01f;
+        [HideInInspector]
         public float muzzleVelocity = 250;
+        [HideInInspector]
         public float decalSize = 1;
+        [HideInInspector]
         public float impactForce = 10;
+        [HideInInspector]
         public float shotDelay = 0;
+        [HideInInspector]
+        public float horizontalRecoil = 0.7f;
+        [HideInInspector]
+        public float verticalRecoil = 0.1f;
+        
+        //Recoil
+        [HideInInspector]
+        public float cameraRecoil = 1;
+        [HideInInspector]
+        public float cameraShakeAmount = 0.05f;
+        [HideInInspector]
+        public float cameraShakeRoughness = 5;
+        [HideInInspector]
+        public float cameraShakeStartTime = 0.1f;
+        [HideInInspector]
+        public float cameraShakeDuration = 0.1f;
         protected LayerMask mask;
         
         protected bool _canCancelReload = false;
@@ -142,7 +187,12 @@ namespace Resource.Script.Controller
         /// num of bullet player has;
         /// </summary>
         public AmmoItem currentAmmo;
-        
+
+        public FirearmController(ProceduralAnimation recoilAnimation)
+        {
+            RecoilAnimation = recoilAnimation;
+        }
+
         /// <summary>
         /// The maximum capacity of the magazine.
         /// 재장전하면 탄창에 있는 총알은 버려짐
@@ -158,10 +208,7 @@ namespace Resource.Script.Controller
         /// </summary>
         public int AmmoInMagazine { get; set; }
 
-        
-        
-        // 초기화 및 설정
-        private void Start()
+        private void Awake()
         {
             mainCam = GetMainCamera();
             mask |= LayerMask.GetMask("Default");
@@ -178,13 +225,43 @@ namespace Resource.Script.Controller
             animator = GetComponentInChildren<Animator>();
             _characterController = GetComponentInParent<CharacterController>();
             
-            // TODO 아무리 찾아봐도 이 애니메이션이 없는데
-            _reloadingAnimation = ProceduralAnimator.GetAnimation("Reloading");
-            
+            // Initialize animations if proceduralAnimator exists
+            if (ProceduralAnimator != null)
+            {
+                FiringAnimation = ProceduralAnimator.GetAnimation("Recoil");
+                AimFiringAnimation = ProceduralAnimator.GetAnimation("Aim Recoil");
+                BreathingAnimation = ProceduralAnimator.GetAnimation("Breathing");
+                BreathingAimAnimation = ProceduralAnimator.GetAnimation("Breathing Aim");
+                WalkingAnimation = ProceduralAnimator.GetAnimation("Walking");
+                SprintingAnimation = ProceduralAnimator.GetAnimation("Sprinting");
+                TacticalSprintingAnimation = ProceduralAnimator.GetAnimation("Tactical Sprinting");
+                AimingAnimation = ProceduralAnimator.GetAnimation("Aiming");
+                RecoilAnimation = ProceduralAnimator.GetAnimation("Recoil");
+                RecoilAimAnimation = ProceduralAnimator.GetAnimation("Recoil Aim");
+                JumpAnimation = ProceduralAnimator.GetAnimation("Jump");
+                LandAnimation = ProceduralAnimator.GetAnimation("Land");
+                LeanRightAnimation = ProceduralAnimator.GetAnimation("Lean Right");
+                LeanLeftAnimation = ProceduralAnimator.GetAnimation("Lean Left");
+                LeanRightAimAnimation = ProceduralAnimator.GetAnimation("Lean Right Aim");
+                LeanLeftAimAnimation = ProceduralAnimator.GetAnimation("Lean Left Aim");
+                CrouchAnimation = ProceduralAnimator.GetAnimation("Crouch");
+                SwayAnimation = ProceduralAnimator.GetAnimation("Sway");
+                SwayAimingAnimation = ProceduralAnimator.GetAnimation("Sway Aiming");
+
+                // Set default aiming time
+                if (AimingAnimation) _defaultAimingTime = AimingAnimation.length;
+                
+                // TODO 아무리 찾아봐도 이 애니메이션이 없는데
+                ReloadingAnimation = ProceduralAnimator.GetAnimation("Reloading");
+            }
+        }
+
+        // 초기화 및 설정
+        private void Start()
+        {
             // TODO 여기에있는 설정은 돌격소총용, 나머지는 따로 빼서 데이터를 스크립터블로 하던가.
             // 아니면 런타임에 지정해서 불러오던가.
             reloadType = ReloadType.Default;
-            
             
             // 총구위치 설정
             // set muzzle pos
@@ -196,11 +273,18 @@ namespace Resource.Script.Controller
             
             // 탄피배출구 설정
             // set ejection port
-            if (!casingEjectionPort)
-            {
-                Debug.LogError("Casing ejection port transform is not assigned. Defaulting to the firearm's transform.", gameObject);
-                casingEjectionPort = transform;
-            }
+            // if (!casingEjectionPort)
+            // {
+            //     Debug.LogError("Casing ejection port transform is not assigned. Defaulting to the firearm's transform.", gameObject);
+            //     casingEjectionPort = transform;
+            // }
+            
+            //cam 설정
+            cameraRecoil = 1;
+            cameraShakeAmount = 0.05f;
+            cameraShakeRoughness = 5;
+            cameraShakeStartTime = 0.1f;
+            cameraShakeDuration = 0.1f;
             
             // 총기 상태 설정
             // set firearm state
@@ -212,6 +296,8 @@ namespace Resource.Script.Controller
             ShotMechanism = EShotMechanism.Projectile;
             impactForce = 10;
             shotDelay = 0;
+            horizontalRecoil = 0.7f;
+            verticalRecoil = 0.1f;
             
             // 총기 탄약 설정
             // setting ammo
@@ -272,6 +358,7 @@ namespace Resource.Script.Controller
             var firePosition = Vector3.zero;
             var fireRotation = Quaternion.identity;
             var fireDirection = Vector3.zero;
+            Debug.Log("test");
             
             // Muzzle to CamForward
             // 총구에서 카메라 중앙으로 투사체 발사.
@@ -377,6 +464,9 @@ namespace Resource.Script.Controller
         /// </summary>
         private void ProcessShotHit()
         {
+            //반동 적용
+            ApplyRecoil();
+            
             //0. HitScan
             if (ShotMechanism == EShotMechanism.HitScan)
             {
@@ -387,6 +477,8 @@ namespace Resource.Script.Controller
             {
                 
             }
+
+            FirearmState = EFirearmStates.None;
         }
 
         public ProjectileController SpawnProjectile(Vector3 position, Quaternion rotation, Vector3 direction, float speed, float range)
@@ -433,7 +525,7 @@ namespace Resource.Script.Controller
         
         private void UpdateReload()
         {
-            throw new NotImplementedException();
+            
         }
         
           /// <summary>
@@ -581,6 +673,43 @@ namespace Resource.Script.Controller
 
             // Invoke the OnAnyHitInParent method on the IOnAnyHitInParent interface, if implemented
             onAnyHitInParent?.OnAnyHitInParent(hitInfo);
+        }
+        
+        /// <summary>
+        /// Applies recoil effects to the weapon, including playing recoil animations and adjusting camera recoil based on the current settings.
+        /// </summary>
+        private void ApplyRecoil()
+        {
+            // Play recoil animations if the procedural animator is assigned
+            if (ProceduralAnimator)
+            {
+                RecoilAnimation?.Play(0); // Play recoil animation from the beginning
+                RecoilAimAnimation?.Play(0); // Play recoil aim animation from the beginning
+            }
+
+            // Apply camera recoil adjustments if the character manager is assigned
+            if (Owner)
+            {
+                // Calculate the recoil values based on the preset and firearm attachments, considering aiming state
+                //TODO 부착물에 따른 MOD 적용
+                //float vRecoil = verticalRecoil * firearmAttachmentsManager.recoil;
+                float vRecoil = verticalRecoil;
+                float hRecoil = horizontalRecoil;
+                float camRecoil = cameraRecoil;
+
+                Owner.AddLookValue(vRecoil, hRecoil);
+
+                // TODO cam 흔들리게
+                // if(characterManager.cameraManager)
+                // {
+                //     if (characterManager.cameraManager.cameraKickAnimation)
+                //     {
+                //         characterManager.cameraManager.cameraKickAnimation.Play(0);
+                //
+                //         characterManager.cameraManager.cameraKickAnimation.weight = cameraRecoil;
+                //     }
+                // }
+            }
         }
     }
 }

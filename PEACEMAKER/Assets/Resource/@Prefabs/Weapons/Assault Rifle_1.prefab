@@ -467,6 +467,8 @@ GameObject:
   - component: {fileID: -7770503669698727024}
   - component: {fileID: 2052470699772223401}
   - component: {fileID: -6988473520082429637}
+  - component: {fileID: 2488193363436544514}
+  - component: {fileID: 1300122593927068881}
   m_Layer: 12
   m_Name: Assault Rifle_1
   m_TagString: Untagged
@@ -497,7 +499,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 395104231899459405}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4cf5bb42081a40a4484bd38dfdf7dbd6, type: 3}
   m_Name: 
@@ -544,7 +546,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 395104231899459405}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f29d13fd25eb894448323d9cd7a830c9, type: 3}
   m_Name: 
@@ -566,12 +568,80 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 395104231899459405}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c20ebd16cf50f4a4fbc082c9957d3b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   allowInputWhilePaused: 0
+--- !u!114 &2488193363436544514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395104231899459405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 445d84178ebf42fc85de4102a1fc70f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Controller.FirearmController
+  muzzle: {fileID: 113995438697614323}
+  casingEjectionPort: {fileID: 0}
+  chamberingEffects: {fileID: 0}
+  mainCam: {fileID: 0}
+  animator: {fileID: 0}
+  tracerRounds: 1
+  projectileSize: 0.01
+  muzzleVelocity: 250
+  decalSize: 1
+  impactForce: 10
+  shotDelay: 0
+  horizontalRecoil: 0
+  verticalRecoil: 0
+  cameraRecoil: 0
+  cameraShakeAmount: 0
+  cameraShakeRoughness: 0
+  cameraShakeStartTime: 0
+  cameraShakeDuration: 0
+  projectilePrefab: {fileID: 0}
+--- !u!114 &1300122593927068881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395104231899459405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d252d3f2154fdae448c45faafcdf5ebd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.ProceduralAnimation
+  procAnimName: New Procedural Animation
+  length: 0.15
+  weight: 1
+  loop: 0
+  autoStop: 0
+  perModifierConnections: 1
+  playOnAwake: 0
+  unidirectionalPlay: 0
+  resetOnPlayed: 0
+  isolate: 0
+  isolationMode: 0
+  updateMode: 0
+  triggerType: 0
+  inputActionReference: {fileID: 0}
+  events:
+    OnPlay:
+      m_PersistentCalls:
+        m_Calls: []
+    OnPlayed:
+      m_PersistentCalls:
+        m_Calls: []
+    OnStoped:
+      m_PersistentCalls:
+        m_Calls: []
+  connections: []
 --- !u!1 &395104232344178882
 GameObject:
   m_ObjectHideFlags: 0
