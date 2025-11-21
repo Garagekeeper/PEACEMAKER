@@ -177,8 +177,11 @@ namespace Resource.Script.Controller
                 if (SystemManager.Input.SprintPressed)
                     moveSpeedMultiplier = sprintSpeed;
                 
+                if (SystemManager.Input.FireHeld || SystemManager.Input.FirePressed || SystemManager.Input.AimHeld)
+                    moveSpeedMultiplier = walkSpeed;
+                
                 if (IsCrouching)
-                    moveSpeedMultiplier = crouchSpeed;
+                    moveSpeedMultiplier = crouchSpeed; 
                 
                 _finalVelocity.x = moveDir.x * moveSpeedMultiplier;
                 _finalVelocity.z = moveDir.z * moveSpeedMultiplier;

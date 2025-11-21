@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Resource.Script.Managers;
@@ -111,12 +112,14 @@ namespace Resource.Script.Animation
         /// Unity Input System의 입력 액션
         /// </summary>
         public InputActionReference inputActionReference;
-        private InputAction _triggerInputAction = new();
+
+        private InputAction _triggerInputAction;
 
         [Header("ASDF"), Space]
         // ────────────────────────────────────────────────────────────────
         // 이벤트 / 연결 / Modifier 목록
         // ────────────────────────────────────────────────────────────────
+        
         /// <summary>
         /// OnPlay, OnStop 등 기본 이벤트
         /// </summary>
@@ -176,7 +179,7 @@ namespace Resource.Script.Animation
             set
             {
                 // 트리거 타입을 None으로 바꿔서 수동 제어 전환
-                triggerType = InputActionType.None;
+                //triggerType = InputActionType.None;
 
                 // 실행 방지 조건 확인
                 _isPlaying = !HasToAvoid() && value;
@@ -235,12 +238,27 @@ namespace Resource.Script.Animation
         // ────────────────────────────────────────────────────────────────
         private void Awake()
         {
-            _triggerInputAction = inputActionReference?.action;
+            // 1. 인스펙터에 액션이 할당되어 있고, 트리거 타입이 None이 아닌 경우
+            if (inputActionReference != null)
+            {
+                // 2. InputManager에 접근 (본인의 프로젝트 구조에 맞게 접근 코드를 작성하세요)
+                // 예: SystemManager가 관리한다면 아래와 같이 접근
+                // var inputManager = SystemManager.Instance.Input; 
+        
+                // 예: 싱글톤이라면 InputManager.Instance
+                // 여기서는 'InputManager' 인스턴스를 가져왔다고 가정합니다.
+        
+                if (SystemManager.Input != null && SystemManager.Input.PlayerInput != null)
+                {
+                    // [핵심] 인스펙터에 등록된 ID(Guid)를 이용해, 매니저가 돌리고 있는 '진짜 액션'을 찾아서 연결
+                    _triggerInputAction = SystemManager.Input.PlayerInput.asset.FindAction(inputActionReference.action.id);
+                }
+            }
+
             
             // 0. 자식에서 모든 Modifier 수집
             RefreshModifiers();
-            // 1. 입력 액션 활성화
-            _triggerInputAction?.Enable();
+            
 
             // 2. 각 Modifier에 이 애니메이션을 참조로 연결
             foreach (ProceduralAnimationModifier modifier in Modifiers)
@@ -264,8 +282,14 @@ namespace Resource.Script.Animation
                 Play(0);
         }
 
+        private void OnDisable()
+        {
+
+        }
+
         private void Start()
         {
+           
             // 부모 ProceduralAnimator에게 자기 자신을 등록
             GetComponentInParent<ProceduralAnimator>()?.RefreshClips();
         }
@@ -277,12 +301,6 @@ namespace Resource.Script.Animation
         {
             if (updateMode == Defines.EUpdateMode.Update)
                 Tick();
-
-            if (gameObject.name == "Lean Right")
-            {
-                //Debug.Log(Progress);
-                //Debug.Log(_triggerInputAction.IsPressed());
-            }
         }
 
         private void FixedUpdate()
@@ -338,6 +356,7 @@ namespace Resource.Script.Animation
             // 누르고 있는 상태
             if (triggerType == InputActionType.Hold)
             {
+                if (_triggerInputAction is null) return;
                 // 버튼을 누르고 있을 때 재생, 놓으면 정지
                 // 이거는 나중에 숨참기 같은거 구현할때
                 // TODO 숨참기  구현
@@ -350,6 +369,7 @@ namespace Resource.Script.Animation
             if (triggerType == InputActionType.Tab)
             {
                 // 한 번 누를 때마다 On/Off 토글
+                if (_triggerInputAction is null) return;
                 if (_triggerInputAction.triggered) _isTriggered = !_isTriggered;
 
                 if (_isTriggered) Play();
@@ -359,6 +379,7 @@ namespace Resource.Script.Animation
             // 두 번 탭
             if (triggerType == InputActionType.DoubleTab)
             {
+                if (_triggerInputAction is null) return;
                 // 더블 탭 감지
                 _triggerInputAction.HasDoubleClicked(ref _isTriggered, ref _lastTriggerTime, 0.3f);
 
@@ -369,6 +390,7 @@ namespace Resource.Script.Animation
             // 트리거
             if (triggerType == InputActionType.Trigger)
             {
+                if (_triggerInputAction is null) return;
                 // 클릭 순간만 실행 (예: 반동)
                 if (_triggerInputAction.triggered)
                     Play(0);
@@ -472,7 +494,9 @@ namespace Resource.Script.Animation
             // 실재 재생할 수 있는 조건의 애니메이션만 재생
             // 달리는 중에 조준 불가 처럼 조건을 따져야하는 경유
             if (_isPlaying && !_prevPlaying)
+            {
                 events.OnPlayed?.Invoke();
+            }
 
             if (!_isPlaying && _prevPlaying)
                 events.OnStoped?.Invoke();
@@ -561,7 +585,9 @@ namespace Resource.Script.Animation
 
             // 모든 Modifier의 position 결과 합산
             foreach (var modifier in Modifiers)
+            {
                 result += modifier.TargetPosition;
+            }
 
             if (perModifierConnections)
                 result *= avoidanceFactor;

@@ -9,17 +9,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3508207884099796601}
-  - component: {fileID: 4582531294177898464}
-  - component: {fileID: 338942984746815936}
-  - component: {fileID: 3515627595163260925}
-  - component: {fileID: 8143437551634410879}
+  - component: {fileID: 8287583961141334736}
+  - component: {fileID: 4777492419327008158}
+  - component: {fileID: 7150902020168932965}
+  - component: {fileID: 2678897271240508553}
   m_Layer: 0
   m_Name: Jump Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3508207884099796601
 Transform:
   m_ObjectHideFlags: 0
@@ -35,7 +35,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7101878817252626289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4582531294177898464
+--- !u!114 &8287583961141334736
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,56 +44,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 103848916704628933}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4abcd5dbe64ac344b80b42ee643aa96, type: 3}
+  m_Script: {fileID: 11500000, guid: d252d3f2154fdae448c45faafcdf5ebd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Jump
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.ProceduralAnimation
+  procAnimName: Jump
   length: 0.15
   weight: 0.718
   loop: 0
   autoStop: 1
   perModifierConnections: 1
   playOnAwake: 0
-  unidirectinalPlay: 0
+  unidirectionalPlay: 0
   resetOnPlayed: 0
   isolate: 0
   isolationMode: 0
   updateMode: 0
   triggerType: 0
-  triggerInputAction:
-    m_Name: Trigger Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 7e470f73-6c0e-43e0-8afb-7aed710b3951
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
+  inputActionReference: {fileID: 0}
   events:
     OnPlay:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 338942984746815936}
-          m_TargetAssemblyTypeName: Akila.FPSFramework.Animation.KickAnimationModifier,
+        - m_Target: {fileID: 4777492419327008158}
+          m_TargetAssemblyTypeName: Resource.Script.Animation.Modifier.KickAnimationModifier,
             Assembly-CSharp
           m_MethodName: Trigger
-          m_Mode: 0
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 3515627595163260925}
-          m_TargetAssemblyTypeName: Akila.FPSFramework.Animation.SpringAnimationModifier,
+        - m_Target: {fileID: 7150902020168932965}
+          m_TargetAssemblyTypeName: Resource.Script.Animation.Modifier.SpringAnimationModifier,
             Assembly-CSharp
           m_MethodName: Trigger
-          m_Mode: 0
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -105,9 +97,8 @@ MonoBehaviour:
     OnStoped:
       m_PersistentCalls:
         m_Calls: []
-  customEvents: []
   connections: []
---- !u!114 &338942984746815936
+--- !u!114 &4777492419327008158
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,10 +107,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 103848916704628933}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2f0f07a1e4ffb44ab47359135589904, type: 3}
+  m_Script: {fileID: 11500000, guid: d2ff1d7678f746549cc58ea0617e57a1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  UpdateMode: 0
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.Modifier.KickAnimationModifier
+  updateMode: 0
   positionWeight: 1
   rotationWeight: 1
   positionRoughness: 10
@@ -131,7 +122,7 @@ MonoBehaviour:
   OnTrigger:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3515627595163260925
+--- !u!114 &7150902020168932965
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,9 +131,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 103848916704628933}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94603828600306a42912af4af6b7c3b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e36cb5f77b2443399e432289b6f0e80, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.Modifier.SpringAnimationModifier
   speed: 1
   position:
     value: {x: 0, y: -0.04, z: 0}
@@ -154,7 +145,7 @@ MonoBehaviour:
     speed: 10
     fadeOutTime: 1
     weight: 1
---- !u!114 &8143437551634410879
+--- !u!114 &2678897271240508553
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,9 +154,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 103848916704628933}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a4cdba485b735c4193f2c375b6724ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 55d884dc433446dcbb80d23e282874a7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.Modifier.MoveAnimationModifier
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0}
   defaultPosition: {x: 0, y: 0, z: 0}
@@ -460,7 +451,6 @@ GameObject:
   - component: {fileID: 2052470699772223401}
   - component: {fileID: -6988473520082429637}
   - component: {fileID: 2488193363436544514}
-  - component: {fileID: 1300122593927068881}
   m_Layer: 12
   m_Name: Assault Rifle_1
   m_TagString: Untagged
@@ -603,43 +593,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   alwaysApplyFire: 0
---- !u!114 &1300122593927068881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395104231899459405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d252d3f2154fdae448c45faafcdf5ebd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.ProceduralAnimation
-  procAnimName: New Procedural Animation
-  length: 0.15
-  weight: 1
-  loop: 0
-  autoStop: 0
-  perModifierConnections: 1
-  playOnAwake: 0
-  unidirectionalPlay: 0
-  resetOnPlayed: 0
-  isolate: 0
-  isolationMode: 0
-  updateMode: 0
-  triggerType: 0
-  inputActionReference: {fileID: 0}
-  events:
-    OnPlay:
-      m_PersistentCalls:
-        m_Calls: []
-    OnPlayed:
-      m_PersistentCalls:
-        m_Calls: []
-    OnStoped:
-      m_PersistentCalls:
-        m_Calls: []
-  connections: []
 --- !u!1 &395104232344178882
 GameObject:
   m_ObjectHideFlags: 0
@@ -946,126 +899,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 395104231778070129}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &848538307383014621
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4034271428604302233}
-  - component: {fileID: 6514153885918330175}
-  - component: {fileID: 5559717905959660701}
-  m_Layer: 9
-  m_Name: Sway Aim Animation
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &4034271428604302233
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 848538307383014621}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7101878817252626289}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6514153885918330175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 848538307383014621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4abcd5dbe64ac344b80b42ee643aa96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Sway Aiming
-  length: 0.15
-  weight: 1
-  loop: 0
-  autoStop: 0
-  perModifierConnections: 1
-  playOnAwake: 0
-  unidirectinalPlay: 0
-  resetOnPlayed: 0
-  isolate: 0
-  isolationMode: 0
-  updateMode: 0
-  triggerType: 0
-  triggerInputAction:
-    m_Name: Trigger Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 46ab32a9-04fd-40e3-b1f5-2220a8d64885
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  events:
-    OnPlay:
-      m_PersistentCalls:
-        m_Calls: []
-    OnPlayed:
-      m_PersistentCalls:
-        m_Calls: []
-    OnStoped:
-      m_PersistentCalls:
-        m_Calls: []
-  customEvents: []
-  connections:
-  - type: 3
-    target: {fileID: 8079409080305236861}
---- !u!114 &5559717905959660701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 848538307383014621}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c7240c8fd04ef4488e741125cd312ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputAction:
-    m_Name: Input
-    m_Type: 0
-    m_ExpectedControlType: Vector2
-    m_Id: a5feff74-f843-49d3-95b2-428c025e2485
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 81dca82d-96e2-4e96-a499-e82942943a05
-      m_Path: <Mouse>/delta
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Input
-      m_Flags: 0
-    m_Flags: 0
-  amplification: 0.5
-  positionSmoothness: 5
-  rotationSmoothness: 5
-  disableOnPaused: 1
-  positionInputX: {x: 0.0005, y: 0, z: 0}
-  rotationInputX: {x: 0, y: 0.2, z: 0}
-  positionInputY: {x: 0, y: 0.0005, z: 0}
-  rotationInputY: {x: -0.2, y: 0, z: 0}
-  positionLimit: {x: 1, y: 1, z: 1}
-  rotationLimit: {x: 20, y: 20, z: 20}
 --- !u!1 &1029722034764347535
 GameObject:
   m_ObjectHideFlags: 0
@@ -1099,7 +932,6 @@ Transform:
   - {fileID: 6587517699828846355}
   - {fileID: 1328227224619731049}
   - {fileID: 5315402670785995371}
-  - {fileID: 7584953529821918558}
   - {fileID: 4500287903694929082}
   - {fileID: 8444504844563148269}
   - {fileID: 4897107485607131842}
@@ -1110,132 +942,9 @@ Transform:
   - {fileID: 1024654006201851749}
   - {fileID: 5282374807779654588}
   - {fileID: 5956862566864822281}
-  - {fileID: 1803215507914094217}
   - {fileID: 1059177627055850133}
-  - {fileID: 7045014341489881648}
-  - {fileID: 4034271428604302233}
   m_Father: {fileID: 395104232373893061}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1136179463948925422
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7045014341489881648}
-  - component: {fileID: 3121666355180307393}
-  - component: {fileID: 3345291249637908396}
-  m_Layer: 9
-  m_Name: Sway Animation
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &7045014341489881648
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1136179463948925422}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7101878817252626289}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3121666355180307393
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1136179463948925422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4abcd5dbe64ac344b80b42ee643aa96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Sway
-  length: 0.15
-  weight: 1
-  loop: 0
-  autoStop: 0
-  perModifierConnections: 1
-  playOnAwake: 0
-  unidirectinalPlay: 0
-  resetOnPlayed: 0
-  isolate: 0
-  isolationMode: 0
-  updateMode: 0
-  triggerType: 0
-  triggerInputAction:
-    m_Name: Trigger Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 46ab32a9-04fd-40e3-b1f5-2220a8d64885
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  events:
-    OnPlay:
-      m_PersistentCalls:
-        m_Calls: []
-    OnPlayed:
-      m_PersistentCalls:
-        m_Calls: []
-    OnStoped:
-      m_PersistentCalls:
-        m_Calls: []
-  customEvents: []
-  connections:
-  - type: 4
-    target: {fileID: 8079409080305236861}
---- !u!114 &3345291249637908396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1136179463948925422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c7240c8fd04ef4488e741125cd312ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  inputAction:
-    m_Name: Input
-    m_Type: 0
-    m_ExpectedControlType: Vector2
-    m_Id: a5feff74-f843-49d3-95b2-428c025e2485
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 81dca82d-96e2-4e96-a499-e82942943a05
-      m_Path: <Mouse>/delta
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Input
-      m_Flags: 0
-    m_Flags: 0
-  amplification: 0.5
-  positionSmoothness: 5
-  rotationSmoothness: 5
-  disableOnPaused: 1
-  positionInputX: {x: 0.0005, y: 0, z: 0}
-  rotationInputX: {x: 0, y: 0.2, z: 0}
-  positionInputY: {x: 0, y: 0.0005, z: 0}
-  rotationInputY: {x: -0.2, y: 0, z: 0}
-  positionLimit: {x: 1, y: 1, z: 1}
-  rotationLimit: {x: 20, y: 20, z: 20}
 --- !u!1 &1508196583141443487
 GameObject:
   m_ObjectHideFlags: 0
@@ -1245,15 +954,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5956862566864822281}
-  - component: {fileID: 8989611076396402141}
-  - component: {fileID: 8292804022481370103}
+  - component: {fileID: 6714912597686005554}
+  - component: {fileID: 4300119801016902143}
   m_Layer: 0
   m_Name: Wall Avoidance Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5956862566864822281
 Transform:
   m_ObjectHideFlags: 0
@@ -1269,7 +978,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7101878817252626289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8989611076396402141
+--- !u!114 &6714912597686005554
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1278,31 +987,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1508196583141443487}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4abcd5dbe64ac344b80b42ee643aa96, type: 3}
+  m_Script: {fileID: 11500000, guid: d252d3f2154fdae448c45faafcdf5ebd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Wall Avoidance
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.ProceduralAnimation
+  procAnimName: Wall Avoidance
   length: 0.15
   weight: 1
   loop: 0
   autoStop: 0
   perModifierConnections: 1
   playOnAwake: 0
-  unidirectinalPlay: 0
+  unidirectionalPlay: 0
   resetOnPlayed: 0
   isolate: 0
   isolationMode: 0
   updateMode: 0
   triggerType: 0
-  triggerInputAction:
-    m_Name: Trigger Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: aafe4b78-8d22-4bc2-9082-642b85fd67ea
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
+  inputActionReference: {fileID: 0}
   events:
     OnPlay:
       m_PersistentCalls:
@@ -1313,9 +1014,8 @@ MonoBehaviour:
     OnStoped:
       m_PersistentCalls:
         m_Calls: []
-  customEvents: []
   connections: []
---- !u!114 &8292804022481370103
+--- !u!114 &4300119801016902143
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1324,10 +1024,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1508196583141443487}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b804fc05e644d4418982bf16e022b25, type: 3}
+  m_Script: {fileID: 11500000, guid: 577e7abaf7f14da6aa4f01cb71d78454, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  range: 1.3
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.Modifier.WallAvoidanceAnimationModifier
+  raycastRange: 1.3
   layerMask:
     serializedVersion: 2
     m_Bits: 43063
@@ -1342,15 +1042,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1059177627055850133}
-  - component: {fileID: 8626405322024308076}
-  - component: {fileID: 1316239736559808998}
+  - component: {fileID: 6950773648473597251}
+  - component: {fileID: 6252168905305333992}
   m_Layer: 0
   m_Name: Crouch Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1059177627055850133
 Transform:
   m_ObjectHideFlags: 0
@@ -1366,7 +1066,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7101878817252626289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8626405322024308076
+--- !u!114 &6950773648473597251
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1375,31 +1075,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1520115838153085188}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4abcd5dbe64ac344b80b42ee643aa96, type: 3}
+  m_Script: {fileID: 11500000, guid: d252d3f2154fdae448c45faafcdf5ebd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Crouch
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.ProceduralAnimation
+  procAnimName: Crouch
   length: 0.12
   weight: 1
   loop: 0
   autoStop: 0
   perModifierConnections: 1
   playOnAwake: 0
-  unidirectinalPlay: 0
+  unidirectionalPlay: 0
   resetOnPlayed: 0
   isolate: 0
   isolationMode: 0
   updateMode: 0
   triggerType: 0
-  triggerInputAction:
-    m_Name: 'Right Button [Mouse]'
-    m_Type: 1
-    m_ExpectedControlType: 
-    m_Id: 524f75d7-e1dd-44c9-9a97-5e2a7ae889d1
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
+  inputActionReference: {fileID: 0}
   events:
     OnPlay:
       m_PersistentCalls:
@@ -1410,11 +1102,10 @@ MonoBehaviour:
     OnStoped:
       m_PersistentCalls:
         m_Calls: []
-  customEvents: []
   connections:
   - type: 4
-    target: {fileID: 8079409080305236861}
---- !u!114 &1316239736559808998
+    target: {fileID: 8456358853238407432}
+--- !u!114 &6252168905305333992
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1423,9 +1114,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1520115838153085188}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a4cdba485b735c4193f2c375b6724ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 55d884dc433446dcbb80d23e282874a7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.Modifier.MoveAnimationModifier
   position: {x: 0, y: 0, z: -0.04}
   rotation: {x: 0, y: 0, z: 11.49}
   defaultPosition: {x: 0, y: 0, z: 0}
@@ -1439,7 +1130,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5315402670785995371}
-  - component: {fileID: 8869652375588094377}
   - component: {fileID: 987384562322231049}
   - component: {fileID: 7064817012379937828}
   - component: {fileID: 7141195903980362843}
@@ -1466,104 +1156,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7101878817252626289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8869652375588094377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2035400726345861059}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4abcd5dbe64ac344b80b42ee643aa96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Sprinting
-  length: 0.25
-  weight: 1
-  loop: 0
-  autoStop: 0
-  perModifierConnections: 0
-  playOnAwake: 0
-  unidirectinalPlay: 0
-  resetOnPlayed: 0
-  isolate: 0
-  isolationMode: 0
-  updateMode: 0
-  triggerType: 2
-  triggerInputAction:
-    m_Name: 'Shit [Keyboard]'
-    m_Type: 1
-    m_ExpectedControlType: 
-    m_Id: db402c62-37b3-44b1-83c0-f3113fc2ee69
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 4712965b-d6d2-4f0b-86e5-af891dd293f6
-      m_Path: <Keyboard>/shift
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: 'Shit [Keyboard]'
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 64b1118f-77f0-479b-b81b-ccf0f37915a6
-      m_Path: <Gamepad>/leftStickPress
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: 'Shit [Keyboard]'
-      m_Flags: 0
-    m_Flags: 0
-  events:
-    OnPlay:
-      m_PersistentCalls:
-        m_Calls: []
-    OnPlayed:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: Akila.FPSFramework.Animation.SpringAnimationModifier,
-            Assembly-CSharp
-          m_MethodName: Trigger
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    OnStoped:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: Akila.FPSFramework.Animation.SpringAnimationModifier,
-            Assembly-CSharp
-          m_MethodName: Trigger
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  customEvents: []
-  connections:
-  - type: 4
-    target: {fileID: 8079409080305236861}
-  - type: 4
-    target: {fileID: 8544896913719170184}
-  - type: 4
-    target: {fileID: 7160884425207528048}
-  - type: 4
-    target: {fileID: 949938078947443286}
-  - type: 4
-    target: {fileID: 8626405322024308076}
 --- !u!114 &987384562322231049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1630,6 +1222,12 @@ MonoBehaviour:
   connections:
   - type: 4
     target: {fileID: 8456358853238407432}
+  - type: 4
+    target: {fileID: 3823731808845432341}
+  - type: 4
+    target: {fileID: 7624788696480559365}
+  - type: 4
+    target: {fileID: 6950773648473597251}
 --- !u!114 &7064817012379937828
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1692,121 +1290,6 @@ MonoBehaviour:
     speed: 10
     fadeOutTime: 1
     weight: 1
---- !u!1 &2581108818280036098
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1803215507914094217}
-  - component: {fileID: 4318211945411192530}
-  - component: {fileID: 5077891529641925141}
-  m_Layer: 9
-  m_Name: Show Animation
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1803215507914094217
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2581108818280036098}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7101878817252626289}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4318211945411192530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2581108818280036098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4abcd5dbe64ac344b80b42ee643aa96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Show
-  length: 0.15
-  weight: 1
-  loop: 0
-  autoStop: 0
-  perModifierConnections: 1
-  playOnAwake: 1
-  unidirectinalPlay: 0
-  resetOnPlayed: 0
-  isolate: 0
-  isolationMode: 0
-  updateMode: 0
-  triggerType: 0
-  triggerInputAction:
-    m_Name: Trigger Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: f4f65e10-1eae-407c-8b13-d241938bf226
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  events:
-    OnPlay:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 5077891529641925141}
-          m_TargetAssemblyTypeName: Akila.FPSFramework.Animation.SpringAnimationModifier,
-            Assembly-CSharp
-          m_MethodName: Trigger
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    OnPlayed:
-      m_PersistentCalls:
-        m_Calls: []
-    OnStoped:
-      m_PersistentCalls:
-        m_Calls: []
-  customEvents: []
-  connections: []
---- !u!114 &5077891529641925141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2581108818280036098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94603828600306a42912af4af6b7c3b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  position:
-    value: {x: 0, y: 0.01, z: -0.1}
-    speed: 10
-    fadeOutTime: 1
-    weight: 1
-  rotation:
-    value: {x: 1, y: 0, z: -11}
-    speed: 12
-    fadeOutTime: 1
-    weight: 1
 --- !u!1 &2714941243621231517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1816,19 +1299,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4500287903694929082}
-  - component: {fileID: 8079409080305236861}
   - component: {fileID: 8456358853238407432}
-  - component: {fileID: 2135562871412144383}
   - component: {fileID: 2580545801475817599}
-  - component: {fileID: 7208002053777644291}
-  - component: {fileID: 2760099138802371837}
+  - component: {fileID: 1286849297525960172}
+  - component: {fileID: 5216946986051254103}
   m_Layer: 0
   m_Name: Aiming Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4500287903694929082
 Transform:
   m_ObjectHideFlags: 0
@@ -1844,120 +1325,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7101878817252626289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8079409080305236861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2714941243621231517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4abcd5dbe64ac344b80b42ee643aa96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Aiming
-  length: 0.2
-  weight: 1
-  loop: 0
-  autoStop: 0
-  perModifierConnections: 0
-  playOnAwake: 0
-  unidirectinalPlay: 0
-  resetOnPlayed: 0
-  isolate: 0
-  isolationMode: 0
-  updateMode: 0
-  triggerType: 1
-  triggerInputAction:
-    m_Name: 'Right Button [Mouse]'
-    m_Type: 1
-    m_ExpectedControlType: 
-    m_Id: 524f75d7-e1dd-44c9-9a97-5e2a7ae889d1
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 5f582d62-a9a5-47d9-8b46-4b2b038c0c70
-      m_Path: <Mouse>/rightButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: 'Right Button [Mouse]'
-      m_Flags: 0
-    - m_Name: 
-      m_Id: abded28a-2c96-4b66-bdda-12eb679647a3
-      m_Path: <Gamepad>/leftTrigger
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: 'Right Button [Mouse]'
-      m_Flags: 0
-    m_Flags: 0
-  events:
-    OnPlay:
-      m_PersistentCalls:
-        m_Calls: []
-    OnPlayed:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7208002053777644291}
-          m_TargetAssemblyTypeName: Akila.FPSFramework.Animation.SpringAnimationModifier,
-            Assembly-CSharp
-          m_MethodName: Trigger
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-          m_MethodName: Play
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    OnStoped:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2760099138802371837}
-          m_TargetAssemblyTypeName: Akila.FPSFramework.Animation.SpringAnimationModifier,
-            Assembly-CSharp
-          m_MethodName: Trigger
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
-          m_MethodName: Play
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  customEvents: []
-  connections:
-  - type: 4
-    target: {fileID: 8989611076396402141}
 --- !u!114 &8456358853238407432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1975,7 +1342,7 @@ MonoBehaviour:
   weight: 1
   loop: 0
   autoStop: 0
-  perModifierConnections: 1
+  perModifierConnections: 0
   playOnAwake: 0
   unidirectionalPlay: 0
   resetOnPlayed: 0
@@ -1983,7 +1350,7 @@ MonoBehaviour:
   isolationMode: 0
   updateMode: 0
   triggerType: 1
-  inputActionReference: {fileID: -9033960349534443920, guid: 052faaac586de48259a63d0c4782560b,
+  inputActionReference: {fileID: 8341173763807170809, guid: fe0ad163545f89b47813a7b41af4a66a,
     type: 3}
   events:
     OnPlay:
@@ -1991,27 +1358,39 @@ MonoBehaviour:
         m_Calls: []
     OnPlayed:
       m_PersistentCalls:
-        m_Calls: []
+        m_Calls:
+        - m_Target: {fileID: 1286849297525960172}
+          m_TargetAssemblyTypeName: Resource.Script.Animation.Modifier.SpringAnimationModifier,
+            Assembly-CSharp
+          m_MethodName: Trigger
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     OnStoped:
       m_PersistentCalls:
-        m_Calls: []
-  connections: []
---- !u!114 &2135562871412144383
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2714941243621231517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a4cdba485b735c4193f2c375b6724ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  position: {x: -0.08, y: 0.023, z: -0.01}
-  rotation: {x: 0, y: 0, z: -4}
-  defaultPosition: {x: 0, y: 0, z: 0}
-  defaultRotation: {x: 0, y: 0, z: 0}
+        m_Calls:
+        - m_Target: {fileID: 5216946986051254103}
+          m_TargetAssemblyTypeName: Resource.Script.Animation.Modifier.SpringAnimationModifier,
+            Assembly-CSharp
+          m_MethodName: Trigger
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  connections:
+  - type: 4
+    target: {fileID: 6714912597686005554}
 --- !u!114 &2580545801475817599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2028,7 +1407,7 @@ MonoBehaviour:
   rotation: {x: 0, y: 0, z: -4}
   defaultPosition: {x: 0, y: 0, z: 0}
   defaultRotation: {x: 0, y: 0, z: 0}
---- !u!114 &7208002053777644291
+--- !u!114 &1286849297525960172
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2037,9 +1416,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2714941243621231517}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94603828600306a42912af4af6b7c3b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e36cb5f77b2443399e432289b6f0e80, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.Modifier.SpringAnimationModifier
   speed: 0
   position:
     value: {x: 0, y: 0.005, z: 0}
@@ -2051,7 +1430,7 @@ MonoBehaviour:
     speed: 20
     fadeOutTime: 1
     weight: 1
---- !u!114 &2760099138802371837
+--- !u!114 &5216946986051254103
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2060,9 +1439,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2714941243621231517}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94603828600306a42912af4af6b7c3b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e36cb5f77b2443399e432289b6f0e80, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.Modifier.SpringAnimationModifier
   speed: 0
   position:
     value: {x: 0, y: 0.005, z: 0}
@@ -2083,16 +1462,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8444504844563148269}
-  - component: {fileID: 8544896913719170184}
-  - component: {fileID: 1338082872072993778}
-  - component: {fileID: 553279091113575503}
+  - component: {fileID: 3823731808845432341}
+  - component: {fileID: 7706923182164121185}
+  - component: {fileID: 3009095868476061500}
   m_Layer: 0
   m_Name: Recoil Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &8444504844563148269
 Transform:
   m_ObjectHideFlags: 0
@@ -2108,7 +1487,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7101878817252626289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8544896913719170184
+--- !u!114 &3823731808845432341
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2117,56 +1496,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 2856330568567243561}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4abcd5dbe64ac344b80b42ee643aa96, type: 3}
+  m_Script: {fileID: 11500000, guid: d252d3f2154fdae448c45faafcdf5ebd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Recoil
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.ProceduralAnimation
+  procAnimName: Recoil
   length: 0.01
   weight: 1
   loop: 0
   autoStop: 1
   perModifierConnections: 1
   playOnAwake: 0
-  unidirectinalPlay: 0
+  unidirectionalPlay: 0
   resetOnPlayed: 0
   isolate: 0
   isolationMode: 0
   updateMode: 0
   triggerType: 0
-  triggerInputAction:
-    m_Name: Trigger Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 8e718631-f35a-4477-9346-980e2b6b9239
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
+  inputActionReference: {fileID: 0}
   events:
     OnPlay:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1338082872072993778}
-          m_TargetAssemblyTypeName: Akila.FPSFramework.Animation.KickAnimationModifier,
+        - m_Target: {fileID: 7706923182164121185}
+          m_TargetAssemblyTypeName: Resource.Script.Animation.Modifier.KickAnimationModifier,
             Assembly-CSharp
           m_MethodName: Trigger
-          m_Mode: 0
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 553279091113575503}
-          m_TargetAssemblyTypeName: Akila.FPSFramework.Animation.SpringAnimationModifier,
+        - m_Target: {fileID: 3009095868476061500}
+          m_TargetAssemblyTypeName: Resource.Script.Animation.Modifier.SpringAnimationModifier,
             Assembly-CSharp
           m_MethodName: Trigger
-          m_Mode: 0
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2178,13 +1549,12 @@ MonoBehaviour:
     OnStoped:
       m_PersistentCalls:
         m_Calls: []
-  customEvents: []
   connections:
   - type: 4
-    target: {fileID: 8079409080305236861}
+    target: {fileID: 8456358853238407432}
   - type: 4
-    target: {fileID: 8869652375588094377}
---- !u!114 &1338082872072993778
+    target: {fileID: 987384562322231049}
+--- !u!114 &7706923182164121185
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2193,10 +1563,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2856330568567243561}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2f0f07a1e4ffb44ab47359135589904, type: 3}
+  m_Script: {fileID: 11500000, guid: d2ff1d7678f746549cc58ea0617e57a1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  UpdateMode: 1
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.Modifier.KickAnimationModifier
+  updateMode: 1
   positionWeight: 1
   rotationWeight: 1
   positionRoughness: 10
@@ -2208,7 +1578,7 @@ MonoBehaviour:
   OnTrigger:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &553279091113575503
+--- !u!114 &3009095868476061500
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2217,9 +1587,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2856330568567243561}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94603828600306a42912af4af6b7c3b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e36cb5f77b2443399e432289b6f0e80, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.Modifier.SpringAnimationModifier
   speed: 1
   position:
     value: {x: 0, y: 0.01, z: -0.02}
@@ -2228,8 +1598,8 @@ MonoBehaviour:
     weight: 1
   rotation:
     value: {x: -2, y: 0, z: 0}
-    speed: 20
-    fadeOutTime: 0.7
+    speed: 10
+    fadeOutTime: 1
     weight: 1
 --- !u!1 &5739975520001530824
 GameObject:
@@ -2426,17 +1796,17 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5674049613090234290}
-  - component: {fileID: 5981000998130226765}
-  - component: {fileID: 3061784353955216471}
-  - component: {fileID: 669112666867513462}
-  - component: {fileID: 2361558236440136511}
+  - component: {fileID: 8747996342582239468}
+  - component: {fileID: 8048985393586378082}
+  - component: {fileID: 3685025219224551649}
+  - component: {fileID: 6814297816295251063}
   m_Layer: 0
   m_Name: Land Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5674049613090234290
 Transform:
   m_ObjectHideFlags: 0
@@ -2452,7 +1822,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7101878817252626289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5981000998130226765
+--- !u!114 &8747996342582239468
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2461,56 +1831,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 6030681638860228299}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4abcd5dbe64ac344b80b42ee643aa96, type: 3}
+  m_Script: {fileID: 11500000, guid: d252d3f2154fdae448c45faafcdf5ebd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Land
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.ProceduralAnimation
+  procAnimName: Land
   length: 0.15
   weight: 0.54
   loop: 0
-  autoStop: 1
-  perModifierConnections: 0
+  autoStop: 0
+  perModifierConnections: 1
   playOnAwake: 0
-  unidirectinalPlay: 0
+  unidirectionalPlay: 0
   resetOnPlayed: 0
   isolate: 0
   isolationMode: 0
   updateMode: 0
   triggerType: 0
-  triggerInputAction:
-    m_Name: Trigger Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 26fc351e-7317-4922-8710-9fc0f0961b26
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
+  inputActionReference: {fileID: 0}
   events:
     OnPlay:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3061784353955216471}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: Akila.FPSFramework.Animation.KickAnimationModifier,
-            Assembly-CSharp
+            Akila.FPSFramework
           m_MethodName: Trigger
-          m_Mode: 0
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 669112666867513462}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: Akila.FPSFramework.Animation.SpringAnimationModifier,
-            Assembly-CSharp
+            Akila.FPSFramework
           m_MethodName: Trigger
-          m_Mode: 0
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -2522,9 +1884,8 @@ MonoBehaviour:
     OnStoped:
       m_PersistentCalls:
         m_Calls: []
-  customEvents: []
   connections: []
---- !u!114 &3061784353955216471
+--- !u!114 &8048985393586378082
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2533,10 +1894,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6030681638860228299}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2f0f07a1e4ffb44ab47359135589904, type: 3}
+  m_Script: {fileID: 11500000, guid: d2ff1d7678f746549cc58ea0617e57a1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  UpdateMode: 0
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.Modifier.KickAnimationModifier
+  updateMode: 1
   positionWeight: 1
   rotationWeight: 1
   positionRoughness: 5
@@ -2548,7 +1909,7 @@ MonoBehaviour:
   OnTrigger:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &669112666867513462
+--- !u!114 &3685025219224551649
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2557,9 +1918,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6030681638860228299}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94603828600306a42912af4af6b7c3b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e36cb5f77b2443399e432289b6f0e80, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.Modifier.SpringAnimationModifier
   speed: 1
   position:
     value: {x: 0, y: -0.02, z: 0}
@@ -2571,7 +1932,7 @@ MonoBehaviour:
     speed: 10
     fadeOutTime: 1
     weight: 1
---- !u!114 &2361558236440136511
+--- !u!114 &6814297816295251063
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2580,9 +1941,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6030681638860228299}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a4cdba485b735c4193f2c375b6724ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 55d884dc433446dcbb80d23e282874a7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.Modifier.MoveAnimationModifier
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0}
   defaultPosition: {x: 0, y: 0, z: 0}
@@ -2694,15 +2055,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1024654006201851749}
-  - component: {fileID: 8443999846550055755}
-  - component: {fileID: 400438148843679548}
+  - component: {fileID: 2424105027412148744}
+  - component: {fileID: 7090234328821241809}
   m_Layer: 0
   m_Name: Lean Right Aim Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1024654006201851749
 Transform:
   m_ObjectHideFlags: 0
@@ -2718,7 +2079,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7101878817252626289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8443999846550055755
+--- !u!114 &2424105027412148744
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2727,39 +2088,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 6772330888174821963}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4abcd5dbe64ac344b80b42ee643aa96, type: 3}
+  m_Script: {fileID: 11500000, guid: d252d3f2154fdae448c45faafcdf5ebd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Lean Right Aim
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.ProceduralAnimation
+  procAnimName: Lean Right Aim
   length: 0.15
   weight: 1
   loop: 0
   autoStop: 0
   perModifierConnections: 1
   playOnAwake: 0
-  unidirectinalPlay: 0
+  unidirectionalPlay: 0
   resetOnPlayed: 0
   isolate: 0
   isolationMode: 0
   updateMode: 0
   triggerType: 0
-  triggerInputAction:
-    m_Name: 'E [Keyboard]'
-    m_Type: 1
-    m_ExpectedControlType: 
-    m_Id: ad90307c-2431-4375-b001-f5904cde9cd0
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 42b08ddd-8d75-4bf6-b596-c508fa5de3d7
-      m_Path: <Keyboard>/e
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: 'E [Keyboard]'
-      m_Flags: 0
-    m_Flags: 0
+  inputActionReference: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b,
+    type: 3}
   events:
     OnPlay:
       m_PersistentCalls:
@@ -2770,11 +2116,10 @@ MonoBehaviour:
     OnStoped:
       m_PersistentCalls:
         m_Calls: []
-  customEvents: []
   connections:
   - type: 3
-    target: {fileID: 8079409080305236861}
---- !u!114 &400438148843679548
+    target: {fileID: 8456358853238407432}
+--- !u!114 &7090234328821241809
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2783,9 +2128,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6772330888174821963}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a4cdba485b735c4193f2c375b6724ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 55d884dc433446dcbb80d23e282874a7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.Modifier.MoveAnimationModifier
   position: {x: -0.037, y: 0.009, z: 0}
   rotation: {x: 0, y: 0, z: -25}
   defaultPosition: {x: 0, y: 0, z: 0}
@@ -3095,199 +2440,6 @@ MonoBehaviour:
     result: {x: 0, y: 0, z: 0}
   syncWithAnimation: 0
   syncSpeed: 5
---- !u!1 &7895328753491635875
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7584953529821918558}
-  - component: {fileID: 949938078947443286}
-  - component: {fileID: 3039042826169094855}
-  - component: {fileID: 3749813397067756175}
-  - component: {fileID: 2203280018062717631}
-  m_Layer: 0
-  m_Name: Tactical Sprinting Animation
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &7584953529821918558
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7895328753491635875}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7101878817252626289}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &949938078947443286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7895328753491635875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4abcd5dbe64ac344b80b42ee643aa96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Tactical Sprinting
-  length: 0.3
-  weight: 1
-  loop: 0
-  autoStop: 0
-  perModifierConnections: 0
-  playOnAwake: 0
-  unidirectinalPlay: 0
-  resetOnPlayed: 0
-  isolate: 0
-  isolationMode: 0
-  updateMode: 0
-  triggerType: 3
-  triggerInputAction:
-    m_Name: 'Shit [Keyboard]'
-    m_Type: 1
-    m_ExpectedControlType: 
-    m_Id: db402c62-37b3-44b1-83c0-f3113fc2ee69
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 4712965b-d6d2-4f0b-86e5-af891dd293f6
-      m_Path: <Keyboard>/shift
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: 'Shit [Keyboard]'
-      m_Flags: 0
-    - m_Name: 
-      m_Id: 595ba236-2ebe-408a-8c09-b05152cbd694
-      m_Path: <Gamepad>/leftStickPress
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: 'Shit [Keyboard]'
-      m_Flags: 0
-    m_Flags: 0
-  events:
-    OnPlay:
-      m_PersistentCalls:
-        m_Calls: []
-    OnPlayed:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 3749813397067756175}
-          m_TargetAssemblyTypeName: Akila.FPSFramework.Animation.SpringAnimationModifier,
-            Assembly-CSharp
-          m_MethodName: Trigger
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    OnStoped:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2203280018062717631}
-          m_TargetAssemblyTypeName: Akila.FPSFramework.Animation.SpringAnimationModifier,
-            Assembly-CSharp
-          m_MethodName: Trigger
-          m_Mode: 0
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  customEvents: []
-  connections:
-  - type: 4
-    target: {fileID: 8079409080305236861}
-  - type: 4
-    target: {fileID: 8544896913719170184}
-  - type: 4
-    target: {fileID: 7160884425207528048}
-  - type: 4
-    target: {fileID: 8626405322024308076}
---- !u!114 &3039042826169094855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7895328753491635875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a4cdba485b735c4193f2c375b6724ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  position: {x: -0.09, y: -0.04, z: -0.08}
-  rotation: {x: -1.84, y: -33.4, z: 29.36}
-  defaultPosition: {x: 0, y: 0, z: 0}
-  defaultRotation: {x: 0, y: 0, z: 0}
---- !u!114 &3749813397067756175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7895328753491635875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94603828600306a42912af4af6b7c3b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  position:
-    value: {x: 0, y: 0.015, z: 0.01}
-    speed: 10
-    fadeOutTime: 1
-    weight: 1
-  rotation:
-    value: {x: 0, y: 0, z: 5}
-    speed: 10
-    fadeOutTime: 1
-    weight: 1
---- !u!114 &2203280018062717631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7895328753491635875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94603828600306a42912af4af6b7c3b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  position:
-    value: {x: 0, y: 0.01, z: 0.005}
-    speed: 10
-    fadeOutTime: 0.87
-    weight: 1
-  rotation:
-    value: {x: 0, y: 0, z: 3}
-    speed: 10
-    fadeOutTime: 1
-    weight: 1
 --- !u!1 &8079695191309616287
 GameObject:
   m_ObjectHideFlags: 0
@@ -3297,15 +2449,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 382833193541949244}
-  - component: {fileID: 3144141519755444250}
-  - component: {fileID: 5586442396053719929}
+  - component: {fileID: 3514643616720220174}
+  - component: {fileID: 2957667818016248391}
   m_Layer: 0
   m_Name: Lean Right Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &382833193541949244
 Transform:
   m_ObjectHideFlags: 0
@@ -3321,7 +2473,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7101878817252626289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3144141519755444250
+--- !u!114 &3514643616720220174
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3330,39 +2482,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 8079695191309616287}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4abcd5dbe64ac344b80b42ee643aa96, type: 3}
+  m_Script: {fileID: 11500000, guid: d252d3f2154fdae448c45faafcdf5ebd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Lean Right
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.ProceduralAnimation
+  procAnimName: Lean Right
   length: 0.15
   weight: 1
   loop: 0
   autoStop: 0
   perModifierConnections: 1
   playOnAwake: 0
-  unidirectinalPlay: 0
+  unidirectionalPlay: 0
   resetOnPlayed: 0
   isolate: 0
   isolationMode: 0
   updateMode: 0
   triggerType: 0
-  triggerInputAction:
-    m_Name: 'E [Keyboard]'
-    m_Type: 1
-    m_ExpectedControlType: 
-    m_Id: 8a293a86-ebf9-4f0d-b500-14b6d6544234
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: eab4b508-2728-4e32-b5d6-44730901873a
-      m_Path: <Keyboard>/e
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: 'E [Keyboard]'
-      m_Flags: 0
-    m_Flags: 0
+  inputActionReference: {fileID: 1781555164194001046, guid: 052faaac586de48259a63d0c4782560b,
+    type: 3}
   events:
     OnPlay:
       m_PersistentCalls:
@@ -3373,13 +2510,12 @@ MonoBehaviour:
     OnStoped:
       m_PersistentCalls:
         m_Calls: []
-  customEvents: []
   connections:
-  - type: 4
-    target: {fileID: 8079409080305236861}
-  - type: 4
-    target: {fileID: 1712528207165209663}
---- !u!114 &5586442396053719929
+  - type: 0
+    target: {fileID: 8456358853238407432}
+  - type: 0
+    target: {fileID: 5519475301916850070}
+--- !u!114 &2957667818016248391
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3388,9 +2524,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8079695191309616287}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a4cdba485b735c4193f2c375b6724ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 55d884dc433446dcbb80d23e282874a7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.Modifier.MoveAnimationModifier
   position: {x: 0.01, y: -0.02, z: 0}
   rotation: {x: 0, y: 0, z: -15}
   defaultPosition: {x: 0, y: 0, z: 0}
@@ -3458,15 +2594,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7870783610468368419}
-  - component: {fileID: 1712528207165209663}
-  - component: {fileID: 537719938634591162}
+  - component: {fileID: 5519475301916850070}
+  - component: {fileID: 6434895227430175449}
   m_Layer: 0
   m_Name: Lean Left Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &7870783610468368419
 Transform:
   m_ObjectHideFlags: 0
@@ -3482,7 +2618,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7101878817252626289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1712528207165209663
+--- !u!114 &5519475301916850070
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3491,39 +2627,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 8362838153693105717}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4abcd5dbe64ac344b80b42ee643aa96, type: 3}
+  m_Script: {fileID: 11500000, guid: d252d3f2154fdae448c45faafcdf5ebd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Lean Left
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.ProceduralAnimation
+  procAnimName: Lean Left
   length: 0.15
   weight: 1
   loop: 0
   autoStop: 0
   perModifierConnections: 1
   playOnAwake: 0
-  unidirectinalPlay: 0
+  unidirectionalPlay: 0
   resetOnPlayed: 0
   isolate: 0
   isolationMode: 0
   updateMode: 0
   triggerType: 0
-  triggerInputAction:
-    m_Name: 'Q [Keyboard]'
-    m_Type: 1
-    m_ExpectedControlType: 
-    m_Id: 5d8c353a-31f0-4a09-b5b2-5b4b2fe3ec51
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 7a936f3a-5050-49a8-b232-9a623dd653f8
-      m_Path: <Keyboard>/q
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: 'Q [Keyboard]'
-      m_Flags: 0
-    m_Flags: 0
+  inputActionReference: {fileID: -3543847217723122921, guid: 052faaac586de48259a63d0c4782560b,
+    type: 3}
   events:
     OnPlay:
       m_PersistentCalls:
@@ -3534,13 +2655,12 @@ MonoBehaviour:
     OnStoped:
       m_PersistentCalls:
         m_Calls: []
-  customEvents: []
   connections:
   - type: 4
-    target: {fileID: 8079409080305236861}
+    target: {fileID: 8456358853238407432}
   - type: 4
-    target: {fileID: 3144141519755444250}
---- !u!114 &537719938634591162
+    target: {fileID: 3514643616720220174}
+--- !u!114 &6434895227430175449
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3549,9 +2669,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8362838153693105717}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a4cdba485b735c4193f2c375b6724ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 55d884dc433446dcbb80d23e282874a7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.Modifier.MoveAnimationModifier
   position: {x: -0.13, y: -0.02, z: 0}
   rotation: {x: 0, y: 0, z: 15}
   defaultPosition: {x: 0, y: 0, z: 0}
@@ -3596,16 +2716,16 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4897107485607131842}
-  - component: {fileID: 7160884425207528048}
-  - component: {fileID: 3004041694920256799}
-  - component: {fileID: 233000745850678876}
+  - component: {fileID: 7624788696480559365}
+  - component: {fileID: 3507449399362566862}
+  - component: {fileID: 5769676650204473926}
   m_Layer: 0
   m_Name: Recoil Aim Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4897107485607131842
 Transform:
   m_ObjectHideFlags: 0
@@ -3621,7 +2741,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7101878817252626289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7160884425207528048
+--- !u!114 &7624788696480559365
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3630,56 +2750,48 @@ MonoBehaviour:
   m_GameObject: {fileID: 8930146010983959199}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4abcd5dbe64ac344b80b42ee643aa96, type: 3}
+  m_Script: {fileID: 11500000, guid: d252d3f2154fdae448c45faafcdf5ebd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Recoil Aim
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.ProceduralAnimation
+  procAnimName: Recoil Aim
   length: 0.01
   weight: 1
   loop: 0
   autoStop: 1
   perModifierConnections: 1
   playOnAwake: 0
-  unidirectinalPlay: 0
+  unidirectionalPlay: 0
   resetOnPlayed: 0
   isolate: 0
   isolationMode: 0
   updateMode: 0
   triggerType: 0
-  triggerInputAction:
-    m_Name: Trigger Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 89b7a1eb-f29d-4305-9efc-69186e160dc2
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
+  inputActionReference: {fileID: 0}
   events:
     OnPlay:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 3004041694920256799}
-          m_TargetAssemblyTypeName: Akila.FPSFramework.Animation.KickAnimationModifier,
+        - m_Target: {fileID: 3507449399362566862}
+          m_TargetAssemblyTypeName: Resource.Script.Animation.Modifier.KickAnimationModifier,
             Assembly-CSharp
           m_MethodName: Trigger
-          m_Mode: 0
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-        - m_Target: {fileID: 233000745850678876}
-          m_TargetAssemblyTypeName: Akila.FPSFramework.Animation.SpringAnimationModifier,
+        - m_Target: {fileID: 5769676650204473926}
+          m_TargetAssemblyTypeName: Resource.Script.Animation.Modifier.SpringAnimationModifier,
             Assembly-CSharp
           m_MethodName: Trigger
-          m_Mode: 0
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: 
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -3691,11 +2803,8 @@ MonoBehaviour:
     OnStoped:
       m_PersistentCalls:
         m_Calls: []
-  customEvents: []
-  connections:
-  - type: 3
-    target: {fileID: 8079409080305236861}
---- !u!114 &3004041694920256799
+  connections: []
+--- !u!114 &3507449399362566862
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3704,10 +2813,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8930146010983959199}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2f0f07a1e4ffb44ab47359135589904, type: 3}
+  m_Script: {fileID: 11500000, guid: d2ff1d7678f746549cc58ea0617e57a1, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  UpdateMode: 1
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.Modifier.KickAnimationModifier
+  updateMode: 1
   positionWeight: 1
   rotationWeight: 1
   positionRoughness: 10
@@ -3719,7 +2828,7 @@ MonoBehaviour:
   OnTrigger:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &233000745850678876
+--- !u!114 &5769676650204473926
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3728,9 +2837,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8930146010983959199}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94603828600306a42912af4af6b7c3b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e36cb5f77b2443399e432289b6f0e80, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.Modifier.SpringAnimationModifier
   speed: 1
   position:
     value: {x: 0, y: 0.005, z: -0.01}
@@ -3751,15 +2860,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5282374807779654588}
-  - component: {fileID: 1531042480682955114}
-  - component: {fileID: 201910859685228389}
+  - component: {fileID: 8050824005420509626}
+  - component: {fileID: 7996702844384180687}
   m_Layer: 0
   m_Name: Lean Left Aim Animation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5282374807779654588
 Transform:
   m_ObjectHideFlags: 0
@@ -3775,7 +2884,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7101878817252626289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1531042480682955114
+--- !u!114 &8050824005420509626
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3784,39 +2893,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 9051553331424670919}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4abcd5dbe64ac344b80b42ee643aa96, type: 3}
+  m_Script: {fileID: 11500000, guid: d252d3f2154fdae448c45faafcdf5ebd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Lean Left Aim
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.ProceduralAnimation
+  procAnimName: Lean Left Aim
   length: 0.15
   weight: 1
   loop: 0
   autoStop: 0
   perModifierConnections: 1
   playOnAwake: 0
-  unidirectinalPlay: 0
+  unidirectionalPlay: 0
   resetOnPlayed: 0
   isolate: 0
   isolationMode: 0
   updateMode: 0
   triggerType: 0
-  triggerInputAction:
-    m_Name: 'Q [Keyboard]'
-    m_Type: 1
-    m_ExpectedControlType: 
-    m_Id: 212b3063-1879-4dd9-9a6c-7b1dc8c3f45b
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 6127df6d-c25b-4440-8598-2fd3db34758d
-      m_Path: <Keyboard>/q
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: 'Q [Keyboard]'
-      m_Flags: 0
-    m_Flags: 0
+  inputActionReference: {fileID: -3543847217723122921, guid: 052faaac586de48259a63d0c4782560b,
+    type: 3}
   events:
     OnPlay:
       m_PersistentCalls:
@@ -3827,11 +2921,10 @@ MonoBehaviour:
     OnStoped:
       m_PersistentCalls:
         m_Calls: []
-  customEvents: []
   connections:
   - type: 3
-    target: {fileID: 8079409080305236861}
---- !u!114 &201910859685228389
+    target: {fileID: 8456358853238407432}
+--- !u!114 &7996702844384180687
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3840,9 +2933,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 9051553331424670919}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a4cdba485b735c4193f2c375b6724ec, type: 3}
+  m_Script: {fileID: 11500000, guid: 55d884dc433446dcbb80d23e282874a7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.Modifier.MoveAnimationModifier
   position: {x: 0.037, y: 0.009, z: 0}
   rotation: {x: 0, y: 0, z: 25}
   defaultPosition: {x: 0, y: 0, z: 0}

@@ -8,6 +8,7 @@ namespace Resource.Script.Managers
     public class InputManager : IManagerBase
     {
         private PlayerInuptActions _playerInput;
+        public PlayerInuptActions PlayerInput => _playerInput;
         
         public InputManager()
         {
@@ -17,15 +18,23 @@ namespace Resource.Script.Managers
             //Fire
             // 단발
             _playerInput.Player.Fire.performed += ctx => FirePressed = true;
-            _playerInput.Player.Fire.canceled += ctx => FireReleased = true;
+            _playerInput.Player.Fire.canceled += ctx =>
+            {
+                FireReleased = true;
+                FirePressed = false;
+            };
             // 지속
             _playerInput.Player.Fire.started += ctx => FireHeld = true;
             _playerInput.Player.Fire.canceled += ctx => FireHeld = false;
             
-            //Fire
+            //Aim
             // 단발
             _playerInput.Player.Aim.performed += ctx => AimPressed = true;
-            _playerInput.Player.Aim.canceled += ctx => AimReleased = true;
+            _playerInput.Player.Aim.canceled += ctx =>
+            {
+                AimReleased = true;
+                AimPressed = false;
+            };
             // 지속
             _playerInput.Player.Aim.started += ctx => AimHeld = true;
             _playerInput.Player.Aim.canceled += ctx => AimHeld = false;
@@ -37,10 +46,21 @@ namespace Resource.Script.Managers
             
             // Sprint
             _playerInput.Player.Sprint.performed += ctx => SprintPressed = true;
-            _playerInput.Player.Sprint.canceled += ctx => SprintPressed = false;
+            _playerInput.Player.Sprint.canceled += ctx =>
+            {
+                SprintPressed = false;
+                SprintReleased = true;
+            };
             
             // Crouch
             _playerInput.Player.Crouch.performed += ctx => CrouchToggle = !CrouchToggle;
+            
+            //Lean
+            _playerInput.Player.LeanLeft.started += ctx => LeanLeftInput = true;
+            _playerInput.Player.LeanLeft.canceled += ctx => LeanLeftInput = false;
+            _playerInput.Player.LeanRight.started += ctx => LeanRightInput = true;
+            _playerInput.Player.LeanRight.canceled += ctx => LeanRightInput = false;
+            
         }
         
         public Vector2 Move {get ; private set;}
@@ -52,11 +72,16 @@ namespace Resource.Script.Managers
         public bool JumpPressed {get ; private set;}
         public bool Menu { get; private set; }   // Pause 토글 상태
         public bool SprintPressed {get ; private set;}
+        public bool SprintReleased {get ; private set;}
+        public bool SprintHeld {get ; private set;}
         public bool CrouchToggle {get; set;}
         
         public bool AimPressed {get; private set;}
         public bool AimReleased {get; private set;}
         public bool AimHeld {get; private set;}
+        
+        public bool LeanLeftInput { get; private set; }
+        public bool LeanRightInput { get; private set; }
         
         
         public void OnUpdate()

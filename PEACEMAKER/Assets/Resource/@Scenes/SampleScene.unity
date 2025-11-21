@@ -182,6 +182,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Assault Rifle_1
       objectReference: {fileID: 0}
+    - target: {fileID: 8747996342582239468, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
+        type: 3}
+      propertyPath: events.OnPlay.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8747996342582239468, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
+        type: 3}
+      propertyPath: events.OnPlay.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -483,6 +493,11 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 324c7b71f31f72f4599bbe1b36dd1595, type: 2}
+    - target: {fileID: 3523147203934143398, guid: 5691f61144536d54f940d4be645afeee,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3917014405222904205, guid: 5691f61144536d54f940d4be645afeee,
         type: 3}
       propertyPath: m_Name

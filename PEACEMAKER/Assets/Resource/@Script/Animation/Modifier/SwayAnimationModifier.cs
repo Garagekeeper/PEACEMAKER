@@ -56,15 +56,17 @@ namespace Resource.Script.Animation.Modifier
         protected float inputX;
         protected float inputY;
         
-        public float InputX { get => inputX; set => inputX = value; }
-        public float InputY { get => inputY; set => inputY = value; }
+        public float InputX { get => inputX; set { inputX = value; IsControlledLocally = false; } }
+        public float InputY { get => inputY; set { inputY = value; IsControlledLocally = false; } }
 
         protected void Start()
         {
-            _inputAction = inputActionReference.action;
-            _inputAction.Enable();
+            
         }
 
+        public bool IsControlledLocally { get; protected set; } = true;
+
+       
         protected void Update()
         {
             // 0.0 / 0.0 값이 들어오는거 방지
@@ -75,17 +77,20 @@ namespace Resource.Script.Animation.Modifier
             _resultRotation = Vector3.zero;
             
             // 실제 입력값 읽어오기
-            var input = _inputAction.ReadValue<Vector2>();
+            var input = SystemManager.Input.Move;
             // 프레임 보정
-            inputX = 0.5f * input.x / Time.deltaTime;
-            inputY = 0.5f * input.y / Time.deltaTime;
+            if (IsControlledLocally)
+            {
+                inputX = 0.5f * input.x / Time.deltaTime;
+                inputY = 0.5f * input.y / Time.deltaTime;
+            }
             
             // 입력에 따른 위치, 회전 계산
             Vector3 resultPositionInputX = positionInputX * inputX;
-            Vector3 resultPositionInputY = positionInputX * InputY;
+            Vector3 resultPositionInputY = positionInputY * inputY;
             
             Vector3 resultRotationInputX = rotationInputX * inputX;
-            Vector3 resultRotationInputY = rotationInputY * InputY;
+            Vector3 resultRotationInputY = rotationInputY * inputY;
 
             // 최종 결과
             _resultPosition += resultPositionInputX + resultPositionInputY;

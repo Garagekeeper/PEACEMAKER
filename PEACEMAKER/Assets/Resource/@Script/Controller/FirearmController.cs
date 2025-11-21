@@ -13,7 +13,6 @@ using Object = UnityEngine.Object;
 
 namespace Resource.Script.Controller
 {
-    [RequireComponent(typeof(ProceduralAnimation))]
     public class FirearmController : MonoBehaviour
     {
         [Tooltip("The Transform from which the shots are fired.")]
@@ -263,8 +262,19 @@ namespace Resource.Script.Controller
 
                 // Set default aiming time
                 if (AimingAnimation) _defaultAimingTime = AimingAnimation.length;
+                
                 if (WalkingAnimation)
                     WalkingWaveAnimationModifier = WalkingAnimation.GetComponent<WaveAnimationModifier>();
+                
+                // Set up listeners for character manager events
+                if (Owner != null)
+                {
+                    if (JumpAnimation)
+                        Owner.onJump.AddListener(() => JumpAnimation.Play(0));
+
+                    if (LandAnimation)
+                        Owner.onLand.AddListener(() => JumpAnimation.Play(0));
+                }
                 
                 // TODO 아무리 찾아봐도 이 애니메이션이 없는데
                 ReloadingAnimation = ProceduralAnimator.GetAnimation("Reloading");
@@ -333,27 +343,27 @@ namespace Resource.Script.Controller
         
         private void UpdateLeanAnimations()
         {
-            // // Update right and left leaning animations
-            // if (LeanRightAnimation != null)
-            // {
-            //     LeanRightAnimation.IsPlaying = SystemManager.Input.;
-            // }
-            //
-            // if (LeanLeftAnimation != null)
-            // {
-            //     LeanLeftAnimation.IsPlaying = characterInput.LeanLeftInput;
-            // }
-            //
-            // // Update right and left aiming lean animations
-            // if (LeanRightAimAnimation != null)
-            // {
-            //     LeanRightAimAnimation.IsPlaying = characterInput.LeanRightInput;
-            // }
-            //
-            // if (LeanLeftAimAnimation != null)
-            // {
-            //     LeanLeftAimAnimation.IsPlaying = characterInput.LeanLeftInput;
-            // }
+            // Update right and left leaning animations
+            if (LeanRightAnimation != null)
+            {
+                LeanRightAnimation.IsPlaying = SystemManager.Input.LeanRightInput;
+            }
+            
+            if (LeanLeftAnimation != null)
+            {
+                LeanLeftAnimation.IsPlaying = SystemManager.Input.LeanLeftInput;
+            }
+            
+            // Update right and left aiming lean animations
+            if (LeanRightAimAnimation != null)
+            {
+                LeanRightAimAnimation.IsPlaying = SystemManager.Input.LeanRightInput;
+            }
+            
+            if (LeanLeftAimAnimation != null)
+            {
+                LeanLeftAimAnimation.IsPlaying = SystemManager.Input.LeanLeftInput;
+            }
         }
 
         /// <summary>
@@ -397,7 +407,10 @@ namespace Resource.Script.Controller
              if (SprintingAnimation != null)
              {
                  SprintingAnimation.triggerType = ProceduralAnimation.InputActionType.None;
-                 SprintingAnimation.IsPlaying = SystemManager.Input.SprintPressed;
+                 SprintingAnimation.IsPlaying = SystemManager.Input.SprintPressed & !SystemManager.Input.FireHeld &&
+                                                (SystemManager.Input.Move != Vector2.zero);
+                 //Debug.Log(SystemManager.Input.SprintPressed & SystemManager.Input.FireHeld);
+                 //SprintingAnimation.IsPlaying = SystemManager.Input.SprintPressed;
              }
 
              //TODO sprint doubletap 적용
@@ -488,19 +501,19 @@ namespace Resource.Script.Controller
             // 정확한 에임
             if (Physics.Raycast(mainCam.transform.position, mainCam.transform.forward, out var hitInfo, mask))
             {
-                // 적정거리 이상으로 떨어져 있는 경우, 총구에서 시작
+                // 적정거리 이상으로 떨어져 있는 경우, 총구에서 시작해서 화면 정중앙으로 
                 if (hitInfo.distance > 5f)
                 {
                     firePosition = muzzle.position;
                     fireRotation = muzzle.rotation;
                     fireDirection = (hitInfo.point - muzzle.position).normalized;
                 }
-                // 너무 가까운 경우 카메라에서 시작
+                // 너무 가까운 경우 카메라에서 시작해서 총구 방향으로
                 else
                 {
                     firePosition = mainCam.transform.position;
                     fireRotation = mainCam.transform.rotation;
-                    fireDirection = mainCam.transform.forward;
+                    fireDirection = muzzle.forward;
                 }
             }
             
@@ -591,6 +604,7 @@ namespace Resource.Script.Controller
             //0. HitScan
             if (ShotMechanism == EShotMechanism.HitScan)
             {
+                
                 Ray ray = new Ray(muzzle.position, direction);
 
                 if (Physics.Raycast(ray, out RaycastHit hit, range, hittableLayers))
