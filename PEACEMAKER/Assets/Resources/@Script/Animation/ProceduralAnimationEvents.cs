@@ -1,0 +1,13 @@
+﻿using System;
+using UnityEngine.Events;
+
+namespace Resources.Script.Animation
+{
+    [Serializable]
+    public class ProceduralAnimationEvents
+    {
+        public UnityEvent OnPlay = new UnityEvent();
+        public UnityEvent OnPlayed = new UnityEvent();
+        public UnityEvent OnStoped = new UnityEvent();
+    }
+}
