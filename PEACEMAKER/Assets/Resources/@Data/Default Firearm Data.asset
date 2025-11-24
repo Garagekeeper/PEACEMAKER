@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5edf903b1c2b4a9db6cd64dea7994da8, type: 3}
+  m_Name: Default Firearm Data
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Firearm.FirearmPreset
+  firearmName: Assault Rifle_1
+  firingMode: 1
+  shotMechanism: 1
+  defaultDecalPrefab: {fileID: 1000010355441670, guid: db15139bee3802f4f92e1a7472aeb783,
+    type: 3}
+  fireRate: 850
+  range: 300
+  impactForce: 10
+  shotDelay: 0
+  muzzleVelocity: 250
+  projectileSize: 0.01
+  decalSize: 1
+  tracerRounds: 1
+  horizontalRecoil: 0.7
+  verticalRecoil: 0.1
+  cameraRecoil: 1
+  cameraShakeAmount: 0.05
+  cameraShakeRoughness: 5
+  cameraShakeStartTime: 0.1
+  cameraShakeDuration: 0.1
+  magazineCapacity: 30
+  fireSound: {fileID: 8300000, guid: 48904cc7a524f724faf40031bca13ec5, type: 3}
+  suppressorFireSound: {fileID: 8300000, guid: 00d1dc718a230b04982fb67f4977b42e, type: 3}
+  magInSound: {fileID: 8300000, guid: cfa76f2b5b922764492a13cd313ba53a, type: 3}
+  magOutSound: {fileID: 8300000, guid: 15ae31d30151eae4fa68e28b9be5a2dc, type: 3}

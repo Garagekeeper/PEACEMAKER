@@ -82,8 +82,8 @@ namespace Resource.Script.Controller
 
             //Scale
             if (!source) return;
-            useAutoScaling = source.tracerRounds;
-            scaleMultipler = source.projectileSize;
+            useAutoScaling = source.preset.tracerRounds;
+            scaleMultipler = source.preset.projectileSize;
 
             //Final setup
             source.Projectiles?.Add(this);
@@ -108,7 +108,7 @@ namespace Resource.Script.Controller
                 rb.AddForce(velocity, ForceMode.VelocityChange);
 
             if (source)
-                maxVelocity = source.muzzleVelocity;
+                maxVelocity = source.preset.muzzleVelocity;
 
             if (transform.Find("Effects"))
             {
@@ -237,7 +237,7 @@ namespace Resource.Script.Controller
 
             if (!isActive) return;
 
-            source.UpdateHits(defaultDecal, ray, hit, CalculateDamage(), decalDirection);
+            source.shooter.UpdateHits(defaultDecal, ray, hit, CalculateDamage(), decalDirection);
         }
 
         public bool isActive { get; set; } = true;

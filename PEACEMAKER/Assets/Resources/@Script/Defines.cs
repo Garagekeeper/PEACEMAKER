@@ -11,6 +11,47 @@
         }
         
         /*-------------------------
+        *           Gun
+        -------------------------*/
+        public enum EFiringMode
+        {
+            SemiAuto = 0,
+            Auto = 1,
+            Burst = 2,
+        }
+
+        public enum EShotMechanism
+        {
+            Projectile = 0,
+            HitScan = 1,
+        }
+        
+        public enum EFirearmStates
+        {
+            None = 0,
+            Reloading = 1,
+            Fire = 2,
+        };
+
+        public enum EFirearmAimStates
+        {
+            LowReady = 0,
+            ShoulderReady,
+        };
+        
+        public enum EReloadType
+        {
+            Default = 0,
+            /// <summary>
+            /// 재장전 시 모든 동작이 코드에 의해서 통제됨
+            /// 주로 장전 중에 발사가 가능한 샷건 종류에서 사용
+            /// All of actions are controlled by script
+            /// useful for shotgun(Fire while reloading)
+            /// </summary>
+            Scripted = 1
+        }
+        
+        /*-------------------------
          *          Anim
          ------------------------*/
         public static float GlobalAnimationSpeed = 1.0f;
