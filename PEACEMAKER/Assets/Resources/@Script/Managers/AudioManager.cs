@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using Resource.Script.Managers;
+using Resources.Script.Audio;
 using UnityEngine;
 
-namespace Resources.Script.Managers.Audio
+namespace Resources.Script.Managers
 {
     public class AudioManager : MonoBehaviour,IManagerBase
     {
@@ -11,6 +12,7 @@ namespace Resources.Script.Managers.Audio
         private Queue<SFXSource> _sfxPool;
         private GameObject _parent;
         private SFXSource _sfxPrefab;
+        public AudioListener MainListener { get; private set; }
 
         private void Awake()
         {
@@ -24,6 +26,7 @@ namespace Resources.Script.Managers.Audio
             _initialPoolSize = 30;
             _sfxPool = new Queue<SFXSource>();
             _sfxPrefab = UnityEngine.Resources.Load<GameObject>("@Prefabs/sfx").GetComponent<SFXSource>();
+            MainListener = FindAnyObjectByType<AudioListener>();
             InitPool();
         }
 
@@ -60,6 +63,8 @@ namespace Resources.Script.Managers.Audio
 
             // 큐에서 뽑아내서 반환
             var sfx = _sfxPool.Dequeue();
+            //TODO 소리마다 나오는 위치를 조절
+            sfx.transform.position = SystemManager.Game.Player.transform.position;
             sfx.gameObject.SetActive(true);
 
             return sfx;
@@ -70,6 +75,13 @@ namespace Resources.Script.Managers.Audio
         {
             var sfx = GetSFXFromPool();
             sfx.Play(clip, volume,spatialBlend, isLoop);
+            return sfx;
+        }
+
+        public SFXSource PlayWithPreset(AudioPreset preset)
+        {
+            var sfx = GetSFXFromPool();
+            sfx.PlayWithPreset(preset);
             return sfx;
         }
 

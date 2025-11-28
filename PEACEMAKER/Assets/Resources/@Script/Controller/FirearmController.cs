@@ -6,7 +6,6 @@ using Resources.Script.Firearm;
 using UnityEngine;
 using UnityEngine.Serialization;
 using static Resources.Script.Defines;
-using static Resources.Script.Utilities;
 using FirearmPreset = Resources.Script.Firearm.FirearmPreset;
 
 namespace Resources.Script.Controller
@@ -79,12 +78,12 @@ namespace Resources.Script.Controller
         
         private void Awake()
         {
-            
             anim = GetComponent<FirearmAnimation>();
             faudio = GetComponent<FirearmAudio>();
             recoil =  GetComponent<FirearmRecoil>();
             shooter = GetComponent<FirearmShooter>();
             fireArmData = new FireArmData();
+            fireArmData.Init(this, preset);
             
             if (!preset)
             {
@@ -95,8 +94,6 @@ namespace Resources.Script.Controller
             faudio.Init(this);
             recoil.Init(this);
             shooter.Init(this);
-            fireArmData.Init(this, preset);
-            
             Owner = GetComponentInParent<PlayerController>();
         }
 

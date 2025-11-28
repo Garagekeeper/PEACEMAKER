@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using Resource.Script.Managers;
+using Resources.Script.Controller;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-namespace Resources.Script.Managers.Audio
+namespace Resources.Script.Audio
 {
     public class SFXSource : MonoBehaviour
     {
         private AudioSource _audioSource;
         private Coroutine _coroutine;
-        
+        public AudioController PAudioController { get; } = new();
 
         private void Awake()
         {
@@ -33,9 +35,32 @@ namespace Resources.Script.Managers.Audio
                 _coroutine = StartCoroutine(CDisableAfterPlay());
         }
 
+        public void PlayWithPreset(AudioPreset preset, bool oneshot = true)
+        {
+            StopAllCoroutines();
+            PAudioController.Init(preset, _audioSource);
+            var length = PAudioController.CalcCustomEventDuration();
+            PAudioController.Play(oneshot);
+            if (!preset.loop)
+                StartCoroutine(CDisableAfterPlayPrefab(length));
+        }
+
         private IEnumerator CDisableAfterPlay()
         {
             yield return new WaitForSeconds(_audioSource.clip.length + 0.1f);
+            SystemManager.Audio.ReturnSFXToPool(this);
+        }
+        
+        private IEnumerator CDisableAfterPlayPrefab(float time)
+        {
+            float offset = 0.1f;
+            if (time != 0)
+                offset = 1f;
+
+            if (time == 0)
+                time = PAudioController.Preset.audioClip.length;
+            
+            yield return new WaitForSeconds(time + offset);
             SystemManager.Audio.ReturnSFXToPool(this);
         }
     }

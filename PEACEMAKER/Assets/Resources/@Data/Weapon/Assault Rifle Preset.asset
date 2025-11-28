@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5edf903b1c2b4a9db6cd64dea7994da8, type: 3}
-  m_Name: Default Firearm Data
+  m_Name: Assault Rifle Preset
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Firearm.FirearmPreset
   firearmName: Assault Rifle_1
   firingMode: 1
   shotMechanism: 1
   defaultDecalPrefab: {fileID: 1000010355441670, guid: db15139bee3802f4f92e1a7472aeb783,
     type: 3}
+  reloadType: 0
   fireRate: 850
   range: 300
   impactForce: 10
@@ -33,6 +34,10 @@ MonoBehaviour:
   cameraShakeStartTime: 0.1
   cameraShakeDuration: 0.1
   magazineCapacity: 30
+  presetFireSound: {fileID: 11400000, guid: bba4a4e6629c26f49bc1aa29b9e1dd2a, type: 2}
+  presetReloadSound: {fileID: 11400000, guid: cff86a179d3f6ee49adbec178dcc0711, type: 2}
+  presetReloadEmptySound: {fileID: 11400000, guid: cff86a179d3f6ee49adbec178dcc0711,
+    type: 2}
   fireSound: {fileID: 8300000, guid: 48904cc7a524f724faf40031bca13ec5, type: 3}
   suppressorFireSound: {fileID: 8300000, guid: 00d1dc718a230b04982fb67f4977b42e, type: 3}
   magInSound: {fileID: 8300000, guid: cfa76f2b5b922764492a13cd313ba53a, type: 3}

@@ -1,5 +1,4 @@
 using Resources.Script.Managers;
-using Resources.Script.Managers.Audio;
 using UnityEngine;
 using static Resources.Script.Utilities;
 namespace Resource.Script.Managers

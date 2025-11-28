@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Resources.Script.Audio;
+using UnityEngine;
 using static Resources.Script.Defines;
 
 namespace Resources.Script.Firearm
@@ -36,6 +37,10 @@ namespace Resources.Script.Firearm
         public int magazineCapacity = 30;
         
         [Header("Audio")]
+        //Audio
+        public AudioPreset presetFireSound;
+        public AudioPreset presetReloadSound;
+        public AudioPreset presetReloadEmptySound;
         public AudioClip fireSound;
         public AudioClip suppressorFireSound;
         public AudioClip magInSound;

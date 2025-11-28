@@ -99,6 +99,7 @@ namespace Resources.Script.Controller
             _addedLookValue = Vector2.zero;
 
             FirstPersonCamera = camobj.GetComponent<Camera>();
+            SystemManager.Game.Player = this;
 
         }
     
