@@ -1,5 +1,4 @@
-﻿using Resource.Script.Managers;
-using Resources.Script.Controller;
+﻿using Resources.Script.Controller;
 
 namespace Resources.Script.Managers
 {

@@ -1,5 +1,5 @@
-﻿using Resource.Script.Managers;
-using Resources.Script.Controller;
+﻿using Resources.Script.Controller;
+using Resources.Script.Managers;
 using UnityEngine;
 
 namespace Resources.Script.Firearm
@@ -15,7 +15,7 @@ namespace Resources.Script.Firearm
         public void PlayShotFire()
         {
             //SystemManager.Audio.PlaySFX(Firearm.fireArmData.fireSound, 1f, 0, false);
-            SystemManager.Audio.PlayWithPreset(Firearm.preset.presetFireSound);
+            SystemManager.Audio.PlayWithPreset(Firearm.preset.presetFireSound, Firearm.Owner.transform.position);
         }
     }
 }

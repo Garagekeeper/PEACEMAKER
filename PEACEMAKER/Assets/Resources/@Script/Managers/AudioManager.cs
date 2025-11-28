@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Resource.Script.Managers;
 using Resources.Script.Audio;
 using UnityEngine;
 
@@ -63,8 +62,6 @@ namespace Resources.Script.Managers
 
             // 큐에서 뽑아내서 반환
             var sfx = _sfxPool.Dequeue();
-            //TODO 소리마다 나오는 위치를 조절
-            sfx.transform.position = SystemManager.Game.Player.transform.position;
             sfx.gameObject.SetActive(true);
 
             return sfx;
@@ -78,9 +75,10 @@ namespace Resources.Script.Managers
             return sfx;
         }
 
-        public SFXSource PlayWithPreset(AudioPreset preset)
+        public SFXSource PlayWithPreset(AudioPreset preset, Vector3 pos)
         {
             var sfx = GetSFXFromPool();
+            sfx.transform.position = pos;
             sfx.PlayWithPreset(preset);
             return sfx;
         }

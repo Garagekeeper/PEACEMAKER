@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using Resource.Script.Controller;
-using Resource.Script.Managers;
 using Resources.Script.Ammo;
 using Resources.Script.Firearm;
+using Resources.Script.Managers;
 using UnityEngine;
 using UnityEngine.Serialization;
 using static Resources.Script.Defines;

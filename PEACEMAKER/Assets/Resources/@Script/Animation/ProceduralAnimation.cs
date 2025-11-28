@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
-using Resource.Script;
-using Resource.Script.Managers;
+using Resources.Script.Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static Resources.Script.Defines;
@@ -98,7 +97,7 @@ namespace Resources.Script.Animation
         /// <summary>
         /// Update, FixedUpdate, LateUpdate 중 어느 루프에서 Tick할지 설정
         /// </summary>
-        public Defines.EUpdateMode updateMode;
+        public EUpdateMode updateMode;
 
         // ────────────────────────────────────────────────────────────────
         // 입력 트리거 관련
@@ -282,11 +281,6 @@ namespace Resources.Script.Animation
                 Play(0);
         }
 
-        private void OnDisable()
-        {
-
-        }
-
         private void Start()
         {
            
@@ -299,19 +293,19 @@ namespace Resources.Script.Animation
         // ────────────────────────────────────────────────────────────────
         private void Update()
         {
-            if (updateMode == Defines.EUpdateMode.Update)
+            if (updateMode == EUpdateMode.Update)
                 Tick();
         }
 
         private void FixedUpdate()
         {
-            if (updateMode == Defines.EUpdateMode.FixedUpdate)
+            if (updateMode == EUpdateMode.FixedUpdate)
                 Tick();
         }
 
         private void LateUpdate()
         {
-            if (updateMode == Defines.EUpdateMode.LateUpdate)
+            if (updateMode == EUpdateMode.LateUpdate)
                 Tick();
         }
 
@@ -337,7 +331,7 @@ namespace Resources.Script.Animation
                 // target이 Idle상태(재생X)일때 정지하는 애니메이션이면
                 if (connection.type == ProceduralAnimationConnectionType.PauseIfTargetIdle)
                 {
-                    // traget이 정지중이면 나도 정지
+                    // target이 정지중이면 나도 정지
                     if (!connection.target.IsPlaying) Pause();
                     else Unpause();
                 }
@@ -512,7 +506,7 @@ namespace Resources.Script.Animation
         // 유틸리티 함수들
         // ────────────────────────────────────────────────────────────────
         /// <summary>
-        /// 사용될 모든 모디파이어를 List로 가져와 Modifires에 저장
+        /// 사용될 모든 모디파이어를 List로 가져와 Modifiers에 저장
         /// </summary>
         public void RefreshModifiers()
         {

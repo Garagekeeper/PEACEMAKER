@@ -1,7 +1,6 @@
-using Resources.Script.Managers;
 using UnityEngine;
-using static Resources.Script.Utilities;
-namespace Resource.Script.Managers
+
+namespace Resources.Script.Managers
 {
     public class SystemManager : MonoBehaviour
     {
@@ -10,61 +9,54 @@ namespace Resource.Script.Managers
         {
             get
             {
-                if (instance != null) return instance;
-                var go = GameObject.Find("@Managers");
-                if (go == null)
+                if (instance == null)
                 {
-                    go = new GameObject("@Managers");
-                    go.AddComponent<SystemManager>();
+                    var go = new GameObject("@Managers");
+                    instance = go.AddComponent<SystemManager>();
+                    DontDestroyOnLoad(go);
                 }
-                instance = go.GetComponent<SystemManager>();
                 return instance;
             }
         }
 
-        private InputManager _input;
-        private GameManager _game;
-        private AudioManager _audio;
+        public InputManager InputInternal { get; private set; }
+        public GameManager GameInternal { get; private set; }
+        public AudioManager AudioInternal { get; private set; }
         
-        public static InputManager Input => Instance?._input;
-        public static GameManager Game => Instance?._game;
-        public static AudioManager Audio => Instance?._audio;
+        public static GameManager Game => Instance.GameInternal;
+        public static InputManager Input => Instance.InputInternal;
+        public static AudioManager Audio => Instance.AudioInternal;
 
         private void Awake()
         {
-            if (instance != null) return;
-            
-            GameObject go = GameObject.Find("@Manager");
-            
-            if (go != null) return;
-            
-            go = new GameObject("@SoundPool");
-            DontDestroyOnLoad(go);
-            
-            go = new GameObject("@Manager");
-            go.AddComponent<SystemManager>();
-            DontDestroyOnLoad(go);
-            
-            instance = go.GetComponent<SystemManager>();
-            _input = new InputManager();
-            _game = new GameManager();
-            _audio = instance.gameObject.AddComponent<AudioManager>();
+            if (instance != null && instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+            var go = new GameObject("@SoundPool"); DontDestroyOnLoad(go);
+
+            InputInternal = new InputManager();
+            GameInternal = new GameManager();
+            AudioInternal = gameObject.AddComponent<AudioManager>();
         }
 
         private void Update()
         {
-            _input?.OnUpdate();
+            Input?.OnUpdate();
         }
 
         private void LateUpdate()
         {
-            _input?.LateUpdate();
+            Input?.LateUpdate();
         }
-        
     }
 
     interface IManagerBase
     {
-        public void OnUpdate();
+        void OnUpdate();
     }
 }

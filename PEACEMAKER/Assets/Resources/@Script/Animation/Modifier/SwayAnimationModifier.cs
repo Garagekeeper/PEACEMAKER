@@ -1,4 +1,4 @@
-using Resource.Script.Managers;
+using Resources.Script.Managers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

@@ -37,8 +37,8 @@ MonoBehaviour:
   randomPitchOffset: 0.2
   forwardFactor: 0.3
   backwardFactor: 0.3
-  rightFactor: 0
-  leftFactor: 0
+  rightFactor: 0.2
+  leftFactor: 0.2
   upFactor: 0
   downFactor: 0
   _6DSoundCurve:

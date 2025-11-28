@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 using static Resources.Script.Defines;
 using static Resources.Script.Utilities;
 
-namespace Resource.Script.Managers
+namespace Resources.Script.Managers
 {
     public class InputManager : IManagerBase
     {

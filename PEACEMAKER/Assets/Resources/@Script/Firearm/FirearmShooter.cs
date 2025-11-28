@@ -1,5 +1,4 @@
 ﻿using Akila.FPSFramework;
-using Resource.Script.Managers;
 using Resources.Script.Controller;
 using UnityEngine;
 using static Resources.Script.Defines;

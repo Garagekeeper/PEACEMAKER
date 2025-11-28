@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Resource.Script.Managers;
 using Resources.Script.Audio;
+using Resources.Script.Managers;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -41,8 +41,7 @@ namespace Resources.Script.Controller
                 return 1;
             }
         }
-
-        private float TotalPitch => _sixDimensionsPitchOffset + TimeScaleSyncedPitch + _randomizedPitchOffset;
+        
         /// <summary>
         /// 초기화 되었는지 확인용
         /// </summary>
@@ -251,7 +250,7 @@ namespace Resources.Script.Controller
             }
             catch (Exception e)
             {
-                throw; // TODO 예외 처리
+                Debug.LogError(e);
             }
         }
         
@@ -309,11 +308,9 @@ namespace Resources.Script.Controller
                     foreach (var customAudioEvent in CustomAudioEvents)
                     {
                         // 현재 시간의 구간이 이벤트 발동 시간을 포함하면
-                        if (currTime > customAudioEvent.time && prevTime < customAudioEvent.time)
-                        {
-                            if (IsEventEnabled && _source.gameObject.activeSelf)
-                                customAudioEvent?.Invoke();
-                        }
+                        if (!(currTime > customAudioEvent.time) || !(prevTime < customAudioEvent.time)) continue;
+                        if (IsEventEnabled && _source.gameObject.activeSelf)
+                            customAudioEvent.Invoke();
                     }
                     prevTime = currTime;
                     await Task.Yield();
@@ -321,7 +318,7 @@ namespace Resources.Script.Controller
             }
             catch (Exception e)
             {
-                throw; // TODO 예외 처리
+                Debug.LogError(e);
             }
         }
         

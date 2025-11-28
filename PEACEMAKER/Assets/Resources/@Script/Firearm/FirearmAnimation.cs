@@ -1,7 +1,7 @@
-﻿using Resource.Script.Managers;
-using Resources.Script.Animation;
+﻿using Resources.Script.Animation;
 using Resources.Script.Animation.Modifier;
 using Resources.Script.Controller;
+using Resources.Script.Managers;
 using UnityEngine;
 using static Resources.Script.Defines;
 

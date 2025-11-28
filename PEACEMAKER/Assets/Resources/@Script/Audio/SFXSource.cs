@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using Resource.Script.Managers;
 using Resources.Script.Controller;
+using Resources.Script.Managers;
 using UnityEngine;
 using UnityEngine.UIElements;
 
