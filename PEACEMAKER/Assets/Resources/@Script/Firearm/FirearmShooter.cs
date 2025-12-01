@@ -11,20 +11,24 @@ namespace Resources.Script.Firearm
         public FirearmController FireArm { get; private set; }
         protected LayerMask mask;
         private Camera _mainCam;
+
         /// <summary>
         /// Tracks the delay between shots fired.
         /// </summary>
         private float fireTimer;
+
         /// <summary>
         /// The number of shots fired in the current session.
         /// </summary>
         public int ShotsFired { get; protected set; }
+
         private Vector3 _currentFirePosition;
         private Quaternion _currentFireRotation;
         private Vector3 _currentFireDirection;
         private Vector3 _originalFireDirection;
-        
-        public EFiringMode FiringMode {get; private set;}
+        public float LastFireTime { get; set; } = -999f;
+
+        public EFiringMode FiringMode { get; private set; }
         public EShotMechanism ShotMechanism { get; set; }
 
         public void Init(FirearmController controller)
@@ -32,7 +36,7 @@ namespace Resources.Script.Firearm
             FireArm = controller;
             FiringMode = FireArm.fireArmData.firingMode;
             ShotMechanism = FireArm.fireArmData.shotMechanism;
-            
+
             _mainCam = GetMainCamera();
             mask |= LayerMask.GetMask("Default");
             mask |= LayerMask.GetMask("TransparentFX");
@@ -46,16 +50,16 @@ namespace Resources.Script.Firearm
 
         public void UpdateFire()
         {
-            if (FireArm.FirePrevented) return;
-
-            if (FireArm.FirearmState != EFirearmStates.Fire) return;
-
-            Fire();
+            if (FireArm.FirearmState == EFirearmStates.Fire)
+                Fire();
 
         }
 
         private void Fire()
         {
+            if (FireArm.anim.SprintingAnimation.Progress >= 0.1f) return;
+            if (FireArm.FirePrevented) return;
+            if (FireArm.AmmoInMagazine <= 0) return;
             var firePosition = Vector3.zero;
             var fireRotation = Quaternion.identity;
             var fireDirection = Vector3.zero;
@@ -72,10 +76,7 @@ namespace Resources.Script.Firearm
                 {
                     firePosition = muzzle.position;
                     fireRotation = muzzle.rotation;
-                    if (FireArm.anim.SprintingAnimation.Progress != 0)
-                        fireDirection = muzzle.forward;
-                    else
-                        fireDirection = (hitInfo.point - muzzle.position).normalized;
+                    fireDirection = (hitInfo.point - muzzle.position).normalized;
                 }
                 // 너무 가까운 경우 카메라에서 시작해서 총구 방향으로
                 else
@@ -100,15 +101,20 @@ namespace Resources.Script.Firearm
                 ShotsFired = 0;
                 //TODO 여기서 반동(recoil) 적용  
                 //반동 적용
-                FireArm.recoil.ApplyRecoil();
+                FireArm.recoilAndSpray.ApplyRecoil();
                 _originalFireDirection = fireDirection;
+
+                //TODO 여기서 반동 (Spray) 구현
+                var finalDir = FireArm.recoilAndSpray.CalculatePattern(fireDirection, FireArm.muzzle.right, FireArm.muzzle.up);
 
                 //SFX 적용
                 //PlaySound
                 FireArm.faudio.PlayShotFire();
+
+                //Debug.Log($"{fireDirection}, {firnaldir}");
+                FireDone(firePosition, fireRotation, finalDir);
             }
 
-            FireDone(firePosition, fireRotation, fireDirection);
             fireTimer = Time.time + (60f / FireArm.fireArmData.fireRate);
         }
 
@@ -119,7 +125,8 @@ namespace Resources.Script.Firearm
         /// <returns></returns>
         private bool IsPlayingRestrictedAnimation()
         {
-            return FireArm.anim.animator.CurrentPlayingAnim("Take") || FireArm.anim.animator.CurrentPlayingAnim("Pickup");
+            return FireArm.anim.animator.CurrentPlayingAnim("Take") ||
+                   FireArm.anim.animator.CurrentPlayingAnim("Pickup");
             //TODO 나중에 에디터에서 리스트를 받아오던거 해서 처리
         }
 
@@ -139,7 +146,7 @@ namespace Resources.Script.Firearm
 
             //ApplyFireOnce();
             ShotsFired++;
-
+            LastFireTime = Time.time;
             /*
             * shotsFired++
                 첫 번째 탄은 이미 FireDone 안에서 발사됨.
@@ -178,10 +185,12 @@ namespace Resources.Script.Firearm
             {
                 Ray ray = new Ray(FireArm.muzzle.position, direction);
 
-                if (Physics.Raycast(ray, out RaycastHit hit,FireArm.fireArmData.range, mask))
+                if (Physics.Raycast(ray, out RaycastHit hit, FireArm.fireArmData.range, mask))
                 {
                     float calculatedDmg = FireArm.currentAmmo.GetAmmoDmg();
-                    float finalDmg = FireArm.alwaysApplyFire ? calculatedDmg : calculatedDmg / FireArm.currentAmmo.ammo.BulletCountOnce;
+                    float finalDmg = FireArm.alwaysApplyFire
+                        ? calculatedDmg
+                        : calculatedDmg / FireArm.currentAmmo.ammo.BulletCountOnce;
                     UpdateHits(FireArm.fireArmData.defaultDecalPrefab, ray, hit, finalDmg, FireArm.DecalDirection);
                 }
             }
@@ -190,6 +199,7 @@ namespace Resources.Script.Firearm
             {
             }
 
+            FireArm.AmmoInMagazine = Mathf.Max(0, FireArm.AmmoInMagazine - 1);
             FireArm.FirearmState = Defines.EFirearmStates.None;
         }
 

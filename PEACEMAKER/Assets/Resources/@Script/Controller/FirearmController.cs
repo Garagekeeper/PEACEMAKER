@@ -3,6 +3,7 @@ using Resource.Script.Controller;
 using Resources.Script.Ammo;
 using Resources.Script.Firearm;
 using Resources.Script.Managers;
+using Resources.Script.UI;
 using UnityEngine;
 using UnityEngine.Serialization;
 using static Resources.Script.Defines;
@@ -60,6 +61,9 @@ namespace Resources.Script.Controller
         /// num of bullet player has;
         /// </summary>
         public AmmoItem currentAmmo;
+
+        public int AmmoInMagazine { get; set; }
+        
         
         [Header("Range Control")]
         public bool alwaysApplyFire = false;
@@ -68,19 +72,23 @@ namespace Resources.Script.Controller
         public FirearmAnimation anim;
         [HideInInspector]
         [FormerlySerializedAs("audio")] public FirearmAudio faudio;
-        [HideInInspector]
-        public FirearmRecoil recoil;
+        [FormerlySerializedAs("recoil")] [HideInInspector]
+        public FirearmRecoilAndSpray recoilAndSpray;
         [HideInInspector]
         public FirearmShooter shooter;
         [HideInInspector]
         public FireArmData fireArmData;
+
+        public bool IsHUDActive { get; set; } = true;
+        public FirearmHUD FirearmHUD { get; set; }
+        public Crosshair Crosshair { get; set; }
         
         
         private void Awake()
         {
             anim = GetComponent<FirearmAnimation>();
             faudio = GetComponent<FirearmAudio>();
-            recoil =  GetComponent<FirearmRecoil>();
+            recoilAndSpray =  GetComponent<FirearmRecoilAndSpray>();
             shooter = GetComponent<FirearmShooter>();
             fireArmData = new FireArmData();
             fireArmData.Init(this, preset);
@@ -92,7 +100,7 @@ namespace Resources.Script.Controller
             
             anim.Init(this);
             faudio.Init(this);
-            recoil.Init(this);
+            recoilAndSpray.Init(this);
             shooter.Init(this);
             Owner = GetComponentInParent<PlayerController>();
         }
@@ -120,8 +128,34 @@ namespace Resources.Script.Controller
             //TODO 현재는 돌격 소총만 있어서 여기에 쓰는데 나중에 화기별로 따로 만들면 
             // 자식 클래스에서 수정하자
             requiredAmmoType = new AmmoType(EAmmoType.R556, 25, 0);
-            currentAmmo = new AmmoItem(requiredAmmoType, 30, 1, 1);
+            var ammoInInvCnt = fireArmData.initialAmmo - fireArmData.magazineCapacity;
+            currentAmmo = new AmmoItem(requiredAmmoType, ammoInInvCnt, 1, 1);
+            AmmoInMagazine = fireArmData.magazineCapacity;
             DecalDirection = EVector3Direction.Forward;
+            
+            if (preset.firearmHud == null)
+            {
+                Debug.LogError("FirearmHUD is not set in the preset. Firearm's HUD won't be initialized.", gameObject);
+            }
+            else
+            {
+                FirearmHUD = Instantiate(preset.firearmHud, transform);
+                FirearmHUD.Firearm = this;
+            }
+            
+            if (preset.crosshair == null)
+            {
+                Debug.LogError("Firearm crosshair is not set in the preset. Firearm's crosshair won't be initialized.", gameObject);
+            }
+            else
+            {
+                Crosshair = Instantiate(preset.crosshair, FirearmHUD.transform);
+                Crosshair.Firearm = this;
+            }
+            
+            Owner.Firearms.Add(this);
+            if (Owner.currentFirearmNum == -1)
+                Owner.currentFirearmNum = 0;
         }
         
 
@@ -131,9 +165,10 @@ namespace Resources.Script.Controller
         /// </summary>
         private void Update()
         {
-            anim.UpdateAnim();
             UpdateStatusWithInput();
+            anim.UpdateAnim();
             shooter.UpdateFire();
+            recoilAndSpray.UpdateSpray();
         }
 
         /// <summary>
@@ -142,16 +177,34 @@ namespace Resources.Script.Controller
         /// </summary>
         private void UpdateStatusWithInput()
         {
-            // Auto mode
-            if (fireArmData.firingMode == EFiringMode.Auto)
+            if (FirearmState != EFirearmStates.Reloading && AmmoInMagazine > 0)
             {
-                // : 뒷부분을 FirearmState로 두면 한번 클릭에 2번나가는 효과 발생
-                FirearmState = SystemManager.Input.FireHeld ? FirearmState = EFirearmStates.Fire : FirearmState = EFirearmStates.None;
+                // Auto mode
+                if (fireArmData.firingMode == EFiringMode.Auto)
+                {
+                    if (SystemManager.Input.FireHeld)
+                    {
+                        FirearmState = EFirearmStates.Fire;
+                    }
+                    else
+                    {
+                        FirearmState = EFirearmStates.None;
+                    }
+                    // : 뒷부분을 FirearmState로 두면 한번 클릭에 2번나가는 효과 발생
+                }
+                // Semi auto or burst
+                else if (fireArmData.firingMode is EFiringMode.SemiAuto or EFiringMode.Burst)
+                {
+                    FirearmState = SystemManager.Input.FirePressed ? FirearmState = EFirearmStates.Fire : FirearmState;
+                }
             }
-            // Semi auto or burst
-            else if (fireArmData.firingMode is EFiringMode.SemiAuto or EFiringMode.Burst)
+            
+            if (AmmoInMagazine == 0 && FirearmState != EFirearmStates.Reloading)
+                FirearmState = EFirearmStates.None;
+
+            if (SystemManager.Input.ReloadPressed && AmmoInMagazine != fireArmData.magazineCapacity && currentAmmo.Count != 0)
             {
-                FirearmState = SystemManager.Input.FirePressed ? FirearmState = EFirearmStates.Fire : FirearmState;
+                FirearmState = EFirearmStates.Reloading;
             }
         }
         

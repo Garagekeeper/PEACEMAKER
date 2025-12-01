@@ -40,6 +40,12 @@ namespace Resources.Script.Managers
             _playerInput.Player.Aim.canceled += ctx => AimHeld = false;
             
             // Reload
+            _playerInput.Player.Reload.performed += ctx => ReloadPressed = true;
+            _playerInput.Player.Reload.canceled += ctx =>
+            {
+                ReloadReleased = true;
+                ReloadPressed = false;
+            };
             
             // Pause
             _playerInput.Player.Pause.performed += ctx => Menu = true;
@@ -69,6 +75,7 @@ namespace Resources.Script.Managers
         public bool FireReleased {get ; private set;}
         public bool FireHeld{get ; private set;}
         public bool ReloadPressed { get; private set; }
+        public bool ReloadReleased { get; private set; }
         public bool JumpPressed {get ; private set;}
         public bool Menu { get; private set; }   // Pause 토글 상태
         public bool SprintPressed {get ; private set;}

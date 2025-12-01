@@ -1,8 +1,10 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using Resources.Script.Controller;
 using Resources.Script.Managers;
 using UnityEngine;
 using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
 namespace Resources.Script.Audio
 {
@@ -11,12 +13,21 @@ namespace Resources.Script.Audio
         private AudioSource _audioSource;
         private Coroutine _coroutine;
         public AudioController PAudioController { get; } = new();
+        public Transform Target { get; set; }
 
         private void Awake()
         {
             _audioSource = GetComponent<AudioSource>();
             _audioSource.playOnAwake = false;
             _audioSource.spatialBlend = 0f;
+        }
+
+        private void Update()
+        {
+            if (Target)
+            {
+                transform.position =  Target.position;
+            }
         }
 
         public void Play(AudioClip clip, float volume = 1f, float spatialBlend = 1f, bool isLoop = false)
@@ -35,9 +46,10 @@ namespace Resources.Script.Audio
                 _coroutine = StartCoroutine(CDisableAfterPlay());
         }
 
-        public void PlayWithPreset(AudioPreset preset, bool oneshot = true)
+        public void PlayWithPreset(AudioPreset preset, Transform target = null, bool oneshot = true)
         {
             StopAllCoroutines();
+            Target = target;
             PAudioController.Init(preset, _audioSource);
             var length = PAudioController.CalcCustomEventDuration();
             PAudioController.Play(oneshot);
@@ -61,6 +73,7 @@ namespace Resources.Script.Audio
                 time = PAudioController.Preset.audioClip.length;
             
             yield return new WaitForSeconds(time + offset);
+            Target = null;
             SystemManager.Audio.ReturnSFXToPool(this);
         }
     }

@@ -1,0 +1,160 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FirearmPreset
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: 5edf903b1c2b4a9db6cd64dea7994da8,
+      type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: Assembly-CSharp::Resources.Script.Firearm.FirearmPreset
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: firearmHud
+    value: 
+    objectReference: {fileID: 3540223930184767466, guid: 9c064b8a5972f6c49bd583d4c6e0e199,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: crosshair
+    value: 
+    objectReference: {fileID: -1238934644368414566, guid: 902d9ba789cc2964994ef76563307394,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: firearmName
+    value: Assault Rifle
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: firingMode
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: shotMechanism
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: defaultDecalPrefab
+    value: 
+    objectReference: {fileID: 1000010355441670, guid: db15139bee3802f4f92e1a7472aeb783,
+      type: 3}
+  - target: {fileID: 0}
+    propertyPath: reloadType
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: fireRate
+    value: 850
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: range
+    value: 300
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: impactForce
+    value: 10
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: shotDelay
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: muzzleVelocity
+    value: 250
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: projectileSize
+    value: 0.01
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: decalSize
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: tracerRounds
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: horizontalRecoil
+    value: 0.7
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: verticalRecoil
+    value: 0.1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: cameraRecoil
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: cameraShakeAmount
+    value: 0.05
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: cameraShakeRoughness
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: cameraShakeStartTime
+    value: 0.1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: cameraShakeDuration
+    value: 0.1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: magazineCapacity
+    value: 30
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: initialAmmo
+    value: 300
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: presetFireSound
+    value: 
+    objectReference: {fileID: 11400000, guid: bba4a4e6629c26f49bc1aa29b9e1dd2a, type: 2}
+  - target: {fileID: 0}
+    propertyPath: presetReloadSound
+    value: 
+    objectReference: {fileID: 11400000, guid: cff86a179d3f6ee49adbec178dcc0711, type: 2}
+  - target: {fileID: 0}
+    propertyPath: presetReloadEmptySound
+    value: 
+    objectReference: {fileID: 11400000, guid: cff86a179d3f6ee49adbec178dcc0711, type: 2}
+  - target: {fileID: 0}
+    propertyPath: fireSound
+    value: 
+    objectReference: {fileID: 8300000, guid: 48904cc7a524f724faf40031bca13ec5, type: 3}
+  - target: {fileID: 0}
+    propertyPath: suppressorFireSound
+    value: 
+    objectReference: {fileID: 8300000, guid: 00d1dc718a230b04982fb67f4977b42e, type: 3}
+  - target: {fileID: 0}
+    propertyPath: magInSound
+    value: 
+    objectReference: {fileID: 8300000, guid: cfa76f2b5b922764492a13cd313ba53a, type: 3}
+  - target: {fileID: 0}
+    propertyPath: magOutSound
+    value: 
+    objectReference: {fileID: 8300000, guid: 15ae31d30151eae4fa68e28b9be5a2dc, type: 3}
+  m_ExcludedProperties: []
+  m_CoupledType:
+    m_NativeTypeID: 0
+    m_ManagedTypePPtr: {fileID: 0}
+    m_ManagedTypeFallback: 
+  m_CoupledProperties: []

@@ -82,6 +82,12 @@ namespace Resources.Script.Managers
             sfx.PlayWithPreset(preset);
             return sfx;
         }
+        public SFXSource PlayWithPreset(AudioPreset preset, Transform target)
+        {
+            var sfx = GetSFXFromPool();
+            sfx.PlayWithPreset(preset, target);
+            return sfx;
+        }
 
         // 게임 초기화등에 사용
         public void ReturnSFXToPoolAll()

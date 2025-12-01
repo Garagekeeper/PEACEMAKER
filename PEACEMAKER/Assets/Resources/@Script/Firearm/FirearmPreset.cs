@@ -1,4 +1,5 @@
 ﻿using Resources.Script.Audio;
+using Resources.Script.UI;
 using UnityEngine;
 using static Resources.Script.Defines;
 
@@ -7,6 +8,10 @@ namespace Resources.Script.Firearm
     [CreateAssetMenu(fileName = "New Firearm Data", menuName = "PEACEMAKER/Firearm Data")]
     public class FirearmPreset : ScriptableObject
     {
+        //Basics
+        public FirearmHUD firearmHud;
+        public Crosshair crosshair;
+        
         [Header("General")]
         public string firearmName;
         public EFiringMode firingMode = EFiringMode.Auto;
@@ -35,16 +40,13 @@ namespace Resources.Script.Firearm
     
         [Header("Ammo")]
         public int magazineCapacity = 30;
+        public int initialAmmo = 300;
         
         [Header("Audio")]
         //Audio
         public AudioPreset presetFireSound;
         public AudioPreset presetReloadSound;
         public AudioPreset presetReloadEmptySound;
-        public AudioClip fireSound;
-        public AudioClip suppressorFireSound;
-        public AudioClip magInSound;
-        public AudioClip magOutSound;
         
         // 탄약 타입 등 필요한 데이터 추가 가능
     }

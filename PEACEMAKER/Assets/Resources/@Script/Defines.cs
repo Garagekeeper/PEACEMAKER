@@ -1,4 +1,6 @@
-﻿namespace Resources.Script
+﻿using System.Collections.Generic;
+
+namespace Resources.Script
 {
     public static class Defines
     { 
@@ -9,6 +11,8 @@
         {
             R556 = 0,
         }
+
+        public static List<string> AmmoNameList = new List<string>() { "5.56MM" };
         
         /*-------------------------
         *           Gun

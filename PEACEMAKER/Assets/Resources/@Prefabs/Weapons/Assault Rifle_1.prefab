@@ -574,10 +574,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Controller.FirearmController
   preset: {fileID: 11400000, guid: 8e0bc68de4f5ede44a192aff2fa11956, type: 2}
   muzzle: {fileID: 113995438697614323}
-  mainCam: {fileID: 0}
-  animator: {fileID: 0}
-  defaultDecalPrefab: {fileID: 0}
-  projectilePrefab: {fileID: 0}
   alwaysApplyFire: 0
   anim: {fileID: 0}
   faudio: {fileID: 0}
@@ -632,7 +628,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec2b2f930ab457b935ad72365e80c12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Firearm.FirearmShooter
-  mainCam: {fileID: 0}
 --- !u!1 &395104232344178882
 GameObject:
   m_ObjectHideFlags: 0
@@ -2171,7 +2166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55d884dc433446dcbb80d23e282874a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Resource.Script.Animation.Modifier.MoveAnimationModifier
-  position: {x: -0.037, y: 0.009, z: 0}
+  position: {x: -0.046, y: 0.03, z: 0}
   rotation: {x: 0, y: 0, z: -25}
   defaultPosition: {x: 0, y: 0, z: 0}
   defaultRotation: {x: 0, y: 0, z: 0}

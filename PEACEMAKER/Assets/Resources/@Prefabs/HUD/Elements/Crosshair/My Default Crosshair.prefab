@@ -31,7 +31,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8868892892605776555}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
@@ -109,7 +108,6 @@ RectTransform:
   - {fileID: 8868892892605776555}
   - {fileID: 897341106041647990}
   m_Father: {fileID: 2783304188418843058}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -170,7 +168,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8868892892605776555}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -226,8 +223,9 @@ GameObject:
   - component: {fileID: 2783304188418843058}
   - component: {fileID: 3561660342799497686}
   - component: {fileID: 2492739817271427264}
+  - component: {fileID: -1238934644368414566}
   m_Layer: 5
-  m_Name: Default Crosshair
+  m_Name: My Default Crosshair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -247,7 +245,6 @@ RectTransform:
   m_Children:
   - {fileID: 3171854282613960215}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -273,7 +270,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4130347323760827516}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4090da6bfee14c44a92da158dbd9bb99, type: 3}
   m_Name: 
@@ -283,6 +280,22 @@ MonoBehaviour:
   color: {r: 1, g: 1, b: 1, a: 1}
   crosshairHolder: {fileID: 3171854282613960215}
   firearm: {fileID: 0}
+--- !u!114 &-1238934644368414566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4130347323760827516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7c6f27f20b84af2b66e5df574e455d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.UI.Crosshair
+  size: 25
+  sizeMatchingTime: 0.1
+  color: {r: 1, g: 1, b: 1, a: 1}
+  crosshairHolder: {fileID: 3171854282613960215}
 --- !u!1 &6218788580340305137
 GameObject:
   m_ObjectHideFlags: 0
@@ -314,7 +327,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8868892892605776555}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -393,7 +405,6 @@ RectTransform:
   - {fileID: 56609420466954193}
   - {fileID: 7243944653073185808}
   m_Father: {fileID: 3171854282613960215}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -444,7 +455,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3171854282613960215}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -532,7 +542,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8868892892605776555}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}

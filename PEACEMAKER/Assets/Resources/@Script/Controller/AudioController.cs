@@ -57,6 +57,7 @@ namespace Resources.Script.Controller
         
         public void Init(AudioPreset preset,  AudioSource source)
         {
+            CustomAudioEvents.Clear();
             Preset = preset;
             _source = source;
 

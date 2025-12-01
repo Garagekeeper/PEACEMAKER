@@ -929,6 +929,7 @@ MonoBehaviour:
   maxFallSpeed: 350
   camobj: {fileID: 1281021895094020430}
   camRootTransform: {fileID: 4881171474271531242}
+  landSfx: {fileID: 11400000, guid: 03736cbcff0acba4796130e2f1dabef1, type: 2}
   onJump:
     m_PersistentCalls:
       m_Calls:
@@ -2030,6 +2031,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Assault Rifle_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090234328821241809, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
+        type: 3}
+      propertyPath: position.x
+      value: -0.046
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090234328821241809, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
+        type: 3}
+      propertyPath: position.y
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7090234328821241809, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
+        type: 3}
+      propertyPath: rotation.z
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 8747996342582239468, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
         type: 3}

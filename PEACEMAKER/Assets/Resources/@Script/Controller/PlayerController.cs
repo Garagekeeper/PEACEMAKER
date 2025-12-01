@@ -1,6 +1,10 @@
+using System.Collections.Generic;
+using Akila.FPSFramework;
+using Resources.Script.Audio;
 using Resources.Script.Managers;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using static Resources.Script.Defines;
 using static Resources.Script.Utilities;
 
@@ -47,6 +51,7 @@ namespace Resources.Script.Controller
         public GameObject camobj;
         public Transform camRootTransform;
         public Camera FirstPersonCamera  { get; set; }
+        public AudioPreset landSfx;
         
         [Header("Events")]
         [Tooltip("Invoked when the character leaves the ground.")]
@@ -67,7 +72,6 @@ namespace Resources.Script.Controller
         public float SpeedMultiplier { get; private set; } = 1;
         
         public bool PrevGroundInfo { get; private set; }
-
         private Vector2 _addedLookValue;
 
         protected virtual void AddLookValue(Vector2 value)
@@ -89,7 +93,10 @@ namespace Resources.Script.Controller
         ///  Controller for Player
         /// </summary>
         public CharacterController CharacterController { get; set; }
-        
+
+        public List<FirearmController> Firearms { get; set; } = new();
+        public int currentFirearmNum { get; set; } = -1;
+
         void Awake()
         {
             LockCursor();
@@ -100,6 +107,9 @@ namespace Resources.Script.Controller
 
             FirstPersonCamera = camobj.GetComponent<Camera>();
             SystemManager.Game.Player = this;
+
+            // 착지소리 등록
+            onLand.AddListener(() => SystemManager.Audio.PlayWithPreset(landSfx, transform));
 
         }
     
@@ -178,7 +188,7 @@ namespace Resources.Script.Controller
                 if (SystemManager.Input.SprintPressed)
                     moveSpeedMultiplier = sprintSpeed;
                 
-                if (SystemManager.Input.FireHeld || SystemManager.Input.FirePressed || SystemManager.Input.AimHeld)
+                if (Firearms[currentFirearmNum]?.FirearmState == EFirearmStates.Fire || SystemManager.Input.AimHeld)
                     moveSpeedMultiplier = walkSpeed;
                 
                 if (IsCrouching)
