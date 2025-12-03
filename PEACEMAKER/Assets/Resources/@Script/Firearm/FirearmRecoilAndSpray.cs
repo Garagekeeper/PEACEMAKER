@@ -67,7 +67,7 @@ namespace Resources.Script.Firearm
                 }
 
                 // 이동 시 추가 스프레이를 적용
-                if (grounded && moveSpeed > 0.1f && aimProgress < 0.99f)
+                if (moveSpeed > 0.1f && aimProgress < 0.99f)
                 {
                     float normalized = Mathf.InverseLerp(0f, FireArm.Owner.sprintSpeed, moveSpeed);
                     float runningSpray = Mathf.Lerp(0.5f, 1f, normalized) * maxHipSpray;

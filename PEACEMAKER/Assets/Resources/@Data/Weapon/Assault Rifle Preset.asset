@@ -43,7 +43,3 @@ MonoBehaviour:
   presetReloadSound: {fileID: 11400000, guid: cff86a179d3f6ee49adbec178dcc0711, type: 2}
   presetReloadEmptySound: {fileID: 11400000, guid: cff86a179d3f6ee49adbec178dcc0711,
     type: 2}
-  fireSound: {fileID: 8300000, guid: 48904cc7a524f724faf40031bca13ec5, type: 3}
-  suppressorFireSound: {fileID: 8300000, guid: 00d1dc718a230b04982fb67f4977b42e, type: 3}
-  magInSound: {fileID: 8300000, guid: cfa76f2b5b922764492a13cd313ba53a, type: 3}
-  magOutSound: {fileID: 8300000, guid: 15ae31d30151eae4fa68e28b9be5a2dc, type: 3}

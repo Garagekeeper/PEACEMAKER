@@ -101,21 +101,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.21690139
-        functionName: ShakeCameras
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.2
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.73802817
-        functionName: ShakeCameras
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.2
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -144,14 +130,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.6253521
-        functionName: ShakeCameras
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.3
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -180,21 +159,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.22159624
-        functionName: ShakeCameras
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.2
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.7474178
-        functionName: ShakeCameras
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0.2
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

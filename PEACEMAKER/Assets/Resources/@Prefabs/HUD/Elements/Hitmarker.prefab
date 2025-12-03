@@ -31,7 +31,6 @@ RectTransform:
   m_Children:
   - {fileID: 1271495045414051954}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -55,7 +54,7 @@ MonoBehaviour:
   hitmakerObject: {fileID: 1271495045414051955}
   normal: {r: 1, g: 1, b: 1, a: 0.78431374}
   highlight: {r: 0.6886792, g: 0, b: 0, a: 1}
-  hitmarkerSound: {fileID: 11400000, guid: da518afc6490dfd4f8a67445bbe8afa8, type: 2}
+  hitmarkerSound: {fileID: 11400000, guid: 78beb245c97418444928a99b6264eacc, type: 2}
   maxSize: 90
   minSize: 70
   rotaionAmount: 12
@@ -95,7 +94,6 @@ RectTransform:
   - {fileID: 2870485839090714206}
   - {fileID: 2870485841053159849}
   m_Father: {fileID: 1271495044438100579}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -180,7 +178,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1271495045414051954}
-  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -253,7 +250,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1271495045414051954}
-  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
@@ -326,7 +322,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1271495045414051954}
-  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -399,7 +394,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1271495045414051954}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}

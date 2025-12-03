@@ -138,8 +138,8 @@ MonoBehaviour:
       colorBlindnessType: 0
       colorBlindnessStrength: 1
   m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
-  m_ShowToolkit: 0
-  m_ShowCustomSorter: 0
+  m_ShowToolkit: 1
+  m_ShowCustomSorter: 1
   breakBeforeColorGrading: 0
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1281021895094020430}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe7a4e1373a37bc4fa5cc2e62f5f0584, type: 3}
   m_Name: 
@@ -282,7 +282,7 @@ MonoBehaviour:
     stationaryBlending: 0.95
     motionBlending: 0.85
   subpixelMorphologicalAntialiasing:
-    quality: 2
+    quality: 0
   fastApproximateAntialiasing:
     fastMode: 0
     keepAlpha: 0
@@ -540,15 +540,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3114164056613836472}
-  - component: {fileID: 3707304830650806960}
-  - component: {fileID: 489873891322612931}
-  - component: {fileID: 4760482413687788506}
   - component: {fileID: 9047707209286513751}
-  - component: {fileID: 3824016436430896429}
-  - component: {fileID: 4020067342463133099}
-  - component: {fileID: 5598100555403761000}
-  - component: {fileID: 1921296553966493423}
-  - component: {fileID: 2181554259415168813}
   - component: {fileID: 8242086204978780629}
   m_Layer: 8
   m_Name: MyPlayer
@@ -574,114 +566,6 @@ Transform:
   - {fileID: 8487115432989749756}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3707304830650806960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3917014405222904205}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99204d50a49bbab478a86d0c9cd2c92f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actorName: Player
-  type: Player
-  teamId: 0
-  respawnable: 1
-  kills: 0
-  deaths: 0
---- !u!114 &489873891322612931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3917014405222904205}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbce2dfed1b9435478ff0abcad13deb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onJump:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8054807355392883913}
-        m_TargetAssemblyTypeName: Resource.Script.Animation.ProceduralAnimation,
-          Assembly-CSharp
-        m_MethodName: Play
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onLand:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7948655461331533445}
-        m_TargetAssemblyTypeName: Resource.Script.Animation.ProceduralAnimation,
-          Assembly-CSharp
-        m_MethodName: Play
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &4760482413687788506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3917014405222904205}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da1e6f742c6c6dd478c39205d017ae85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  allowInputWhilePaused: 0
-  toggleAim: 0
-  toggleCrouch: 1
-  toggleLean: 0
-  reverseSprintInput: 0
-  allowTacticalSprining: 1
-  sensitivityOnMouse: 1
-  sensitivityOnGamepad: 1
-  fovToSensitivityCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  isDynamicSensitivityEnabled: 1
-  rawSprintInput: 0
 --- !u!143 &9047707209286513751
 CharacterController:
   m_ObjectHideFlags: 0
@@ -707,204 +591,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3824016436430896429
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3917014405222904205}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac5a991171713d54e95b559072f9cf5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  health: 100
-  destroyDelay: 0
-  damageCameraShake: 0.2
-  destroyOnDeath: 1
-  destroyRoot: 0
-  ragdolls: 0
-  deathEffect: {fileID: 0}
-  autoHeal: 1
-  autoHealSpeed: 1
-  autoHealDelay: 5
-  onDeath:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 374009933901206597}
-        m_TargetAssemblyTypeName: Akila.FPSFramework.Inventory, Assembly-CSharp
-        m_MethodName: DropAllItems
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onRespawn:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &4020067342463133099
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3917014405222904205}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad55d4247f8ab40408f6d8b05829b12e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxDistance: 50
-  assistRadius: 50
-  deadZone: 5
-  assistStrength: 15
-  smoothing: 15
-  alwaysOn: 0
-  assistWhenMoving: 1
-  assistOnStartAim: 1
-  assistWhileAiming: 0
-  assistForKeyboardMouse: 0
-  assistForGamepad: 1
-  assistForMobile: 0
---- !u!114 &5598100555403761000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3917014405222904205}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d16a2ae80e48fc43a0b2618dfc3ae08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1921296553966493423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3917014405222904205}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7caee19a8a77715408fa63634de3ab5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ignoreHitDetection: 1
-  ignoreLaserDetection: 0
-  ignoreWallAvoidance: 0
-  ignoreFallDamage: 0
-  ignoreMovingPlatform: 1
---- !u!114 &2181554259415168813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3917014405222904205}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e49e9ad89ae3c604b9d85d1fd55a5f37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acceleration: 0.12
-  walkSpeed: 5
-  crouchSpeed: 3
-  sprintSpeed: 10
-  tacticalSprintSpeed: 11
-  jumpHeight: 6
-  crouchHeight: 1.5
-  stepInterval: 7
-  autoDetectMovingPlatforms: 1
-  preserveMomentum: 1
-  momentumLoss: 0.2
-  slideDownSlopes: 1
-  slopeSlideSpeed: 1
-  gravity: 1
-  maxFallSpeed: 100
-  stickToGroundForce: 0.5
-  cameraTransform: {fileID: 4881171474271531242}
-  maximumX: 80
-  minimumX: -80
-  offset: {x: 0, y: -0.05, z: 0}
-  lockCursor: 1
-  globalOrientation: 0
-  sensitivityOnMouse: 1
-  sensitivityOnGamepad: 1
-  fovToSensitivityCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: -1
-      outSlope: -1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: -1
-      outSlope: -1
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  isDynamicSensitivityEnabled: 1
-  footstepsSFX:
-  - {fileID: 11400000, guid: 95fa7439cecf4634fac567878d12b193, type: 2}
-  - {fileID: 11400000, guid: 6c3897e2ed9d38b43aa23fdf5fa14082, type: 2}
-  - {fileID: 11400000, guid: 8d7e44b960ba30146929f827ab8c4754, type: 2}
-  - {fileID: 11400000, guid: e3244c6cc85c2554f9f2ab698fcb9bc2, type: 2}
-  - {fileID: 11400000, guid: 206528372f21e6b44832bb5aeb138ec3, type: 2}
-  jumpSFX: {fileID: 0}
-  landSFX: {fileID: 11400000, guid: 4b0cfdca54c19ea41b11909696b9358a, type: 2}
-  onStep:
-    m_PersistentCalls:
-      m_Calls: []
-  onJump:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Akila.FPSFramework.Animation.ProceduralAnimation,
-          Assembly-CSharp
-        m_MethodName: Play
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onLand:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Akila.FPSFramework.Animation.ProceduralAnimation,
-          Assembly-CSharp
-        m_MethodName: Play
-        m_Mode: 4
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &8242086204978780629
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1696,7 +1382,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8196570018928459480}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2ab8353b5ebd32545867da143199a814, type: 3}
   m_Name: 
@@ -2031,31 +1717,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Assault Rifle_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7090234328821241809, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
-        type: 3}
-      propertyPath: position.x
-      value: -0.046
-      objectReference: {fileID: 0}
-    - target: {fileID: 7090234328821241809, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
-        type: 3}
-      propertyPath: position.y
-      value: 0.03
-      objectReference: {fileID: 0}
-    - target: {fileID: 7090234328821241809, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
-        type: 3}
-      propertyPath: rotation.z
-      value: -10
-      objectReference: {fileID: 0}
-    - target: {fileID: 8747996342582239468, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
-        type: 3}
-      propertyPath: events.OnPlay.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8747996342582239468, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
-        type: 3}
-      propertyPath: events.OnPlay.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
