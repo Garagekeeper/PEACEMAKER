@@ -1,7 +1,8 @@
-﻿using static Resources.Script.Defines;
+﻿using UnityEngine;
+using static Resources.Script.Defines;
 namespace Resources.Script.Creature
 {
-    public class Enemy : DamageableCreature
+    public class Enemy : DamageableObject
     {
         protected override void Awake()
         {
@@ -12,6 +13,7 @@ namespace Resources.Script.Creature
         protected override void HandleDeath(Resources.Script.Creature.Creature attackBy)
         {
             base.HandleDeath(attackBy);
+            int a = 0;
         }
     }
 }

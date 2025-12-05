@@ -1,7 +1,7 @@
 ﻿using static Resources.Script.Defines;
 namespace Resources.Script.Creature
 {
-    public class Player : DamageableCreature
+    public class Player : DamageableObject
     {
         protected override void Awake()
         {

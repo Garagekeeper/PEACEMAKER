@@ -1,5 +1,5 @@
-﻿using Akila.FPSFramework;
-using Resources.Script.Controller;
+﻿using Resources.Script.Controller;
+using Resources.Script.Creature;
 using UnityEngine;
 using static Resources.Script.Defines;
 using static Resources.Script.Utilities;
@@ -38,18 +38,15 @@ namespace Resources.Script.Firearm
             ShotMechanism = FireArm.fireArmData.shotMechanism;
 
             _mainCam = GetMainCamera();
-            mask |= LayerMask.GetMask("Default");
-            mask |= LayerMask.GetMask("TransparentFX");
-            mask |= LayerMask.GetMask("Ignore Raycast");
-            mask |= LayerMask.GetMask("Water");
-            mask |= LayerMask.GetMask("UI");
-            mask |= LayerMask.GetMask("FPS Object");
+            //mask |= LayerMask.GetMask("FPS Object");
             mask |= LayerMask.GetMask("Enviroment");
-            mask |= LayerMask.GetMask("Iteractable");
+            //mask |= LayerMask.GetMask("Iteractable");
+            mask |= LayerMask.GetMask("Enemy");
         }
 
         public void UpdateFire()
         {
+            Debug.DrawRay(_mainCam.transform.position, _mainCam.transform.forward * 300f, Color.red);
             if (FireArm.FirearmState == EFirearmStates.Fire)
                 Fire();
 
@@ -68,23 +65,30 @@ namespace Resources.Script.Firearm
             // Muzzle to CamForward
             // 총구에서 카메라 중앙으로 투사체 발사.
             // 정확한 에임
+            //TODO 최대거리 지정
+           //Debug.DrawRay(_mainCam.transform.position, _mainCam.transform.forward * 300f, Color.red);
             if (Physics.Raycast(_mainCam.transform.position, _mainCam.transform.forward,
-                    out var hitInfo, mask))
+                    out var hitInfo,300f, mask))
             {
                 // 적정거리 이상으로 떨어져 있는 경우, 총구에서 시작해서 화면 정중앙으로 
-                if (hitInfo.distance > 5f)
+                if (hitInfo.distance > 1f)
                 {
                     firePosition = muzzle.position;
                     fireRotation = muzzle.rotation;
                     fireDirection = (hitInfo.point - muzzle.position).normalized;
                 }
-                // 너무 가까운 경우 카메라에서 시작해서 총구 방향으로
                 else
                 {
                     firePosition = _mainCam.transform.position;
                     fireRotation = _mainCam.transform.rotation;
-                    fireDirection = muzzle.forward;
+                    fireDirection = _mainCam.transform.forward;
                 }
+            }
+            else
+            {
+                firePosition = muzzle.position;
+                fireRotation = muzzle.rotation;
+                fireDirection = _mainCam.transform.forward;
             }
 
             FireInternal(firePosition, fireRotation, fireDirection);
@@ -106,7 +110,6 @@ namespace Resources.Script.Firearm
 
                 //TODO 여기서 반동 (Spray) 구현
                 var finalDir = FireArm.recoilAndSpray.CalculatePattern(fireDirection, FireArm.muzzle.right, FireArm.muzzle.up);
-
                 //SFX 적용
                 //PlaySound
                 FireArm.faudio.PlayShotFire();
@@ -237,36 +240,36 @@ namespace Resources.Script.Firearm
             if (hit.transform.TryGetComponent(out IDamageablePart damageablePart))
             {
                 // 뒤에 1 부착물 mod
-                damageMultiplier = damageablePart.damageMultipler * 1f;
+                damageMultiplier = damageablePart.DamageMultiplier * 1f;
             }
 
             // 데미지를 받는 객체
             IDamageable damageable = hit.transform.FindSelfChildParent<IDamageable>();
 
             // Handle damageable objects
-            if (damageable is { Health: > 0 })
+            if ( damageable is { IsDead: false })
             {
                 var totalDamage = damage * damageMultiplier;
 
-                GameObject creatureGo = null;
+                //GameObject creatureGo = null;
 
-                if (creature) creatureGo = creature.gameObject;
+                //if (creature) creatureGo = creature.gameObject;
 
-                damageable.Damage(totalDamage, creatureGo);
+                damageable.OnDamage(totalDamage, creature);
 
-                bool shouldHighlight = damageable.Health <= 0;
+                bool shouldHighlight = damageable.Hp <= 0;
 
                 if (FireArm.Owner.CharacterController != null)
                 {
                     // 히트마커 표시
                     // TODO 히트마커 옮기기
-                    UIManager uiManager = UIManager.Instance;
+                    //UIManager uiManager = UIManager.Instance;
 
-                    if (uiManager != null)
-                    {
-                        Hitmarker hitmarker = uiManager.Hitmarker;
-                        hitmarker?.Show(shouldHighlight);
-                    }
+                    //if (uiManager != null)
+                    //{
+                    //    Hitmarker hitmarker = uiManager.Hitmarker;
+                    //    hitmarker?.Show(shouldHighlight);
+                    //}
                 }
             }
 
@@ -315,41 +318,41 @@ namespace Resources.Script.Firearm
         /// <param name="hit">Information about the hit.</param>
         public static void InvokeHitCallbacks(GameObject sourcePlayer, Ray ray, RaycastHit hit)
         {
-            if (hit.transform.TryGetComponent<Ignore>(out Ignore _ignore) && _ignore.ignoreHitDetection) return;
-
-            // Create a HitInfo object to store details about the hit
-            HitInfo hitInfo = new HitInfo(sourcePlayer, hit, ray.origin, ray.direction);
-
-            // Retrieve the GameObject that was hit
-            GameObject obj = hit.transform.gameObject;
-
-            // Try to get the IOnAnyHit interface implementation on the hit object, its children, and its parent
-            IOnAnyHit onAnyHit = obj.transform.GetComponent<IOnAnyHit>();
-            IOnAnyHitInChildren onAnyHitInChildren = obj.transform.GetComponentInParent<IOnAnyHitInChildren>();
-            IOnAnyHitInParent onAnyHitInParent = obj.transform.GetComponentInChildren<IOnAnyHitInParent>();
-
-            // Try to get the IOnHit interface implementation on the hit object, its children, and its parent
-            IOnHit onHit = obj.transform.GetComponent<IOnHit>();
-            IOnHitInChildren onHitInChildren = obj.transform.GetComponentInParent<IOnHitInChildren>();
-            IOnHitInParent onHitInParent = obj.transform.GetComponentInChildren<IOnHitInParent>();
-
-            // Invoke the OnHit method on the IOnHit interface, if implemented
-            onHit?.OnHit(hitInfo);
-
-            // Invoke the OnHitInChildren method on the IOnHitInChildren interface, if implemented
-            onHitInChildren?.OnHitInChildren(hitInfo);
-
-            // Invoke the OnHitInParent method on the IOnHitInParent interface, if implemented
-            onHitInParent?.OnHitInParent(hitInfo);
-
-            // Invoke the OnAnyHit method on the IOnAnyHit interface, if implemented
-            onAnyHit?.OnAnyHit(hitInfo);
-
-            // Invoke the OnAnyHitInChildren method on the IOnAnyHitInChildren interface, if implemented
-            onAnyHitInChildren?.OnAnyHitInChildren(hitInfo);
-
-            // Invoke the OnAnyHitInParent method on the IOnAnyHitInParent interface, if implemented
-            onAnyHitInParent?.OnAnyHitInParent(hitInfo);
+            // if (hit.transform.TryGetComponent<Ignore>(out Ignore _ignore) && _ignore.ignoreHitDetection) return;
+            //
+            // // Create a HitInfo object to store details about the hit
+            // HitInfo hitInfo = new HitInfo(sourcePlayer, hit, ray.origin, ray.direction);
+            //
+            // // Retrieve the GameObject that was hit
+            // GameObject obj = hit.transform.gameObject;
+            //
+            // // Try to get the IOnAnyHit interface implementation on the hit object, its children, and its parent
+            // IOnAnyHit onAnyHit = obj.transform.GetComponent<IOnAnyHit>();
+            // IOnAnyHitInChildren onAnyHitInChildren = obj.transform.GetComponentInParent<IOnAnyHitInChildren>();
+            // IOnAnyHitInParent onAnyHitInParent = obj.transform.GetComponentInChildren<IOnAnyHitInParent>();
+            //
+            // // Try to get the IOnHit interface implementation on the hit object, its children, and its parent
+            // IOnHit onHit = obj.transform.GetComponent<IOnHit>();
+            // IOnHitInChildren onHitInChildren = obj.transform.GetComponentInParent<IOnHitInChildren>();
+            // IOnHitInParent onHitInParent = obj.transform.GetComponentInChildren<IOnHitInParent>();
+            //
+            // // Invoke the OnHit method on the IOnHit interface, if implemented
+            // onHit?.OnHit(hitInfo);
+            //
+            // // Invoke the OnHitInChildren method on the IOnHitInChildren interface, if implemented
+            // onHitInChildren?.OnHitInChildren(hitInfo);
+            //
+            // // Invoke the OnHitInParent method on the IOnHitInParent interface, if implemented
+            // onHitInParent?.OnHitInParent(hitInfo);
+            //
+            // // Invoke the OnAnyHit method on the IOnAnyHit interface, if implemented
+            // onAnyHit?.OnAnyHit(hitInfo);
+            //
+            // // Invoke the OnAnyHitInChildren method on the IOnAnyHitInChildren interface, if implemented
+            // onAnyHitInChildren?.OnAnyHitInChildren(hitInfo);
+            //
+            // // Invoke the OnAnyHitInParent method on the IOnAnyHitInParent interface, if implemented
+            // onAnyHitInParent?.OnAnyHitInParent(hitInfo);
         }
     }
 }

@@ -19,7 +19,7 @@ MonoBehaviour:
   firearmName: Assault Rifle
   firingMode: 1
   shotMechanism: 1
-  defaultDecalPrefab: {fileID: 1000010355441670, guid: db15139bee3802f4f92e1a7472aeb783,
+  defaultDecalPrefab: {fileID: 1000010844420130, guid: eddd18724991935488112096e1cf9ab7,
     type: 3}
   reloadType: 0
   fireRate: 850
