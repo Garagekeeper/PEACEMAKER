@@ -36,7 +36,7 @@ namespace Resources.Script.Creature
             OnDeath();
         }
 
-        public void OnDeath()
+        public virtual void OnDeath()
         {
             _ragdollEffect.Enable();
             onDeathEvent?.Invoke();

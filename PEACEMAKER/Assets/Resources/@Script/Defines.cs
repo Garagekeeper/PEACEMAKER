@@ -83,7 +83,7 @@ namespace Resources.Script
         }
         
         /*-------------------------
-        *    Creature Type
+        *    Creature
         -------------------------*/
         public enum ECreatureType
         {
@@ -91,6 +91,16 @@ namespace Resources.Script
             Enemy=1,
             Npc=2,
         }
+
+        public enum ECreatureStates
+        {
+            None = 0,
+            Idle = 1,
+            Moving = 2,
+            Skill = 3,
+            Dead = 4,
+        }
+        
         
         
         public enum EVector3Direction

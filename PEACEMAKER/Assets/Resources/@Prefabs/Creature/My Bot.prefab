@@ -3303,11 +3303,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8228925393634670071}
   - component: {fileID: 5929823288519236933}
-  - component: {fileID: 5400794120590146141}
-  - component: {fileID: 297630186592517050}
-  - component: {fileID: 2028621125925237577}
   - component: {fileID: 4603171449228393917}
-  m_Layer: 7
+  - component: {fileID: 3404944033732411212}
+  - component: {fileID: 6515515680919629840}
+  - component: {fileID: 7624584204873448413}
+  m_Layer: 6
   m_Name: My Bot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3340,7 +3340,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8752979691137757005}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: 92db89b161073b344ac86197cbf7cd9c, type: 3}
   m_Controller: {fileID: 9100000, guid: 7c36efcba7f84924faa4b9adcfb2679e, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
@@ -3353,67 +3353,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &5400794120590146141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8752979691137757005}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99204d50a49bbab478a86d0c9cd2c92f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actorName: Bot
-  type: Bot
-  teamId: 1
-  respawnable: 1
-  kills: 0
-  deaths: 0
---- !u!114 &297630186592517050
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8752979691137757005}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac5a991171713d54e95b559072f9cf5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 1
-  health: 100
-  destroyDelay: 5
-  damageCameraShake: 0.3
-  destroyOnDeath: 1
-  destroyRoot: 0
-  ragdolls: 1
-  deathEffect: {fileID: 0}
-  autoHeal: 1
-  autoHealSpeed: 1
-  autoHealDelay: 1
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
-  onRespawn:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &2028621125925237577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8752979691137757005}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cd6859c952ec644eaaafd4e22a280a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 0}
-  isEnabled: 0
 --- !u!114 &4603171449228393917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3430,6 +3369,57 @@ MonoBehaviour:
   onDeathEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3404944033732411212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8752979691137757005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d5a20682fac44c0bf61f71c8b645821, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Creature.RagdollEffect
+  animator: {fileID: 0}
+  isEnabled: 0
+--- !u!114 &6515515680919629840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8752979691137757005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26e6a400138a4a3084050403625763d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Controller.EnemyController
+--- !u!143 &7624584204873448413
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8752979691137757005}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &8834757428963516555
 GameObject:
   m_ObjectHideFlags: 0

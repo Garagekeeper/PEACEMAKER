@@ -1,4 +1,6 @@
-﻿using static Resources.Script.Defines;
+﻿using Resources.Script.Managers;
+using UnityEngine;
+using static Resources.Script.Defines;
 namespace Resources.Script.Creature
 {
     public class Player : DamageableObject
@@ -7,11 +9,12 @@ namespace Resources.Script.Creature
         {
             base.Awake();
             CreatureType = ECreatureType.Player;
+            SystemManager.Game.MainPlayer = this;
         }
 
-        protected override void HandleDeath(Resources.Script.Creature.Creature attackBy)
+        public override void OnDeath()
         {
-            base.HandleDeath(attackBy);
+            Debug.Log("Player Death");
         }
         
     }

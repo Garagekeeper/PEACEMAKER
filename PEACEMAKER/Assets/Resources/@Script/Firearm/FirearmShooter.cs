@@ -46,7 +46,7 @@ namespace Resources.Script.Firearm
 
         public void UpdateFire()
         {
-            Debug.DrawRay(_mainCam.transform.position, _mainCam.transform.forward * 300f, Color.red);
+            Debug.DrawRay(_mainCam.transform.position, _mainCam.transform.forward * 30f, Color.red);
             if (FireArm.FirearmState == EFirearmStates.Fire)
                 Fire();
 

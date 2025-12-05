@@ -9,11 +9,11 @@ namespace Resources.Script.Creature
         [SerializeField] private HumanBodyBones mBone;
         [SerializeField] private float mDamageMultiplier = 1;
         [SerializeField] private bool mIsCritical;
-        private string name;
+        private string _boneName;
 
         public IDamageable ParentDamageable { get; private set; }
         public HumanBodyBones Bone => mBone;
-        public string PartName => name;
+        public string PartName => _boneName;
         public float DamageMultiplier => mDamageMultiplier;
         public bool IsCriticalPart => mIsCritical;
 
@@ -33,7 +33,7 @@ namespace Resources.Script.Creature
         private void Start()
         {
             ParentDamageable = GetComponentInParent<IDamageable>();
-            name = gameObject.name;
+            _boneName = gameObject.name;
         }
     }
 }

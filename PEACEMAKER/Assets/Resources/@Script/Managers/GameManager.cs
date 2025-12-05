@@ -1,4 +1,4 @@
-﻿using Resources.Script.Controller;
+﻿using Resources.Script.Creature;
 
 namespace Resources.Script.Managers
 {
@@ -7,7 +7,7 @@ namespace Resources.Script.Managers
         public bool IsPaused { get; private set; } = false;
         public bool ProcAnimIsActive {get; private set;} = true;
         
-        public PlayerController Player { get; set; }
+        public Player MainPlayer { get; set; }
         
         public void OnUpdate()
         {

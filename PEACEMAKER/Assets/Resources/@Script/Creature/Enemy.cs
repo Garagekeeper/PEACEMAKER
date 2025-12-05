@@ -1,19 +1,23 @@
-﻿using UnityEngine;
+﻿using Resources.Script.Controller;
+using UnityEngine;
 using static Resources.Script.Defines;
 namespace Resources.Script.Creature
 {
     public class Enemy : DamageableObject
     {
+        private EnemyController  _controller;
         protected override void Awake()
         {
             base.Awake();
             CreatureType = ECreatureType.Enemy;
+            _controller = GetComponent<EnemyController>();
         }
 
-        protected override void HandleDeath(Resources.Script.Creature.Creature attackBy)
+        public override void OnDeath()
         {
-            base.HandleDeath(attackBy);
-            int a = 0;
+            base.OnDeath();
+            _controller.OnDead();
+            Destroy(gameObject, 5);
         }
     }
 }
