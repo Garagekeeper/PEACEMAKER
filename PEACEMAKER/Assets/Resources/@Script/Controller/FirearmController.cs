@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Resource.Script.Controller;
 using Resources.Script.Ammo;
 using Resources.Script.Firearm;
@@ -78,10 +79,7 @@ namespace Resources.Script.Controller
         public FirearmShooter shooter;
         [HideInInspector]
         public FireArmData fireArmData;
-
-        public bool IsHUDActive { get; set; } = true;
-        public FirearmHUD FirearmHUD { get; set; }
-        public Crosshair Crosshair { get; set; }
+        
         
         
         private void Awake()
@@ -139,8 +137,7 @@ namespace Resources.Script.Controller
             }
             else
             {
-                FirearmHUD = Instantiate(preset.firearmHud, transform);
-                FirearmHUD.Firearm = this;
+                SystemManager.UI.AddNewFirearmHUD(this,  preset.firearmHud);
             }
             
             if (preset.crosshair == null)
@@ -149,13 +146,17 @@ namespace Resources.Script.Controller
             }
             else
             {
-                Crosshair = Instantiate(preset.crosshair, FirearmHUD.transform);
-                Crosshair.Firearm = this;
+                if (!SystemManager.UI.Crosshair) 
+                    SystemManager.UI.AddCrossHair(this, preset.crosshair);;
             }
             
             Owner.Firearms.Add(this);
-            if (Owner.currentFirearmNum == -1)
-                Owner.currentFirearmNum = 0;
+            //TODO 인벤토리로 따로 빼기ㅣ
+            if (SystemManager.Game.CurrentFirearmNum == -1)
+                SystemManager.Game.CurrentFirearmNum = 0;
+
+            else
+                Owner.OffPrevFirearm(Owner.Firearms.Count - 1);
         }
         
 
@@ -220,6 +221,11 @@ namespace Resources.Script.Controller
         private void UpdateReload()
         {
             
+        }
+
+        private void OnEnable()
+        {
+            FirearmState = EFirearmStates.None;
         }
     }
 }

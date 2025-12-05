@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Resources.Script.Managers
 {
@@ -22,10 +23,12 @@ namespace Resources.Script.Managers
         public InputManager InputInternal { get; private set; }
         public GameManager GameInternal { get; private set; }
         public AudioManager AudioInternal { get; private set; }
+        public UIManager UIInternal { get; private set; }
         
         public static GameManager Game => Instance.GameInternal;
         public static InputManager Input => Instance.InputInternal;
         public static AudioManager Audio => Instance.AudioInternal;
+        public static UIManager UI => Instance.UIInternal;
 
         private void Awake()
         {
@@ -37,26 +40,20 @@ namespace Resources.Script.Managers
 
             instance = this;
             DontDestroyOnLoad(gameObject);
-            var go = new GameObject("@SoundPool"); DontDestroyOnLoad(go);
 
-            InputInternal = new InputManager();
-            GameInternal = new GameManager();
+            InputInternal = gameObject.AddComponent<InputManager>();
+            GameInternal = gameObject.AddComponent<GameManager>();
             AudioInternal = gameObject.AddComponent<AudioManager>();
+            UIInternal = gameObject.AddComponent<UIManager>();
+            
+            
+            // 씬이 로드되면 호출될 함수 등록
+            SceneManager.sceneLoaded += OnSceneLoaded;
         }
-
-        private void Update()
+        
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            Input?.OnUpdate();
+            UI?.OnSceneLoaded();  // ADD
         }
-
-        private void LateUpdate()
-        {
-            Input?.LateUpdate();
-        }
-    }
-
-    interface IManagerBase
-    {
-        void OnUpdate();
     }
 }

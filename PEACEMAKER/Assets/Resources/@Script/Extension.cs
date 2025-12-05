@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Resources.Script.UI;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Resources.Script
@@ -70,6 +71,11 @@ namespace Resources.Script
             if(parentComp != null && !skipParent) return parentComp;
 
             return comp;
+        }
+
+        public static void TurnOnOffFirearms(this FirearmHUD firearmHUD, bool state)
+        {
+            firearmHUD.gameObject.SetActive(state);
         }
     }
 }

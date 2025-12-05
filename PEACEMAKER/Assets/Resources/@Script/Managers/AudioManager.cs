@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Resources.Script.Managers
 {
-    public class AudioManager : MonoBehaviour,IManagerBase
+    public class AudioManager : MonoBehaviour
     {
         
         private int _initialPoolSize;
@@ -22,6 +22,8 @@ namespace Resources.Script.Managers
         {
             // GameScene으로 넘어오면서 @SoundPool 오브젝트가 DontDestroyOnLoad에 생성됨
             _parent = GameObject.Find("@SoundPool");
+            if (_parent == null)
+                _parent = new GameObject("@SoundPool"); DontDestroyOnLoad(_parent);
             _initialPoolSize = 30;
             _sfxPool = new Queue<SFXSource>();
             _sfxPrefab = UnityEngine.Resources.Load<GameObject>("@Prefabs/sfx").GetComponent<SFXSource>();
@@ -99,10 +101,6 @@ namespace Resources.Script.Managers
                 else 
                     GameObject.Destroy(childTransform.gameObject);
             }
-        }
-        public void OnUpdate()
-        {
-            
         }
     }
 

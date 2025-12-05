@@ -42,7 +42,6 @@ namespace Resources.Script.Controller
             //TODO 길찾기 알고리즘
             UpdateState();
             HandleState();
-            Debug.Log(CreatureState);
             Animator.SetFloat("velocity", Controller.velocity.magnitude * 3f);
 
         }

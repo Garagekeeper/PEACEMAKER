@@ -439,7 +439,6 @@ GameObject:
   - component: {fileID: 7753241951546354775}
   - component: {fileID: 9105269755815458923}
   - component: {fileID: 4622341081318701054}
-  - component: {fileID: 6802205737550449059}
   - component: {fileID: 3540223930184767466}
   m_Layer: 5
   m_Name: Firearm HUD
@@ -534,26 +533,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6802205737550449059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2288065729869735786}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f78c379bce0a3e845b7de9c894a9f0cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firearmNameText: {fileID: 4412139665344404526}
-  ammoTypeNameText: {fileID: 2749390296656520528}
-  remainingAmmoText: {fileID: 6215231800757327020}
-  remainingAmmoTypeText: {fileID: 8682197073094840466}
-  outOfAmmoAlert: {fileID: 2491642312499373199}
-  lowAmmoAlert: {fileID: 5378726229535123121}
-  normalColor: {r: 1, g: 1, b: 1, a: 1}
-  alertColor: {r: 0.6037736, g: 0, b: 0, a: 1}
 --- !u!114 &3540223930184767466
 MonoBehaviour:
   m_ObjectHideFlags: 0

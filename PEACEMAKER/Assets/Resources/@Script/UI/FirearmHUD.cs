@@ -28,9 +28,7 @@ namespace Resources.Script.UI
             {
                 return;
             }
-
-            gameObject.SetActive(Firearm.IsHUDActive);
-
+            
             firearmNameText.SetText(Firearm.fireArmData.firearmName);
             ammoTypeNameText.SetText(AmmoNameList[(int)Firearm.requiredAmmoType.Type]);
             remainingAmmoInMagazineText.SetText(Firearm.AmmoInMagazine.ToString());

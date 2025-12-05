@@ -1,8 +1,11 @@
-﻿using Resources.Script.Animation;
+﻿using System;
+using Resources.Script.Animation;
 using Resources.Script.Animation.Modifier;
+using Resources.Script.Audio;
 using Resources.Script.Controller;
 using Resources.Script.Managers;
 using Unity.Mathematics.Geometry;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Resources.Script.Defines;
 
@@ -37,6 +40,7 @@ namespace Resources.Script.Firearm
         public ProceduralAnimation SwayAimingAnimation { get; private set; }
         public ProceduralAnimation ReloadingAnimation { get; private set; }
         private GameObject _magazine;
+        private SFXSource _reloadSound;
 
         private WaveAnimationModifier WalkingWaveAnimationModifier { get; set; }
         private float _defaultAimingTime;
@@ -247,7 +251,7 @@ namespace Resources.Script.Firearm
                 //Start Process
                 //TODO Play Reload Sound
                // SystemManager.Audio.PlayWithPreset(FireArm.fireArmData.reloadSoundPreset, _magazine.transform);
-                SystemManager.Audio.PlayWithPreset(FireArm.fireArmData.reloadSoundPreset,
+               _reloadSound = SystemManager.Audio.PlayWithPreset(FireArm.fireArmData.reloadSoundPreset,
                     FireArm.Owner.transform);
                 
                 // 1-0. 코드에 의해 조절되는 재장전 (산탄총) 
@@ -259,9 +263,16 @@ namespace Resources.Script.Firearm
                 _isReloading = true;
                 animator.SetBool("Is Reloading", _isReloading);
             }
-            
-           
-            
+        }
+
+        private void OnEnable()
+        {
+            _isReloading = false;
+        }
+
+        private void OnDisable()
+        {
+            SystemManager.Audio.ReturnSFXToPool(_reloadSound);
         }
     }
 }

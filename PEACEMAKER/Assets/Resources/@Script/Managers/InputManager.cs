@@ -1,16 +1,41 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 using static Resources.Script.Defines;
 using static Resources.Script.Utilities;
 
 namespace Resources.Script.Managers
 {
-    public class InputManager : IManagerBase
+    public class InputManager : MonoBehaviour
     {
         private PlayerInuptActions _playerInput;
         public PlayerInuptActions PlayerInput => _playerInput;
         
-        public InputManager()
+        public Vector2 Move {get ; private set;}
+        public Vector2 Look {get ; private set;}
+        public bool FirePressed {get ; private set;}
+        public bool FireReleased {get ; private set;}
+        public bool FireHeld{get ; private set;}
+        public bool ReloadPressed { get; private set; }
+        public bool ReloadReleased { get; private set; }
+        public bool JumpPressed {get ; private set;}
+        public bool Menu { get; private set; }   // Pause 토글 상태
+        public bool SprintPressed {get ; private set;}
+        public bool SprintReleased {get ; private set;}
+        public bool SprintHeld {get ; private set;}
+        public bool CrouchToggle {get; set;}
+        
+        public bool AimPressed {get; private set;}
+        public bool AimReleased {get; private set;}
+        public bool AimHeld {get; private set;}
+        
+        public bool LeanLeftInput { get; private set; }
+        public bool LeanRightInput { get; private set; }
+        
+        public int? InventoryPressed { get; private set; }
+
+        private void Awake()
         {
             _playerInput = new PlayerInuptActions();
             _playerInput.Player.Enable();
@@ -67,31 +92,26 @@ namespace Resources.Script.Managers
             _playerInput.Player.LeanRight.started += ctx => LeanRightInput = true;
             _playerInput.Player.LeanRight.canceled += ctx => LeanRightInput = false;
             
+            
+            //select inventory
+            _playerInput.Player.SelectInventory.performed += ctx =>
+            {
+                var keyControl = ctx.control as KeyControl;
+                
+                if (keyControl == null)
+                {
+                    InventoryPressed = null;
+                    return;
+                }
+                if (keyControl.keyCode is >= Key.Digit1 and <= Key.Digit9)
+                {
+                    int slot = (int)keyControl.keyCode - (int)Key.Digit1 + 1;
+                    InventoryPressed = slot;  
+                }
+            };
         }
-        
-        public Vector2 Move {get ; private set;}
-        public Vector2 Look {get ; private set;}
-        public bool FirePressed {get ; private set;}
-        public bool FireReleased {get ; private set;}
-        public bool FireHeld{get ; private set;}
-        public bool ReloadPressed { get; private set; }
-        public bool ReloadReleased { get; private set; }
-        public bool JumpPressed {get ; private set;}
-        public bool Menu { get; private set; }   // Pause 토글 상태
-        public bool SprintPressed {get ; private set;}
-        public bool SprintReleased {get ; private set;}
-        public bool SprintHeld {get ; private set;}
-        public bool CrouchToggle {get; set;}
-        
-        public bool AimPressed {get; private set;}
-        public bool AimReleased {get; private set;}
-        public bool AimHeld {get; private set;}
-        
-        public bool LeanLeftInput { get; private set; }
-        public bool LeanRightInput { get; private set; }
-        
-        
-        public void OnUpdate()
+
+        public void Update()
         {
             Move = _playerInput.Player.Move.ReadValue<Vector2>();
             Look = _playerInput.Player.Look.ReadValue<Vector2>();
@@ -111,6 +131,7 @@ namespace Resources.Script.Managers
             FirePressed = false;
             ReloadPressed = false;
             FireReleased = false;
+            InventoryPressed = null;
         }
         
         private void OnPausePressed()

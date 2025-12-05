@@ -1,17 +1,16 @@
 ﻿using Resources.Script.Creature;
+using UnityEngine;
 
 namespace Resources.Script.Managers
 {
-    public class GameManager : IManagerBase
+    public class GameManager : MonoBehaviour
     {
         public bool IsPaused { get; private set; } = false;
         public bool ProcAnimIsActive {get; private set;} = true;
-        
+
+        public int CurrentFirearmNum { get; set; } = -1;
+
         public Player MainPlayer { get; set; }
-        
-        public void OnUpdate()
-        {
-            
-        }
+
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Akila.FPSFramework;
 using Resources.Script.Audio;
@@ -70,17 +71,17 @@ namespace Resources.Script.Controller
 
         public bool IsCrouching { get; private set; } = false;
         public float SpeedMultiplier { get; private set; } = 1;
-        
+
         public bool PrevGroundInfo { get; private set; }
         private Vector2 _addedLookValue;
 
-        protected virtual void AddLookValue(Vector2 value)
+        private void AddLookValue(Vector2 value)
         {
             if (!SystemManager.Game.IsPaused)
                 _addedLookValue += value;
         }
         
-        public virtual void AddLookValue(float mouseX, float mouseY)
+        public void AddLookValue(float mouseX, float mouseY)
         { 
             AddLookValue(new Vector2(mouseX, mouseY));
         }
@@ -94,8 +95,7 @@ namespace Resources.Script.Controller
         /// </summary>
         public CharacterController CharacterController { get; set; }
 
-        public List<FirearmController> Firearms { get; set; } = new();
-        public int currentFirearmNum { get; set; } = -1;
+        public List<FirearmController> Firearms { get; set; } = new List<FirearmController>(4);
 
         void Awake()
         {
@@ -117,6 +117,11 @@ namespace Resources.Script.Controller
         {
             CharacterController = GetComponent<CharacterController>();
             defaultHeight = CharacterController.height;
+        }
+
+        private void Update()
+        {
+            UpdateCurrentFirearm();
         }
 
         // Update is called once per frame
@@ -187,7 +192,7 @@ namespace Resources.Script.Controller
                 if (SystemManager.Input.SprintPressed)
                     moveSpeedMultiplier = sprintSpeed;
                 
-                if (Firearms[currentFirearmNum]?.FirearmState == EFirearmStates.Fire || SystemManager.Input.AimHeld)
+                if (SystemManager.Game.CurrentFirearmNum != -1 && (Firearms[SystemManager.Game.CurrentFirearmNum]?.FirearmState == EFirearmStates.Fire || SystemManager.Input.AimHeld))
                     moveSpeedMultiplier = walkSpeed;
                 
                 if (IsCrouching)
@@ -231,6 +236,31 @@ namespace Resources.Script.Controller
         private void Jump()
         {
             Debug.Log("Jump");
+        }
+
+        //TODO Update로 따로 뺴놓기
+        private void UpdateCurrentFirearm()
+        {
+            if (SystemManager.Game.CurrentFirearmNum == -1) return;
+            // 이미 고른거인 경우
+            if (SystemManager.Input.InventoryPressed == null || SystemManager.Input.InventoryPressed == SystemManager.Game.CurrentFirearmNum + 1) return;
+            OffPrevFirearm(SystemManager.Game.CurrentFirearmNum);
+            SystemManager.Game.CurrentFirearmNum = (int)SystemManager.Input.InventoryPressed - 1;
+            OnNextFirearm(SystemManager.Game.CurrentFirearmNum);
+            
+        }
+
+        public void OffPrevFirearm(int index)
+        {
+            Firearms[index].gameObject.SetActive(false);
+            SystemManager.UI.FirearmHUDs[Firearms[index]].TurnOnOffFirearms(false);
+        }
+        
+        public void OnNextFirearm(int index)
+        {
+            Firearms[index].gameObject.SetActive(true);
+            SystemManager.UI.FirearmHUDs[Firearms[index]].TurnOnOffFirearms(true);
+            SystemManager.UI.Crosshair.Firearm =  Firearms[index];
         }
         
 
