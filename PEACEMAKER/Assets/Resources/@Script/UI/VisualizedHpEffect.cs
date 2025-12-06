@@ -11,20 +11,10 @@ namespace Resources.Script.UI
         public Color damageColor = Color.red;
         public Color healColor = Color.blue;
         public float fadeSpeed = 1;
-
-        public static VisualizedHpEffect instance;
+        
 
         private void Start()
         {
-            if (instance == null)
-            {
-                instance = this;
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-
             if (effectCanvas == null)
             {
                 Debug.LogError("'Effect Canvas' is not assgined. Trying to find it.", gameObject);

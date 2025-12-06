@@ -41,10 +41,10 @@ namespace Resources.Script.Managers
             instance = this;
             DontDestroyOnLoad(gameObject);
 
-            InputInternal = gameObject.AddComponent<InputManager>();
-            GameInternal = gameObject.AddComponent<GameManager>();
-            AudioInternal = gameObject.AddComponent<AudioManager>();
-            UIInternal = gameObject.AddComponent<UIManager>();
+            InputInternal = gameObject.GetComponent<InputManager>();
+            GameInternal = gameObject.GetComponent<GameManager>();
+            AudioInternal = gameObject.GetComponent<AudioManager>();
+            UIInternal = gameObject.GetComponent<UIManager>();
             
             
             // 씬이 로드되면 호출될 함수 등록

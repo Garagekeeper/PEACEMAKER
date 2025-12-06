@@ -14,6 +14,8 @@ namespace Resources.Script.Managers
         public Dictionary<FirearmController, FirearmHUD> FirearmHUDs { get; set; } = new (4);
         public Crosshair Crosshair { get; set; }
         public GameObject UIRoot { get; private set; }
+        [field:SerializeField]
+        public VisualizedHpEffect HpEffect { get; private set; }
         //private PauseMenu currentPauseMenu;
 
         private void Awake()
@@ -38,6 +40,9 @@ namespace Resources.Script.Managers
                 UIRoot.AddComponent<UnityEngine.UI.GraphicRaycaster>();
 
                 DontDestroyOnLoad(UIRoot);
+
+                HpEffect = Instantiate(HpEffect);
+                HpEffect.transform.SetParent(UIRoot.transform, false);
             }
         }
 

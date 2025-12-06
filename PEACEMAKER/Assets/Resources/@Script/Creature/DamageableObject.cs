@@ -23,7 +23,7 @@ namespace Resources.Script.Creature
             Hp = maxHp;
         }
         
-        public void OnDamage(float value, Creature attackBy)
+        public virtual void OnDamage(float value, Creature attackBy)
         {
             if (IsDead) return;
             Hp = Mathf.Max(0, Hp - value);

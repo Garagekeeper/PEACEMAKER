@@ -1,4 +1,5 @@
 ﻿using Resources.Script.Managers;
+using UnityEditor;
 using UnityEngine;
 using static Resources.Script.Defines;
 namespace Resources.Script.Creature
@@ -15,6 +16,12 @@ namespace Resources.Script.Creature
         public override void OnDeath()
         {
             Debug.Log("Player Death");
+        }
+
+        public override void OnDamage(float value, Creature attackBy)
+        {
+            SystemManager.UI.HpEffect.TriggerDamageEffect();
+            base.OnDamage(value, attackBy);
         }
         
     }

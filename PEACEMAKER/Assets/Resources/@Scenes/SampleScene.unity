@@ -193,6 +193,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5745664375989733564, guid: 5691f61144536d54f940d4be645afeee,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6253342720711159182, guid: 5691f61144536d54f940d4be645afeee,
         type: 3}
       propertyPath: m_IsActive
@@ -392,6 +397,104 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &839534254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 839534259}
+  - component: {fileID: 839534258}
+  - component: {fileID: 839534257}
+  - component: {fileID: 839534256}
+  - component: {fileID: 839534255}
+  - component: {fileID: 839534260}
+  m_Layer: 0
+  m_Name: '@Managers'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &839534255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839534254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a347ea6ee2648efbbd1deac5a16bdb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Managers.UIManager
+  <HpEffect>k__BackingField: {fileID: -5235240769391259425, guid: 51c3f13f105c0b34a958f1a674e2820c,
+    type: 3}
+--- !u!114 &839534256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839534254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efd406f2b69b40242886a71a4d4bb478, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Managers.SystemManager
+--- !u!114 &839534257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839534254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55cc3bbbce9e0104cba6ee09f5ac1df9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Managers.InputManager
+--- !u!114 &839534258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839534254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b47b0978f2545cb9580bbb03d1a32ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Managers.GameManager
+--- !u!4 &839534259
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839534254}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -17.7778, y: -10.00001, z: 17.32053}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &839534260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839534254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6060170e13cd4dcdb95224f0f39688b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Managers.AudioManager
 --- !u!1 &1085768461
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,7 +691,7 @@ PrefabInstance:
     - target: {fileID: 8752979691137757005, guid: c355fcabe26e3054aba26050f09282e4,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -683,3 +786,4 @@ SceneRoots:
   - {fileID: 1085768464}
   - {fileID: 315008102}
   - {fileID: 1158273875}
+  - {fileID: 839534259}
