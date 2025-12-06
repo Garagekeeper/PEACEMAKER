@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Resources.Script.Managers;
+using UnityEngine;
 using static Resources.Script.Defines;
 
 namespace Resources.Script
@@ -17,6 +18,7 @@ namespace Resources.Script
 
         public static void LockCursor()
         {
+            if (SystemManager.Game.IsPaused) return;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             IsCursorLocked = true;

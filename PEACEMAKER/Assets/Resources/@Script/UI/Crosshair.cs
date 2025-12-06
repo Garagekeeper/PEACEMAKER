@@ -1,4 +1,5 @@
 ﻿using Resources.Script.Controller;
+using Resources.Script.Managers;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -26,6 +27,11 @@ namespace Resources.Script.UI
 
         private void Update()
         {
+            if (SystemManager.Game.IsPaused)
+            {
+                canvasGroup.alpha = 0;
+                return;
+            }
             if(Firearm == null)
             {
                 return;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Resources.Script.Controller;
+using Resources.Script.Creature;
 using Resources.Script.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -20,48 +21,95 @@ namespace Resources.Script.Managers
         
         [field:SerializeField]
         public Hitmarker Hitmarker { get; private set; }
+        
+        [field:SerializeField]
+        public PlayerCardHUD PlayerCardHUD { get; set; }
+        
+        public GameObject HUDObject { get; set; }
+        public GameObject MenuObject { get; set; }
+        
+        public MenuController MenuController { get; set; }
+        
         //private PauseMenu currentPauseMenu;
 
         private void Awake()
         {
             if (UIRoot == null)
             {
-                UIRoot = new GameObject("@UIRoot")
+                GameObject uiRoot = GameObject.Find("@UIRoot");
+                if (uiRoot != null)
                 {
-                    layer = LayerMask.NameToLayer("UI")
-                };
+                    UIRoot = uiRoot;
+                    UIRoot.layer = LayerMask.NameToLayer("UI");
+                    HUDObject = GameObject.Find("HUD");
+                    MenuObject = GameObject.Find("Menu");
+                }
+                else
+                {
+                    UIRoot = new GameObject("@UIRoot")
+                    {
+                        layer = LayerMask.NameToLayer("UI")
+                    };
 
-                // Canvas
-                Canvas canvas = UIRoot.AddComponent<Canvas>();
-                canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+                    HUDObject = new GameObject("@HUD");
+                    MenuObject = new GameObject("@Menu");
 
-                // CanvasScaler
-                var scaler = UIRoot.AddComponent<UnityEngine.UI.CanvasScaler>();
-                scaler.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;
-                scaler.referenceResolution = new Vector2(1920, 1080);
+                    // Canvas
+                    Canvas canvas = HUDObject.AddComponent<Canvas>();
+                    canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
-                // GraphicRaycaster
-                UIRoot.AddComponent<UnityEngine.UI.GraphicRaycaster>();
+                    // CanvasScaler
+                    var scaler = HUDObject.AddComponent<UnityEngine.UI.CanvasScaler>();
+                    scaler.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;
+                    scaler.referenceResolution = new Vector2(1920, 1080);
 
+                    // GraphicRaycaster
+                    HUDObject.AddComponent<UnityEngine.UI.GraphicRaycaster>();
+                    
+                    // Canvas
+                    canvas = MenuObject.AddComponent<Canvas>();
+                    canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+
+                    // CanvasScaler
+                    scaler = MenuObject.AddComponent<UnityEngine.UI.CanvasScaler>();
+                    scaler.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;
+                    scaler.referenceResolution = new Vector2(1920, 1080);
+
+                    // GraphicRaycaster
+                    MenuObject.AddComponent<UnityEngine.UI.GraphicRaycaster>();
+                }
+                
+                
                 DontDestroyOnLoad(UIRoot);
 
+                Init();
+               
+            }
+        }
+
+        void Init()
+        {
+            string sceneName = SceneManager.GetActiveScene().name;
+            if (sceneName.Contains("Game"))
+            {
                 if (HpEffect == null)
                     Debug.LogError("There is no HpEffect assigned!");
                 
                 HpEffect = Instantiate(HpEffect);
-                HpEffect.transform.SetParent(UIRoot.transform, false);
+                HpEffect.transform.SetParent(HUDObject.transform, false);
                 
                 if (Hitmarker == null)
                     Debug.LogError("There is no Hitmarker assigned!");
                 
                 Hitmarker = Instantiate(Hitmarker);
-                Hitmarker.transform.SetParent(UIRoot.transform, false);
+                Hitmarker.transform.SetParent(HUDObject.transform, false);
             }
         }
-
+        
         public void OnSceneLoaded()
         {
-            Reconnect();
+            //Reconnect();
+            Init();
         }
 
         private void Reconnect()
@@ -85,7 +133,7 @@ namespace Resources.Script.Managers
         {
             FirearmHUD temp;
             FirearmHUDs.Add(controller,temp = Instantiate(preset));
-            temp.transform.SetParent(UIRoot.transform, false);
+            temp.transform.SetParent(HUDObject.transform, false);
             temp.Firearm = controller;
             FirearmHUDs[controller].Firearm = controller;
         }
@@ -93,8 +141,17 @@ namespace Resources.Script.Managers
         public void AddCrossHair(FirearmController controller, Crosshair preset)
         {
             Crosshair = Instantiate(preset);
-            Crosshair.transform.SetParent(UIRoot.transform, false);
+            Crosshair.transform.SetParent(HUDObject.transform, false);
             Crosshair.Firearm = controller;
+        }
+
+        public void AddPlayerCard(Player player)
+        {
+            PlayerCardHUD = Instantiate(PlayerCardHUD);
+            PlayerCardHUD.transform.SetParent(HUDObject.transform, false);
+            PlayerCardHUD.Setup(player);
+            PlayerCardHUD.UpdateCard();
+            PlayerCardHUD.Enable();
         }
 
         public void TogglePause()

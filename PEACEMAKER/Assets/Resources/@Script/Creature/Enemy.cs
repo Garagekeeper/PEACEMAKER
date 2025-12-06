@@ -28,6 +28,7 @@ namespace Resources.Script.Creature
         {
             base.OnDeath();
             _controller.OnDead();
+            GetComponent<CharacterController>().enabled = false;
             Destroy(gameObject, 5);
         }
     }

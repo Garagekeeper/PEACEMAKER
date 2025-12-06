@@ -166,6 +166,7 @@ namespace Resources.Script.Controller
         /// </summary>
         private void Update()
         {
+            if (SystemManager.Game.IsPaused) return;
             UpdateStatusWithInput();
             anim.UpdateAnim();
             shooter.UpdateFire();

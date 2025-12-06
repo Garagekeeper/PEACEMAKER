@@ -18,6 +18,11 @@ namespace Resources.Script.Creature
             Kills = 0;
         }
 
+        protected virtual void Start()
+        {
+            
+        }
+
         protected virtual void Update()
         {
             

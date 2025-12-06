@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 667333840884347552}
   - component: {fileID: 667333840884347559}
   - component: {fileID: 723795550}
-  - component: {fileID: 1542418137875253706}
+  - component: {fileID: 1332017471417396882}
   m_Layer: 5
   m_Name: Resume
   m_TagString: Untagged
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.52
---- !u!114 &1542418137875253706
+--- !u!114 &1332017471417396882
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,29 +86,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 667333840884347555}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c27834ac26a2a5e4a818cbbe9b263b46, type: 3}
+  m_Script: {fileID: 11500000, guid: 957b947733384b1c9e1fe311ee29e8f3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Controller.ButtonController
   interactable: 1
   targetGraphics: {fileID: 723795550}
   targetText: {fileID: 3080036204814230213}
   fadeDuration: 0.04
   normalGraphicsColor: {r: 0, g: 0, b: 0, a: 0.7607843}
   highlightedGraphicsColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedGraphicsColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
-  disabledGraphicsColor: {r: 1, g: 0.20188677, b: 0.20188677, a: 0.6666667}
+  selectedGraphicsColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  disabledGraphicsColor: {r: 1, g: 0.20000002, b: 0.20000002, a: 0.6666667}
   normalTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightedTextColor: {r: 0, g: 0, b: 0, a: 1}
   selectedTextColor: {r: 0, g: 0, b: 0, a: 1}
   disabledTextColor: {r: 0, g: 0, b: 0, a: 1}
-  highlightSound: {fileID: 11400000, guid: d3062f0ab0aae634983200aea45b5e5a, type: 2}
-  selectSound: {fileID: 11400000, guid: fe3ea016ff8f32c4483602e146538d6d, type: 2}
+  highlightSound: {fileID: 11400000, guid: 5e0196421b39f5845ab90c2b493e6246, type: 2}
+  selectSound: {fileID: 11400000, guid: 29c9c45187d51084fb76bff546e8c0f1, type: 2}
   onClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7679690333413074325}
-        m_TargetAssemblyTypeName: Akila.FPSFramework.UI.PauseMenu, Assembly-CSharp
-        m_MethodName: Unpause
+      - m_Target: {fileID: 1332017471417396882}
+        m_TargetAssemblyTypeName: Resources.Script.Controller.ButtonController, Assembly-CSharp
+        m_MethodName: OnResumeButtonClicked
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -117,7 +117,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!1 &1717035567945946453
 GameObject:
   m_ObjectHideFlags: 0
@@ -559,7 +559,6 @@ RectTransform:
   - {fileID: 1717035567945946458}
   - {fileID: 667333840884347552}
   - {fileID: 7542239725167450460}
-  - {fileID: 7542239725895585022}
   - {fileID: 7679690332946792295}
   m_Father: {fileID: 416027859344877247}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -594,157 +593,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!1 &7542239723952043989
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7542239723952043988}
-  - component: {fileID: 7542239723952043985}
-  - component: {fileID: 7542239723952043986}
-  - component: {fileID: 7542239723952043987}
-  m_Layer: 5
-  m_Name: Text (TMP)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &7542239723952043988
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7542239723952043989}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7542239725895585022}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7.2684, y: 0}
-  m_SizeDelta: {x: -14.537, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &7542239723952043985
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7542239723952043989}
-  m_CullTransparentMesh: 1
---- !u!114 &7542239723952043986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7542239723952043989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: Gunsmith
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 68fbe2379f2e5ec43b0fc00ff7fde09e, type: 2}
-  m_sharedMaterial: {fileID: -4258026920889526414, guid: 68fbe2379f2e5ec43b0fc00ff7fde09e,
-    type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 16
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 512
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 1
-  m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_EmojiFallbackSupport: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &7542239723952043987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7542239723952043989}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eafe08ac28c19d0489239df94b9f9aec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 7542239725895585022}
 --- !u!1 &7542239724753557609
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,7 +755,7 @@ GameObject:
   - component: {fileID: 7542239725167450460}
   - component: {fileID: 7542239725167450457}
   - component: {fileID: 723795549}
-  - component: {fileID: 7064238462006129801}
+  - component: {fileID: 7319269127639054941}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -973,7 +821,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.52
---- !u!114 &7064238462006129801
+--- !u!114 &7319269127639054941
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -982,151 +830,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 7542239725167450461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c27834ac26a2a5e4a818cbbe9b263b46, type: 3}
+  m_Script: {fileID: 11500000, guid: 957b947733384b1c9e1fe311ee29e8f3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Controller.ButtonController
   interactable: 1
   targetGraphics: {fileID: 723795549}
   targetText: {fileID: 7542239724753557606}
   fadeDuration: 0.04
-  normalGraphicsColor: {r: 0, g: 0, b: 0, a: 0.7607843}
+  normalGraphicsColor: {r: 0, g: 0, b: 0, a: 1}
   highlightedGraphicsColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedGraphicsColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
-  disabledGraphicsColor: {r: 1, g: 0.20188677, b: 0.20188677, a: 0.6666667}
+  selectedGraphicsColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  disabledGraphicsColor: {r: 1, g: 0, b: 0, a: 0.6666667}
   normalTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightedTextColor: {r: 0, g: 0, b: 0, a: 1}
   selectedTextColor: {r: 0, g: 0, b: 0, a: 1}
   disabledTextColor: {r: 0, g: 0, b: 0, a: 1}
-  highlightSound: {fileID: 11400000, guid: d3062f0ab0aae634983200aea45b5e5a, type: 2}
-  selectSound: {fileID: 11400000, guid: fe3ea016ff8f32c4483602e146538d6d, type: 2}
+  highlightSound: {fileID: 11400000, guid: 5e0196421b39f5845ab90c2b493e6246, type: 2}
+  selectSound: {fileID: 11400000, guid: 29c9c45187d51084fb76bff546e8c0f1, type: 2}
   onClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Akila.FPSFramework.UI.Menu, Akila.FPSFramework
-        m_MethodName: OpenMenu
-        m_Mode: 1
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!1 &7542239725895585023
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7542239725895585022}
-  - component: {fileID: 7542239725895585019}
-  - component: {fileID: 723795548}
-  - component: {fileID: 1049749834331267819}
-  m_Layer: 5
-  m_Name: Gunsmith
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &7542239725895585022
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7542239725895585023}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 7542239723952043988}
-  m_Father: {fileID: 5280750131964488393}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 295.5307, y: 54.9668}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &7542239725895585019
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7542239725895585023}
-  m_CullTransparentMesh: 1
---- !u!114 &723795548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7542239725895585023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.7607843}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 0.52
---- !u!114 &1049749834331267819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7542239725895585023}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c27834ac26a2a5e4a818cbbe9b263b46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactable: 1
-  targetGraphics: {fileID: 723795548}
-  targetText: {fileID: 7542239723952043986}
-  fadeDuration: 0.04
-  normalGraphicsColor: {r: 0, g: 0, b: 0, a: 0.7607843}
-  highlightedGraphicsColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedGraphicsColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
-  disabledGraphicsColor: {r: 1, g: 0.20188677, b: 0.20188677, a: 0.6666667}
-  normalTextColor: {r: 1, g: 1, b: 1, a: 1}
-  highlightedTextColor: {r: 0, g: 0, b: 0, a: 1}
-  selectedTextColor: {r: 0, g: 0, b: 0, a: 1}
-  disabledTextColor: {r: 0, g: 0, b: 0, a: 1}
-  highlightSound: {fileID: 11400000, guid: d3062f0ab0aae634983200aea45b5e5a, type: 2}
-  selectSound: {fileID: 11400000, guid: fe3ea016ff8f32c4483602e146538d6d, type: 2}
-  onClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Akila.FPSFramework.UI.Menu, Akila.FPSFramework
-        m_MethodName: OpenMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1294,7 +1024,7 @@ GameObject:
   - component: {fileID: 7679690332946792295}
   - component: {fileID: 7679690332946792288}
   - component: {fileID: 723795547}
-  - component: {fileID: 2436385961028944184}
+  - component: {fileID: 3003165451082853500}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -1360,7 +1090,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.52
---- !u!114 &2436385961028944184
+--- !u!114 &3003165451082853500
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1369,38 +1099,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 7679690332946792294}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c27834ac26a2a5e4a818cbbe9b263b46, type: 3}
+  m_Script: {fileID: 11500000, guid: 957b947733384b1c9e1fe311ee29e8f3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Controller.ButtonController
   interactable: 1
   targetGraphics: {fileID: 723795547}
   targetText: {fileID: 7542239725950518056}
   fadeDuration: 0.04
   normalGraphicsColor: {r: 0, g: 0, b: 0, a: 0.7607843}
   highlightedGraphicsColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedGraphicsColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
-  disabledGraphicsColor: {r: 1, g: 0.20188677, b: 0.20188677, a: 0.6666667}
+  selectedGraphicsColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  disabledGraphicsColor: {r: 1, g: 0, b: 0, a: 0.6666667}
   normalTextColor: {r: 1, g: 1, b: 1, a: 1}
   highlightedTextColor: {r: 0, g: 0, b: 0, a: 1}
   selectedTextColor: {r: 0, g: 0, b: 0, a: 1}
   disabledTextColor: {r: 0, g: 0, b: 0, a: 1}
-  highlightSound: {fileID: 11400000, guid: d3062f0ab0aae634983200aea45b5e5a, type: 2}
-  selectSound: {fileID: 11400000, guid: fe3ea016ff8f32c4483602e146538d6d, type: 2}
+  highlightSound: {fileID: 11400000, guid: 5e0196421b39f5845ab90c2b493e6246, type: 2}
+  selectSound: {fileID: 11400000, guid: 29c9c45187d51084fb76bff546e8c0f1, type: 2}
   onClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7679690333413074325}
-        m_TargetAssemblyTypeName: Akila.FPSFramework.PauseMenu, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Main Menu
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &7679690333413074326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1411,8 +1129,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7679690333413074327}
   - component: {fileID: 5249401715715807703}
-  - component: {fileID: 7679690333413074325}
   - component: {fileID: 2511541881565077904}
+  - component: {fileID: 5438736877129029139}
   m_Layer: 5
   m_Name: Pause Menu
   m_TagString: Untagged
@@ -1448,45 +1166,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7679690333413074326}
   m_CullTransparentMesh: 1
---- !u!114 &7679690333413074325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7679690333413074326}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a98faeff31d5974f8321148a875261f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  menuName: Pause Menu
-  transitionTime: 0.04
-  onOpen:
-    m_PersistentCalls:
-      m_Calls: []
-  onClose:
-    m_PersistentCalls:
-      m_Calls: []
-  pauseInputAction:
-    m_Name: '[Keyboard] Escape'
-    m_Type: 1
-    m_ExpectedControlType: 
-    m_Id: 3023b81f-84ca-4413-8e56-af3444a8a6b1
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: e9fe0aea-45a2-4f42-bc2b-5caaaac91a5a
-      m_Path: <Keyboard>/escape
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: '[Keyboard] Escape'
-      m_Flags: 0
-    m_Flags: 0
-  freezeOnPaused: 0
-  freezeTransitionTime: 0.2
 --- !u!225 &2511541881565077904
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1499,3 +1178,16 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &5438736877129029139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7679690333413074326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b58d8156800d4161b056ebef4a054fc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.UI.PauseMenu
+  MenuName: Pause Menu

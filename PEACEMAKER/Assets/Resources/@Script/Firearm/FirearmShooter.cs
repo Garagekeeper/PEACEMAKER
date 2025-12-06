@@ -286,14 +286,14 @@ namespace Resources.Script.Firearm
 
             // 맞은 물체에 RB가 있으면 피격되서 흔들리도록 모션을 준다.
             // Apply force to the rigidbody if present
-            if (hit.rigidbody)
-            {
-                var impact = FireArm.fireArmData.shotDelay <= 0f
-                    ? (FireArm.fireArmData.impactForce / FireArm.requiredAmmoType.BulletCountOnce)
-                    : FireArm.fireArmData.impactForce;
-
-                hit.rigidbody.AddForceAtPosition(-hit.normal * impact, hit.point, ForceMode.Impulse);
-            }
+            // if (hit.rigidbody)
+            // {
+            //     var impact = FireArm.fireArmData.shotDelay <= 0f
+            //         ? (FireArm.fireArmData.impactForce / FireArm.requiredAmmoType.BulletCountOnce)
+            //         : FireArm.fireArmData.impactForce;
+            //
+            //     hit.rigidbody.AddForceAtPosition(-hit.normal * impact, hit.point, ForceMode.Impulse);
+            // }
         }
 
         //TODO 무슨 함수인지 잘 알아보기

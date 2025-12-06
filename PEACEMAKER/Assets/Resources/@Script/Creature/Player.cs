@@ -16,6 +16,16 @@ namespace Resources.Script.Creature
             PController = GetComponent<PlayerController>();
         }
 
+        protected override void Start()
+        {
+            SystemManager.UI.AddPlayerCard(this);
+        }
+        
+        protected override void Update()
+        {
+            SystemManager.UI.PlayerCardHUD.UpdateCard();
+        }
+
         public override void OnDeath()
         {
             Debug.Log("Player Death");
@@ -26,6 +36,8 @@ namespace Resources.Script.Creature
             base.OnDamage(value, attackBy);
             SystemManager.UI.HpEffect.TriggerDamageEffect();
         }
+
+        
         
     }
 }

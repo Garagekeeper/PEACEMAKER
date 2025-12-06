@@ -12,7 +12,7 @@ namespace Resources.Script.Creature
         public float Hp { get; protected set; }
         public bool IsDead => Hp <= 0;
 
-        private void Start()
+        protected override void Start()
         {
             _ragdollEffect = GetComponent<RagdollEffect>();
         }

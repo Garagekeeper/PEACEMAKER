@@ -121,13 +121,14 @@ namespace Resources.Script.Controller
 
         private void Update()
         {
+            if (SystemManager.Game.IsPaused) return;
             UpdateCurrentFirearm();
         }
 
         // Update is called once per frame
         private void LateUpdate()
         {
-            
+            if (SystemManager.Game.IsPaused) return;
             /*-------------------------
             *          Speed
             -------------------------*/
@@ -155,9 +156,6 @@ namespace Resources.Script.Controller
             
             // TODO isDynamicSensitivityEnabled관련해서 알아보기
             finalSensitivity = baseSensitivity;
-            
-            if (SystemManager.Game.IsPaused)
-                finalSensitivity = 0;
             
             // TODO addedLookValue의 기능 구현
             

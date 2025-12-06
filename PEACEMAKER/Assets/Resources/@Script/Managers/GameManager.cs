@@ -7,8 +7,8 @@ namespace Resources.Script.Managers
 {
     public class GameManager : MonoBehaviour
     {
-        public bool IsPaused { get; private set; } = false;
-        public bool ProcAnimIsActive {get; private set;} = true;
+        public bool IsPaused { get; set; } = false;
+        public bool ProcAnimIsActive {get; private set;} = false;
 
         public int CurrentFirearmNum { get; set; } = -1;
 
@@ -16,6 +16,7 @@ namespace Resources.Script.Managers
 
         private void Awake()
         {
+            ProcAnimIsActive = true;
         }
     }
 }

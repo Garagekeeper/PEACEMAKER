@@ -20,7 +20,7 @@ namespace Resources.Script.Managers
         public bool ReloadPressed { get; private set; }
         public bool ReloadReleased { get; private set; }
         public bool JumpPressed {get ; private set;}
-        public bool Menu { get; private set; }   // Pause 토글 상태
+        public bool PausePressed { get; private set; }  
         public bool SprintPressed {get ; private set;}
         public bool SprintReleased {get ; private set;}
         public bool SprintHeld {get ; private set;}
@@ -73,7 +73,7 @@ namespace Resources.Script.Managers
             };
             
             // Pause
-            _playerInput.Player.Pause.performed += ctx => Menu = true;
+            _playerInput.Player.Pause.performed += OnPausePressed;
             
             // Sprint
             _playerInput.Player.Sprint.performed += ctx => SprintPressed = true;
@@ -117,11 +117,11 @@ namespace Resources.Script.Managers
             Look = _playerInput.Player.Look.ReadValue<Vector2>();
             JumpPressed = _playerInput.Player.Jump.triggered;
             
-            // 마우스 클릭 시 커서 잠금 복귀
-            if (!IsCursorLocked && Mouse.current.leftButton.wasPressedThisFrame)
-            {
-                LockCursor();
-            }
+            // // 마우스 클릭 시 커서 잠금 복귀
+            // if ( !IsCursorLocked && Mouse.current.leftButton.wasPressedThisFrame)
+            // {
+            //     LockCursor();
+            // }
             
         }
 
@@ -134,14 +134,9 @@ namespace Resources.Script.Managers
             InventoryPressed = null;
         }
         
-        private void OnPausePressed()
+        private void OnPausePressed(InputAction.CallbackContext ctx)
         {
-            Menu = !Menu; // 토글
-
-            if (Menu)
-                UnlockCursor();
-            else
-                LockCursor();
+            SystemManager.UI.MenuController.OnPauseInput();
         }
     }
 }
