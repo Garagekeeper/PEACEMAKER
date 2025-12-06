@@ -14,8 +14,12 @@ namespace Resources.Script.Managers
         public Dictionary<FirearmController, FirearmHUD> FirearmHUDs { get; set; } = new (4);
         public Crosshair Crosshair { get; set; }
         public GameObject UIRoot { get; private set; }
+        
         [field:SerializeField]
         public VisualizedHpEffect HpEffect { get; private set; }
+        
+        [field:SerializeField]
+        public Hitmarker Hitmarker { get; private set; }
         //private PauseMenu currentPauseMenu;
 
         private void Awake()
@@ -41,8 +45,17 @@ namespace Resources.Script.Managers
 
                 DontDestroyOnLoad(UIRoot);
 
+                if (HpEffect == null)
+                    Debug.LogError("There is no HpEffect assigned!");
+                
                 HpEffect = Instantiate(HpEffect);
                 HpEffect.transform.SetParent(UIRoot.transform, false);
+                
+                if (Hitmarker == null)
+                    Debug.LogError("There is no Hitmarker assigned!");
+                
+                Hitmarker = Instantiate(Hitmarker);
+                Hitmarker.transform.SetParent(UIRoot.transform, false);
             }
         }
 

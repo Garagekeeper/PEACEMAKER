@@ -8,7 +8,8 @@ namespace Resources.Script.Creature
     /// </summary>
     public class Creature : MonoBehaviour
     {
-        public  ECreatureType CreatureType { get; protected set; }
+        public ECreatureType CreatureType { get; protected set; }
+        public bool IsInvincible;
    
         protected long Kills { get; set; }
         

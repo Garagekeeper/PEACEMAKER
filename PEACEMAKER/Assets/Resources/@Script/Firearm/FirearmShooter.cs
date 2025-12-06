@@ -1,5 +1,6 @@
 ﻿using Resources.Script.Controller;
 using Resources.Script.Creature;
+using Resources.Script.Managers;
 using UnityEngine;
 using static Resources.Script.Defines;
 using static Resources.Script.Utilities;
@@ -236,11 +237,12 @@ namespace Resources.Script.Firearm
 
             // Handle damageable groups
             // 데미지를 받을 수 있는 부위
-            //TODO damageablePart 옮기기
+            bool shouldHighlight = false;
             if (hit.transform.TryGetComponent(out IDamageablePart damageablePart))
             {
                 // 뒤에 1 부착물 mod
                 damageMultiplier = damageablePart.DamageMultiplier * 1f;
+                shouldHighlight = damageablePart.DamageMultiplier != 1 ? true : false;
             }
 
             // 데미지를 받는 객체
@@ -255,22 +257,7 @@ namespace Resources.Script.Firearm
 
                 //if (creature) creatureGo = creature.gameObject;
 
-                damageable.OnDamage(totalDamage, creature);
-
-                bool shouldHighlight = damageable.Hp <= 0;
-
-                if (FireArm.Owner.CharacterController != null)
-                {
-                    // 히트마커 표시
-                    // TODO 히트마커 옮기기
-                    //UIManager uiManager = UIManager.Instance;
-
-                    //if (uiManager != null)
-                    //{
-                    //    Hitmarker hitmarker = uiManager.Hitmarker;
-                    //    hitmarker?.Show(shouldHighlight);
-                    //}
-                }
+                damageable.OnDamage(totalDamage, creature ,shouldHighlight);
             }
 
             // 총알 자국 처리

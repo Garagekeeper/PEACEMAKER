@@ -22,7 +22,7 @@ MonoBehaviour:
   stopOnDisabled: 0
   loop: 0
   priority: 128
-  volume: 1
+  volume: 0.36
   pitch: 1.25
   stereoPan: 0
   spatialBlend: 1

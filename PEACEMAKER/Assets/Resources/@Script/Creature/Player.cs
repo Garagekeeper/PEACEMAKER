@@ -1,4 +1,5 @@
-﻿using Resources.Script.Managers;
+﻿using Resources.Script.Controller;
+using Resources.Script.Managers;
 using UnityEditor;
 using UnityEngine;
 using static Resources.Script.Defines;
@@ -6,11 +7,13 @@ namespace Resources.Script.Creature
 {
     public class Player : DamageableObject
     {
+        public PlayerController PController { get; private set; }
         protected override void Awake()
         {
             base.Awake();
             CreatureType = ECreatureType.Player;
             SystemManager.Game.MainPlayer = this;
+            PController = GetComponent<PlayerController>();
         }
 
         public override void OnDeath()
@@ -18,10 +21,10 @@ namespace Resources.Script.Creature
             Debug.Log("Player Death");
         }
 
-        public override void OnDamage(float value, Creature attackBy)
+        public override void OnDamage(float value, Creature attackBy, bool isCrit = false)
         {
-            SystemManager.UI.HpEffect.TriggerDamageEffect();
             base.OnDamage(value, attackBy);
+            SystemManager.UI.HpEffect.TriggerDamageEffect();
         }
         
     }

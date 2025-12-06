@@ -40,7 +40,6 @@ namespace Resources.Script.Firearm
         public ProceduralAnimation SwayAimingAnimation { get; private set; }
         public ProceduralAnimation ReloadingAnimation { get; private set; }
         private GameObject _magazine;
-        private SFXSource _reloadSound;
 
         private WaveAnimationModifier WalkingWaveAnimationModifier { get; set; }
         private float _defaultAimingTime;
@@ -251,8 +250,7 @@ namespace Resources.Script.Firearm
                 //Start Process
                 //TODO Play Reload Sound
                // SystemManager.Audio.PlayWithPreset(FireArm.fireArmData.reloadSoundPreset, _magazine.transform);
-               _reloadSound = SystemManager.Audio.PlayWithPreset(FireArm.fireArmData.reloadSoundPreset,
-                    FireArm.Owner.transform);
+               FireArm.faudio.PlayReload();
                 
                 // 1-0. 코드에 의해 조절되는 재장전 (산탄총) 
                 if (FireArm.fireArmData.reloadType == EReloadType.Scripted)
@@ -261,6 +259,7 @@ namespace Resources.Script.Firearm
                 }
                 // 1-1. 일반적인 재장전 애니메이션
                 _isReloading = true;
+                animator.Play("Reload");
                 animator.SetBool("Is Reloading", _isReloading);
             }
         }
@@ -272,7 +271,7 @@ namespace Resources.Script.Firearm
 
         private void OnDisable()
         {
-            SystemManager.Audio.ReturnSFXToPool(_reloadSound);
+
         }
     }
 }

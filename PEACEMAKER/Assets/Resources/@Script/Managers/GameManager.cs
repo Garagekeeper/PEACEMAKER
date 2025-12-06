@@ -1,4 +1,6 @@
-﻿using Resources.Script.Creature;
+﻿using System;
+using Resources.Script.Controller;
+using Resources.Script.Creature;
 using UnityEngine;
 
 namespace Resources.Script.Managers
@@ -12,5 +14,8 @@ namespace Resources.Script.Managers
 
         public Player MainPlayer { get; set; }
 
+        private void Awake()
+        {
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Resources.Script.Controller;
+using Resources.Script.Managers;
 using UnityEngine;
 using static Resources.Script.Defines;
 namespace Resources.Script.Creature
@@ -11,6 +12,16 @@ namespace Resources.Script.Creature
             base.Awake();
             CreatureType = ECreatureType.Enemy;
             _controller = GetComponent<EnemyController>();
+        }
+        
+        public override void OnDamage(float value, Creature attackBy, bool isCrit = false)
+        {
+            
+            if (IsDead) return;
+            SystemManager.UI.Hitmarker.Show(isCrit);
+            if (IsInvincible) return;
+            Hp = Mathf.Max(0, Hp - value);
+            if (Hp == 0) HandleDeath(attackBy);
         }
 
         public override void OnDeath()

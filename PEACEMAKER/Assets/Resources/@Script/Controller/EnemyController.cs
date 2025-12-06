@@ -14,6 +14,7 @@ namespace Resources.Script.Controller
         public Animator Animator {get; private set;}
         public Enemy Owner {get; private set;}
         public float Range { get; private set; }
+        public bool ForceIdle;
 
         private void Awake()
         {
@@ -48,6 +49,13 @@ namespace Resources.Script.Controller
 
         private void UpdateState()
         {
+#if UNITY_EDITOR
+            if (ForceIdle)
+            {
+                CreatureState = ECreatureStates.Idle;
+                return;
+            }
+#endif
             // 0. 이미 죽은 경우
             if (CreatureState == ECreatureStates.Dead)
                 return;

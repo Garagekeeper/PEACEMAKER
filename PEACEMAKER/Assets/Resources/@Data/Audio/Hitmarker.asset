@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee46ef7ca2ff481083ff79d714eb8f2e, type: 3}
-  m_Name: Assault Rifle Reload Empty
+  m_Name: Hitmarker
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Audio.AudioPreset
-  audioClip: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 33ebe87c34cfde144a28c23c65d691d3, type: 3}
   output: {fileID: 0}
   mute: 0
   bypassEffects: 0
@@ -22,23 +22,23 @@ MonoBehaviour:
   stopOnDisabled: 0
   loop: 0
   priority: 128
-  volume: 0.36
-  pitch: 1
+  volume: 1
+  pitch: 1.38
   stereoPan: 0
   spatialBlend: 1
   reverbZoneMix: 0
   dopplerLevel: 0
   spread: 60
   minDistance: 1
-  maxDistance: 15
+  maxDistance: 200
   simulateAcousticLatency: 1
   syncPitchWithTimeScale: 1
   useRandomPitchOffset: 1
-  randomPitchOffset: 0
-  forwardFactor: 0
-  backwardFactor: 0
-  rightFactor: 0
-  leftFactor: 0
+  randomPitchOffset: 0.2
+  forwardFactor: 0.3
+  backwardFactor: 0.3
+  rightFactor: 0.2
+  leftFactor: 0.2
   upFactor: 0
   downFactor: 0
   _6DSoundCurve:

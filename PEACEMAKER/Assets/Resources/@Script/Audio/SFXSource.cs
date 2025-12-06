@@ -76,5 +76,10 @@ namespace Resources.Script.Audio
             Target = null;
             SystemManager.Audio.ReturnSFXToPool(this);
         }
+
+        public void Mute()
+        {
+            _audioSource.volume = 0f;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Resources.Script.Audio;
+using Resources.Script.Controller;
 using UnityEngine;
 
 namespace Resources.Script.Managers
@@ -74,6 +75,14 @@ namespace Resources.Script.Managers
         {
             var sfx = GetSFXFromPool();
             sfx.Play(clip, volume,spatialBlend, isLoop);
+            return sfx;
+        }
+        
+        public SFXSource PlayWithPreset(AudioPreset preset)
+        {
+            var sfx = GetSFXFromPool();
+            sfx.transform.position = SystemManager.Game.MainPlayer.PController.transform.position;
+            sfx.PlayWithPreset(preset);
             return sfx;
         }
 

@@ -23,8 +23,9 @@ namespace Resources.Script.Creature
             Hp = maxHp;
         }
         
-        public virtual void OnDamage(float value, Creature attackBy)
+        public virtual void OnDamage(float value, Creature attackBy, bool isCrit = false)
         {
+            if (IsInvincible) return;
             if (IsDead) return;
             Hp = Mathf.Max(0, Hp - value);
             if (Hp == 0) HandleDeath(attackBy);

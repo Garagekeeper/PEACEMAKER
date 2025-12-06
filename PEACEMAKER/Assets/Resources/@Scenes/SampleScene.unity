@@ -119,12 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &64429153 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 395104231899459404, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
-    type: 3}
-  m_PrefabInstance: {fileID: 1790396051}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &315008102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -188,38 +182,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MyPlayer
       objectReference: {fileID: 0}
-    - target: {fileID: 3917014405222904205, guid: 5691f61144536d54f940d4be645afeee,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5745664375989733564, guid: 5691f61144536d54f940d4be645afeee,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6253342720711159182, guid: 5691f61144536d54f940d4be645afeee,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6297154882223817695, guid: 5691f61144536d54f940d4be645afeee,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 8519547530642179120, guid: 5691f61144536d54f940d4be645afeee,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 64429153}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3917014405222904205, guid: 5691f61144536d54f940d4be645afeee,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1110672774}
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5691f61144536d54f940d4be645afeee, type: 3}
 --- !u!1 &410087039
 GameObject:
@@ -432,6 +398,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Managers.UIManager
   <HpEffect>k__BackingField: {fileID: -5235240769391259425, guid: 51c3f13f105c0b34a958f1a674e2820c,
     type: 3}
+  <Hitmarker>k__BackingField: {fileID: 4190802866912343840, guid: 9c9a8f126909cdd42bccc72ade66eead,
+    type: 3}
 --- !u!114 &839534256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -603,28 +571,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Akila.FPSFramework::Akila.FPSFramework.CustomDecal
   decalVFX: {fileID: 1000010844420130, guid: eddd18724991935488112096e1cf9ab7, type: 3}
   lifeTime: 60
---- !u!1 &1110672770 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3917014405222904205, guid: 5691f61144536d54f940d4be645afeee,
-    type: 3}
-  m_PrefabInstance: {fileID: 315008102}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1110672774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1110672770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ba75a22da3f4f6bac5c4a4a8df18209, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Creature.Player
-  maxHp: 100
-  onDeathEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1001 &1158273875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -633,6 +579,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4603171449228393917, guid: c355fcabe26e3054aba26050f09282e4,
+        type: 3}
+      propertyPath: IsInvincible
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6515515680919629840, guid: c355fcabe26e3054aba26050f09282e4,
+        type: 3}
+      propertyPath: ForceIdle
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8228925393634670071, guid: c355fcabe26e3054aba26050f09282e4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -698,85 +654,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c355fcabe26e3054aba26050f09282e4, type: 3}
---- !u!4 &1314578021 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8519547530642179120, guid: 5691f61144536d54f940d4be645afeee,
-    type: 3}
-  m_PrefabInstance: {fileID: 315008102}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1790396051
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1314578021}
-    m_Modifications:
-    - target: {fileID: 395104231899459404, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 395104231899459404, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 395104231899459404, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 395104231899459404, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 395104231899459404, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 395104231899459404, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 395104231899459404, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 395104231899459404, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 395104231899459404, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 395104231899459404, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 395104231899459405, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
-        type: 3}
-      propertyPath: m_Name
-      value: Assault Rifle_2
-      objectReference: {fileID: 0}
-    - target: {fileID: 395104231899459405, guid: 774b2f2bc2381cb4e8b68077d28d10aa,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 774b2f2bc2381cb4e8b68077d28d10aa, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

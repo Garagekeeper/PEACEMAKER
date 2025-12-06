@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1271495044438100579}
   - component: {fileID: 1271495044438100576}
+  - component: {fileID: 4190802866912343840}
   m_Layer: 5
   m_Name: Hitmarker
   m_TagString: Untagged
@@ -44,7 +45,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1271495044438100578}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b7ef4bf3bab67e43a7b63e68cdea17d, type: 3}
   m_Name: 
@@ -55,6 +56,28 @@ MonoBehaviour:
   normal: {r: 1, g: 1, b: 1, a: 0.78431374}
   highlight: {r: 0.6886792, g: 0, b: 0, a: 1}
   hitmarkerSound: {fileID: 11400000, guid: 78beb245c97418444928a99b6264eacc, type: 2}
+  maxSize: 90
+  minSize: 70
+  rotaionAmount: 12
+--- !u!114 &4190802866912343840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271495044438100578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dec8df3f5389413d8dd26e187a66052a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.UI.Hitmarker
+  fadeSpeed: 30
+  fadeDelay: 0.3
+  hitmakerObject: {fileID: 1271495045414051955}
+  normal: {r: 1, g: 1, b: 1, a: 1}
+  highlight: {r: 0.6901961, g: 0, b: 0, a: 1}
+  hitmarkerSound: {fileID: 11400000, guid: ca093d34dfbe1e344b951928dad126ff, type: 2}
+  hitmarkerSoundClip: {fileID: 8300000, guid: 33ebe87c34cfde144a28c23c65d691d3, type: 3}
   maxSize: 90
   minSize: 70
   rotaionAmount: 12
