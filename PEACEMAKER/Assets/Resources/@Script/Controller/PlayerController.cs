@@ -152,9 +152,8 @@ namespace Resources.Script.Controller
             // TODO 플레이하는 컨트롤러에 따라서 장치 감도 조절 및 하드코딩 수정 (FPSCONTROLLER)
             deviceSensitivity = 1 * 0.1f;
             
-            float baseSensitivity = deviceSensitivity;
+            float baseSensitivity = SystemManager.Game.MouseSensitivity * deviceSensitivity;
             
-            // TODO isDynamicSensitivityEnabled관련해서 알아보기
             finalSensitivity = baseSensitivity;
             
             // TODO addedLookValue의 기능 구현
@@ -189,10 +188,14 @@ namespace Resources.Script.Controller
                 
                 if (SystemManager.Input.SprintPressed)
                     moveSpeedMultiplier = sprintSpeed;
-                
-                if (SystemManager.Game.CurrentFirearmNum != -1 && (Firearms[SystemManager.Game.CurrentFirearmNum]?.FirearmState == EFirearmStates.Fire || SystemManager.Input.AimHeld))
-                    moveSpeedMultiplier = walkSpeed;
-                
+
+                if (SystemManager.Game.CurrentFirearmNum != -1)
+                {
+                    if (SystemManager.Input.InventoryPressed > Firearms.Count ) return;
+                    if ((Firearms[SystemManager.Game.CurrentFirearmNum]?.FirearmState == EFirearmStates.Fire || SystemManager.Input.AimHeld))
+                        moveSpeedMultiplier = walkSpeed;
+                }
+
                 if (IsCrouching)
                     moveSpeedMultiplier = crouchSpeed; 
                 
@@ -242,6 +245,7 @@ namespace Resources.Script.Controller
             if (SystemManager.Game.CurrentFirearmNum == -1) return;
             // 이미 고른거인 경우
             if (SystemManager.Input.InventoryPressed == null || SystemManager.Input.InventoryPressed == SystemManager.Game.CurrentFirearmNum + 1) return;
+            if (SystemManager.Input.InventoryPressed > Firearms.Count) return;
             OffPrevFirearm(SystemManager.Game.CurrentFirearmNum);
             SystemManager.Game.CurrentFirearmNum = (int)SystemManager.Input.InventoryPressed - 1;
             OnNextFirearm(SystemManager.Game.CurrentFirearmNum);

@@ -3,33 +3,31 @@ using System.Collections.Generic;
 using Resources.Script.Controller;
 using Resources.Script.Creature;
 using Resources.Script.UI;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static Resources.Script.Utilities;
 using Object = UnityEngine.Object;
 
 namespace Resources.Script.Managers
 {
     public class UIManager : MonoBehaviour
     {
-        private Canvas currentCanvas;
-        public Dictionary<FirearmController, FirearmHUD> FirearmHUDs { get; set; } = new (4);
+        public Dictionary<FirearmController, FirearmHUD> FirearmHUDs { get; set; } = new(4);
         public Crosshair Crosshair { get; set; }
         public GameObject UIRoot { get; private set; }
-        
-        [field:SerializeField]
-        public VisualizedHpEffect HpEffect { get; private set; }
-        
-        [field:SerializeField]
-        public Hitmarker Hitmarker { get; private set; }
-        
-        [field:SerializeField]
-        public PlayerCardHUD PlayerCardHUD { get; set; }
-        
+
+        [field: SerializeField] public VisualizedHpEffect HpEffect { get; private set; }
+
+        [field: SerializeField] public Hitmarker Hitmarker { get; private set; }
+
+        [field: SerializeField] public PlayerCardHUD PlayerCardHUD { get; set; }
+
         public GameObject HUDObject { get; set; }
         public GameObject MenuObject { get; set; }
-        
+
         public MenuController MenuController { get; set; }
-        
+
         //private PauseMenu currentPauseMenu;
 
         private void Awake()
@@ -39,14 +37,36 @@ namespace Resources.Script.Managers
                 GameObject uiRoot = GameObject.Find("@UIRoot");
                 if (uiRoot != null)
                 {
+                    GameObject uiRootIn = GameObject.Find("@UIRootInstance");
+                    if (uiRootIn != null)
+                    {
+                        Destroy(uiRoot.gameObject);
+                        return;
+                    }
+
+                    uiRoot.name = "@UIRootInstance";
                     UIRoot = uiRoot;
                     UIRoot.layer = LayerMask.NameToLayer("UI");
                     HUDObject = GameObject.Find("HUD");
                     MenuObject = GameObject.Find("Menu");
+                    
+                    if (HpEffect == null)
+                        Debug.LogError("There is no HpEffect assigned!");
+                
+                    HpEffect = Instantiate(HpEffect);
+                    HpEffect.transform.SetParent(HUDObject.transform, false);
+                
+                    if (Hitmarker == null)
+                        Debug.LogError("There is no Hitmarker assigned!");
+                
+                    Hitmarker = Instantiate(Hitmarker);
+                    Hitmarker.transform.SetParent(HUDObject.transform, false);
+                    
+                    HUDObject.SetActive(false);
                 }
                 else
                 {
-                    UIRoot = new GameObject("@UIRoot")
+                    UIRoot = new GameObject("@UIRootInstance")
                     {
                         layer = LayerMask.NameToLayer("UI")
                     };
@@ -65,7 +85,7 @@ namespace Resources.Script.Managers
 
                     // GraphicRaycaster
                     HUDObject.AddComponent<UnityEngine.UI.GraphicRaycaster>();
-                    
+
                     // Canvas
                     canvas = MenuObject.AddComponent<Canvas>();
                     canvas.renderMode = RenderMode.ScreenSpaceOverlay;
@@ -78,12 +98,11 @@ namespace Resources.Script.Managers
                     // GraphicRaycaster
                     MenuObject.AddComponent<UnityEngine.UI.GraphicRaycaster>();
                 }
-                
-                
+
+
                 DontDestroyOnLoad(UIRoot);
 
                 Init();
-               
             }
         }
 
@@ -92,20 +111,16 @@ namespace Resources.Script.Managers
             string sceneName = SceneManager.GetActiveScene().name;
             if (sceneName.Contains("Game"))
             {
-                if (HpEffect == null)
-                    Debug.LogError("There is no HpEffect assigned!");
-                
-                HpEffect = Instantiate(HpEffect);
-                HpEffect.transform.SetParent(HUDObject.transform, false);
-                
-                if (Hitmarker == null)
-                    Debug.LogError("There is no Hitmarker assigned!");
-                
-                Hitmarker = Instantiate(Hitmarker);
-                Hitmarker.transform.SetParent(HUDObject.transform, false);
+                HUDObject.SetActive(true);
+            }
+            else
+            {
+                SystemManager.UI.MenuController.OpenMainMenu();
+                UnlockCursor();
+                HUDObject.SetActive(false);
             }
         }
-        
+
         public void OnSceneLoaded()
         {
             //Reconnect();
@@ -114,30 +129,17 @@ namespace Resources.Script.Managers
 
         private void Reconnect()
         {
-            // 씬에서 Canvas 검색
-            currentCanvas = FindFirstObjectByType<Canvas>();
-
-            if (currentCanvas == null)
-            {
-                Debug.Log("이 씬엔 UI가 없음");
-                return;
-            }
-            else
-            {
-                Debug.Log(currentCanvas);
-            }
-            
         }
 
         public void AddNewFirearmHUD(FirearmController controller, FirearmHUD preset)
         {
             FirearmHUD temp;
-            FirearmHUDs.Add(controller,temp = Instantiate(preset));
+            FirearmHUDs.Add(controller, temp = Instantiate(preset));
             temp.transform.SetParent(HUDObject.transform, false);
             temp.Firearm = controller;
             FirearmHUDs[controller].Firearm = controller;
         }
-        
+
         public void AddCrossHair(FirearmController controller, Crosshair preset)
         {
             Crosshair = Instantiate(preset);
@@ -156,7 +158,6 @@ namespace Resources.Script.Managers
 
         public void TogglePause()
         {
-
         }
     }
 }

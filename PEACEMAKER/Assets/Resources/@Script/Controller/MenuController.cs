@@ -3,6 +3,7 @@ using System.Linq;
 using Resources.Script.Managers;
 using UnityEngine;
 using Resources.Script.UI;
+using UnityEngine.SceneManagement;
 using static Resources.Script.Utilities;
 
 namespace Resources.Script.Controller
@@ -28,7 +29,7 @@ namespace Resources.Script.Controller
 
             // 게임 시작 시 MainMenu가 기본으로 열려야 한다면
             var startMenu = Menus.FirstOrDefault(m => m is MainMenu);
-            if (startMenu != null)
+            if (startMenu != null && SceneManager.GetActiveScene().name.Contains("Main"))
                 OpenMenu(startMenu);
         }
 
@@ -45,6 +46,11 @@ namespace Resources.Script.Controller
         {
             Menu menu = FindMenu(menuName);
             if (menu != null) OpenMenu(menu);
+        }
+
+        public void OpenMainMenu()
+        {
+            OpenMenu("Main Menu");
         }
 
         public void OpenMenu(Menu menu)

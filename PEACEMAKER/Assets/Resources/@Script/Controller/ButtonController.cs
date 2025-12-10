@@ -144,11 +144,6 @@ namespace Resources.Script.Controller
 
             isHighlighted = false;
         }
-
-        public void OnResumeButtonClicked()
-        {
-            SystemManager.UI.MenuController.PopMenu();
-        }
         
         public void OnMenuButtonClicked()
         {

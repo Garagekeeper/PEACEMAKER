@@ -32,6 +32,11 @@ namespace Resources.Script.Managers
             InitPool();
         }
 
+        public void ReSetting()
+        {
+            MainListener = FindAnyObjectByType<AudioListener>();
+        }
+
         public void InitPool()
         {
             if (_sfxPool.Count >= _initialPoolSize) return;
@@ -81,7 +86,8 @@ namespace Resources.Script.Managers
         public SFXSource PlayWithPreset(AudioPreset preset)
         {
             var sfx = GetSFXFromPool();
-            sfx.transform.position = SystemManager.Game.MainPlayer.PController.transform.position;
+            if (SystemManager.Game.MainPlayer)
+                sfx.transform.position = SystemManager.Game.MainPlayer.PController.transform.position;
             sfx.PlayWithPreset(preset);
             return sfx;
         }

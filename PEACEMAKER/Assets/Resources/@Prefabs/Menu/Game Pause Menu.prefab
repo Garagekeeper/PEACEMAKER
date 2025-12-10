@@ -106,9 +106,9 @@ MonoBehaviour:
   onClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1332017471417396882}
-        m_TargetAssemblyTypeName: Resources.Script.Controller.ButtonController, Assembly-CSharp
-        m_MethodName: OnResumeButtonClicked
+      - m_Target: {fileID: 5438736877129029139}
+        m_TargetAssemblyTypeName: Resources.Script.UI.PauseMenu, Assembly-CSharp
+        m_MethodName: OnResumeButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -117,7 +117,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
 --- !u!1 &1717035567945946453
 GameObject:
   m_ObjectHideFlags: 0
@@ -837,7 +837,7 @@ MonoBehaviour:
   targetGraphics: {fileID: 723795549}
   targetText: {fileID: 7542239724753557606}
   fadeDuration: 0.04
-  normalGraphicsColor: {r: 0, g: 0, b: 0, a: 1}
+  normalGraphicsColor: {r: 0, g: 0, b: 0, a: 0.7607843}
   highlightedGraphicsColor: {r: 1, g: 1, b: 1, a: 1}
   selectedGraphicsColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   disabledGraphicsColor: {r: 1, g: 0, b: 0, a: 0.6666667}
@@ -850,13 +850,13 @@ MonoBehaviour:
   onClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
+      - m_Target: {fileID: 7319269127639054941}
+        m_TargetAssemblyTypeName: Resources.Script.Controller.ButtonController, Assembly-CSharp
+        m_MethodName: OnSettingButtonClicked
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -928,7 +928,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Menu
+  m_text: Go To Main Menue
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 68fbe2379f2e5ec43b0fc00ff7fde09e, type: 2}
   m_sharedMaterial: {fileID: -4258026920889526414, guid: 68fbe2379f2e5ec43b0fc00ff7fde09e,
@@ -1026,7 +1026,7 @@ GameObject:
   - component: {fileID: 723795547}
   - component: {fileID: 3003165451082853500}
   m_Layer: 5
-  m_Name: Menu
+  m_Name: Go To Main Menue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1118,7 +1118,19 @@ MonoBehaviour:
   selectSound: {fileID: 11400000, guid: 29c9c45187d51084fb76bff546e8c0f1, type: 2}
   onClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5438736877129029139}
+        m_TargetAssemblyTypeName: Resources.Script.UI.PauseMenu, Assembly-CSharp
+        m_MethodName: OnGotoMainMenuButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7679690333413074326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1132,7 +1144,7 @@ GameObject:
   - component: {fileID: 2511541881565077904}
   - component: {fileID: 5438736877129029139}
   m_Layer: 5
-  m_Name: Pause Menu
+  m_Name: Game Pause Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

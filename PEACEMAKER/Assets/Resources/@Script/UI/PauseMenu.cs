@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using Resources.Script.Managers;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 namespace Resources.Script.UI
 {
@@ -7,17 +10,23 @@ namespace Resources.Script.UI
         protected override void Awake()
         {
             base.Awake();
-            OnClose();
         }
 
         public void OnSettingsButton()
         {
-            controller.OpenMenu("SettingsMenu");
+            SystemManager.UI.MenuController.OpenMenu("Setting Menu");
         }
 
         public void OnResumeButton()
         {
-            controller.PopMenu();
+            SystemManager.UI.MenuController.PopMenu();
+        }
+        
+        public void OnGotoMainMenuButton()
+        {
+            SystemManager.Game.Reset();
+            SystemManager.UI.MenuController.PopMenu();
+            SceneManager.LoadSceneAsync("Main Menu");
         }
     }
 }

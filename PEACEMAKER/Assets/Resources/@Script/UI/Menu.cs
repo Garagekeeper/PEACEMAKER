@@ -2,6 +2,8 @@
 using Resources.Script.Managers;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.LowLevel;
 
 namespace Resources.Script.UI
 {
@@ -22,6 +24,7 @@ namespace Resources.Script.UI
         public virtual void OnOpen()
         {
             EventSystem.current.SetSelectedGameObject(null);
+            InputSystem.QueueStateEvent(Mouse.current, new MouseState { position = new Vector2(0, 0) });
             gameObject.SetActive(true);
         }
 
@@ -30,6 +33,7 @@ namespace Resources.Script.UI
         /// </summary>
         public virtual void OnClose()
         {
+            EventSystem.current.SetSelectedGameObject(null);
             gameObject.SetActive(false);
         }
     }

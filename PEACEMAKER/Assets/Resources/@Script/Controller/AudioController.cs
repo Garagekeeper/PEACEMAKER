@@ -116,7 +116,7 @@ namespace Resources.Script.Controller
             _source.priority = Preset.priority;
 
             //TODO 뒤에 곱해지는 MOD값은 설정의 볼륨값 
-            _source.volume = Preset.volume * 1;
+            _source.volume = Preset.volume * AudioListener.volume;
             _source.pitch = Preset.pitch;
             _source.panStereo = Preset.stereoPan;
             _source.spatialBlend = Preset.spatialBlend;

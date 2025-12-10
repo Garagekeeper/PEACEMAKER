@@ -24,11 +24,13 @@ namespace Resources.Script.Managers
         public GameManager GameInternal { get; private set; }
         public AudioManager AudioInternal { get; private set; }
         public UIManager UIInternal { get; private set; }
+        public SettingManager SettingInternal { get; private set; }
         
         public static GameManager Game => Instance.GameInternal;
         public static InputManager Input => Instance.InputInternal;
         public static AudioManager Audio => Instance.AudioInternal;
         public static UIManager UI => Instance.UIInternal;
+        public static SettingManager Setting => Instance.SettingInternal;
 
         private void Awake()
         {
@@ -45,15 +47,25 @@ namespace Resources.Script.Managers
             GameInternal = gameObject.GetComponent<GameManager>();
             AudioInternal = gameObject.GetComponent<AudioManager>();
             UIInternal = gameObject.GetComponent<UIManager>();
+            SettingInternal =  gameObject.GetComponent<SettingManager>();
             
             
             // 씬이 로드되면 호출될 함수 등록
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            SceneManager.sceneLoaded -= OnSceneLoadedMy;
+            SceneManager.sceneLoaded += OnSceneLoadedMy;
+            
+            SceneManager.LoadSceneAsync("Main Menu");
         }
         
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        private void OnSceneLoadedMy(Scene scene, LoadSceneMode mode)
         {
             UI?.OnSceneLoaded();  // ADD
+            Audio.ReSetting();
+        }
+        
+        private void OnDisable()
+        {
+            SceneManager.sceneLoaded -= OnSceneLoadedMy;
         }
     }
 }
