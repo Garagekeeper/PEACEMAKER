@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using Resources.Script.Controller;
 using Resources.Script.Creature;
 using Resources.Script.UI;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static Resources.Script.Utilities;
-using Object = UnityEngine.Object;
 
 namespace Resources.Script.Managers
 {
@@ -26,7 +24,7 @@ namespace Resources.Script.Managers
         public GameObject HUDObject { get; set; }
         public GameObject MenuObject { get; set; }
 
-        public MenuController MenuController { get; set; }
+        [field: SerializeField] public MenuController MenuController { get; set; }
 
         //private PauseMenu currentPauseMenu;
 
@@ -113,7 +111,7 @@ namespace Resources.Script.Managers
             {
                 HUDObject.SetActive(true);
             }
-            else
+            else if (sceneName.Contains("Main"))
             {
                 SystemManager.UI.MenuController.OpenMainMenu();
                 UnlockCursor();

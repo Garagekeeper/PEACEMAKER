@@ -79,8 +79,8 @@ namespace Resources.Script.Controller
         public FirearmShooter shooter;
         [HideInInspector]
         public FireArmData fireArmData;
-        
-        
+
+        public bool IsInitialized { get; private set; } = false;
         
         private void Awake()
         {
@@ -106,7 +106,6 @@ namespace Resources.Script.Controller
         // 초기화 및 설정
         private void Start()
         {
-            
             // 총구위치 설정
             // set muzzle pos
             if (!muzzle)
@@ -149,14 +148,8 @@ namespace Resources.Script.Controller
                 if (!SystemManager.UI.Crosshair) 
                     SystemManager.UI.AddCrossHair(this, preset.crosshair);;
             }
-            
-            Owner.Firearms.Add(this);
-            //TODO 인벤토리로 따로 빼기ㅣ
-            if (SystemManager.Game.CurrentFirearmNum == -1)
-                SystemManager.Game.CurrentFirearmNum = 0;
 
-            else
-                Owner.OffPrevFirearm(Owner.Firearms.Count - 1);
+            IsInitialized = true;
         }
         
 
