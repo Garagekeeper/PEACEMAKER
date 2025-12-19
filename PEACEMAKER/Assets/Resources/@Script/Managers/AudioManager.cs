@@ -83,10 +83,10 @@ namespace Resources.Script.Managers
             return sfx;
         }
         
-        public SFXSource PlayWithPreset(AudioPreset preset)
+        public SFXSource PlayWithPreset(AudioPreset preset, bool posNeeded = false)
         {
             var sfx = GetSFXFromPool();
-            if (SystemManager.Game.MainPlayer)
+            if (SystemManager.Game.MainPlayer && posNeeded)
                 sfx.transform.position = SystemManager.Game.MainPlayer.PController.transform.position;
             sfx.PlayWithPreset(preset);
             return sfx;

@@ -23,7 +23,7 @@ namespace Resources.Script.Creature
         
         protected override void Update()
         {
-            SystemManager.UI.PlayerCardHUD.UpdateCard();
+            SystemManager.UI.PlayerCardHUDIns.UpdateCard();
         }
 
         public override void OnDeath()

@@ -89,8 +89,9 @@ MonoBehaviour:
     type: 3}
   <Hitmarker>k__BackingField: {fileID: 4190802866912343840, guid: 9c9a8f126909cdd42bccc72ade66eead,
     type: 3}
-  <PlayerCardHUD>k__BackingField: {fileID: 6855780426518034184, guid: 1793633eb9df2a242a12112c1be85d2a,
+  <PlayerCardHUDRef>k__BackingField: {fileID: 6855780426518034184, guid: 1793633eb9df2a242a12112c1be85d2a,
     type: 3}
+  <MenuController>k__BackingField: {fileID: 0}
 --- !u!114 &4666611996536553019
 MonoBehaviour:
   m_ObjectHideFlags: 0

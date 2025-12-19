@@ -40,7 +40,10 @@ namespace Resources.Script.Audio
             _audioSource.spatialBlend = spatialBlend;
             //double offset = Random.Range(0f, 0.3f); // ±10ms 흔들기
             //_audioSource.PlayScheduled(AudioSettings.dspTime  + offset);
-            _audioSource.Play();
+            if (spatialBlend>0.1f)
+                _audioSource.Play();
+            else 
+                _audioSource.PlayOneShot(clip);
 
             if (!isLoop)
                 _coroutine = StartCoroutine(CDisableAfterPlay());

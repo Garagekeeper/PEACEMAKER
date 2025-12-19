@@ -213,27 +213,28 @@ namespace Resources.Script.Controller
                 if (!_isInit) return;
                 if (!Application.isPlaying) return;
                 if (!ValidCheck()) return;
-
-                if (!(Preset.spatialBlend > 0) || !Preset.simulateAcousticLatency) return;
                 
-                var time = 0f;
-                var distanceFromListener = 1f;
-                // 거리를 기준으로 소리를 재생 (멀리있는 건 더 늦게)
-                // 사실 소규모 게임이라 거리가 그렇게 먼 경우는 없을 것
-                // 있어도 1f 선에서 정리하자
-                if (SystemManager.Audio.MainListener != null)
-                    distanceFromListener = Mathf.Clamp(Vector3.Distance(
-                        SystemManager.Audio.MainListener.transform.position,
-                        _source.transform.position) / 343f, 0f, 1f);
-                
-                // 소리가 도달하는 순간까지 기다림.
-                while (time < distanceFromListener)
+                if (Preset.spatialBlend > 0 && Preset.simulateAcousticLatency)
                 {
-                    time += Time.deltaTime;
-                    if (!Application.isPlaying) return;
-                    await Task.Yield();
+                    var time = 0f;
+                    var distanceFromListener = 1f;
+                    // 거리를 기준으로 소리를 재생 (멀리있는 건 더 늦게)
+                    // 사실 소규모 게임이라 거리가 그렇게 먼 경우는 없을 것
+                    // 있어도 1f 선에서 정리하자
+                    if (SystemManager.Audio.MainListener != null)
+                        distanceFromListener = Mathf.Clamp(Vector3.Distance(
+                            SystemManager.Audio.MainListener.transform.position,
+                            _source.transform.position) / 343f, 0f, 1f);
+                
+                    // 소리가 도달하는 순간까지 기다림.
+                    while (time < distanceFromListener)
+                    {
+                        time += Time.deltaTime;
+                        if (!Application.isPlaying) return;
+                        await Task.Yield();
+                    }
                 }
-
+                
                 EnableEvents();
                 InvokeCustomEvents();
 
@@ -247,7 +248,6 @@ namespace Resources.Script.Controller
                 {
                     _source.Play();
                 }
-
             }
             catch (Exception e)
             {

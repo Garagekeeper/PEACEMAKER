@@ -18,7 +18,7 @@ namespace Resources.Script.Firearm
         public void PlayShotFire()
         {
             //SystemManager.Audio.PlaySFX(Firearm.fireArmData.fireSound, 1f, 0, false);
-            SystemManager.Audio.PlayWithPreset(Firearm.preset.presetFireSound, Firearm.Owner.transform);
+            SystemManager.Audio.PlayWithPreset(Firearm.preset.presetFireSound);
         }
 
         public void PlayReload()

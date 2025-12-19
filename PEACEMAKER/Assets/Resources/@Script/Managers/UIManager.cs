@@ -19,7 +19,8 @@ namespace Resources.Script.Managers
 
         [field: SerializeField] public Hitmarker Hitmarker { get; private set; }
 
-        [field: SerializeField] public PlayerCardHUD PlayerCardHUD { get; set; }
+        [field: SerializeField] public PlayerCardHUD PlayerCardHUDRef { get; set; }
+        public PlayerCardHUD PlayerCardHUDIns { get; set; }
 
         public GameObject HUDObject { get; set; }
         public GameObject MenuObject { get; set; }
@@ -69,27 +70,15 @@ namespace Resources.Script.Managers
                         layer = LayerMask.NameToLayer("UI")
                     };
 
-                    HUDObject = new GameObject("@HUD");
+                    
                     MenuObject = new GameObject("@Menu");
 
                     // Canvas
-                    Canvas canvas = HUDObject.AddComponent<Canvas>();
+                    Canvas canvas = MenuObject.AddComponent<Canvas>();
                     canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 
                     // CanvasScaler
-                    var scaler = HUDObject.AddComponent<UnityEngine.UI.CanvasScaler>();
-                    scaler.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;
-                    scaler.referenceResolution = new Vector2(1920, 1080);
-
-                    // GraphicRaycaster
-                    HUDObject.AddComponent<UnityEngine.UI.GraphicRaycaster>();
-
-                    // Canvas
-                    canvas = MenuObject.AddComponent<Canvas>();
-                    canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-
-                    // CanvasScaler
-                    scaler = MenuObject.AddComponent<UnityEngine.UI.CanvasScaler>();
+                    var scaler = MenuObject.AddComponent<UnityEngine.UI.CanvasScaler>();
                     scaler.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;
                     scaler.referenceResolution = new Vector2(1920, 1080);
 
@@ -113,10 +102,29 @@ namespace Resources.Script.Managers
             }
             else if (sceneName.Contains("Main"))
             {
+                DestroyHUDObject();
                 SystemManager.UI.MenuController.OpenMainMenu();
                 UnlockCursor();
                 HUDObject.SetActive(false);
             }
+        }
+        
+
+        void DestroyHUDObject()
+        {
+            foreach (var HUD in (FirearmHUDs))
+            {
+                Destroy(HUD.Value.gameObject);
+            }
+            
+            FirearmHUDs.Clear();
+            
+            if (PlayerCardHUDIns != null)
+                Destroy(PlayerCardHUDIns.gameObject);
+            
+            if (Crosshair != null)
+                Destroy(Crosshair.gameObject);
+
         }
 
         public void OnSceneLoaded()
@@ -127,6 +135,7 @@ namespace Resources.Script.Managers
 
         private void Reconnect()
         {
+            
         }
 
         public void AddNewFirearmHUD(FirearmController controller, FirearmHUD preset)
@@ -140,18 +149,21 @@ namespace Resources.Script.Managers
 
         public void AddCrossHair(FirearmController controller, Crosshair preset)
         {
-            Crosshair = Instantiate(preset);
-            Crosshair.transform.SetParent(HUDObject.transform, false);
+            if (Crosshair == null)
+            {
+                Crosshair = Instantiate(preset);
+                Crosshair.transform.SetParent(HUDObject.transform, false);
+            }
             Crosshair.Firearm = controller;
         }
 
         public void AddPlayerCard(Player player)
         {
-            PlayerCardHUD = Instantiate(PlayerCardHUD);
-            PlayerCardHUD.transform.SetParent(HUDObject.transform, false);
-            PlayerCardHUD.Setup(player);
-            PlayerCardHUD.UpdateCard();
-            PlayerCardHUD.Enable();
+            PlayerCardHUDIns = Instantiate(PlayerCardHUDRef);
+            PlayerCardHUDIns.transform.SetParent(HUDObject.transform, false);
+            PlayerCardHUDIns.Setup(player);
+            PlayerCardHUDIns.UpdateCard();
+            PlayerCardHUDIns.Enable();
         }
 
         public void TogglePause()

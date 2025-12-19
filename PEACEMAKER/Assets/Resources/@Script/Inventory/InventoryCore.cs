@@ -40,6 +40,7 @@ namespace Resources.Script.Inventory
 
         public void SelectItem(int index)
         {
+            if (SelectedIndex == index) return;
             OffFirearm(SelectedIndex);
             SelectedIndex = index;
             OnFirearm(SelectedIndex);
@@ -50,7 +51,7 @@ namespace Resources.Script.Inventory
             if (index >= _capacity) return false;
             if (index >= items.Count) return false;
             if (index < 0) return false;
-
+            
             return true;
         }
 
