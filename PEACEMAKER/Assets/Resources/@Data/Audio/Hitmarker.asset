@@ -25,7 +25,7 @@ MonoBehaviour:
   volume: 1
   pitch: 1.38
   stereoPan: 0
-  spatialBlend: 1
+  spatialBlend: 0
   reverbZoneMix: 0
   dopplerLevel: 0
   spread: 60

@@ -18,7 +18,8 @@ namespace Resources.Script.UI
         public void LoadGame(string name)
         {
             //LoadingScreen.LoadScene(name);
-            SceneManager.LoadSceneAsync(name);
+            SystemManager.Loading.LoadScene(name);
+            //SceneManager.LoadSceneAsync(name);
             SystemManager.UI.MenuController.PopMenu();
             
         }

@@ -237,19 +237,11 @@ namespace Resources.Script.Animation
         // ────────────────────────────────────────────────────────────────
         private void Awake()
         {
-            // 1. 인스펙터에 액션이 할당되어 있고, 트리거 타입이 None이 아닌 경우
             if (inputActionReference != null)
             {
-                // 2. InputManager에 접근 (본인의 프로젝트 구조에 맞게 접근 코드를 작성하세요)
-                // 예: SystemManager가 관리한다면 아래와 같이 접근
-                // var inputManager = SystemManager.Instance.Input; 
-        
-                // 예: 싱글톤이라면 InputManager.Instance
-                // 여기서는 'InputManager' 인스턴스를 가져왔다고 가정합니다.
-        
                 if (SystemManager.Input != null && SystemManager.Input.PlayerInput != null)
                 {
-                    // [핵심] 인스펙터에 등록된 ID(Guid)를 이용해, 매니저가 돌리고 있는 '진짜 액션'을 찾아서 연결
+                    //인스펙터에 등록된 ID(Guid)를 이용해, 매니저가 돌리고 있는 '진짜 액션'을 찾아서 연결
                     _triggerInputAction = SystemManager.Input.PlayerInput.asset.FindAction(inputActionReference.action.id);
                 }
             }

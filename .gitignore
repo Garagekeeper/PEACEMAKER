@@ -13,6 +13,8 @@ PEACEMAKER/Assets/Mirror/
 PEACEMAKER/Assets/Mirror.meta
 PEACEMAKER/Assets/ScriptTemplates/*.txt
 PEACEMAKER/Assets/ScriptTemplates/*.meta
+PEACEMAKER/Assets/SimpleUI/
+PEACEMAKER/Assets/SimpleUI.meta
 
 
 # This .gitignore file should be placed at the root of your Unity project directory

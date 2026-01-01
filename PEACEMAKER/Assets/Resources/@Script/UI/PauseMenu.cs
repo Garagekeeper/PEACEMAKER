@@ -26,6 +26,7 @@ namespace Resources.Script.UI
         {
             SystemManager.Game.Reset();
             SystemManager.UI.MenuController.PopMenu();
+            //SystemManager.Loading.LoadScene("Main Menu");
             SceneManager.LoadSceneAsync("Main Menu");
         }
     }
