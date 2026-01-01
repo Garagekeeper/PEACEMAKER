@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -26,11 +27,15 @@ namespace Resources.Script.Managers
         public UIManager UIInternal { get; private set; }
         public SettingManager SettingInternal { get; private set; }
         
+        public LoadingManager LoadingInternal { get; private set; }
+        
         public static GameManager Game => Instance.GameInternal;
         public static InputManager Input => Instance.InputInternal;
         public static AudioManager Audio => Instance.AudioInternal;
         public static UIManager UI => Instance.UIInternal;
         public static SettingManager Setting => Instance.SettingInternal;
+        
+        public static LoadingManager Loading => Instance.LoadingInternal;
 
         private void Awake()
         {
@@ -48,15 +53,21 @@ namespace Resources.Script.Managers
             AudioInternal = gameObject.GetComponent<AudioManager>();
             UIInternal = gameObject.GetComponent<UIManager>();
             SettingInternal =  gameObject.GetComponent<SettingManager>();
+            LoadingInternal = gameObject.GetComponent<LoadingManager>();
             
             
             // 씬이 로드되면 호출될 함수 등록
             SceneManager.sceneLoaded -= OnSceneLoadedMy;
             SceneManager.sceneLoaded += OnSceneLoadedMy;
             
+            
+        }
+
+        private void Start()
+        {
             SceneManager.LoadSceneAsync("Main Menu");
         }
-        
+
         private void OnSceneLoadedMy(Scene scene, LoadSceneMode mode)
         {
             UI?.OnSceneLoaded();  // ADD
