@@ -1,24 +1,24 @@
 fileFormatVersion: 2
 guid: 7a0f29f6b41edcf4fa967e20a3f07f16
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 24200
   internalIDToNameTable: []
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Body
-    second: {fileID: 2100000, guid: 97169ddbdcc74fc46aa77f0543f94b94, type: 2}
+    second: {fileID: 2100000, guid: 93c3dfdbbce3c92448666c405fc27e5d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Glass
-    second: {fileID: 2100000, guid: 97169ddbdcc74fc46aa77f0543f94b94, type: 2}
+    second: {fileID: 2100000, guid: 93c3dfdbbce3c92448666c405fc27e5d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Glass borders
-    second: {fileID: 2100000, guid: 97169ddbdcc74fc46aa77f0543f94b94, type: 2}
+    second: {fileID: 2100000, guid: 93c3dfdbbce3c92448666c405fc27e5d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -71,6 +71,9 @@ ModelImporter:
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8

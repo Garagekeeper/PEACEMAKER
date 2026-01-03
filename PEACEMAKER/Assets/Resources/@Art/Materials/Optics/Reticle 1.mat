@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Reticle 1
-  m_Shader: {fileID: 4800000, guid: d2e3ec557dc71d040954ca3f3fd2a7f7, type: 3}
+  m_Shader: {fileID: 4800000, guid: 8023c41a1749bff43ba51426d7b33c69, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 19672fbbf3570aa41bfae5de9cb1acb8, type: 3}
+        m_Texture: {fileID: 2800000, guid: 8cd1b1f4ad3e83c4fad54d93a22c074d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -85,3 +85,4 @@ Material:
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutOfBoundsColor: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

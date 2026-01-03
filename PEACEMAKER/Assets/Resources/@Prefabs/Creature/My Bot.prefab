@@ -365,6 +365,7 @@ SkinnedMeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -2614,7 +2615,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4877176282911834165}
-  - component: {fileID: 144200745065533638}
   m_Layer: 7
   m_Name: Neck
   m_TagString: Untagged
@@ -2639,18 +2639,6 @@ Transform:
   - {fileID: 2277862984768582591}
   m_Father: {fileID: 4907590470974877116}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &144200745065533638
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7879152591375190722}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d16a2ae80e48fc43a0b2618dfc3ae08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7900002413754897055
 GameObject:
   m_ObjectHideFlags: 0
@@ -2727,8 +2715,6 @@ GameObject:
   - component: {fileID: 510569107197037403}
   - component: {fileID: 510569107197037402}
   - component: {fileID: 510569107197037400}
-  - component: {fileID: 510569107197037380}
-  - component: {fileID: 4370605126259179568}
   - component: {fileID: 1654326006319494622}
   - component: {fileID: 6840738469126488591}
   m_Layer: 7
@@ -2850,35 +2836,6 @@ CharacterJoint:
   m_EnablePreprocessing: 0
   m_MassScale: 1
   m_ConnectedMassScale: 1
---- !u!114 &510569107197037380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8032560048323194805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a854272f4ea4d449a953a3e196770aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  decalVFX: {fileID: 733209293663125264, guid: fcd27e9b64f619746991b41c831fd719, type: 3}
-  lifeTime: 60
---- !u!114 &4370605126259179568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8032560048323194805}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5d5fe333d286794ea408bc699d2b3fb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_bone: 4
-  m_damageMultipler: 1
-  m_isCritical: 0
 --- !u!114 &1654326006319494622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3365,6 +3322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee5d93e529da42e8940bc92543851c8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Creature.Enemy
+  IsInvincible: 0
   maxHp: 100
   onDeathEvent:
     m_PersistentCalls:
@@ -3395,6 +3353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e6a400138a4a3084050403625763d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Controller.EnemyController
+  ForceIdle: 0
 --- !u!143 &7624584204873448413
 CharacterController:
   m_ObjectHideFlags: 0

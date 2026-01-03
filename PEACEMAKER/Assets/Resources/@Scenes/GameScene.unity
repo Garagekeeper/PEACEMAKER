@@ -238,14 +238,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
   m_Enabled: 0
-  serializedVersion: 11
+  serializedVersion: 12
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 2
     m_Resolution: -1
@@ -581,11 +581,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1085768461}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a854272f4ea4d449a953a3e196770aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 6cdfa0580d4246a99d810a0f59ae5e8d, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Akila.FPSFramework::Akila.FPSFramework.CustomDecal
-  decalVFX: {fileID: 1000010844420130, guid: eddd18724991935488112096e1cf9ab7, type: 3}
-  lifeTime: 60
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.CustomDecal
+  decalVFX: {fileID: 1000010355441670, guid: db15139bee3802f4f92e1a7472aeb783, type: 3}
+  lifeTime: 3
 --- !u!1001 &1158273875
 PrefabInstance:
   m_ObjectHideFlags: 0

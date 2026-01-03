@@ -1,5 +1,4 @@
-﻿using Akila.FPSFramework;
-using Resources.Script.Managers;
+﻿using Resources.Script.Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

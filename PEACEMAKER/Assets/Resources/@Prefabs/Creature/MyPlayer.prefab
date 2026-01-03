@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 843217130918608597}
   - component: {fileID: 6454993110740766267}
   - component: {fileID: 4610752720825615108}
-  - component: {fileID: 651472203774348391}
   - component: {fileID: 5788815499655909764}
   m_Layer: 0
   m_Name: Main Camera
@@ -94,25 +93,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1281021895094020430}
   m_Enabled: 1
---- !u!114 &651472203774348391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1281021895094020430}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe7a4e1373a37bc4fa5cc2e62f5f0584, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HighPass: 1
-  LowPass: 1
-  Reverb: 1
-  highPassCutoffFrequency: 0
-  hightPassLerpTime: 0
-  lowPassCutoffFrequency: 0
-  lowPassLerpTime: 0
 --- !u!114 &5788815499655909764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,7 +244,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5688149944684371656}
-  - component: {fileID: 2103088956649973017}
   m_Layer: 8
   m_Name: Holding Breath
   m_TagString: Untagged
@@ -287,60 +266,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6279916319501323458}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2103088956649973017
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3728868136283607948}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4abcd5dbe64ac344b80b42ee643aa96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Holding Breath
-  length: 10
-  weight: 1
-  loop: 0
-  autoStop: 1
-  perModifierConnections: 1
-  playOnAwake: 0
-  unidirectinalPlay: 1
-  resetOnPlayed: 0
-  isolate: 0
-  isolationMode: 0
-  updateMode: 0
-  triggerType: 2
-  triggerInputAction:
-    m_Name: Trigger Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 59ee52ea-89bf-4c63-87cf-1ac4f035b03e
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 4a680253-e9f3-4b1c-9583-a15dbbcb112d
-      m_Path: <Keyboard>/shift
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Trigger Input
-      m_Flags: 0
-    m_Flags: 0
-  events:
-    OnPlay:
-      m_PersistentCalls:
-        m_Calls: []
-    OnPlayed:
-      m_PersistentCalls:
-        m_Calls: []
-    OnStoped:
-      m_PersistentCalls:
-        m_Calls: []
-  customEvents: []
-  connections: []
 --- !u!1 &3917014405222904205
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +348,7 @@ MonoBehaviour:
   stepInterval: 7
   gravity: 1
   maxFallSpeed: 350
-  camobj: {fileID: 1281021895094020430}
+  camObj: {fileID: 1281021895094020430}
   camRootTransform: {fileID: 4881171474271531242}
   landSfx: {fileID: 11400000, guid: 03736cbcff0acba4796130e2f1dabef1, type: 2}
   onJump:
@@ -1063,7 +988,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 120957472721739501}
-  - component: {fileID: 9031545370948121297}
   m_Layer: 0
   m_Name: Cameras
   m_TagString: Untagged
@@ -1087,23 +1011,6 @@ Transform:
   - {fileID: 843217130918608597}
   m_Father: {fileID: 6325995545137539628}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9031545370948121297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8196570018928459480}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ab8353b5ebd32545867da143199a814, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  position: {x: 0, y: 0, z: 0}
-  rotation: {x: 5, y: 5, z: 5}
-  defaultRoughness: 1
-  defaultFadeInTime: 0.1
-  defaultFadeOutTime: 2.5
 --- !u!1 &8292450957333350547
 GameObject:
   m_ObjectHideFlags: 0

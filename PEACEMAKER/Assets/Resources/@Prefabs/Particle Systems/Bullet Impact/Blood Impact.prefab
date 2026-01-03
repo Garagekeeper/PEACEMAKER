@@ -9,9 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 733209293663125265}
-  - component: {fileID: -4719472458736300220}
-  - component: {fileID: 2408190135943221974}
-  - component: {fileID: 3118522538411309474}
   m_Layer: 0
   m_Name: Blood Impact
   m_TagString: Untagged
@@ -36,48 +33,6 @@ Transform:
   - {fileID: 4223846970130234197}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4719472458736300220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 733209293663125264}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a854272f4ea4d449a953a3e196770aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  decalVFX: {fileID: 0}
-  lifeTime: 4
---- !u!114 &2408190135943221974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 733209293663125264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60a826d0f8f9e884db0fd2a1ee2fb6ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyOnAwake: 1
-  destroyDelay: 1
---- !u!114 &3118522538411309474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 733209293663125264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cdfa0580d4246a99d810a0f59ae5e8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.CustomDecal
-  decalVFX: {fileID: 0}
-  lifeTime: 60
 --- !u!1 &4220899846499307137
 GameObject:
   m_ObjectHideFlags: 0
@@ -4852,7 +4807,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &4058542581057121745
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4898,6 +4853,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -4929,7 +4885,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &4220899847304022431
 GameObject:
   m_ObjectHideFlags: 0
@@ -9497,7 +9452,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &4058542580091182979
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9544,6 +9499,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 5
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -9575,4 +9531,3 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e741ac5eb03e24385ed1fb16be686e, type: 3}
   m_Name: Pistol_1 Fire
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 5cf46115d1060b34da73bdd7142ba54e, type: 3}
+  audioClip: {fileID: 8300000, guid: c5a9f6e293ee50643b05f638bd8f3912, type: 3}
   output: {fileID: 24300002, guid: e8993ca89b78c7445b22d35de3e4520c, type: 2}
   mute: 0
   bypassEffects: 0

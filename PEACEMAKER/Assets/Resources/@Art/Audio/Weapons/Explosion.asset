@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e741ac5eb03e24385ed1fb16be686e, type: 3}
   m_Name: Explosion
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: d64e10d46d2cf5640bb376baf42f2f90, type: 3}
+  audioClip: {fileID: 8300000, guid: f0a00626ac597a941854bad873f57a49, type: 3}
   output: {fileID: 0}
   mute: 0
   bypassEffects: 0

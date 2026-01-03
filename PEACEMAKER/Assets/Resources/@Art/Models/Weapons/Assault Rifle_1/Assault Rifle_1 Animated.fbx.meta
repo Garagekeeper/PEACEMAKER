@@ -16,12 +16,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Arms
-    second: {fileID: 2100000, guid: 766fd3ff04aab4745a764d33daac86fa, type: 2}
+    second: {fileID: 2100000, guid: f4cec00e78cb42441b46bcf5f3ee90fd, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Material
-    second: {fileID: 2100000, guid: 97169ddbdcc74fc46aa77f0543f94b94, type: 2}
+    second: {fileID: 2100000, guid: 93c3dfdbbce3c92448666c405fc27e5d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

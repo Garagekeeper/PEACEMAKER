@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e741ac5eb03e24385ed1fb16be686e, type: 3}
   m_Name: Shotgun_1 Reload
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 3ba001e54efb0dc428394dbc6b2b15c9, type: 3}
+  audioClip: {fileID: 8300000, guid: 757a59bd1844161449ba316e9f26b0b1, type: 3}
   output: {fileID: 0}
   mute: 0
   bypassEffects: 0

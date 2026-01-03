@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Guns_StencileGeometry
-  m_Shader: {fileID: 4800000, guid: 4ef53bc8c1b1c2f4aa326bae475cf9a3, type: 3}
+  m_Shader: {fileID: 4800000, guid: 9f9716adb1d17504ea8f855511b1b0c6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -46,6 +46,7 @@ Material:
     - _BlendMode: 0
     - _Cull: 2
     - _DstBlend: 0
+    - _Glossiness: 0.5
     - _Metallic: 0
     - _NormalStrength: 1
     - _Roughness: 0.5
@@ -55,3 +56,4 @@ Material:
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8424375869789175309}
   - component: {fileID: 8424375869789175307}
   - component: {fileID: 8424375869789175306}
-  - component: {fileID: 8424375869789175304}
   m_Layer: 5
   m_Name: Message Manager
   m_TagString: Untagged
@@ -73,19 +72,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &8424375869789175304
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8424375869789175308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0a8f4647c9950d4b9034d77aaf77b25, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  message: {fileID: 8424375870668343649}
 --- !u!1 &8424375870543156575
 GameObject:
   m_ObjectHideFlags: 0
@@ -123,7 +109,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 99.47, y: -20.965}
-  m_SizeDelta: {x: 170.94, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8424375870543156568
 CanvasRenderer:
@@ -191,6 +177,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -277,7 +264,6 @@ GameObject:
   - component: {fileID: 8424375870668343651}
   - component: {fileID: 8424375870668343650}
   - component: {fileID: 8424375870668343653}
-  - component: {fileID: 8424375870668343649}
   m_Layer: 5
   m_Name: Message
   m_TagString: Untagged
@@ -302,8 +288,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 370.53, y: -37}
-  m_SizeDelta: {x: 198.94, y: 0}
+  m_AnchoredPosition: {x: 470, y: -30}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8424375870668343648
 CanvasRenderer:
@@ -383,16 +369,3 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &8424375870668343649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8424375870668343655}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddd878d1f19d33f45880f99f1b22ed98, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: {fileID: 8424375870543156571}

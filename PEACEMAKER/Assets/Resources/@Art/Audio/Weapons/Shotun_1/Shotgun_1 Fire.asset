@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e741ac5eb03e24385ed1fb16be686e, type: 3}
   m_Name: Shotgun_1 Fire
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: b97afc1b9a8cac146b4988c1cc6d6c31, type: 3}
+  audioClip: {fileID: 8300000, guid: 34cd73b286250e9429bd78797d9c62f9, type: 3}
   output: {fileID: 24300002, guid: e8993ca89b78c7445b22d35de3e4520c, type: 2}
   mute: 0
   bypassEffects: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   audioLayers:
   - time: 0.25
-    audioClip: {fileID: 8300000, guid: 6c44fb86865bae741a8381a632f9211a, type: 3}
+    audioClip: {fileID: 8300000, guid: 68bcb6f1c742a8048a8c6d8a9e2e3bc0, type: 3}
   - time: 0.5
-    audioClip: {fileID: 8300000, guid: 69399b15086c11a4299a892847873f9d, type: 3}
+    audioClip: {fileID: 8300000, guid: 6f8f92f881557ce4a9f523d620a9e75d, type: 3}
   audioLayersDuration: 0.6

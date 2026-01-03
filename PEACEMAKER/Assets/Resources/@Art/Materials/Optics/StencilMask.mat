@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: StencilMask
-  m_Shader: {fileID: 4800000, guid: a90aab60201ff3e4fa10061a679b5fc5, type: 3}
+  m_Shader: {fileID: 4800000, guid: 80ed390b2c91ec54bab193656d4394e3, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -28,3 +28,4 @@ Material:
     - _StencilID: 1
     m_Colors: []
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

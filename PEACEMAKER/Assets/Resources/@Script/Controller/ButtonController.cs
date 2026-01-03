@@ -1,5 +1,4 @@
 ﻿using System;
-using Akila.FPSFramework;
 using Resources.Script.Audio;
 using Resources.Script.Managers;
 using TMPro;

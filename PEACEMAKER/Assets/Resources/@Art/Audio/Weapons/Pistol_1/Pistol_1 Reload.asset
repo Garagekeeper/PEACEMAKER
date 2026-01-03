@@ -67,7 +67,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   audioLayers:
   - time: 0
-    audioClip: {fileID: 8300000, guid: c6f742db31059134183c51cbd9faf8a5, type: 3}
+    audioClip: {fileID: 8300000, guid: 4e2f619f5a2f13b4aa9de60008e63faf, type: 3}
   - time: 0.7
-    audioClip: {fileID: 8300000, guid: 5eb06b5e7e9d0ae408b348ee6de52f1b, type: 3}
+    audioClip: {fileID: 8300000, guid: 4242098fc3e4d8a479d7a1e81b7624df, type: 3}
   audioLayersDuration: 0.8

@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9097847443336159992}
-  - component: {fileID: 6676898837411115683}
-  - component: {fileID: 2394799607382740580}
   m_Layer: 9
   m_Name: Show Animation
   m_TagString: Untagged
@@ -33,85 +31,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6676898837411115683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4942052105775686515}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4abcd5dbe64ac344b80b42ee643aa96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Name: Show
-  length: 0.15
-  weight: 1
-  loop: 0
-  autoStop: 0
-  perModifierConnections: 1
-  playOnAwake: 1
-  unidirectinalPlay: 0
-  resetOnPlayed: 0
-  isolate: 0
-  isolationMode: 0
-  updateMode: 0
-  triggerType: 0
-  triggerInputAction:
-    m_Name: Trigger Input
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: f4f65e10-1eae-407c-8b13-d241938bf226
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
-  events:
-    OnPlay:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 2394799607382740580}
-          m_TargetAssemblyTypeName: Akila.FPSFramework.Animation.SpringAnimationModifier,
-            Assembly-CSharp
-          m_MethodName: Trigger
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-    OnPlayed:
-      m_PersistentCalls:
-        m_Calls: []
-    OnStoped:
-      m_PersistentCalls:
-        m_Calls: []
-  customEvents: []
-  connections: []
---- !u!114 &2394799607382740580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4942052105775686515}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94603828600306a42912af4af6b7c3b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  position:
-    value: {x: 0, y: 0.01, z: -0.1}
-    speed: 10
-    fadeOutTime: 1
-    weight: 1
-  rotation:
-    value: {x: 1, y: 0, z: -11}
-    speed: 12
-    fadeOutTime: 1
-    weight: 1

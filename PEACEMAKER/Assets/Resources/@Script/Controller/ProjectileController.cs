@@ -1,5 +1,4 @@
-﻿using Akila.FPSFramework;
-using Resources.Script.Controller;
+﻿using Resources.Script.Controller;
 using UnityEngine;
 using UnityEngine.Events;
 using static Resources.Script.Utilities;
@@ -256,7 +255,7 @@ namespace Resource.Script.Controller
         [ContextMenu("Setup/Network Components")]
         public void Convert()
         {
-            FPSFrameworkCore.InvokeConvertMethod("ConvertProjectile", this, new object[] { this });
+            
         }
     }
 }

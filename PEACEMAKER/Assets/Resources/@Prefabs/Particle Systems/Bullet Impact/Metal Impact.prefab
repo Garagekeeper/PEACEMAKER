@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 4000011450163336}
   - component: {fileID: 198000013440722320}
   - component: {fileID: 199000011528143168}
-  - component: {fileID: 8959474603285878146}
-  - component: {fileID: -3412711898823021176}
   m_Layer: 0
   m_Name: Metal Impact
   m_TagString: Untagged
@@ -4615,7 +4613,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &199000011528143168
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4662,6 +4660,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 5
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -4693,35 +4692,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
---- !u!114 &8959474603285878146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000010355441670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a854272f4ea4d449a953a3e196770aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  decalVFX: {fileID: 0}
-  lifeTime: 3
---- !u!114 &-3412711898823021176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000010355441670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60a826d0f8f9e884db0fd2a1ee2fb6ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyOnAwake: 1
-  destroyDelay: 5
 --- !u!1 &521440339745143937
 GameObject:
   m_ObjectHideFlags: 0
@@ -4733,7 +4703,7 @@ GameObject:
   - component: {fileID: 8493255461033515598}
   - component: {fileID: 4962208522738445268}
   - component: {fileID: 6631409797163402193}
-  - component: {fileID: 8224650015718080907}
+  - component: {fileID: 8924058399736207997}
   m_Layer: 0
   m_Name: Decal Heat
   m_TagString: Untagged
@@ -4779,7 +4749,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
+  m_RayTracingMode: 0
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
@@ -4811,8 +4781,9 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8224650015718080907
+--- !u!114 &8924058399736207997
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4821,9 +4792,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 521440339745143937}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 515098120edf0854fb59f824c749a678, type: 3}
+  m_Script: {fileID: 11500000, guid: e8c092dc6b9f4168abe34a0a7d9f9c17, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.MeshFader
   meshType: 0
   fadeDelay: 0.2
-  roughness: 15
+  roughness: 10

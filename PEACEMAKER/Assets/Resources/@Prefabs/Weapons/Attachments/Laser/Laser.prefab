@@ -34,7 +34,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &4976020219115667751
 LineRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -80,6 +80,7 @@ LineRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 1}
@@ -138,7 +139,6 @@ LineRenderer:
     textureScale: {x: 1, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
-  m_MaskInteraction: 0
   m_UseWorldSpace: 0
   m_Loop: 0
   m_ApplyActiveColorSpace: 0
@@ -261,6 +261,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &9116482617208964008
 GameObject:
@@ -293,7 +294,7 @@ Transform:
   m_Children:
   - {fileID: 4471300938025824062}
   - {fileID: 9116482618753912438}
-  - {fileID: 8968154403763125919}
+  - {fileID: 6722593954623360321}
   - {fileID: 9116482618638163984}
   m_Father: {fileID: 9116482618706161306}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -385,6 +386,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &9116482618638163999
 GameObject:
@@ -428,8 +430,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9116482618706161306}
-  - component: {fileID: 9116482618706161308}
-  - component: {fileID: 3720961647062669668}
   m_Layer: 9
   m_Name: Laser
   m_TagString: Untagged
@@ -454,66 +454,6 @@ Transform:
   - {fileID: 8901852377392656788}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9116482618706161308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9116482618706161305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9627d511a2afc3243bdaeff46f84d4b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: Laser
-  Name: Laser
-  m_damage: 100
-  m_spread: 100
-  m_fireRate: 100
-  m_range: 100
-  m_muzzleVelocity: 100
-  m_recoil: 100
-  m_visualRecoil: 100
-  m_aimSpeed: 100
---- !u!114 &3720961647062669668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9116482618706161305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfaf4d6ee18689f41a35ae8a7d1abd84, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toggleLaserInputAction:
-    m_Name: ToggleLaser
-    m_Type: 1
-    m_ExpectedControlType: 
-    m_Id: 5eb8eeca-8d2f-4866-a325-e4ff797ec5c3
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 20263be2-4c50-4faa-bc2b-8d1ceba0766c
-      m_Path: <Keyboard>/l
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: ToggleLaser
-      m_Flags: 0
-    m_Flags: 0
-  interactableLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  laserSource: {fileID: 4471300938025824062}
-  laserDot: {fileID: 9116482618638163984}
-  laserRange: {fileID: 9116482618753912438}
-  laserLine: {fileID: 4976020219115667751}
-  isLaserOn: 1
-  automaticToggling: 1
 --- !u!1 &9116482618753912437
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,7 +485,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 9116482617208964009}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &8935125817803577716
+--- !u!1001 &6539731231771126442
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -553,11 +493,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9116482617208964009}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 06d1b91044610644c8f968093bee62e2,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 06d1b91044610644c8f968093bee62e2,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -623,34 +558,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: 06d1b91044610644c8f968093bee62e2,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 93c3dfdbbce3c92448666c405fc27e5d, type: 2}
     - target: {fileID: 919132149155446097, guid: 06d1b91044610644c8f968093bee62e2,
         type: 3}
       propertyPath: m_Name
       value: Laser Sight
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 06d1b91044610644c8f968093bee62e2,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: -516098083770646512, guid: 538381dbc97c16a4fa680ce2c89de96e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06d1b91044610644c8f968093bee62e2, type: 3}
---- !u!4 &8968154403763125919 stripped
+--- !u!4 &6722593954623360321 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 06d1b91044610644c8f968093bee62e2,
     type: 3}
-  m_PrefabInstance: {fileID: 8935125817803577716}
+  m_PrefabInstance: {fileID: 6539731231771126442}
   m_PrefabAsset: {fileID: 0}

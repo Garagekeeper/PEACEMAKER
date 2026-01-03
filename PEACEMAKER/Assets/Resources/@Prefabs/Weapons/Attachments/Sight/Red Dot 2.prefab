@@ -57,7 +57,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 97169ddbdcc74fc46aa77f0543f94b94, type: 2}
+  - {fileID: 2100000, guid: 93c3dfdbbce3c92448666c405fc27e5d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -79,6 +79,7 @@ SkinnedMeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -162,8 +163,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6125879610270179266}
-  - component: {fileID: 6125879610270179264}
-  - component: {fileID: 6125879610270179265}
   m_Layer: 12
   m_Name: Red Dot 2
   m_TagString: Untagged
@@ -188,48 +187,6 @@ Transform:
   - {fileID: 490171981399575033}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6125879610270179264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6125879610270179267}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9627d511a2afc3243bdaeff46f84d4b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: Sight
-  Name: Red Dot 2
-  m_damage: 100
-  m_spread: 100
-  m_fireRate: 100
-  m_range: 100
-  m_muzzleVelocity: 100
-  m_recoil: 100
-  m_visualRecoil: 100
-  m_aimSpeed: 100
---- !u!114 &6125879610270179265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6125879610270179267}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cca8e4f45194a154e843ffa1d55d5d99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  presets:
-  - fieldOfView: 55
-    weaponFieldOfView: 55
-    position: {x: -0.073, y: 0.018, z: -0.01}
-    rotation: {x: 0, y: 0, z: -4}
-    leanRightOffset: {x: -0.027, y: 0.0056, z: 0}
-    leanLeftOffset: {x: 0.027, y: 0.007, z: 0}
-  index: 0
 --- !u!1 &6125879610809818999
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,6 +275,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &6125879611372695798
 GameObject:
@@ -349,10 +307,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6125879610809818998}
-  - {fileID: 2469519298497375384}
+  - {fileID: 7033768077249781269}
   m_Father: {fileID: 6125879610270179266}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2724615973038787443
+--- !u!1001 &7356154666243717630
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -360,11 +318,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6125879611372695797}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 7a0f29f6b41edcf4fa967e20a3f07f16,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a0f29f6b41edcf4fa967e20a3f07f16,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -430,69 +383,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -3111322562470927927, guid: 7a0f29f6b41edcf4fa967e20a3f07f16,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: -3111322562470927927, guid: 7a0f29f6b41edcf4fa967e20a3f07f16,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -2458476454739322788, guid: 7a0f29f6b41edcf4fa967e20a3f07f16,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -2458476454739322788, guid: 7a0f29f6b41edcf4fa967e20a3f07f16,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 93c3dfdbbce3c92448666c405fc27e5d, type: 2}
-    - target: {fileID: -2458476454739322788, guid: 7a0f29f6b41edcf4fa967e20a3f07f16,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[1]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 93c3dfdbbce3c92448666c405fc27e5d, type: 2}
     - target: {fileID: 919132149155446097, guid: 7a0f29f6b41edcf4fa967e20a3f07f16,
         type: 3}
-      propertyPath: m_Layer
-      value: 9
+      propertyPath: m_Name
+      value: Red Dot 2
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 7a0f29f6b41edcf4fa967e20a3f07f16,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1567251670875523435, guid: 7a0f29f6b41edcf4fa967e20a3f07f16,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1567251670875523435, guid: 7a0f29f6b41edcf4fa967e20a3f07f16,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 93c3dfdbbce3c92448666c405fc27e5d, type: 2}
-    - target: {fileID: -7511558181221131132, guid: 318993aed739451449c909884a424e5c,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 903b86527e694254a896de805b7f6128, type: 2}
-    - target: {fileID: -7511558181221131132, guid: 318993aed739451449c909884a424e5c,
-        type: 3}
-      propertyPath: 'm_Materials.Array.data[1]'
-      value: 
-      objectReference: {fileID: 2100000, guid: eeb9e12d78641f44296474bd3441b006, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7a0f29f6b41edcf4fa967e20a3f07f16, type: 3}
---- !u!4 &2469519298497375384 stripped
+--- !u!4 &7033768077249781269 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7a0f29f6b41edcf4fa967e20a3f07f16,
     type: 3}
-  m_PrefabInstance: {fileID: 2724615973038787443}
+  m_PrefabInstance: {fileID: 7356154666243717630}
   m_PrefabAsset: {fileID: 0}

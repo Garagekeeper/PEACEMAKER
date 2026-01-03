@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Resources.Script.Managers;
 using UnityEngine;
 using static Resources.Script.Utilities;
 using static Resources.Script.Defines;
@@ -257,6 +258,7 @@ namespace Resources.Script.Animation
         private void UpdateSingleFrame()
         {
             if (Time.timeScale <= 0) return;
+            if (SystemManager.Game.IsPaused) return;
 
             // 위치 값 결정
             Vector3 position = DefaultPosition + TargetPosition;

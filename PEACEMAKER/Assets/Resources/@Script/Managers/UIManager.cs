@@ -86,9 +86,6 @@ namespace Resources.Script.Managers
                     MenuObject.AddComponent<UnityEngine.UI.GraphicRaycaster>();
                 }
 
-
-                DontDestroyOnLoad(UIRoot);
-
                 Init();
             }
         }

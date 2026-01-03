@@ -37,6 +37,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5602922557687482235}
+  - {fileID: 5426035976441434929}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5419691043602898584
@@ -93,7 +94,7 @@ MonoBehaviour:
     type: 3}
   <PlayerCardHUDRef>k__BackingField: {fileID: 6855780426518034184, guid: 1793633eb9df2a242a12112c1be85d2a,
     type: 3}
-  <MenuController>k__BackingField: {fileID: 0}
+  <MenuController>k__BackingField: {fileID: 8302426452508514652}
 --- !u!114 &4666611996536553019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,6 +134,92 @@ MonoBehaviour:
   loadingScreen: {fileID: 2494368313106475922}
   radialImage: {fileID: 1240336931384589371}
   radialText: {fileID: 7153486829764852803}
+--- !u!1001 &1657766862206094678
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7615678298294818411}
+    m_Modifications:
+    - target: {fileID: 6650889578460569191, guid: 88ca59d7b3a09ce42954be5d6339f78f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 977.7778
+      objectReference: {fileID: 0}
+    - target: {fileID: 6650889578460569191, guid: 88ca59d7b3a09ce42954be5d6339f78f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 550
+      objectReference: {fileID: 0}
+    - target: {fileID: 6650889578460569191, guid: 88ca59d7b3a09ce42954be5d6339f78f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -17.32053
+      objectReference: {fileID: 0}
+    - target: {fileID: 6650889578460569191, guid: 88ca59d7b3a09ce42954be5d6339f78f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6650889578460569191, guid: 88ca59d7b3a09ce42954be5d6339f78f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6650889578460569191, guid: 88ca59d7b3a09ce42954be5d6339f78f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6650889578460569191, guid: 88ca59d7b3a09ce42954be5d6339f78f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6650889578460569191, guid: 88ca59d7b3a09ce42954be5d6339f78f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6650889578460569191, guid: 88ca59d7b3a09ce42954be5d6339f78f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6650889578460569191, guid: 88ca59d7b3a09ce42954be5d6339f78f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7709623600747551152, guid: 88ca59d7b3a09ce42954be5d6339f78f,
+        type: 3}
+      propertyPath: m_Name
+      value: '@UIRoot'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 88ca59d7b3a09ce42954be5d6339f78f, type: 3}
+--- !u!4 &5426035976441434929 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6650889578460569191, guid: 88ca59d7b3a09ce42954be5d6339f78f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1657766862206094678}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8302426452508514652 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7222004633829823498, guid: 88ca59d7b3a09ce42954be5d6339f78f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1657766862206094678}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54d72c8f0e214552adfa0dcce1ebb5b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Controller.MenuController
 --- !u!1001 &5780853408573780484
 PrefabInstance:
   m_ObjectHideFlags: 0

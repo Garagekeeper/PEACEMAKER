@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4000010197676760}
-  - component: {fileID: 8559718385212406023}
-  - component: {fileID: 338601035157391699}
   m_Layer: 0
   m_Name: Stone Impact
   m_TagString: Untagged
@@ -37,34 +35,6 @@ Transform:
   - {fileID: 5954471976284560039}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8559718385212406023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000010844420130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a854272f4ea4d449a953a3e196770aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  decalVFX: {fileID: 0}
-  lifeTime: 3
---- !u!114 &338601035157391699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000010844420130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60a826d0f8f9e884db0fd2a1ee2fb6ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyOnAwake: 1
-  destroyDelay: 15
 --- !u!1 &1930540169410625648
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,7 +46,7 @@ GameObject:
   - component: {fileID: 5954471976284560039}
   - component: {fileID: 1454894812236137897}
   - component: {fileID: 5928154086532845814}
-  - component: {fileID: 3830087878198142477}
+  - component: {fileID: 5656280474351129382}
   m_Layer: 0
   m_Name: Decal
   m_TagString: Untagged
@@ -122,7 +92,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
+  m_RayTracingMode: 0
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
@@ -154,8 +124,9 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3830087878198142477
+--- !u!114 &5656280474351129382
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -164,9 +135,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1930540169410625648}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 515098120edf0854fb59f824c749a678, type: 3}
+  m_Script: {fileID: 11500000, guid: e8c092dc6b9f4168abe34a0a7d9f9c17, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.MeshFader
   meshType: 0
   fadeDelay: 15
   roughness: 15
@@ -4944,7 +4915,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &4687661570219596555
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4990,6 +4961,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -5021,7 +4993,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &5943650950558683056
 GameObject:
   m_ObjectHideFlags: 0
@@ -5033,7 +5004,7 @@ GameObject:
   - component: {fileID: 2350468759395461503}
   - component: {fileID: 1269415216263354597}
   - component: {fileID: 668520829127995616}
-  - component: {fileID: 2838186585083507386}
+  - component: {fileID: 754075668141458995}
   m_Layer: 0
   m_Name: Decal Heat
   m_TagString: Untagged
@@ -5079,7 +5050,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
+  m_RayTracingMode: 0
   m_RayTraceProcedural: 0
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
@@ -5111,8 +5082,9 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2838186585083507386
+--- !u!114 &754075668141458995
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5121,9 +5093,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5943650950558683056}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 515098120edf0854fb59f824c749a678, type: 3}
+  m_Script: {fileID: 11500000, guid: e8c092dc6b9f4168abe34a0a7d9f9c17, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.MeshFader
   meshType: 0
   fadeDelay: 0.2
   roughness: 15
@@ -9739,7 +9711,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &8501077623373256504
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9786,6 +9758,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 5
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -9817,4 +9790,3 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e741ac5eb03e24385ed1fb16be686e, type: 3}
   m_Name: Sniper_1 Suppressor Fire
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: c4d962c1ec793274f9a895356c3346de, type: 3}
+  audioClip: {fileID: 8300000, guid: 1a663b5d049a7734f95eb19c48c7e269, type: 3}
   output: {fileID: 0}
   mute: 0
   bypassEffects: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   audioLayers:
   - time: 0.1
-    audioClip: {fileID: 8300000, guid: 4802bedd34f55e7408bc933e82e2c297, type: 3}
+    audioClip: {fileID: 8300000, guid: 51ca0de975813984bba6463d0d18ed88, type: 3}
   - time: 0.5
-    audioClip: {fileID: 8300000, guid: f4005663007abb44da78ddbee13666b5, type: 3}
+    audioClip: {fileID: 8300000, guid: 3f68be4a23f95304197bed2055cfe923, type: 3}
   audioLayersDuration: 1

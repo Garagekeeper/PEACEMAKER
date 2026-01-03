@@ -4828,7 +4828,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &5572764742409207826
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4874,6 +4874,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -4905,7 +4906,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &3422849394606203204
 GameObject:
   m_ObjectHideFlags: 0
@@ -9752,7 +9752,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &3261670721562113050
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9799,6 +9799,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 4
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -9830,7 +9831,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
 --- !u!1 &3423798242356165502
 GameObject:
   m_ObjectHideFlags: 0
@@ -9842,7 +9842,6 @@ GameObject:
   - component: {fileID: 3429269585697241170}
   - component: {fileID: 3261854011939005256}
   - component: {fileID: 3262194489067963720}
-  - component: {fileID: 5606948858520564677}
   m_Layer: 0
   m_Name: Explosion
   m_TagString: Untagged
@@ -14663,7 +14662,7 @@ ParticleSystem:
     vectorLabel1_3: W
 --- !u!199 &3262194489067963720
 ParticleSystemRenderer:
-  serializedVersion: 6
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -14709,6 +14708,7 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -14740,21 +14740,6 @@ ParticleSystemRenderer:
   m_MeshWeighting1: 1
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
-  m_MaskInteraction: 0
---- !u!114 &5606948858520564677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3423798242356165502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3859b83b5ac47274dbc0a4d7ad2473f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  audioProfile: {fileID: 11400000, guid: b37f90892e59e0446b3b3b2848b09ce7, type: 2}
-  playOnAwake: 1
 --- !u!1 &7803634356832766848
 GameObject:
   m_ObjectHideFlags: 0
@@ -14795,14 +14780,14 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7803634356832766848}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 12
   m_Type: 2
   m_Color: {r: 1, g: 0.25899854, b: 0, a: 1}
   m_Intensity: 5
   m_Range: 50
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
+  m_CookieSize2D: {x: 10, y: 10}
   m_Shadows:
     m_Type: 0
     m_Resolution: -1

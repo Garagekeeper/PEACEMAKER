@@ -296,7 +296,6 @@ GameObject:
   - component: {fileID: 4159039393724995048}
   - component: {fileID: 4459012484582261472}
   - component: {fileID: 6826845719369773288}
-  - component: {fileID: 5115814813792490890}
   - component: {fileID: 6369657045935211393}
   m_Layer: 5
   m_Name: Settings
@@ -363,47 +362,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.52
---- !u!114 &5115814813792490890
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2793298200750149409}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c27834ac26a2a5e4a818cbbe9b263b46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactable: 1
-  targetGraphics: {fileID: 6826845719369773288}
-  targetText: {fileID: 4283056261703465864}
-  fadeDuration: 0.04
-  normalGraphicsColor: {r: 0, g: 0, b: 0, a: 0.7607843}
-  highlightedGraphicsColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedGraphicsColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
-  disabledGraphicsColor: {r: 1, g: 0.20188677, b: 0.20188677, a: 0.6666667}
-  normalTextColor: {r: 1, g: 1, b: 1, a: 1}
-  highlightedTextColor: {r: 0, g: 0, b: 0, a: 1}
-  selectedTextColor: {r: 0, g: 0, b: 0, a: 1}
-  disabledTextColor: {r: 0, g: 0, b: 0, a: 1}
-  highlightSound: {fileID: 11400000, guid: d3062f0ab0aae634983200aea45b5e5a, type: 2}
-  selectSound: {fileID: 11400000, guid: fe3ea016ff8f32c4483602e146538d6d, type: 2}
-  onClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Akila.FPSFramework.UI.MenusManager, Assembly-CSharp
-        m_MethodName: OpenMenu
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Settings
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &6369657045935211393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -456,7 +414,7 @@ GameObject:
   - component: {fileID: 5169453246215113611}
   - component: {fileID: 4081085267269876567}
   - component: {fileID: 4474115749474643147}
-  - component: {fileID: 1444801495301840731}
+  - component: {fileID: 789507385461481846}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -550,6 +508,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -583,7 +542,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1444801495301840731
+--- !u!114 &789507385461481846
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -592,9 +551,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4324691191289357715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eafe08ac28c19d0489239df94b9f9aec, type: 3}
+  m_Script: {fileID: 11500000, guid: f8f98ca34b404e1a99c2b1a382173057, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.UI.SetLabelName
   target: {fileID: 4031605820741278448}
 --- !u!1 &5306029767501502806
 GameObject:
@@ -667,7 +626,7 @@ GameObject:
   - component: {fileID: 4336834994264981564}
   - component: {fileID: 1241457221642755042}
   - component: {fileID: 4283056261703465864}
-  - component: {fileID: 8282404636051703189}
+  - component: {fileID: 1088236992401494083}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -761,6 +720,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -794,7 +754,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8282404636051703189
+--- !u!114 &1088236992401494083
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -803,9 +763,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7096031209019688713}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eafe08ac28c19d0489239df94b9f9aec, type: 3}
+  m_Script: {fileID: 11500000, guid: f8f98ca34b404e1a99c2b1a382173057, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.UI.SetLabelName
   target: {fileID: 4159039393724995048}
 --- !u!1 &7424499070371922179
 GameObject:
@@ -934,7 +894,7 @@ GameObject:
   - component: {fileID: 414637217573318440}
   - component: {fileID: 483650617157563781}
   - component: {fileID: 8281433599532636897}
-  - component: {fileID: 8002666791603441781}
+  - component: {fileID: 5936370734734853111}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1028,6 +988,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1061,7 +1022,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &8002666791603441781
+--- !u!114 &5936370734734853111
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1070,9 +1031,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7536157187031053395}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eafe08ac28c19d0489239df94b9f9aec, type: 3}
+  m_Script: {fileID: 11500000, guid: f8f98ca34b404e1a99c2b1a382173057, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.UI.SetLabelName
   target: {fileID: 277907496394966466}
 --- !u!1 &7938094052369607203
 GameObject:
@@ -1178,6 +1139,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1222,7 +1184,7 @@ GameObject:
   - component: {fileID: 221326547611072053}
   - component: {fileID: 2568460944670080429}
   - component: {fileID: 7169612341346733876}
-  - component: {fileID: 2637089290599852247}
+  - component: {fileID: 2336121812072109928}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1316,6 +1278,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1349,7 +1312,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2637089290599852247
+--- !u!114 &2336121812072109928
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1358,9 +1321,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8177263198758937229}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eafe08ac28c19d0489239df94b9f9aec, type: 3}
+  m_Script: {fileID: 11500000, guid: f8f98ca34b404e1a99c2b1a382173057, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.UI.SetLabelName
   target: {fileID: 4601044774043208170}
 --- !u!1 &8667652732218443242
 GameObject:
@@ -1491,7 +1454,6 @@ GameObject:
   - component: {fileID: 4601044774043208170}
   - component: {fileID: 4390207886329302818}
   - component: {fileID: 2088672230213071423}
-  - component: {fileID: 7718079512577527282}
   - component: {fileID: 5784568752841308636}
   m_Layer: 5
   m_Name: Quit
@@ -1558,47 +1520,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.52
---- !u!114 &7718079512577527282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9024996738485371883}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c27834ac26a2a5e4a818cbbe9b263b46, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interactable: 1
-  targetGraphics: {fileID: 2088672230213071423}
-  targetText: {fileID: 7169612341346733876}
-  fadeDuration: 0.04
-  normalGraphicsColor: {r: 0, g: 0, b: 0, a: 0.7607843}
-  highlightedGraphicsColor: {r: 1, g: 1, b: 1, a: 1}
-  selectedGraphicsColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
-  disabledGraphicsColor: {r: 1, g: 0.20188677, b: 0.20188677, a: 0.6666667}
-  normalTextColor: {r: 1, g: 1, b: 1, a: 1}
-  highlightedTextColor: {r: 0, g: 0, b: 0, a: 1}
-  selectedTextColor: {r: 0, g: 0, b: 0, a: 1}
-  disabledTextColor: {r: 0, g: 0, b: 0, a: 1}
-  highlightSound: {fileID: 11400000, guid: d3062f0ab0aae634983200aea45b5e5a, type: 2}
-  selectSound: {fileID: 11400000, guid: fe3ea016ff8f32c4483602e146538d6d, type: 2}
-  onClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Akila.FPSFramework.MainMenu, Assembly-CSharp
-        m_MethodName: Quit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Main Menu
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &5784568752841308636
 MonoBehaviour:
   m_ObjectHideFlags: 0

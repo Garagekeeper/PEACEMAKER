@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e741ac5eb03e24385ed1fb16be686e, type: 3}
   m_Name: Sniper_1 Fire
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: c5d5a6ea1c8c89343a5a43945f7bf1bf, type: 3}
+  audioClip: {fileID: 8300000, guid: 94e34e3164637584f8804a10d3d98dfa, type: 3}
   output: {fileID: 24300002, guid: e8993ca89b78c7445b22d35de3e4520c, type: 2}
   mute: 0
   bypassEffects: 0
@@ -66,8 +66,8 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   audioLayers:
-  - time: 0.1
-    audioClip: {fileID: 8300000, guid: 4802bedd34f55e7408bc933e82e2c297, type: 3}
+  - time: 0.09775967
+    audioClip: {fileID: 8300000, guid: 51ca0de975813984bba6463d0d18ed88, type: 3}
   - time: 0.5
-    audioClip: {fileID: 8300000, guid: f4005663007abb44da78ddbee13666b5, type: 3}
+    audioClip: {fileID: 8300000, guid: 3f68be4a23f95304197bed2055cfe923, type: 3}
   audioLayersDuration: 1

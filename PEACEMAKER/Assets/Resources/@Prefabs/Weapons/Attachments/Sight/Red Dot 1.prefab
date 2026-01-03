@@ -88,6 +88,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &7849601697657569410
 GameObject:
@@ -98,8 +99,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7849601697657569411}
-  - component: {fileID: 7849601697657569409}
-  - component: {fileID: 7849601697657569408}
   m_Layer: 12
   m_Name: Red Dot 1
   m_TagString: Untagged
@@ -123,48 +122,6 @@ Transform:
   - {fileID: 7849601698836639668}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7849601697657569409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7849601697657569410}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9627d511a2afc3243bdaeff46f84d4b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: Sight
-  Name: Red Dot 1
-  m_damage: 100
-  m_spread: 100
-  m_fireRate: 100
-  m_range: 100
-  m_muzzleVelocity: 100
-  m_recoil: 100
-  m_visualRecoil: 100
-  m_aimSpeed: 100
---- !u!114 &7849601697657569408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7849601697657569410}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cca8e4f45194a154e843ffa1d55d5d99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  presets:
-  - fieldOfView: 55
-    weaponFieldOfView: 55
-    position: {x: -0.073, y: 0.013, z: -0.01}
-    rotation: {x: 0, y: 0, z: -4}
-    leanRightOffset: {x: -0.0299, y: 0.0056, z: 0}
-    leanLeftOffset: {x: 0.028999, y: 0.007, z: 0}
-  index: 0
 --- !u!1 &7849601698836639671
 GameObject:
   m_ObjectHideFlags: 0

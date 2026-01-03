@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Unlit_Lens
-  m_Shader: {fileID: 4800000, guid: d2e3ec557dc71d040954ca3f3fd2a7f7, type: 3}
+  m_Shader: {fileID: 4800000, guid: 8023c41a1749bff43ba51426d7b33c69, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -24,7 +24,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: fe742bbcb7fd8ea499726a5a543fab8d, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2f620b5cd718c4f43899d4b6d10b7522, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
@@ -40,3 +40,4 @@ Material:
     - _Color: {r: 1, g: 0, b: 0, a: 1}
     - _OutOfBoundsColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1

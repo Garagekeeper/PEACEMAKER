@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 659888125439638735}
-  - component: {fileID: 659888125439638733}
-  - component: {fileID: 659888125439638732}
   m_Layer: 12
   m_Name: Holographic Sight
   m_TagString: Untagged
@@ -35,48 +33,6 @@ Transform:
   - {fileID: 4904109557171309372}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &659888125439638733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659888125439638734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9627d511a2afc3243bdaeff46f84d4b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: Sight
-  Name: Holo Sight
-  m_damage: 100
-  m_spread: 100
-  m_fireRate: 100
-  m_range: 100
-  m_muzzleVelocity: 100
-  m_recoil: 100
-  m_visualRecoil: 100
-  m_aimSpeed: 100
---- !u!114 &659888125439638732
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 659888125439638734}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cca8e4f45194a154e843ffa1d55d5d99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  presets:
-  - fieldOfView: 55
-    weaponFieldOfView: 55
-    position: {x: -0.073, y: 0.007, z: -0.01}
-    rotation: {x: 0, y: 0, z: -4}
-    leanRightOffset: {x: -0.032, y: 0.0056, z: 0}
-    leanLeftOffset: {x: 0.032, y: 0.007, z: 0}
-  index: 0
 --- !u!1 &943755335824880488
 GameObject:
   m_ObjectHideFlags: 0
@@ -165,6 +121,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1200150328043461052
 GameObject:
@@ -223,7 +180,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 97169ddbdcc74fc46aa77f0543f94b94, type: 2}
+  - {fileID: 2100000, guid: 93c3dfdbbce3c92448666c405fc27e5d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -245,6 +202,7 @@ SkinnedMeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0

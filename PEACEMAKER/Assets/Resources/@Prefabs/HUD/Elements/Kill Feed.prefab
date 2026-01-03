@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5200646115970460036}
-  - component: {fileID: 5200646115970460037}
   m_Layer: 5
   m_Name: Kill Feed
   m_TagString: Untagged
@@ -37,24 +36,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5200646115970460037
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5200646115970460039}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61806079106d8c1478e28b2208a1e7e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  counter: {fileID: 5200646117213742464}
-  Tag: {fileID: 5200646117151937173}
-  tagsHolder: {fileID: 5200646117625532540}
-  useSFX: 0
-  killSFX: {fileID: 0}
-  audioSource: {fileID: 0}
 --- !u!1 &5200646116076248403
 GameObject:
   m_ObjectHideFlags: 0
@@ -66,7 +47,6 @@ GameObject:
   - component: {fileID: 5200646116076248400}
   - component: {fileID: 5200646116076248414}
   - component: {fileID: 5200646116076248401}
-  - component: {fileID: 5200646116076248415}
   m_Layer: 5
   m_Name: Skull
   m_TagString: Untagged
@@ -128,24 +108,6 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
---- !u!114 &5200646116076248415
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5200646116076248403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43c952302f948414b98a5cbd9ce4502e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 2
-  message: {fileID: 0}
-  time: 3.5
-  fadeSpeed: 15
-  labelColor: {r: 1, g: 1, b: 1, a: 1}
-  nameColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &5200646116585532175
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,7 +158,6 @@ GameObject:
   - component: {fileID: 5200646117151937172}
   - component: {fileID: 5200646117151937174}
   - component: {fileID: 5200646117151937161}
-  - component: {fileID: 5200646117151937173}
   - component: {fileID: 7445943087639324795}
   m_Layer: 5
   m_Name: Tag
@@ -222,8 +183,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 190.0905, y: -18.336}
-  m_SizeDelta: {x: 255.7, y: 0}
+  m_AnchoredPosition: {x: 190.0905, y: -0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5200646117151937172
 CanvasRenderer:
@@ -273,24 +234,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
---- !u!114 &5200646117151937173
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5200646117151937163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43c952302f948414b98a5cbd9ce4502e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 1
-  message: {fileID: 9106042870088563465}
-  time: 3
-  fadeSpeed: 15
-  labelColor: {r: 0.9811321, g: 0.9811321, b: 0.9811321, a: 1}
-  nameColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!95 &7445943087639324795
 Animator:
   serializedVersion: 7
@@ -324,7 +267,6 @@ GameObject:
   - component: {fileID: 5200646117213742469}
   - component: {fileID: 5200646117213742467}
   - component: {fileID: 5200646117213742466}
-  - component: {fileID: 5200646117213742464}
   - component: {fileID: 5200646117213742478}
   - component: {fileID: 5200646117213742465}
   m_Layer: 5
@@ -420,6 +362,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -453,24 +396,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &5200646117213742464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5200646117213742468}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43c952302f948414b98a5cbd9ce4502e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  message: {fileID: 5200646117213742466}
-  time: 3.2
-  fadeSpeed: 30
-  labelColor: {r: 1, g: 1, b: 1, a: 1}
-  nameColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!95 &5200646117213742478
 Animator:
   serializedVersion: 7
@@ -737,6 +662,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0

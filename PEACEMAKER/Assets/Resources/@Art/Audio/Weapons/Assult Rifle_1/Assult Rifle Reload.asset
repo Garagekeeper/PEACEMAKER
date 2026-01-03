@@ -33,8 +33,8 @@ MonoBehaviour:
   maxDistance: 15
   simulateAcousticLatency: 1
   syncPitchWithTimeScale: 1
+  useRandomPitchOffset: 1
   randomPitchOffset: 1
-  pitchOffset: 0.2
   forwardFactor: 0.1
   backwardFactor: 0.1
   rightFactor: 0.1
@@ -67,7 +67,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   audioLayers:
   - time: 0
-    audioClip: {fileID: 8300000, guid: b0d8c8961182aa34abc6f4221b489a65, type: 3}
+    audioClip: {fileID: 8300000, guid: 15ae31d30151eae4fa68e28b9be5a2dc, type: 3}
   - time: 1.1
-    audioClip: {fileID: 8300000, guid: d88085430c41eed4c8cb50f6acc95547, type: 3}
+    audioClip: {fileID: 8300000, guid: cfa76f2b5b922764492a13cd313ba53a, type: 3}
   audioLayersDuration: 1.4

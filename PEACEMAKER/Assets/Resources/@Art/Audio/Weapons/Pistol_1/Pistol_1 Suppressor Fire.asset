@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e741ac5eb03e24385ed1fb16be686e, type: 3}
   m_Name: Pistol_1 Suppressor Fire
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 6ddd05b15d922ce48b3db1838a928d54, type: 3}
+  audioClip: {fileID: 8300000, guid: f7817ce4eb9f09a4e979e67ef733c8d8, type: 3}
   output: {fileID: 0}
   mute: 0
   bypassEffects: 0

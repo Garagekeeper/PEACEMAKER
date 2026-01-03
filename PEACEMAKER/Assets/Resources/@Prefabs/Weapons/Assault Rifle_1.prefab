@@ -170,7 +170,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 113995438697614323}
-  - component: {fileID: 7557741635051506511}
   m_Layer: 9
   m_Name: Muzzle
   m_TagString: Untagged
@@ -193,21 +192,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 395104231706130819}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7557741635051506511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113995438697614322}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a135ad6b9dd3db1468b9190dae0645dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  updateMode: 0
-  speedMagnitude: 0
-  speedKmPerHour: 0
 --- !u!1 &113995438816397987
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,8 +542,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 395104232344178881}
-  - component: {fileID: 395104232344178887}
-  - component: {fileID: 395104232344178880}
   m_Layer: 9
   m_Name: Iron Sight
   m_TagString: Untagged
@@ -585,48 +567,6 @@ Transform:
   - {fileID: 2294987322174068981}
   m_Father: {fileID: 395104232586870352}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &395104232344178887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395104232344178882}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9627d511a2afc3243bdaeff46f84d4b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: Sight
-  Name: 
-  m_damage: 100
-  m_spread: 100
-  m_fireRate: 100
-  m_range: 100
-  m_muzzleVelocity: 100
-  m_recoil: 100
-  m_visualRecoil: 100
-  m_aimSpeed: 100
---- !u!114 &395104232344178880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395104232344178882}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cca8e4f45194a154e843ffa1d55d5d99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  presets:
-  - fieldOfView: 55
-    weaponFieldOfView: 50
-    position: {x: -0.08, y: 0.023, z: -0.1}
-    rotation: {x: 0, y: 0, z: -4}
-    leanRightOffset: {x: -0.038, y: 0.007, z: 0}
-    leanLeftOffset: {x: 0.038, y: 0.007, z: 0}
-  index: 0
 --- !u!1 &395104232373893062
 GameObject:
   m_ObjectHideFlags: 0
@@ -721,7 +661,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 395104232405325147}
-  - component: {fileID: 2692164484776435222}
   m_Layer: 9
   m_Name: Ejection Port
   m_TagString: Untagged
@@ -745,21 +684,6 @@ Transform:
   - {fileID: 6743192736626129374}
   m_Father: {fileID: 395104231706130819}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2692164484776435222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395104232405325092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a135ad6b9dd3db1468b9190dae0645dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  updateMode: 0
-  speedMagnitude: 0
-  speedKmPerHour: 0
 --- !u!1 &395104232586870353
 GameObject:
   m_ObjectHideFlags: 0
@@ -1669,6 +1593,7 @@ SkinnedMeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -2100,7 +2025,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1072676321255195851}
-  - component: {fileID: 8178921448012237470}
   m_Layer: 9
   m_Name: Stock
   m_TagString: Untagged
@@ -2123,28 +2047,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2943958558639318769}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8178921448012237470
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7482238148550659107}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9627d511a2afc3243bdaeff46f84d4b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: Stock
-  Name: Stock
-  m_damage: 100
-  m_spread: 100
-  m_fireRate: 100
-  m_range: 100
-  m_muzzleVelocity: 100
-  m_recoil: 100
-  m_visualRecoil: 100
-  m_aimSpeed: 100
 --- !u!1 &7640301785304309447
 GameObject:
   m_ObjectHideFlags: 0
@@ -2224,6 +2126,7 @@ SkinnedMeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -2496,7 +2399,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7154012359441043210}
-  - component: {fileID: 3234637459412746662}
   m_Layer: 9
   m_Name: No Stock
   m_TagString: Untagged
@@ -2519,28 +2421,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2943958558639318769}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3234637459412746662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8224483896216022519}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9627d511a2afc3243bdaeff46f84d4b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: Stock
-  Name: No Stock
-  m_damage: 500
-  m_spread: 500
-  m_fireRate: 500
-  m_range: 500
-  m_muzzleVelocity: 500
-  m_recoil: 500
-  m_visualRecoil: 500
-  m_aimSpeed: 500
 --- !u!1 &8362838153693105717
 GameObject:
   m_ObjectHideFlags: 0

@@ -222,6 +222,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -342,7 +343,7 @@ GameObject:
   - component: {fileID: 170779014392108881}
   - component: {fileID: 7948182019018825693}
   - component: {fileID: 3080036204814230213}
-  - component: {fileID: 7542239725586479655}
+  - component: {fileID: 4968191198318949991}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -436,6 +437,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -469,7 +471,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &7542239725586479655
+--- !u!114 &4968191198318949991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -478,9 +480,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5264147803695479497}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eafe08ac28c19d0489239df94b9f9aec, type: 3}
+  m_Script: {fileID: 11500000, guid: f8f98ca34b404e1a99c2b1a382173057, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.UI.SetLabelName
   target: {fileID: 667333840884347552}
 --- !u!1 &5997847055017535619
 GameObject:
@@ -604,7 +606,7 @@ GameObject:
   - component: {fileID: 7542239724753557608}
   - component: {fileID: 7542239724753557605}
   - component: {fileID: 7542239724753557606}
-  - component: {fileID: 7542239724753557607}
+  - component: {fileID: 3644187026403322120}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -698,6 +700,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -731,7 +734,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &7542239724753557607
+--- !u!114 &3644187026403322120
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -740,9 +743,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7542239724753557609}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eafe08ac28c19d0489239df94b9f9aec, type: 3}
+  m_Script: {fileID: 11500000, guid: f8f98ca34b404e1a99c2b1a382173057, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.UI.SetLabelName
   target: {fileID: 7542239725167450460}
 --- !u!1 &7542239725167450461
 GameObject:
@@ -873,7 +876,7 @@ GameObject:
   - component: {fileID: 7542239725950518058}
   - component: {fileID: 7542239725950518055}
   - component: {fileID: 7542239725950518056}
-  - component: {fileID: 7542239725950518057}
+  - component: {fileID: 2559705944185149991}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -967,6 +970,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1000,7 +1004,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &7542239725950518057
+--- !u!114 &2559705944185149991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1009,9 +1013,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7542239725950518059}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eafe08ac28c19d0489239df94b9f9aec, type: 3}
+  m_Script: {fileID: 11500000, guid: f8f98ca34b404e1a99c2b1a382173057, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.UI.SetLabelName
   target: {fileID: 7679690332946792295}
 --- !u!1 &7679690332946792294
 GameObject:

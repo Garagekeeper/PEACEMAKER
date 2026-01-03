@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e741ac5eb03e24385ed1fb16be686e, type: 3}
   m_Name: UI Select
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: f128d5da714b0694dbcbd767aa0e82b3, type: 3}
+  audioClip: {fileID: 8300000, guid: b60a1f038993a4e47b4637b2d9678445, type: 3}
   output: {fileID: 0}
   mute: 0
   bypassEffects: 0

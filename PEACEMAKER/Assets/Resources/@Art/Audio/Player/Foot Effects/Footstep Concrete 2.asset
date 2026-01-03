@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e741ac5eb03e24385ed1fb16be686e, type: 3}
   m_Name: Footstep Concrete 2
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 1b9123f42d7000344af3b96d404500b0, type: 3}
+  audioClip: {fileID: 8300000, guid: 6ee2f64617c080b45b7247dd31657538, type: 3}
   output: {fileID: 0}
   mute: 0
   bypassEffects: 0

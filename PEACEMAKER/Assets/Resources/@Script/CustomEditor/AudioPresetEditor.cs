@@ -1,5 +1,4 @@
 ﻿#if UNITY_EDITOR
-using Akila.FPSFramework;
 using Resources.Script.Audio;
 using UnityEditor;
 using UnityEngine;

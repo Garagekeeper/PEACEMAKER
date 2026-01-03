@@ -10,6 +10,8 @@ namespace Resources.Script.Creature
     {
         public ECreatureType CreatureType { get; protected set; }
         public bool IsInvincible;
+
+        public int CreatureLevel { get;  protected set; }
    
         protected long Kills { get; set; }
         

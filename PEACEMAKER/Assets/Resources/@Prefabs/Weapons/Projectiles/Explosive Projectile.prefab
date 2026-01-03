@@ -34,7 +34,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!96 &3090107862379321665
 TrailRenderer:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -80,6 +80,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_Time: 0.1
   m_PreviewTimeScale: 1
   m_Parameters:
@@ -147,7 +148,6 @@ TrailRenderer:
     shadowBias: 0.5
     generateLightingData: 0
   m_MinVertexDistance: 0.1
-  m_MaskInteraction: 0
   m_Autodestruct: 0
   m_Emitting: 1
   m_ApplyActiveColorSpace: 0
@@ -239,6 +239,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &5533149664834043029
 GameObject:
@@ -249,10 +250,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5533149664834043034}
-  - component: {fileID: 5533149664834043035}
   - component: {fileID: -6901600008566424722}
-  - component: {fileID: -3600595420706818590}
-  - component: {fileID: 8463983270834180159}
   m_Layer: 0
   m_Name: Explosive Projectile
   m_TagString: Untagged
@@ -277,58 +275,6 @@ Transform:
   - {fileID: 4318224737487219244}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5533149664834043035
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5533149664834043029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e31de3ee62dd559429622f7a0dcaad31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hittableLayers:
-    serializedVersion: 2
-    m_Bits: 14651
-  decalDirection: 0
-  speed: 100
-  gravity: 1
-  force: 20
-  lifeTime: 5
-  defaultDecal: {fileID: 1000010844420130, guid: 4edabb1c0dde62743b137378c7d22980,
-    type: 3}
-  hitRadius: 0.5
-  destroyOnImpact: 1
-  useSourceVelocity: 1
-  useAutoScaling: 1
-  scaleMultipler: 200
-  range: 300
-  damageRangeCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 0.4
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!54 &-6901600008566424722
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -356,69 +302,3 @@ Rigidbody:
   m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &-3600595420706818590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5533149664834043029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5341f36bbf0c9f459fee374b94ec901, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 0
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 47423
-  deathZone: 3
-  damageZone: 3
-  maxDamage: 7
-  force: 7
-  delay: 5
-  ignoreGlobalScale: 1
-  damageable: 0
-  health: 25
-  exlopeAfterDelay: 0
-  destroyOnExplode: 1
-  clearDelay: 20
-  explosion: {fileID: 3423798242356165502, guid: 9efa635e0a33d344aa68a8198890b1da,
-    type: 3}
-  craterDecal: {fileID: 4868516944105587278, guid: e64ede6d6c9dce741ba875d8a6a5a4ee,
-    type: 3}
-  explosionEffect: {fileID: 0}
-  explosionEffectForce: 1
-  explosionEffactOffcet: {x: 0, y: 1.2, z: 0}
-  explosionEffactRotationOffset: {x: 0, y: 0, z: 0}
-  explosionSize: 1.5
-  craterSize: 1.4
-  cameraShake: 2
-  audioLowPassFilter: 1
-  lowPassCutoffFrequency: 45999
-  lowPassTime: 2
-  lowPassSmoothness: 0.1
-  debug: 1
-  ranges: 1
-  rays: 1
-  onExplode:
-    m_PersistentCalls:
-      m_Calls: []
-  sourcePlayer: {fileID: 0}
---- !u!114 &8463983270834180159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5533149664834043029}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7caee19a8a77715408fa63634de3ab5e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ignoreHitDetection: 1
-  ignoreLaserDetection: 1
-  ignoreWallAvoidance: 1
-  ignoreFallDamage: 0
-  ignoreMovingPlatform: 0

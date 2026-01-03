@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e741ac5eb03e24385ed1fb16be686e, type: 3}
   m_Name: Hitmarker
   m_EditorClassIdentifier: 
-  audioClip: {fileID: 8300000, guid: 8cfc67226e59dc649b0afdf0911e0caf, type: 3}
+  audioClip: {fileID: 8300000, guid: 33ebe87c34cfde144a28c23c65d691d3, type: 3}
   output: {fileID: 0}
   mute: 0
   bypassEffects: 0

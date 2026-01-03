@@ -17,8 +17,7 @@ namespace Resources.Script.Managers
         private void Awake()
         {
             _radialProgressImg = radialImage.GetComponent<Image>();
-            _radialProgressText = radialText.GetComponent<TextMeshProUGUI>();
-            print(_radialProgressText);
+            _radialProgressText = radialText.GetComponent<TextMeshProUGUI>();   
         }
 
         public void LoadScene(string sceneName)
