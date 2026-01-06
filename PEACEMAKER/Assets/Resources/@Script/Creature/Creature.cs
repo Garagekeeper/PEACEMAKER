@@ -30,7 +30,7 @@ namespace Resources.Script.Creature
             
         }
         
-        public void GetKill()
+        public virtual void GetKill()
         {
             Kills += 1;
         }

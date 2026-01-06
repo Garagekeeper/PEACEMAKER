@@ -233,7 +233,10 @@ namespace Resources.Script.Firearm
             // Exit if the hit target is the same as the character
             if (hit.transform == FireArm.Owner.CharacterController.transform) return;
 
-            float damageMultiplier = 1;
+            // 부착물 등 내부의 요소에 의해서 결정되는 배수
+            float damageMultiplierInternal = 1;
+            // 선택한 능력치에 따라서 결정되는 배수
+            float damageMultiplierExternal = 1;
 
             // Handle damageable groups
             // 데미지를 받을 수 있는 부위
@@ -241,7 +244,7 @@ namespace Resources.Script.Firearm
             if (hit.transform.TryGetComponent(out IDamageablePart damageablePart))
             {
                 // 뒤에 1 부착물 mod
-                damageMultiplier = damageablePart.DamageMultiplier * 1f;
+                damageMultiplierInternal = damageablePart.DamageMultiplier * 1f;
                 shouldHighlight = damageablePart.DamageMultiplier != 1 ? true : false;
             }
 
@@ -251,7 +254,7 @@ namespace Resources.Script.Firearm
             // Handle damageable objects
             if ( damageable is { IsDead: false })
             {
-                var totalDamage = damage * damageMultiplier;
+                var totalDamage = damage * damageMultiplierInternal * damageMultiplierExternal;
 
                 //GameObject creatureGo = null;
 

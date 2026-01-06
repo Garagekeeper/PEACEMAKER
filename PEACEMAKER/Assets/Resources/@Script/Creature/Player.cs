@@ -37,6 +37,20 @@ namespace Resources.Script.Creature
             SystemManager.UI.HpEffect.TriggerDamageEffect();
         }
 
+        public override void GetKill()
+        {
+            base.GetKill();
+            LevelUp();
+            
+        }
+
+        public void LevelUp()
+        {
+            // 0. 경험치통 증가
+            // 1. 능력 선택 UI 호출
+            SystemManager.UI.OnOffAbilityUI(true);
+        }
+
         
         
     }

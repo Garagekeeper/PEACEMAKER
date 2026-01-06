@@ -26,6 +26,7 @@ namespace Resources.Script.Managers
         public GameObject MenuObject { get; set; }
 
         [field: SerializeField] public MenuController MenuController { get; set; }
+        [field: SerializeField] public AbilityPanelController AbilityController { get; set; }
 
         //private PauseMenu currentPauseMenu;
 
@@ -161,6 +162,11 @@ namespace Resources.Script.Managers
             PlayerCardHUDIns.Setup(player);
             PlayerCardHUDIns.UpdateCard();
             PlayerCardHUDIns.Enable();
+        }
+
+        public void OnOffAbilityUI(bool wantOn)
+        {
+            AbilityController.gameObject.SetActive(wantOn);
         }
 
         public void TogglePause()
