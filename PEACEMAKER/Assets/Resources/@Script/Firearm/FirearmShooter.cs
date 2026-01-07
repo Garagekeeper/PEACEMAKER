@@ -1,5 +1,6 @@
 ﻿using Resources.Script.Controller;
-using Resources.Script.Creature;
+using Resources.Script.Creatures;
+using Resources.Script.Decal;
 using Resources.Script.Managers;
 using UnityEngine;
 using static Resources.Script.Defines;
@@ -40,7 +41,7 @@ namespace Resources.Script.Firearm
 
             _mainCam = GetMainCamera();
             //mask |= LayerMask.GetMask("FPS Object");
-            mask |= LayerMask.GetMask("Enviroment");
+            mask |= LayerMask.GetMask("Environment");
             //mask |= LayerMask.GetMask("Iteractable");
             mask |= LayerMask.GetMask("Enemy");
         }
@@ -225,7 +226,7 @@ namespace Resources.Script.Firearm
                 return;
             }
 
-            var creature = FireArm.Owner.CharacterController.GetComponent<Creature.Creature>();
+            var creature = FireArm.Owner.CharacterController.GetComponent<Creature>();
 
             // Invoke hit callbacks for the firearm
             InvokeHitCallbacks(FireArm.Owner.CharacterController.gameObject, ray, hit);

@@ -15,11 +15,11 @@ TagManager:
   - Enemy Root
   - Enemy
   - Player
-  - 
+  - Pickup
   - 
   - Post-Procssing
   - FPS Object
-  - Enviroment
+  - Environment
   - 
   - Iteractable
   - 

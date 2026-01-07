@@ -91,6 +91,7 @@ namespace Resources.Script
             Enemy=1,
             Npc=2,
         }
+        
 
         public enum ECreatureStates
         {
@@ -100,8 +101,13 @@ namespace Resources.Script
             Skill = 3,
             Dead = 4,
         }
-        
-        
+
+        public enum ERarity
+        {
+            Normal = 0,
+            Rare = 1,
+            Epic = 2,
+        }
         
         public enum EVector3Direction
         {

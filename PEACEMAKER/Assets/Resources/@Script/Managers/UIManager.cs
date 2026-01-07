@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Resources.Script.Controller;
-using Resources.Script.Creature;
+using Resources.Script.Creatures;
 using Resources.Script.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;

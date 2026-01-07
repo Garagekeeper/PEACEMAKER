@@ -1,5 +1,5 @@
 ﻿using System;
-using Resources.Script.Creature;
+using Resources.Script.Creatures;
 using Resources.Script.Managers;
 using UnityEngine;
 using static Resources.Script.Defines;
