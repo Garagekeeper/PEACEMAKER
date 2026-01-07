@@ -160,7 +160,7 @@ namespace Resources.Script.Managers
             PlayerCardHUDIns = Instantiate(PlayerCardHUDRef);
             PlayerCardHUDIns.transform.SetParent(HUDObject.transform, false);
             PlayerCardHUDIns.Setup(player);
-            PlayerCardHUDIns.UpdateCard();
+            PlayerCardHUDIns.UpdateCardHp();
             PlayerCardHUDIns.Enable();
         }
 

@@ -8,6 +8,29 @@ namespace Resources.Script.Creatures
 {
     public class Player : DamageableObject, IPickupCollector
     {
+        [Header("Exp")] 
+        [SerializeField] private int maxExp;
+        [SerializeField] private int currExp;
+        public int CurrExp
+        {
+            get => currExp;
+            set
+            {
+                if (currExp == value) return;
+                
+                currExp = Math.Clamp(value, 0, MaxExp);
+                if (currExp == MaxExp)
+                    LevelUp();
+            }
+        }
+
+        public int MaxExp
+        {
+            get=>maxExp;
+            private set => maxExp = value;
+        }
+        
+        
         public PlayerController PController { get; private set; }
         protected override void Awake()
         {
@@ -15,6 +38,7 @@ namespace Resources.Script.Creatures
             CreatureType = ECreatureType.Player;
             SystemManager.Game.MainPlayer = this;
             PController = GetComponent<PlayerController>();
+            MaxExp = 20;
         }
 
         protected override void Start()
@@ -24,7 +48,8 @@ namespace Resources.Script.Creatures
         
         protected override void Update()
         {
-            SystemManager.UI.PlayerCardHUDIns.UpdateCard();
+            SystemManager.UI.PlayerCardHUDIns.UpdateCardHp();
+            SystemManager.UI.PlayerCardHUDIns.UpdateCardExp();
         }
 
         public override void OnDeath()
@@ -34,13 +59,13 @@ namespace Resources.Script.Creatures
 
         public override void OnDamage(float value, Creature attackBy, bool isCrit = false)
         {
-            base.OnDamage(value, attackBy);
+            base.OnDamage(value, attackBy ,isCrit);
             SystemManager.UI.HpEffect.TriggerDamageEffect();
         }
 
         public override void GetKill()
         {
-            base.GetKill();
+            
         }
 
         private void LevelUp()
@@ -48,32 +73,64 @@ namespace Resources.Script.Creatures
             // 0. 경험치통 증가
             // 1. 능력 선택 UI 호출
             SystemManager.UI.OnOffAbilityUI(true);
+            CurrExp = 0;
         }
             
 
         private void OnTriggerEnter(Collider other)
         {
             // 상대가 Pickup 아이템이고, 내가 픽업을 수집하면
-            if (other.transform.TryGetComponent<IPickup>(out var pickup) &&
-                TryGetComponent<IPickupCollector>(out var collector))
+            if (other.transform.TryGetComponent<IPickup>(out var pickup))
             {
                 // 수집처리
-                collector.Collect(pickup);
+                Collect(pickup);
+                // pickup에서 수집시 함수 호출
                 pickup.OnPickedUp();
             }
         }
 
         public void Collect(IPickup pickup)
         {
+            // 0. ExpGem이면 Gem 획득처리
             if (pickup is ExpGem gem)
             {
-                AddGem();
+                AddGem(gem);
             }
         }
 
-        private void AddGem()
+        /// <summary>
+        /// ExpGem획득 처리 함수
+        /// </summary>
+        /// <param name="gem"></param>
+        private void AddGem(ExpGem gem)
         {
-            LevelUp();
+            int expAmount = 0;
+            // 0. Gem의 희귀도에 따라서 경험치양 결정
+            switch (gem.Rarity)
+            {
+                case ERarity.Normal:
+                    expAmount = 10;
+                    break;
+                case ERarity.Rare:
+                    expAmount = 20;
+                    break;
+                case ERarity.Epic:
+                    expAmount = 50;
+                    break;
+            }
+            
+            // 1. 경험치 획득
+            GetExp(expAmount);
+        }
+
+        /// <summary>
+        /// 경험치 획득 함수
+        /// </summary>
+        /// <param name="expAmount"></param>
+        private void GetExp(int expAmount)
+        {
+            // 프로퍼티 내부에서 클램프, 레벨업 다 해줌.
+            CurrExp += expAmount;
         }
     }
 }

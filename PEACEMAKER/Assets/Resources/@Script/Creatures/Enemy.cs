@@ -9,13 +9,14 @@ namespace Resources.Script.Creatures
 {
     public class Enemy : DamageableObject
     {
-        public int rarity;
+        public ERarity Rarity { get; set; }
         private EnemyController  _controller;
         protected override void Awake()
         {
             base.Awake();
             CreatureType = ECreatureType.Enemy;
             _controller = GetComponent<EnemyController>();
+            Rarity = ERarity.Normal;
         }
         
         public override void OnDamage(float value, Creature attackBy, bool isCrit = false)
@@ -35,7 +36,7 @@ namespace Resources.Script.Creatures
             GetComponent<CharacterController>().enabled = false;
             
             // spawn EXP gem
-            SystemManager.ObjManager.SpawnGem((ERarity)rarity, this);
+            SystemManager.ObjManager.SpawnGem(Rarity, this);
             
             Destroy(gameObject, 5);
         }

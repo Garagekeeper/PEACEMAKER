@@ -185,7 +185,7 @@ namespace Resources.Script.Managers
                 return;
             }
 
-            spawnedGem.Init(spawnedFrom.dropTransform.position); // 필요한 초기화
+            spawnedGem.Init(spawnedFrom.dropTransform.position, rarity); // 필요한 초기화
             
         }
     }

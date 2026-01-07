@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using Resources.Script.Managers;
+using static Resources.Script.Defines;
 
 namespace Resources.Script.InteractiveObject
 {
     public class ExpGem : InteractiveObj, IPickup
     {
-        public enum GemState { None, Dropping, Idle, Attracting }
+        private enum GemState { None, Dropping, Idle, Attracting }
 
         [Header("Drop Settings")]
         [SerializeField] private float dropDuration = 1.2f;   // 천천히 이동하도록 설정
@@ -22,7 +23,6 @@ namespace Resources.Script.InteractiveObject
         
         [Header("Attract Settings")]
         [SerializeField] private float attractSpeed = 15f;
-        [SerializeField] private float attractRange = 5f;
 
         private GemState _state = GemState.None;
         private Vector3 _startPos;
@@ -30,6 +30,7 @@ namespace Resources.Script.InteractiveObject
         private float _elapsedTime;
         private Transform _playerTransform;
         private Collider _collider;
+        public ERarity Rarity { get; private set; }
 
         private void Awake()
         {
@@ -40,7 +41,7 @@ namespace Resources.Script.InteractiveObject
         /// <summary>
         /// 젬 드랍 초기화
         /// </summary>
-        public void Init(Vector3 spawnPos)
+        public void Init(Vector3 spawnPos, ERarity rarity)
         {
             _startPos = spawnPos;
             _elapsedTime = 0f;
@@ -62,6 +63,7 @@ namespace Resources.Script.InteractiveObject
                 _targetPos = CalculateGroundPosition(new Vector3(tempTarget.x, spawnPos.y, tempTarget.z));
             }
 
+            Rarity = rarity;
             _state = GemState.Dropping;
         }
 

@@ -1,5 +1,4 @@
-﻿using Resources.Script.Controller;
-using Resources.Script.Creatures;
+﻿using Resources.Script.Creatures;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,16 +10,16 @@ namespace Resources.Script.UI
         public TextMeshProUGUI playerNameText;
         public Slider playerHealthBar;
         public Slider playerDamageBar;
+        public Slider playerNextExpBar;
         public float damageFollowSpeed = 1;
-
         
         private Player _player;
         
-        private float currentDamage;
-
-        private bool isEnabled;
-
-        private float maxHealth;
+        private float _currentDamage;
+        private float _currentExp; 
+        private bool _isEnabled;
+        private float _maxHealth;
+        private float _expTarget;
 
         public void Setup(Player player)
         {
@@ -32,68 +31,73 @@ namespace Resources.Script.UI
 
             if (damageable == null)
             {
-                Debug.LogError("Couldn't find 'IDamagale' on Actor. HealthBar update aborted.");
+                Debug.LogError("Couldn't find 'IDamageable' on Actor. HealthBar update aborted.");
                 return;
             }
-
-            maxHealth = damageable.Hp;
-        }
-
-        // 하얀 바가 줄어들고, 그 만큼 빨간바가 줄어듬
-        public void UpdateCard()
-        {
-            if (!playerHealthBar || !playerDamageBar) return;
-            // 하얀바가 줄어든 만큼 빨간 바가 천천히 줄어듬
-            currentDamage = Mathf.Lerp(currentDamage, playerHealthBar.value, Time.deltaTime * 5 * damageFollowSpeed);
-            playerDamageBar.value = currentDamage;
             
             //TODO 캐릭별로 이름 만들기
             string playerName = string.IsNullOrEmpty(_player.gameObject.name) ? "UNKNOWN_ACTOR_NAME" : _player.gameObject.name;
             playerNameText.SetText(playerName);
-            
-            IDamageable damageable = _player.gameObject.GetComponent<IDamageable>();
-            if (damageable == null)
-            {
-                Debug.LogError("Couldn't find 'IDamagale' on Actor. HealthBar update aborted.");
-                return;
-            }
-            
-            if (playerHealthBar == null)
-            {
-                Debug.LogError("PlayerHealthBar is null.");
-                return;
-            }
 
-            //최대 값 변경
-            playerHealthBar.maxValue = maxHealth;
-            // 실제 체력으로 슬라이더 조정
-            playerHealthBar.value = damageable.Hp;
+            _maxHealth = damageable.Hp;
+            playerNextExpBar.value = 0;
         }
+
+        // 하얀 바가 줄어들고, 그 만큼 빨간바가 줄어듬
+        public void UpdateCardHp()
+        {
+            if (!playerHealthBar || !playerDamageBar) return;
+            //최대 값 변경 (하얀 바)
+            playerHealthBar.maxValue = _maxHealth;
+            // 실제 체력으로 슬라이더 조정
+            playerHealthBar.value = _player.Hp;
+            
+            // 하얀바가 줄어든 만큼 빨간 바가 천천히 줄어듬
+            // (빨간 바)
+            _currentDamage = Mathf.Lerp(_currentDamage, playerHealthBar.value, Time.deltaTime * 5 * damageFollowSpeed);
+            playerDamageBar.value = _currentDamage;
+            
+           
+        }
+
+        public void UpdateCardExp()
+        {
+            _expTarget = GetExpRatio();
+            
+            _currentExp = Mathf.Lerp(_currentExp, _expTarget, Time.deltaTime * 5 * damageFollowSpeed);
+            playerNextExpBar.value = _currentExp;
+        }   
+
+        private float GetExpRatio()
+        {
+            var ratio = _player.CurrExp / (float)_player.MaxExp;
+
+            return ratio;
+        }
+        
 
         public void Enable()
         {
             if (!_player) return;
 
-            isEnabled = true;
+            _isEnabled = true;
             foreach (Transform t in transform)
-                t.gameObject.SetActive(isEnabled);
+                t.gameObject.SetActive(_isEnabled);
         }
 
-        public void Disable(Player player)
+        public void Disable()
         {
             if (!_player) return;
 
-            isEnabled = false;
+            _isEnabled = false;
             foreach (Transform t in transform)
-                t.gameObject.SetActive(isEnabled);
+                t.gameObject.SetActive(_isEnabled);
         }
 
-        public virtual bool CheckIfIsPlayer(Player player)
+        public bool CheckIfIsPlayer(Player player)
         {
             if (player == null) return false;
-            if (player.PController == null) return false;
-
-            return true;
+            return player.PController != null;
         }
     }
 }
