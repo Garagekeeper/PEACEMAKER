@@ -36,11 +36,31 @@ namespace Resources.Script.InteractiveObject
         {
             _collider = GetComponent<Collider>();
             _state = GemState.None;
+            ObjectType = EObjectType.ExpGem;
         }
 
         /// <summary>
         /// 젬 드랍 초기화
         /// </summary>
+
+        public void Init(Vector3 spawnPos, string rarity)
+        {
+            ERarity rarityEnum = ERarity.Normal;
+            switch (rarity)
+            {
+                case "Normal":
+                    rarityEnum = ERarity.Normal;
+                    break;
+                case "Rare":
+                    rarityEnum = ERarity.Rare;
+                    break;
+                case "Epic":
+                    rarityEnum = ERarity.Epic;
+                    break;
+            }
+            
+            Init(spawnPos, rarityEnum);
+        }
         public void Init(Vector3 spawnPos, ERarity rarity)
         {
             _startPos = spawnPos;
@@ -75,7 +95,7 @@ namespace Resources.Script.InteractiveObject
             if (_collider == null) return hitPoint;
             
             // 콜라이더의 반지름
-            float pivotToBottomOffset = transform.position.y - _collider.bounds.min.y;
+            float pivotToBottomOffset = _collider.bounds.center.y - _collider.bounds.min.y;
             
             // 바닥에서 콜라이더의 지름 만큼 떨어뜨려서 공중에 뜨도록
             return hitPoint + Vector3.up * (pivotToBottomOffset * 2);
@@ -148,7 +168,7 @@ namespace Resources.Script.InteractiveObject
 
         public void OnPickedUp()
         {
-            HeadManager.ObjManager.ReturnSourceToPool(this);
+            HeadManager.ObjManager.Despawn(this);
         }
         
     }

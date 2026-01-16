@@ -118,5 +118,14 @@ namespace Resources.Script
             Up = 4,
             Down = 5
         }
+        /*-------------------------
+        *          objectType
+        ------------------------*/
+        public enum EObjectType
+        {
+            Player=0,
+            Enemy,
+            ExpGem,
+        }
     }
 }

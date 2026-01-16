@@ -6,7 +6,7 @@ namespace Resources.Script.Creatures
     /// <summary>
     /// 모든 생명체의 기본 클래스
     /// </summary>
-    public class Creature : MonoBehaviour
+    public class Creature : BaseObject
     {
         public ECreatureType CreatureType { get; protected set; }
         public bool IsInvincible;

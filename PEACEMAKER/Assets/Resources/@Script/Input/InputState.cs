@@ -16,8 +16,11 @@ namespace Resources.Script.Input
         public bool ReloadReleased { get; internal set; }
 
         public bool JumpPressed { get; internal set; }
+        public bool JumpHeld { get; internal set; }
+        public bool JumpReleased { get; internal set; }
 
-        public bool PausePressed { get; internal set; }
+        public bool PauseToggled { get; internal set; }
+        public bool PauseState { get; internal set; }
 
         public bool SprintPressed { get; internal set; }
         public bool SprintReleased { get; internal set; }
@@ -44,15 +47,15 @@ namespace Resources.Script.Input
             ReloadPressed = false;
             ReloadReleased = false;
 
-            JumpPressed = false;
+            //JumpPressed = false;
 
-            PausePressed = false;
+            PauseToggled = false;
 
-            SprintPressed = false;
-            SprintReleased = false;
+            //SprintPressed = false;
+            //SprintReleased = false;
 
-            AimPressed = false;
-            AimReleased = false;
+            //AimPressed = false;
+            //AimReleased = false;
 
             CrouchToggled = false;
 

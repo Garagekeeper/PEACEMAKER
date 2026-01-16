@@ -93,14 +93,14 @@ namespace Resources.Script.Managers
 
         void Init()
         {
-            string sceneName = SceneManager.GetActiveScene().name;
+            var sceneName = SceneManager.GetActiveScene().name;
             if (sceneName.Contains("Game"))
             {
                 HUDObject.SetActive(true);
             }
             else if (sceneName.Contains("Main"))
             {
-                DestroyHUDObject();
+                //DestroyHUDObject();
                 HeadManager.UI.MenuController.OpenMainMenu();
                 UnlockCursor();
                 HUDObject.SetActive(false);

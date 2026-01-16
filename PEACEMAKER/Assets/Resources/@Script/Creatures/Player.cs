@@ -40,6 +40,7 @@ namespace Resources.Script.Creatures
             PController = GetComponent<PlayerController>();
             //TODO 경험치량 조절
             MaxExp = 20;
+            ObjectType = EObjectType.Player;
         }
 
         protected override void Start()

@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using Resources.Script.Creatures;
+using UnityEngine;
 
 namespace Resources.Script.InteractiveObject
 {
-    public class InteractiveObj : MonoBehaviour, IPoolable
+    public class InteractiveObj : BaseObject
     {
         public virtual void OnSpawn()
         {

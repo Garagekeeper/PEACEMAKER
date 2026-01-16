@@ -35,6 +35,7 @@ namespace Resources.Script.Controller
 
         private void Update()
         {
+            UpdatePause();
         }
 
         public Menu FindMenu(string menuName)
@@ -101,6 +102,27 @@ namespace Resources.Script.Controller
             }
         }
 
+        public void UpdatePause()
+        {
+            if (HeadManager.Input.State.PauseState)
+            {
+                // 메인메뉴가 열려 있다면 PauseMenu를 띄우면 안 됨
+                if (IsMainMenuOpen)
+                    return;
+                
+                if (MenuStack.Count == 0)
+                {
+                    Menu menu = FindMenu(DefaultMenu);
+                    if (menu)
+                        OpenMenu(menu);
+                }
+                else
+                {
+                    PopMenu();
+                }
+            }
+        }
+        
         public void OnPauseInput()
         {
             // ESC 눌렀을 때

@@ -29,18 +29,17 @@ namespace Resources.Script.Input
         private void Update()
         {
             if (State == null) return;
-
+            State.ClearFrame();
             // 움직임, 시야는 Update에서 처리(매순간 입력을 받아야)
             // 다른 놈들은 이벤트 형식으로 처리
             State.Move = _playerInput.Player.Move.ReadValue<Vector2>();
             State.Look = _playerInput.Player.Look.ReadValue<Vector2>();
-        }
+            State.JumpPressed = _playerInput.Player.Jump.triggered;
+            State.ReloadPressed = _playerInput.Player.Reload.triggered;
+            State.PauseState = _playerInput.Player.Pause.triggered;
 
-        private void LateUpdate()
-        {
-            if (State == null) return;
-            // 프레임 끝에서 상태 초기화
-            State.ClearFrame();
+            if (_playerInput.Player.SelectInventory.triggered)
+                OnSelectInventoryPerformed(_playerInput.Player.SelectInventory.activeControl);
         }
 
         private void OnDisable()
@@ -74,14 +73,16 @@ namespace Resources.Script.Input
             _playerInput.Player.Aim.canceled += OnAimCanceled;
 
             // Reload
-            _playerInput.Player.Reload.performed += OnReloadPerformed;
-            _playerInput.Player.Reload.canceled += OnReloadCanceled;
+            //_playerInput.Player.Reload.performed += OnReloadPerformed;
+            //_playerInput.Player.Reload.canceled += OnReloadCanceled;
 
             // Jump
-            _playerInput.Player.Jump.performed += OnJumpPerformed;
+            //_playerInput.Player.Jump.started += OnJumpStarted;
+            //_playerInput.Player.Jump.performed += OnJumpPerformed;
+            //_playerInput.Player.Jump.canceled += OnJumpCanceled;
 
             // Pause
-            _playerInput.Player.Pause.performed += OnPausePerformed;
+            //_playerInput.Player.Pause.performed += OnPausePerformed;
 
             // Sprint
             _playerInput.Player.Sprint.started += OnSprintStarted;
@@ -99,12 +100,12 @@ namespace Resources.Script.Input
             _playerInput.Player.LeanRight.canceled += OnLeanRightCanceled;
 
             // Inventory
-            _playerInput.Player.SelectInventory.performed += OnSelectInventoryPerformed;
+            //_playerInput.Player.SelectInventory.performed += OnSelectInventoryPerformed;
 
             _isBound = true;
         }
-
         
+
 
         private void UnBindCallbacks()
         {
@@ -118,12 +119,14 @@ namespace Resources.Script.Input
             _playerInput.Player.Aim.performed -= OnAimPerformed;
             _playerInput.Player.Aim.canceled -= OnAimCanceled;
 
-            _playerInput.Player.Reload.performed -= OnReloadPerformed;
-            _playerInput.Player.Reload.canceled -= OnReloadCanceled;
+            //_playerInput.Player.Reload.performed -= OnReloadPerformed;
+            //_playerInput.Player.Reload.canceled -= OnReloadCanceled;
 
-            _playerInput.Player.Jump.performed -= OnJumpPerformed;
+            //_playerInput.Player.Jump.started -= OnJumpStarted;
+            //_playerInput.Player.Jump.performed -= OnJumpPerformed;
+            //_playerInput.Player.Jump.canceled -= OnJumpCanceled;
 
-            _playerInput.Player.Pause.performed -= OnPausePerformed;
+            //_playerInput.Player.Pause.performed -= OnPausePerformed;
 
             _playerInput.Player.Sprint.started -= OnSprintStarted;
             _playerInput.Player.Sprint.performed -= OnSprintPerformed;
@@ -137,7 +140,7 @@ namespace Resources.Script.Input
             _playerInput.Player.LeanRight.started -= OnLeanRightStarted;
             _playerInput.Player.LeanRight.canceled -= OnLeanRightCanceled;
 
-            _playerInput.Player.SelectInventory.performed -= OnSelectInventoryPerformed;
+            //_playerInput.Player.SelectInventory.performed -= OnSelectInventoryPerformed;
 
             _isBound = false;
         }
@@ -197,23 +200,39 @@ namespace Resources.Script.Input
         {
             if (State == null) return;
             State.ReloadPressed = true;
+            State.ReloadReleased = false;
         }
 
         private void OnReloadCanceled(InputAction.CallbackContext ctx)
         {
             if (State == null) return;
+            State.ReloadPressed = false;
             State.ReloadReleased = true;
         }
 
         // -------------------------
         // |    Jump               |
         // -------------------------
+        
+        private void OnJumpStarted(InputAction.CallbackContext obj)
+        {
+            if (State == null) return;
+            State.JumpHeld = true;
+        }
+
         private void OnJumpPerformed(InputAction.CallbackContext ctx)
         {
             if (State == null) return;
             State.JumpPressed = true;
         }
-
+     
+        private void OnJumpCanceled(InputAction.CallbackContext obj)
+        {
+            if (State == null) return;
+            State.JumpPressed = false;
+            State.JumpHeld = false;
+            State.JumpReleased = true;
+        }
         
         // -------------------------
         // |    Pause              |
@@ -222,7 +241,9 @@ namespace Resources.Script.Input
         private void OnPausePerformed(InputAction.CallbackContext ctx)
         {
             if (State == null) return;
-            State.PausePressed = true;
+            // 토글 발생여부와 실제 적용할 상태를 변경.
+            State.PauseState = !State.PauseState;
+            State.CrouchToggled = true;
         }
 
         // -------------------------
@@ -245,6 +266,7 @@ namespace Resources.Script.Input
         {
             if (State == null) return;
             State.SprintHeld = false;
+            State.SprintPressed = false;
             State.SprintReleased = true;
         }
 
@@ -293,12 +315,12 @@ namespace Resources.Script.Input
         // |    Inventory slot     |
         // -------------------------
         
-        private void OnSelectInventoryPerformed(InputAction.CallbackContext ctx)
+        private void OnSelectInventoryPerformed(InputControl ctx)
         {
             if (State == null) return;
             
             // 키보드 입력이 아니면 종료
-            if (ctx.control is not KeyControl key)
+            if (ctx is not KeyControl key)
             {
                 State.InventoryPressed = null;
                 return;

@@ -17,6 +17,7 @@ namespace Resources.Script.Creatures
             CreatureType = ECreatureType.Enemy;
             _controller = GetComponent<EnemyController>();
             Rarity = ERarity.Normal;
+            ObjectType = EObjectType.Enemy;
         }
         
         public override void OnDamage(float value, Creature attackBy, bool isCrit = false)
@@ -36,7 +37,8 @@ namespace Resources.Script.Creatures
             GetComponent<CharacterController>().enabled = false;
             
             // spawn EXP gem
-            HeadManager.ObjManager.SpawnGem(Rarity, this);
+            
+            HeadManager.ObjManager.Spawn<ExpGem>($"{Rarity}Gem", dropTransform.position);
             
             Destroy(gameObject, 5);
         }
