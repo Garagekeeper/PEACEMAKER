@@ -258,7 +258,7 @@ namespace Resources.Script.Animation
         private void UpdateSingleFrame()
         {
             if (Time.timeScale <= 0) return;
-            if (SystemManager.Game.IsPaused) return;
+            if (HeadManager.Game.IsPaused) return;
 
             // 위치 값 결정
             Vector3 position = DefaultPosition + TargetPosition;

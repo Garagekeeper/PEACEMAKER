@@ -123,23 +123,23 @@ namespace Resources.Script.Firearm
 
             if (SwayAnimation)
             {
-                SwayAnimation.SwayAnimationModifiers[0].InputX = (SystemManager.Input.Look.x / Time.deltaTime) * 0.5f;
-                SwayAnimation.SwayAnimationModifiers[0].InputY = (SystemManager.Input.Look.y / Time.deltaTime) * 0.5f;
+                SwayAnimation.SwayAnimationModifiers[0].InputX = (HeadManager.Input.State.Look.x / Time.deltaTime) * 0.5f;
+                SwayAnimation.SwayAnimationModifiers[0].InputY = (HeadManager.Input.State.Look.y / Time.deltaTime) * 0.5f;
             }
 
             if (SwayAimingAnimation)
             {
                 SwayAimingAnimation.SwayAnimationModifiers[0].InputX =
-                    (SystemManager.Input.Look.x / Time.deltaTime) * 0.5f;
+                    (HeadManager.Input.State.Look.x / Time.deltaTime) * 0.5f;
                 SwayAimingAnimation.SwayAnimationModifiers[0].InputY =
-                    (SystemManager.Input.Look.y / Time.deltaTime) * 0.5f;
+                    (HeadManager.Input.State.Look.y / Time.deltaTime) * 0.5f;
             }
 
             if (SprintingAnimation != null)
             {
                 SprintingAnimation.triggerType = ProceduralAnimation.InputActionType.None;
-                SprintingAnimation.IsPlaying = SystemManager.Input.SprintPressed && 
-                                               (SystemManager.Input.Move != Vector2.zero) && FireArm.FirearmState == EFirearmStates.None;
+                SprintingAnimation.IsPlaying = HeadManager.Input.State.SprintPressed && 
+                                               (HeadManager.Input.State.Move != Vector2.zero) && FireArm.FirearmState == EFirearmStates.None;
             }
 
 
@@ -151,14 +151,14 @@ namespace Resources.Script.Firearm
                 //AimingAnimation.length = _defaultAimingTime / 1;
 
                 AimingAnimation.triggerType = ProceduralAnimation.InputActionType.None;
-                AimingAnimation.IsPlaying = SystemManager.Input.AimHeld;
+                AimingAnimation.IsPlaying = HeadManager.Input.State.AimHeld;
             }
 
             // Update crouch animation state
             if (CrouchAnimation)
             {
                 CrouchAnimation.triggerType = ProceduralAnimation.InputActionType.None;
-                CrouchAnimation.IsPlaying = SystemManager.Input.CrouchToggle;
+                CrouchAnimation.IsPlaying = HeadManager.Input.State.CrouchState;
             }
 
             // Update firearm-related animations based on reload and firing state
@@ -189,23 +189,23 @@ namespace Resources.Script.Firearm
             // Update right and left leaning animations
             if (LeanRightAnimation != null)
             {
-                LeanRightAnimation.IsPlaying = SystemManager.Input.LeanRightInput;
+                LeanRightAnimation.IsPlaying = HeadManager.Input.State.LeanRightHeld;
             }
 
             if (LeanLeftAnimation != null)
             {
-                LeanLeftAnimation.IsPlaying = SystemManager.Input.LeanLeftInput;
+                LeanLeftAnimation.IsPlaying = HeadManager.Input.State.LeanLeftHeld;
             }
 
             // Update right and left aiming lean animations
             if (LeanRightAimAnimation != null)
             {
-                LeanRightAimAnimation.IsPlaying = SystemManager.Input.LeanRightInput;
+                LeanRightAimAnimation.IsPlaying = HeadManager.Input.State.LeanRightHeld;
             }
 
             if (LeanLeftAimAnimation != null)
             {
-                LeanLeftAimAnimation.IsPlaying = SystemManager.Input.LeanLeftInput;
+                LeanLeftAimAnimation.IsPlaying = HeadManager.Input.State.LeanLeftHeld;
             }
         }
         

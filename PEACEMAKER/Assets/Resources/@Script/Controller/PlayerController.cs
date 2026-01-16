@@ -75,7 +75,7 @@ namespace Resources.Script.Controller
 
         private void AddLookValue(Vector2 value)
         {
-            if (!SystemManager.Game.IsPaused)
+            if (!HeadManager.Game.IsPaused)
                 _addedLookValue += value;
         }
 
@@ -105,7 +105,7 @@ namespace Resources.Script.Controller
             defaultHeight = CharacterController.height;
 
             // 착지소리 등록
-            onLand.AddListener(() => SystemManager.Audio.PlayWithPreset(landSfx, transform));
+            onLand.AddListener(() => HeadManager.Audio.PlayWithPreset(landSfx, transform));
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -137,14 +137,14 @@ namespace Resources.Script.Controller
 
         private void Update()
         {
-            if (SystemManager.Game.IsPaused) return;
+            if (HeadManager.Game.IsPaused) return;
             UpdateInventory();
         }
 
         // Update is called once per frame
         private void LateUpdate()
         {
-            if (SystemManager.Game.IsPaused) return;
+            if (HeadManager.Game.IsPaused) return;
             /*-------------------------
             *          Look
             -------------------------*/
@@ -168,16 +168,16 @@ namespace Resources.Script.Controller
             {
                 // 캐릭터 컨트롤러는 최상위에 달려있어서 camera root와 회전이 다르다.
                 // 그래서 w를 눌렀을때 camera root가 보는 방향으로 가기 위해서 보정을 해준다.
-                Vector3 moveDir = (camRootTransform.forward * SystemManager.Input.Move.y +
-                                   camRootTransform.right * SystemManager.Input.Move.x).normalized;
+                Vector3 moveDir = (camRootTransform.forward * HeadManager.Input.State.Move.y +
+                                   camRootTransform.right * HeadManager.Input.State.Move.x).normalized;
 
                 float moveSpeedMultiplier = walkSpeed;
 
-                if (SystemManager.Input.SprintPressed)
+                if (HeadManager.Input.State.SprintPressed)
                     moveSpeedMultiplier = sprintSpeed;
 
 
-                if (Inventory.GetCurrentItem()?.FirearmState == EFirearmStates.Fire || SystemManager.Input.AimHeld)
+                if (Inventory.GetCurrentItem()?.FirearmState == EFirearmStates.Fire || HeadManager.Input.State.AimHeld)
                     moveSpeedMultiplier = walkSpeed;
 
                 if (IsCrouching)
@@ -187,7 +187,7 @@ namespace Resources.Script.Controller
                 _finalVelocity.z = moveDir.z * moveSpeedMultiplier;
 
                 // 점프키가 눌리면 점프 적용
-                if (SystemManager.Input.JumpPressed)
+                if (HeadManager.Input.State.JumpPressed)
                 {
                     onJump?.Invoke();
                     IsCrouching = false;
@@ -218,8 +218,8 @@ namespace Resources.Script.Controller
         
         private void UpdateInventory()
         {
-            if (SystemManager.Input.InventoryPressed == null) return;
-            Inventory.SelectItem((int)SystemManager.Input.InventoryPressed - 1);
+            if (HeadManager.Input.State.InventoryPressed == null) return;
+            Inventory.SelectItem((int)HeadManager.Input.State.InventoryPressed);
         }
 
         /// <summary>
@@ -227,7 +227,7 @@ namespace Resources.Script.Controller
         /// </summary>
         private void UpdateRotation()
         {
-            Vector2 rawLookUnscaled = SystemManager.Input.Look;
+            Vector2 rawLookUnscaled = HeadManager.Input.State.Look;
 
             // 가로, 세로 감도를 곱하고 전체적인 감도를 곱해준다. (체감되도록 100을 곱한다)
             LookAfterModifySensitivity = new Vector2(
@@ -241,7 +241,7 @@ namespace Resources.Script.Controller
             // TODO 플레이하는 컨트롤러에 따라서 장치 감도 조절 및 하드코딩 수정 (FPS CONTROLLER)
             deviceSensitivity = 1 * 0.1f;
 
-            float baseSensitivity = SystemManager.Game.MouseSensitivity * deviceSensitivity;
+            float baseSensitivity = HeadManager.Game.MouseSensitivity * deviceSensitivity;
 
             finalSensitivity = baseSensitivity;
 
@@ -274,20 +274,20 @@ namespace Resources.Script.Controller
 
         private void ApplyCrouching()
         {
-            IsCrouching = SystemManager.Input.CrouchToggle;
+            IsCrouching = HeadManager.Input.State.CrouchState;
             // 달리기나 점프중이면 웅크리기 해제
-            if (SystemManager.Input.SprintPressed && IsCrouching)
+            if (HeadManager.Input.State.SprintPressed && IsCrouching)
                 IsCrouching = false;
 
             // 플레이어가 웅크린 상태면 높이 조절
             float height;
-            if (IsCrouching && SystemManager.Input.CrouchToggle)
+            if (IsCrouching && HeadManager.Input.State.CrouchState)
             {
                 height = Mathf.Lerp(CharacterController.height, crouchHeight, Time.deltaTime * 15);
             }
             else
             {
-                SystemManager.Input.CrouchToggle = false;
+                HeadManager.Input.State.CrouchState = false;
                 height = Mathf.Lerp(CharacterController.height, defaultHeight, Time.deltaTime * 15);
             }
 

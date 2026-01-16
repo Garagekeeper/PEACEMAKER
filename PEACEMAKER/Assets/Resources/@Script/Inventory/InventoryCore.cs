@@ -60,7 +60,7 @@ namespace Resources.Script.Inventory
             if (!CheckValidIndex(index)) return;
             items[SelectedIndex].gameObject.SetActive(false);
             if (!items[SelectedIndex].IsInitialized) return;
-            SystemManager.UI.FirearmHUDs[items[index]].TurnOnOffFirearms(false);
+            HeadManager.UI.FirearmHUDs[items[index]].TurnOnOffFirearms(false);
         }
 
         public void OnFirearm(int index)
@@ -68,8 +68,8 @@ namespace Resources.Script.Inventory
             if (!CheckValidIndex(index)) return;
             items[index].gameObject.SetActive(true);
             if (!items[SelectedIndex].IsInitialized) return;
-            SystemManager.UI.FirearmHUDs[items[index]].TurnOnOffFirearms(true);
-            SystemManager.UI.Crosshair.Firearm = items[index];
+            HeadManager.UI.FirearmHUDs[items[index]].TurnOnOffFirearms(true);
+            HeadManager.UI.Crosshair.Firearm = items[index];
         }
 
         public void OffAll()
@@ -78,7 +78,7 @@ namespace Resources.Script.Inventory
             {
                 firearmController.gameObject.SetActive(false);
                 if (!firearmController.IsInitialized) continue;
-                SystemManager.UI.FirearmHUDs[firearmController].TurnOnOffFirearms(false);
+                HeadManager.UI.FirearmHUDs[firearmController].TurnOnOffFirearms(false);
             }
         }
 

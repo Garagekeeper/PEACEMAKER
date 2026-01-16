@@ -101,7 +101,7 @@ namespace Resources.Script.Managers
             else if (sceneName.Contains("Main"))
             {
                 DestroyHUDObject();
-                SystemManager.UI.MenuController.OpenMainMenu();
+                HeadManager.UI.MenuController.OpenMainMenu();
                 UnlockCursor();
                 HUDObject.SetActive(false);
             }

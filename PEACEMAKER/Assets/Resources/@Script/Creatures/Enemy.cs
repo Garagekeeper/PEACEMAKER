@@ -23,7 +23,7 @@ namespace Resources.Script.Creatures
         {
             
             if (IsDead) return;
-            SystemManager.UI.Hitmarker.Show(isCrit);
+            HeadManager.UI.Hitmarker.Show(isCrit);
             if (IsInvincible) return;
             Hp = Mathf.Max(0, Hp - value);
             if (Hp == 0) HandleDeath(attackBy);
@@ -36,7 +36,7 @@ namespace Resources.Script.Creatures
             GetComponent<CharacterController>().enabled = false;
             
             // spawn EXP gem
-            SystemManager.ObjManager.SpawnGem(Rarity, this);
+            HeadManager.ObjManager.SpawnGem(Rarity, this);
             
             Destroy(gameObject, 5);
         }

@@ -36,20 +36,21 @@ namespace Resources.Script.Creatures
         {
             base.Awake();
             CreatureType = ECreatureType.Player;
-            SystemManager.Game.MainPlayer = this;
+            HeadManager.Game.MainPlayer = this;
             PController = GetComponent<PlayerController>();
+            //TODO 경험치량 조절
             MaxExp = 20;
         }
 
         protected override void Start()
         {
-            SystemManager.UI.AddPlayerCard(this);
+            HeadManager.UI.AddPlayerCard(this);
         }
         
         protected override void Update()
         {
-            SystemManager.UI.PlayerCardHUDIns.UpdateCardHp();
-            SystemManager.UI.PlayerCardHUDIns.UpdateCardExp();
+            HeadManager.UI.PlayerCardHUDIns.UpdateCardHp();
+            HeadManager.UI.PlayerCardHUDIns.UpdateCardExp();
         }
 
         public override void OnDeath()
@@ -60,7 +61,7 @@ namespace Resources.Script.Creatures
         public override void OnDamage(float value, Creature attackBy, bool isCrit = false)
         {
             base.OnDamage(value, attackBy ,isCrit);
-            SystemManager.UI.HpEffect.TriggerDamageEffect();
+            HeadManager.UI.HpEffect.TriggerDamageEffect();
         }
 
         public override void GetKill()
@@ -72,7 +73,7 @@ namespace Resources.Script.Creatures
         {
             // 0. 경험치통 증가
             // 1. 능력 선택 UI 호출
-            SystemManager.UI.OnOffAbilityUI(true);
+            HeadManager.UI.OnOffAbilityUI(true);
             CurrExp = 0;
         }
             

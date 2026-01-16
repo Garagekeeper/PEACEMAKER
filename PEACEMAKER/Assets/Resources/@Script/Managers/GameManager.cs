@@ -1,12 +1,9 @@
-﻿using System;
-using Resources.Script.Controller;
-using Resources.Script.Creatures;
-using UnityEngine;
+﻿using Resources.Script.Creatures;
 using static Resources.Script.Utilities;
 
 namespace Resources.Script.Managers
 {
-    public class GameManager : MonoBehaviour
+    public class GameManager
     {
         public bool IsPaused { get; set; } = false;
         public bool ProcAnimIsActive {get; private set;} = false;
@@ -17,18 +14,14 @@ namespace Resources.Script.Managers
         
         public float MouseSensitivity { get; set; } = 1f;
 
-        private void Awake()
+        public void Init()
         {
             ProcAnimIsActive = true;
-        }
-
-        public void Reset()
-        {
-            SystemManager.Game.IsPaused = false;
+            HeadManager.Game.IsPaused = false;
             UnlockCursor();
             CurrentFirearmNum = -1;
             MainPlayer = null;
-            MouseSensitivity = 1f;
+            //MouseSensitivity = 1f;
         }
     }
 }

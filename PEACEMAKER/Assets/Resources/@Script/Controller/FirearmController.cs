@@ -136,7 +136,7 @@ namespace Resources.Script.Controller
             }
             else
             {
-                SystemManager.UI.AddNewFirearmHUD(this,  preset.firearmHud);
+                HeadManager.UI.AddNewFirearmHUD(this,  preset.firearmHud);
             }
             
             if (preset.crosshair == null)
@@ -145,8 +145,8 @@ namespace Resources.Script.Controller
             }
             else
             {
-                if (!SystemManager.UI.Crosshair) 
-                    SystemManager.UI.AddCrossHair(this, preset.crosshair);;
+                if (!HeadManager.UI.Crosshair) 
+                    HeadManager.UI.AddCrossHair(this, preset.crosshair);;
             }
 
             IsInitialized = true;
@@ -159,7 +159,7 @@ namespace Resources.Script.Controller
         /// </summary>
         private void Update()
         {
-            if (SystemManager.Game.IsPaused) return;
+            if (HeadManager.Game.IsPaused) return;
             UpdateStatusWithInput();
             anim.UpdateAnim();
             shooter.UpdateFire();
@@ -177,7 +177,7 @@ namespace Resources.Script.Controller
                 // Auto mode
                 if (fireArmData.firingMode == EFiringMode.Auto)
                 {
-                    if (SystemManager.Input.FireHeld)
+                    if (HeadManager.Input.State.FireHeld)
                     {
                         FirearmState = EFirearmStates.Fire;
                     }
@@ -190,14 +190,14 @@ namespace Resources.Script.Controller
                 // Semi auto or burst
                 else if (fireArmData.firingMode is EFiringMode.SemiAuto or EFiringMode.Burst)
                 {
-                    FirearmState = SystemManager.Input.FirePressed ? FirearmState = EFirearmStates.Fire : FirearmState;
+                    FirearmState = HeadManager.Input.State.FirePressed ? FirearmState = EFirearmStates.Fire : FirearmState;
                 }
             }
             
             if (AmmoInMagazine == 0 && FirearmState != EFirearmStates.Reloading)
                 FirearmState = EFirearmStates.None;
 
-            if (SystemManager.Input.ReloadPressed && AmmoInMagazine != fireArmData.magazineCapacity && currentAmmo.Count != 0)
+            if (HeadManager.Input.State.ReloadPressed && AmmoInMagazine != fireArmData.magazineCapacity && currentAmmo.Count != 0)
             {
                 FirearmState = EFirearmStates.Reloading;
             }

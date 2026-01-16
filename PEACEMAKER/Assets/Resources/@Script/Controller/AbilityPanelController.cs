@@ -20,7 +20,7 @@ namespace Resources.Script.Controller
         private void OnEnable()
         {
             canvasGroup.alpha = 1f;
-            SystemManager.Game.IsPaused = true;
+            HeadManager.Game.IsPaused = true;
             UnlockCursor();
             _isLocked = false;
         }
@@ -28,7 +28,7 @@ namespace Resources.Script.Controller
         private void OnDisable()
         {
             Time.timeScale = 1f;
-            SystemManager.Game.IsPaused = false;
+            HeadManager.Game.IsPaused = false;
             LockCursor();
         }
 

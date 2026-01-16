@@ -112,7 +112,7 @@ namespace Resources.Script.Controller
         {
             if (interactable == false) return;
 
-            SystemManager.Audio.PlayWithPreset(highlightSound);
+            HeadManager.Audio.PlayWithPreset(highlightSound);
 
             isHighlighted = true;
             
@@ -122,7 +122,7 @@ namespace Resources.Script.Controller
         {
             if (interactable == false) return;
 
-            SystemManager.Audio.PlayWithPreset(selectSound);
+            HeadManager.Audio.PlayWithPreset(selectSound);
 
             isPressed = true;
         }
@@ -151,7 +151,7 @@ namespace Resources.Script.Controller
         
         public void OnSettingButtonClicked()
         {
-            SystemManager.UI.MenuController.OpenMenu("Setting Menu");
+            HeadManager.UI.MenuController.OpenMenu("Setting Menu");
         }
         
     }

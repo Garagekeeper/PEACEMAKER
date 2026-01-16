@@ -141,12 +141,12 @@ namespace Resources.Script.Controller
                 _source.pitch = ( Preset.pitch + _randomizedPitchOffset + _sixDimensionsPitchOffset ) * TimeScaleSyncedPitch;
             }
 
-            if (SystemManager.Audio.MainListener != null) return;
+            if (HeadManager.Audio.MainListener != null) return;
             
-            var distance = Vector3.Distance(_source.transform.position, SystemManager.Audio.MainListener.transform.position);
+            var distance = Vector3.Distance(_source.transform.position, HeadManager.Audio.MainListener.transform.position);
             var blendVal = distance / Preset.maxDistance;
             
-            Vector3 direction = (SystemManager.Audio.MainListener.transform.position - _source.transform.position).normalized;
+            Vector3 direction = (HeadManager.Audio.MainListener.transform.position - _source.transform.position).normalized;
             
             //6방향 내적
             var forwardDot = Mathf.Max(0, Vector3.Dot(direction, Vector3.forward));
@@ -221,9 +221,9 @@ namespace Resources.Script.Controller
                     // 거리를 기준으로 소리를 재생 (멀리있는 건 더 늦게)
                     // 사실 소규모 게임이라 거리가 그렇게 먼 경우는 없을 것
                     // 있어도 1f 선에서 정리하자
-                    if (SystemManager.Audio.MainListener != null)
+                    if (HeadManager.Audio.MainListener != null)
                         distanceFromListener = Mathf.Clamp(Vector3.Distance(
-                            SystemManager.Audio.MainListener.transform.position,
+                            HeadManager.Audio.MainListener.transform.position,
                             _source.transform.position) / 343f, 0f, 1f);
                 
                     // 소리가 도달하는 순간까지 기다림.

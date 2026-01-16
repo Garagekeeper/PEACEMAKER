@@ -19,13 +19,13 @@ namespace Resources.Script.Controller
 
         void Awake()
         {
-            SystemManager.UI.MenuController = this;
+            HeadManager.UI.MenuController = this;
             DefaultMenu = "Pause Menu";
         }
 
         private void Start()
         {
-            Menus = SystemManager.UI.UIRoot.GetComponentsInChildren<Menu>(true).ToList();
+            Menus = HeadManager.UI.UIRoot.GetComponentsInChildren<Menu>(true).ToList();
 
             // 게임 시작 시 MainMenu가 기본으로 열려야 한다면
             var startMenu = Menus.FirstOrDefault(m => m is MainMenu);
@@ -67,7 +67,7 @@ namespace Resources.Script.Controller
 
             if (menu.MenuName == "Pause Menu")
             {
-                SystemManager.Game.IsPaused = true;
+                HeadManager.Game.IsPaused = true;
                 UnlockCursor();
             }
         }
@@ -81,7 +81,7 @@ namespace Resources.Script.Controller
             Menu top = MenuStack.Pop();
             if (top.MenuName == "Pause Menu")
             {
-                SystemManager.Game.IsPaused = false;
+                HeadManager.Game.IsPaused = false;
                 LockCursor();
             }
             top.OnClose();

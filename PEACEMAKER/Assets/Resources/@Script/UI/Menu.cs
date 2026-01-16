@@ -15,7 +15,7 @@ namespace Resources.Script.UI
 
         protected virtual void Awake()
         {
-            controller = SystemManager.UI.MenuController;
+            controller = HeadManager.UI.MenuController;
         }
 
         /// <summary>

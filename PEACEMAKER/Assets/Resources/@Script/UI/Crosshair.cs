@@ -27,7 +27,7 @@ namespace Resources.Script.UI
 
         private void Update()
         {
-            if (SystemManager.Game.IsPaused)
+            if (HeadManager.Game.IsPaused)
             {
                 canvasGroup.alpha = 0;
                 return;

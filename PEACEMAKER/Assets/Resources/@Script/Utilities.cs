@@ -18,7 +18,7 @@ namespace Resources.Script
 
         public static void LockCursor()
         {
-            if (SystemManager.Game.IsPaused) return;
+            if (HeadManager.Game.IsPaused) return;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             IsCursorLocked = true;

@@ -169,13 +169,13 @@ namespace Resources.Script.Managers
             switch (rarity)
             {
                 case ERarity.Normal:
-                    spawnedGem = SystemManager.ObjManager.GetSourceFromPool<NormalGem>();
+                    spawnedGem = HeadManager.ObjManager.GetSourceFromPool<NormalGem>();
                     break;
                 case ERarity.Rare:
-                    spawnedGem = SystemManager.ObjManager.GetSourceFromPool<RareGem>();
+                    spawnedGem = HeadManager.ObjManager.GetSourceFromPool<RareGem>();
                     break;
                 case ERarity.Epic:
-                    spawnedGem = SystemManager.ObjManager.GetSourceFromPool<EpicGem>();
+                    spawnedGem = HeadManager.ObjManager.GetSourceFromPool<EpicGem>();
                     break;
             }
 

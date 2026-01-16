@@ -69,7 +69,7 @@ namespace Resources.Script.UI
             hitmakerObject.alpha = 1;
             fadeTimer = fadeDelay;
 
-            SystemManager.Audio.PlayWithPreset(hitmarkerSound);
+            HeadManager.Audio.PlayWithPreset(hitmarkerSound);
             //SystemManager.Audio.PlaySFX(hitmarkerSound.audioClip);
 
             ApplyMovement();

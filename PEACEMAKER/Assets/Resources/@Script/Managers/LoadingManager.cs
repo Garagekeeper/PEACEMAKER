@@ -54,6 +54,8 @@ namespace Resources.Script.Managers
                     _radialProgressText.text = "100%";
                     yield return new WaitForSecondsRealtime(0.5f);
                     asyncLoad.allowSceneActivation = true;
+                    if (sceneName.Contains("Game"))
+                        HeadManager.Game.Init();
                 }
 
                 yield return null;

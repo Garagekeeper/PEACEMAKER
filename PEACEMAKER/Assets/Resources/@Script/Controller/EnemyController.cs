@@ -138,7 +138,7 @@ namespace Resources.Script.Controller
         
         private void SetTarget()
         {
-            Target = SystemManager.Game.MainPlayer;
+            Target = HeadManager.Game.MainPlayer;
         }
 
         public void ChangeState2Idle()

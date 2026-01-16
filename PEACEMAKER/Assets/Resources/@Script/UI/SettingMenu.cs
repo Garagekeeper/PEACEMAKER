@@ -58,7 +58,7 @@ namespace Resources.Script.UI
         {
             if (!initialized) return;
 
-            var data = SystemManager.Setting.Data;
+            var data = HeadManager.Setting.Data;
 
             _volumeVal = data.masterVolume * 100f;
             _resIndexVal = data.resolutionIndex;
@@ -95,17 +95,17 @@ namespace Resources.Script.UI
 
         public void OnApplyButton()
         {
-            SystemManager.Setting.SetMasterVolume(_volumeVal);
-            SystemManager.Setting.SetMouseSensitivity(_mouseSensitivityVal);
-            SystemManager.Setting.SetResolution(_resIndexVal);
-            SystemManager.Setting.SetFullscreen(_screenType);
-            SystemManager.Setting.ApplySettings();
-            SystemManager.UI.MenuController.PopMenu();
+            HeadManager.Setting.SetMasterVolume(_volumeVal);
+            HeadManager.Setting.SetMouseSensitivity(_mouseSensitivityVal);
+            HeadManager.Setting.SetResolution(_resIndexVal);
+            HeadManager.Setting.SetFullscreen(_screenType);
+            HeadManager.Setting.ApplySettings();
+            HeadManager.UI.MenuController.PopMenu();
         }
         
         public void OnQuitButton()
         {
-            SystemManager.UI.MenuController.PopMenu();
+            HeadManager.UI.MenuController.PopMenu();
         }
     }
 }

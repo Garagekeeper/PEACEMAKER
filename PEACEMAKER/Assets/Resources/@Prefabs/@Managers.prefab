@@ -9,14 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7615678298294818411}
-  - component: {fileID: 5419691043602898584}
-  - component: {fileID: 9048549215268177542}
   - component: {fileID: 1411882428336929443}
   - component: {fileID: 7451112028687828917}
-  - component: {fileID: 4666611996536553019}
   - component: {fileID: 9028138185569607121}
   - component: {fileID: 2415631187212708199}
   - component: {fileID: 249364864092482687}
+  - component: {fileID: 899044654808687358}
   m_Layer: 0
   m_Name: '@Managers'
   m_TagString: Untagged
@@ -41,30 +39,6 @@ Transform:
   - {fileID: 5426035976441434929}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5419691043602898584
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4859577966338939141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b47b0978f2545cb9580bbb03d1a32ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Managers.GameManager
---- !u!114 &9048549215268177542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4859577966338939141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55cc3bbbce9e0104cba6ee09f5ac1df9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Managers.InputManager
 --- !u!114 &1411882428336929443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,18 +71,6 @@ MonoBehaviour:
     type: 3}
   <MenuController>k__BackingField: {fileID: 8302426452508514652}
   <AbilityController>k__BackingField: {fileID: 6414933349915278688}
---- !u!114 &4666611996536553019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4859577966338939141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6060170e13cd4dcdb95224f0f39688b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Managers.AudioManager
 --- !u!114 &9028138185569607121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +122,18 @@ MonoBehaviour:
       type: 3}
     initialSize: 10
     parent: {fileID: 0}
+--- !u!114 &899044654808687358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4859577966338939141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce35a6cd8f674fbf965d7c74d9f31dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Input.InputReader
 --- !u!1001 &1657766862206094678
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -77,7 +77,7 @@ namespace Resources.Script.Animation.Modifier
             _resultRotation = Vector3.zero;
             
             // 실제 입력값 읽어오기
-            var input = SystemManager.Input.Move;
+            var input = HeadManager.Input.State.Move;
             // 프레임 보정
             if (IsControlledLocally)
             {
@@ -97,7 +97,7 @@ namespace Resources.Script.Animation.Modifier
             _resultRotation += resultRotationInputX + resultRotationInputY;
 
             // 일시 정지중이면 멈춤
-            if (SystemManager.Game.IsPaused)
+            if (HeadManager.Game.IsPaused)
             {
                 _resultPosition = Vector3.zero;
                 _resultRotation = Vector3.zero;

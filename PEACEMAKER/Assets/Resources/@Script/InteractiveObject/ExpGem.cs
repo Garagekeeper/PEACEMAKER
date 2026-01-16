@@ -131,7 +131,7 @@ namespace Resources.Script.InteractiveObject
         {
             transform.position = Vector3.MoveTowards(
                 transform.position, 
-                SystemManager.Game.MainPlayer.dropTransform.position, 
+                HeadManager.Game.MainPlayer.dropTransform.position, 
                 attractSpeed * Time.deltaTime
             );
         }
@@ -148,7 +148,7 @@ namespace Resources.Script.InteractiveObject
 
         public void OnPickedUp()
         {
-            SystemManager.ObjManager.ReturnSourceToPool(this);
+            HeadManager.ObjManager.ReturnSourceToPool(this);
         }
         
     }

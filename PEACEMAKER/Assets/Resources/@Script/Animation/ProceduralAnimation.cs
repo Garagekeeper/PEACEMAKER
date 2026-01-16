@@ -239,10 +239,10 @@ namespace Resources.Script.Animation
         {
             if (inputActionReference != null)
             {
-                if (SystemManager.Input != null && SystemManager.Input.PlayerInput != null)
+                if (HeadManager.Input != null && HeadManager.Input.Reader != null)
                 {
                     //인스펙터에 등록된 ID(Guid)를 이용해, 매니저가 돌리고 있는 '진짜 액션'을 찾아서 연결
-                    _triggerInputAction = SystemManager.Input.PlayerInput.asset.FindAction(inputActionReference.action.id);
+                    _triggerInputAction = HeadManager.Input.Reader.PlayerInputAction.asset.FindAction(inputActionReference.action.id);
                 }
             }
 
@@ -511,7 +511,7 @@ namespace Resources.Script.Animation
         /// </summary>
         public bool HasToAvoid()
         {
-            if (AlwaysStayIdle || SystemManager.Game.ProcAnimIsActive == false)
+            if (AlwaysStayIdle || HeadManager.Game.ProcAnimIsActive == false)
                 return true;
 
             var result = false;
