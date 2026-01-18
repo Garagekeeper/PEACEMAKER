@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: EpicGem
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Managers.PoolPreset
   prefab: {fileID: 1801807646703848077, guid: 442a4471809c01d4b84947bdcff84b60, type: 3}
+  id: 22
   poolable: 1
   initialSize: 5

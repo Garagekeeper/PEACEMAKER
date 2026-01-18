@@ -103,6 +103,9 @@ namespace Resources.Script.Controller
 
             CharacterController = GetComponent<CharacterController>();
             defaultHeight = CharacterController.height;
+            
+            // Inventory 초기화
+            Inventory = this.FindSelfChild<InventoryCore>();
 
             // 착지소리 등록
             onLand.AddListener(() => HeadManager.Audio.PlayWithPreset(landSfx, transform));
@@ -112,9 +115,6 @@ namespace Resources.Script.Controller
         private void Start()
         {
             LockCursor();
-
-            // Inventory 초기화
-            Inventory = this.FindSelfChild<InventoryCore>();
 
             // TODO 메인 화면에서 선택한 무기를 넣도록
             // 현재는 에디터에서 넣어주는 걸로만 하는 중
@@ -131,7 +131,7 @@ namespace Resources.Script.Controller
                 }
 
                 Inventory.OffAll();
-                Inventory.SelectItem(0);
+                Inventory.SwapItem(0);
             }
         }
 
@@ -219,7 +219,7 @@ namespace Resources.Script.Controller
         private void UpdateInventory()
         {
             if (HeadManager.Input.State.InventoryPressed == null) return;
-            Inventory.SelectItem((int)HeadManager.Input.State.InventoryPressed);
+            Inventory.SwapItem((int)HeadManager.Input.State.InventoryPressed);
         }
 
         /// <summary>

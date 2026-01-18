@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: RareGem
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Managers.PoolPreset
   prefab: {fileID: 8975035450620130412, guid: af1959e9c87ce9542b866bcf2149df36, type: 3}
+  id: 21
   poolable: 1
   initialSize: 10

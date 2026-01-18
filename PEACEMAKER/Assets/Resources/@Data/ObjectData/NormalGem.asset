@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: NormalGem
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Managers.PoolPreset
   prefab: {fileID: 543725697735843016, guid: 69e397dc9ab8c724181a1c870153723a, type: 3}
+  id: 20
   poolable: 1
   initialSize: 30

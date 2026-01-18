@@ -19,13 +19,13 @@ namespace Resources.Script.Controller
 
         void Awake()
         {
-            HeadManager.UI.MenuController = this;
+            //HeadManager.UI.MenuController = this;
             DefaultMenu = "Pause Menu";
         }
 
         private void Start()
         {
-            Menus = HeadManager.UI.UIRoot.GetComponentsInChildren<Menu>(true).ToList();
+            //Menus = HeadManager.UI.UIRoot.GetComponentsInChildren<Menu>(true).ToList();
 
             // 게임 시작 시 MainMenu가 기본으로 열려야 한다면
             var startMenu = Menus.FirstOrDefault(m => m is MainMenu);

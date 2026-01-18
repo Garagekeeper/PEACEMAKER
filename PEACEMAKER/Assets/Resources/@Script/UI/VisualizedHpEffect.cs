@@ -53,7 +53,6 @@ namespace Resources.Script.UI
             if (effectCanvas == null)
             {
                 Debug.LogError("'Effect Canvas' is null. Can't trigger effects.");
-
                 return;
             }
 

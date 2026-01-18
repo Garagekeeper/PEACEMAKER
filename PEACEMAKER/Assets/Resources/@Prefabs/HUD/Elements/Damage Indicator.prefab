@@ -83,6 +83,7 @@ GameObject:
   - component: {fileID: 8380268812844795626}
   - component: {fileID: 8380268812844795636}
   - component: {fileID: -5235240769391259425}
+  - component: {fileID: -3653295465560986792}
   m_Layer: 5
   m_Name: Damage Indicator
   m_TagString: Untagged
@@ -139,3 +140,26 @@ MonoBehaviour:
   damageColor: {r: 0.5647059, g: 0, b: 0, a: 1}
   healColor: {r: 0, g: 0.5568628, b: 0.6509804, a: 1}
   fadeSpeed: 1
+--- !u!223 &-3653295465560986792
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8380268812844795627}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0

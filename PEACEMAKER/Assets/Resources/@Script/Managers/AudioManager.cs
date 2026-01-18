@@ -10,12 +10,10 @@ namespace Resources.Script.Managers
         
         private int _initialPoolSize;
         private GameObject _parent;
-        private string sfxKey;
         public AudioListener MainListener { get; private set; }
 
         public void Init()
         {
-            sfxKey = "sfx";
             MainListener = Object.FindAnyObjectByType<AudioListener>();
         }
 

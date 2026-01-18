@@ -5,6 +5,7 @@ using Resources.Script.Ammo;
 using Resources.Script.Firearm;
 using Resources.Script.Managers;
 using Resources.Script.UI;
+using Resources.Script.UI.Scene;
 using UnityEngine;
 using UnityEngine.Serialization;
 using static Resources.Script.Defines;
@@ -18,6 +19,9 @@ namespace Resources.Script.Controller
         
         [Tooltip("The Transform from which the shots are fired.")]
         public Transform muzzle;
+
+        public event Action<int, int, int> OnAmmoChanged;
+        public event Action<string> OnFirearmNameChanged;
      
         /// <summary>
         /// The number of shots fired in the current session.
@@ -61,9 +65,18 @@ namespace Resources.Script.Controller
         /// 실제 가지고 있는 탄약 수
         /// num of bullet player has;
         /// </summary>
-        public AmmoItem currentAmmo;
+        public AmmoItem ammoItemInInventory;
 
-        public int AmmoInMagazine { get; set; }
+        private int _ammoInMagazine;
+        public int AmmoInMagazine
+        {
+            get => _ammoInMagazine;
+            set
+            {
+                _ammoInMagazine = value;
+                OnAmmoChanged?.Invoke(_ammoInMagazine, ammoItemInInventory.Count, fireArmData.magazineCapacity);
+            }
+        }
         
         
         [Header("Range Control")]
@@ -101,6 +114,9 @@ namespace Resources.Script.Controller
             recoilAndSpray.Init(this);
             shooter.Init(this);
             Owner = GetComponentInParent<PlayerController>();
+            
+            requiredAmmoType = new AmmoType(EAmmoType.R556, 25, 0);
+            ammoItemInInventory = new AmmoItem(requiredAmmoType, fireArmData.initialAmmo - fireArmData.magazineCapacity, 1, 1);
         }
 
         // 초기화 및 설정
@@ -124,30 +140,11 @@ namespace Resources.Script.Controller
             // setting ammo
             //TODO 현재는 돌격 소총만 있어서 여기에 쓰는데 나중에 화기별로 따로 만들면 
             // 자식 클래스에서 수정하자
-            requiredAmmoType = new AmmoType(EAmmoType.R556, 25, 0);
+            
             var ammoInInvCnt = fireArmData.initialAmmo - fireArmData.magazineCapacity;
-            currentAmmo = new AmmoItem(requiredAmmoType, ammoInInvCnt, 1, 1);
             AmmoInMagazine = fireArmData.magazineCapacity;
             DecalDirection = EVector3Direction.Forward;
-            
-            if (preset.firearmHud == null)
-            {
-                Debug.LogError("FirearmHUD is not set in the preset. Firearm's HUD won't be initialized.", gameObject);
-            }
-            else
-            {
-                HeadManager.UI.AddNewFirearmHUD(this,  preset.firearmHud);
-            }
-            
-            if (preset.crosshair == null)
-            {
-                Debug.LogError("Firearm crosshair is not set in the preset. Firearm's crosshair won't be initialized.", gameObject);
-            }
-            else
-            {
-                if (!HeadManager.UI.Crosshair) 
-                    HeadManager.UI.AddCrossHair(this, preset.crosshair);;
-            }
+            OnFirearmNameChanged?.Invoke(fireArmData.firearmName);
 
             IsInitialized = true;
         }
@@ -164,6 +161,21 @@ namespace Resources.Script.Controller
             anim.UpdateAnim();
             shooter.UpdateFire();
             recoilAndSpray.UpdateSpray();
+            UpdateUI();
+        }
+
+        private void UpdateUI()
+        {
+            // 무기 탄약 -> shooter, anim
+            // 무기 이름 -> 여기
+            // 크로스헤어
+            if (HeadManager.UI.SceneUI is UIGameScene)
+            {
+                var temp = (UIGameScene)HeadManager.UI.SceneUI;
+                temp.SetCrossHairProgress(anim.JumpAnimation.Progress);
+                temp.SetCrosshairSpray(recoilAndSpray.GetCurrentSpray());
+            }
+            
         }
 
         /// <summary>
@@ -197,7 +209,7 @@ namespace Resources.Script.Controller
             if (AmmoInMagazine == 0 && FirearmState != EFirearmStates.Reloading)
                 FirearmState = EFirearmStates.None;
 
-            if (HeadManager.Input.State.ReloadPressed && AmmoInMagazine != fireArmData.magazineCapacity && currentAmmo.Count != 0)
+            if (HeadManager.Input.State.ReloadPressed && AmmoInMagazine != fireArmData.magazineCapacity && ammoItemInInventory.Count != 0)
             {
                 FirearmState = EFirearmStates.Reloading;
             }

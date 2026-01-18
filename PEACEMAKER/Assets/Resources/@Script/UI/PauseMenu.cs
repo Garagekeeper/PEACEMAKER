@@ -14,18 +14,18 @@ namespace Resources.Script.UI
 
         public void OnSettingsButton()
         {
-            HeadManager.UI.MenuController.OpenMenu("Setting Menu");
+            //HeadManager.UI.MenuController.OpenMenu("Setting Menu");
         }
 
         public void OnResumeButton()
         {
-            HeadManager.UI.MenuController.PopMenu();
+            //HeadManager.UI.MenuController.PopMenu();
         }
         
         public void OnGotoMainMenuButton()
         {
             HeadManager.Game.Init();
-            HeadManager.UI.MenuController.PopMenu();
+            //HeadManager.UI.MenuController.PopMenu();
             //SystemManager.Loading.LoadScene("Main Menu");
             SceneManager.LoadSceneAsync("Main Menu");
         }

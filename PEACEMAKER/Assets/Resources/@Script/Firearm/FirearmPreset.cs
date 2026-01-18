@@ -1,6 +1,8 @@
 ﻿using Resources.Script.Audio;
 using Resources.Script.UI;
+using Resources.Script.UI.Crosshair;
 using UnityEngine;
+using UnityEngine.Serialization;
 using static Resources.Script.Defines;
 
 namespace Resources.Script.Firearm
@@ -9,8 +11,7 @@ namespace Resources.Script.Firearm
     public class FirearmPreset : ScriptableObject
     {
         //Basics
-        public FirearmHUD firearmHud;
-        public Crosshair crosshair;
+        [FormerlySerializedAs("crosshair")] public CrosshairHUD crosshairHUD;
         
         [Header("General")]
         public string firearmName;

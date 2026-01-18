@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Sound
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Managers.PoolPreset
   prefab: {fileID: 2422878067015625638, guid: 4c2bab062f62ead4a9affb7bf382e768, type: 3}
+  id: 23
   poolable: 1
   initialSize: 30

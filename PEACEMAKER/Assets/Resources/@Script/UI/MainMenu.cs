@@ -19,7 +19,7 @@ namespace Resources.Script.UI
             //LoadingScreen.LoadScene(name);
             HeadManager.Loading.LoadScene(name);
             //SceneManager.LoadSceneAsync(name);
-            HeadManager.UI.MenuController.PopMenu();
+            //HeadManager.UI.MenuController.PopMenu();
             
         }
 
@@ -35,7 +35,7 @@ namespace Resources.Script.UI
 
         public void OnSettingsButton()
         {
-            HeadManager.UI.MenuController.OpenMenu("Setting Menu");
+            //HeadManager.UI.MenuController.OpenMenu("Setting Menu");
         }
 
         public void OnQuitButton()

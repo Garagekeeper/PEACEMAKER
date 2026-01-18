@@ -88,9 +88,5 @@ namespace Resources.Script
             return comp;
         }
 
-        public static void TurnOnOffFirearms(this FirearmHUD firearmHUD, bool state)
-        {
-            firearmHUD.gameObject.SetActive(state);
-        }
     }
 }

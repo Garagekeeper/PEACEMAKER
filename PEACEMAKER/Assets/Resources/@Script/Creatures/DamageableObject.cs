@@ -5,11 +5,30 @@ namespace Resources.Script.Creatures
 {
     public abstract class DamageableObject : Creature, IDamageable
     {
-        [SerializeField]protected float maxHp = 100f;
+        [SerializeField] protected float maxHp = 100f;
         [SerializeField] protected UnityEvent onDeathEvent;
         private RagdollEffect _ragdollEffect;
 
-        public float Hp { get; protected set; }
+        private float _hp;
+        public float Hp
+        {
+            get => _hp;
+            protected set
+            {
+                if (Mathf.Approximately(_hp, value)) return;
+                _hp = value;
+                
+                NotifyHpChanged();
+            }
+        }
+        
+        protected float MaxHp => maxHp;
+        
+        protected virtual void NotifyHpChanged()
+        {
+            
+        }
+        
         public bool IsDead => Hp <= 0;
 
         protected override void Start()

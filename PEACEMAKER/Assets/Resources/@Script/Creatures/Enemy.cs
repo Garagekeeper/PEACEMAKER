@@ -26,7 +26,7 @@ namespace Resources.Script.Creatures
         {
             
             if (IsDead) return;
-            HeadManager.UI.Hitmarker.Show(isCrit);
+            //HeadManager.UI.Hitmarker.Show(isCrit);
             if (IsInvincible) return;
             Hp = Mathf.Max(0, Hp - value);
             if (Hp == 0) HandleDeath(attackBy);

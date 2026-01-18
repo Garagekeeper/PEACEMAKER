@@ -1,5 +1,6 @@
 using System;
 using Resources.Script.Input;
+using Resources.Script.Scene;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,7 +25,6 @@ namespace Resources.Script.Managers
             }
         }
 
-        public UIManager UIInternal { get; private set; }
         public SettingManager SettingInternal { get; private set; }
 
 
@@ -34,6 +34,7 @@ namespace Resources.Script.Managers
         private PoolManager _pool = new PoolManager();
         private ObjectManager _obj = new ObjectManager();
         private ResourceManager _resource;
+        private UIManager _ui = new  UIManager();
 
         public static AudioManager Audio => Instance?._audio;
         public static GameManager Game => Instance?._game;
@@ -43,14 +44,14 @@ namespace Resources.Script.Managers
             get => Instance?._input;
             private set => Instance._input = value;
         }
-
+        public static ObjectManager ObjManager => Instance._obj;
         public static ResourceManager Resource
         {
             get => Instance?._resource;
             private set => Instance._resource = value;
         }
+        public static UIManager UI => Instance?._ui;
 
-        public static ObjectManager ObjManager => Instance._obj;
         public static PoolManager Pool => Instance?._pool;
 
         #region MONO
@@ -70,7 +71,6 @@ namespace Resources.Script.Managers
         #endregion
 
 
-        public static UIManager UI => Instance.UIInternal;
         public static SettingManager Setting => Instance.SettingInternal;
 
         private void Awake()
@@ -86,19 +86,19 @@ namespace Resources.Script.Managers
             DontDestroyOnLoad(gameObject);
 
             _audio.Init();
+            _game.Init();
 
             var reader = GetComponent<InputReader>() ?? gameObject.AddComponent<InputReader>();
             _input = new InputManager(reader);
 
             var catalog = GetComponent<ScriptableObjCatalog>() ?? gameObject.AddComponent<ScriptableObjCatalog>();
             _resource = new ResourceManager(catalog);
-
-            UIInternal = GetComponent<UIManager>();
+            
             SettingInternal = GetComponent<SettingManager>();
             Loading = GetComponent<LoadingManager>();
 
-            SceneManager.sceneLoaded -= OnSceneLoadedMy;
-            SceneManager.sceneLoaded += OnSceneLoadedMy;
+            //SceneManager.sceneLoaded -= OnSceneLoadedMy;
+            //SceneManager.sceneLoaded += OnSceneLoadedMy;
         }
 
 
@@ -117,9 +117,6 @@ namespace Resources.Script.Managers
 
                 if (SceneManager.GetActiveScene().name != sceneName)
                     SceneManager.LoadSceneAsync(sceneName);
-
-                if (sceneName.Contains("Game"))
-                    _game.Init();
                 return;
             }
 #endif
@@ -129,15 +126,16 @@ namespace Resources.Script.Managers
                 SceneManager.LoadSceneAsync("Main Menu");
         }
 
-        private void OnSceneLoadedMy(Scene scene, LoadSceneMode mode)
+        private void OnSceneLoadedMy(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
         {
-            UIInternal?.OnSceneLoaded(); // ADD
+            //UIInternal?.OnSceneLoaded(); // ADD
             _audio.ReSetting();
+            //TODO
         }
-
-        private void OnDisable()
-        {
-            SceneManager.sceneLoaded -= OnSceneLoadedMy;
-        }
+        //
+        // private void OnDisable()
+        // {
+        //     SceneManager.sceneLoaded -= OnSceneLoadedMy;
+        // }
     }
 }

@@ -14,6 +14,7 @@ namespace Resources.Script.Inventory
         public int SelectedIndex { get; private set; }
 
         List<FirearmController> items = new List<FirearmController>();
+        public event Action<FirearmController> OnItemSwapped;
 
         private void Awake()
         {
@@ -38,12 +39,13 @@ namespace Resources.Script.Inventory
         }
 
 
-        public void SelectItem(int index)
+        public void SwapItem(int index)
         {
             if (SelectedIndex == index) return;
             OffFirearm(SelectedIndex);
             SelectedIndex = index;
             OnFirearm(SelectedIndex);
+            OnItemSwapped?.Invoke(items[SelectedIndex]);
         }
 
         public bool CheckValidIndex(int index)
@@ -60,7 +62,6 @@ namespace Resources.Script.Inventory
             if (!CheckValidIndex(index)) return;
             items[SelectedIndex].gameObject.SetActive(false);
             if (!items[SelectedIndex].IsInitialized) return;
-            HeadManager.UI.FirearmHUDs[items[index]].TurnOnOffFirearms(false);
         }
 
         public void OnFirearm(int index)
@@ -68,8 +69,6 @@ namespace Resources.Script.Inventory
             if (!CheckValidIndex(index)) return;
             items[index].gameObject.SetActive(true);
             if (!items[SelectedIndex].IsInitialized) return;
-            HeadManager.UI.FirearmHUDs[items[index]].TurnOnOffFirearms(true);
-            HeadManager.UI.Crosshair.Firearm = items[index];
         }
 
         public void OffAll()
@@ -77,8 +76,6 @@ namespace Resources.Script.Inventory
             foreach (var firearmController in items)
             {
                 firearmController.gameObject.SetActive(false);
-                if (!firearmController.IsInitialized) continue;
-                HeadManager.UI.FirearmHUDs[firearmController].TurnOnOffFirearms(false);
             }
         }
 

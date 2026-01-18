@@ -100,12 +100,12 @@ namespace Resources.Script.UI
             HeadManager.Setting.SetResolution(_resIndexVal);
             HeadManager.Setting.SetFullscreen(_screenType);
             HeadManager.Setting.ApplySettings();
-            HeadManager.UI.MenuController.PopMenu();
+            //HeadManager.UI.MenuController.PopMenu();
         }
         
         public void OnQuitButton()
         {
-            HeadManager.UI.MenuController.PopMenu();
+            //HeadManager.UI.MenuController.PopMenu();
         }
     }
 }

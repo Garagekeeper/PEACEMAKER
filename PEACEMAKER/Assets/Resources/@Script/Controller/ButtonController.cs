@@ -151,7 +151,7 @@ namespace Resources.Script.Controller
         
         public void OnSettingButtonClicked()
         {
-            HeadManager.UI.MenuController.OpenMenu("Setting Menu");
+            //HeadManager.UI.MenuController.OpenMenu("Setting Menu");
         }
         
     }

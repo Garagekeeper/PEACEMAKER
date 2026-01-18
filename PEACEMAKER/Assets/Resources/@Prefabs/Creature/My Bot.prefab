@@ -3360,7 +3360,6 @@ MonoBehaviour:
   onDeathEvent:
     m_PersistentCalls:
       m_Calls: []
-  rarity: 0
 --- !u!114 &3404944033732411212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3387,7 +3386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26e6a400138a4a3084050403625763d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Controller.EnemyController
-  ForceIdle: 0
+  ForceIdle: 1
 --- !u!143 &7624584204873448413
 CharacterController:
   m_ObjectHideFlags: 0

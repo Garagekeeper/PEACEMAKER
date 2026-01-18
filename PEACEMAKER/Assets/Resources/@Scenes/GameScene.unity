@@ -127,11 +127,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 874711918856052757, guid: 5691f61144536d54f940d4be645afeee,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3114164056613836472, guid: 5691f61144536d54f940d4be645afeee,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -186,26 +181,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MyPlayer
-      objectReference: {fileID: 0}
-    - target: {fileID: 3917014405222904205, guid: 5691f61144536d54f940d4be645afeee,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8242086204978780629, guid: 5691f61144536d54f940d4be645afeee,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8973882606677736651, guid: 5691f61144536d54f940d4be645afeee,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9047707209286513751, guid: 5691f61144536d54f940d4be645afeee,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -594,16 +569,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4603171449228393917, guid: c355fcabe26e3054aba26050f09282e4,
-        type: 3}
-      propertyPath: IsInvincible
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6515515680919629840, guid: c355fcabe26e3054aba26050f09282e4,
-        type: 3}
-      propertyPath: ForceIdle
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8228925393634670071, guid: c355fcabe26e3054aba26050f09282e4,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -659,16 +624,55 @@ PrefabInstance:
       propertyPath: m_Name
       value: My Bot
       objectReference: {fileID: 0}
-    - target: {fileID: 8752979691137757005, guid: c355fcabe26e3054aba26050f09282e4,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c355fcabe26e3054aba26050f09282e4, type: 3}
+--- !u!1 &1240545135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1240545137}
+  - component: {fileID: 1240545136}
+  m_Layer: 0
+  m_Name: '@GameScene'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1240545136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240545135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c87f45667d1744a3aa4e2ea282ba0917, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Scene.GameScene
+--- !u!4 &1240545137
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1240545135}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9.68679, y: -8.44992, z: 3.9669}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -679,3 +683,4 @@ SceneRoots:
   - {fileID: 315008102}
   - {fileID: 1158273875}
   - {fileID: 826788266}
+  - {fileID: 1240545137}

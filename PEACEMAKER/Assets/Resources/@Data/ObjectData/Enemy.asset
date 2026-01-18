@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Enemy
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Managers.PoolPreset
   prefab: {fileID: 8752979691137757005, guid: c355fcabe26e3054aba26050f09282e4, type: 3}
+  id: 10
   poolable: 1
   initialSize: 30

@@ -136,6 +136,19 @@ namespace Resources.Script
             ExpGemRare = 21,
             ExpGemEpic = 22,
             SFX=23,
+            GameSceneUI=53,
+            FirearmHUD,
+        }
+        
+        /*-------------------------
+        *          Event
+        ------------------------*/
+        public enum EUIEvent
+        {
+            Click,
+            PointerDown,
+            PointerUp,
+            Drag,
         }
     }
 }

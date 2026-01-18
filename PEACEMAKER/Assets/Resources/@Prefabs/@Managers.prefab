@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7615678298294818411}
   - component: {fileID: 1411882428336929443}
-  - component: {fileID: 7451112028687828917}
   - component: {fileID: 9028138185569607121}
   - component: {fileID: 2415631187212708199}
   - component: {fileID: 899044654808687358}
@@ -51,26 +50,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efd406f2b69b40242886a71a4d4bb478, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Managers.SystemManager
---- !u!114 &7451112028687828917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4859577966338939141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a347ea6ee2648efbbd1deac5a16bdb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Managers.UIManager
-  <HpEffect>k__BackingField: {fileID: -5235240769391259425, guid: 51c3f13f105c0b34a958f1a674e2820c,
-    type: 3}
-  <Hitmarker>k__BackingField: {fileID: 4190802866912343840, guid: 9c9a8f126909cdd42bccc72ade66eead,
-    type: 3}
-  <PlayerCardHUDRef>k__BackingField: {fileID: 6855780426518034184, guid: 1793633eb9df2a242a12112c1be85d2a,
-    type: 3}
-  <MenuController>k__BackingField: {fileID: 8302426452508514652}
-  <AbilityController>k__BackingField: {fileID: 6414933349915278688}
 --- !u!114 &9028138185569607121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,6 +107,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8792bfae12d5751439f9a0bf74ce2907, type: 2}
   - {fileID: 11400000, guid: 8753556e00505094c8f965cdbe68afd8, type: 2}
   - {fileID: 11400000, guid: 352dd8c02977e404e9e252f98c155100, type: 2}
+  - {fileID: 11400000, guid: 6a126e4379b6a5046b8db2e66402652b, type: 2}
 --- !u!1001 &1657766862206094678
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -617,30 +597,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1657766862206094678}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6414933349915278688 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5622737302917017654, guid: 88ca59d7b3a09ce42954be5d6339f78f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1657766862206094678}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37983a9c02a744d299137ab5b9fde7f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Controller.AbilityPanelController
---- !u!114 &8302426452508514652 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7222004633829823498, guid: 88ca59d7b3a09ce42954be5d6339f78f,
-    type: 3}
-  m_PrefabInstance: {fileID: 1657766862206094678}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54d72c8f0e214552adfa0dcce1ebb5b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Controller.MenuController
 --- !u!1001 &5780853408573780484
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -181,6 +181,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -318,6 +319,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -439,7 +441,7 @@ GameObject:
   - component: {fileID: 7753241951546354775}
   - component: {fileID: 9105269755815458923}
   - component: {fileID: 4622341081318701054}
-  - component: {fileID: 3540223930184767466}
+  - component: {fileID: 7312671772155140183}
   m_Layer: 5
   m_Name: Firearm HUD
   m_TagString: Untagged
@@ -533,7 +535,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &3540223930184767466
+--- !u!114 &7312671772155140183
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -542,13 +544,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2288065729869735786}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddcce69a204441898d0cc9fc4bba0e91, type: 3}
+  m_Script: {fileID: 11500000, guid: 77fd09e9a2ea47e689967eb7460fb3bc, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.UI.FirearmHUD
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.UI.Firearm.FirearmHUD
   firearmNameText: {fileID: 4412139665344404526}
   ammoTypeNameText: {fileID: 2749390296656520528}
-  remainingAmmoInMagazineText: {fileID: 6215231800757327020}
-  remainingAmmoInInventoryText: {fileID: 8682197073094840466}
+  ammoInMagazineText: {fileID: 6215231800757327020}
+  ammoInInventoryText: {fileID: 8682197073094840466}
   outOfAmmoAlert: {fileID: 2491642312499373199}
   lowAmmoAlert: {fileID: 5378726229535123121}
   normalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -806,6 +808,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -943,6 +946,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1080,6 +1084,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1217,6 +1222,7 @@ MonoBehaviour:
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -1580,6 +1586,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
+  m_characterHorizontalScale: 1
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0

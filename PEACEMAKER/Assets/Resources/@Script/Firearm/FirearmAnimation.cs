@@ -216,7 +216,7 @@ namespace Resources.Script.Firearm
             {
                 UpdateReload();
             }
-            animator.SetInteger("Ammo", FireArm.currentAmmo.Count);
+            animator.SetInteger("Ammo", FireArm.ammoItemInInventory.Count);
             animator.SetFloat("ADS Amount", AimingAnimation.Progress);
         }
         
@@ -224,7 +224,7 @@ namespace Resources.Script.Firearm
         {
             //condition check
             // 남은 탄약이 없으면 종료
-            if (FireArm.currentAmmo.Count == 0) return;
+            if (FireArm.ammoItemInInventory.Count == 0) return;
             // 이미 탄창에 탄약이 가득찬 경우 종료
             if (FireArm.AmmoInMagazine >= FireArm.fireArmData.magazineCapacity) return;
             AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
@@ -236,9 +236,9 @@ namespace Resources.Script.Firearm
                 {
                     // 탄창에 들어가는 총알의 수를 계산
                     // 현재 탄창에 남은건 버리는 방향으로 설계
-                    var inventory2Magazine = Mathf.Min(FireArm.fireArmData.magazineCapacity, FireArm.currentAmmo.Count);
+                    var inventory2Magazine = Mathf.Min(FireArm.fireArmData.magazineCapacity, FireArm.ammoItemInInventory.Count);
+                    FireArm.ammoItemInInventory.Count -=  inventory2Magazine;
                     FireArm.AmmoInMagazine = inventory2Magazine;
-                    FireArm.currentAmmo.Count -=  inventory2Magazine;
                     _isReloading = false;
                     animator.SetBool("Is Reloading", _isReloading);
                     FireArm.FirearmState =  EFirearmStates.None;

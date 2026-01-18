@@ -2,175 +2,63 @@
 using System.Collections.Generic;
 using Resources.Script.Controller;
 using Resources.Script.Creatures;
+using Resources.Script.Inventory;
 using Resources.Script.UI;
+using Resources.Script.UI.Firearm;
+using Resources.Script.UI.Scene;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static Resources.Script.Utilities;
+using FirearmHUD = Resources.Script.UI.Firearm.FirearmHUD;
+using Object = UnityEngine.Object;
 
 namespace Resources.Script.Managers
 {
-    public class UIManager : MonoBehaviour
+    public class UIManager
     {
-        public Dictionary<FirearmController, FirearmHUD> FirearmHUDs { get; set; } = new(4);
-        public Crosshair Crosshair { get; set; }
-        public GameObject UIRoot { get; private set; }
+        private int _order = 10;
+        private Stack<UIPopup> _popupStack = new();
 
-        [field: SerializeField] public VisualizedHpEffect HpEffect { get; private set; }
+        public UIScene SceneUI { get; private set; } = null;
 
-        [field: SerializeField] public Hitmarker Hitmarker { get; private set; }
-
-        [field: SerializeField] public PlayerCardHUD PlayerCardHUDRef { get; set; }
-        public PlayerCardHUD PlayerCardHUDIns { get; set; }
-
-        public GameObject HUDObject { get; set; }
-        public GameObject MenuObject { get; set; }
-
-        [field: SerializeField] public MenuController MenuController { get; set; }
-        [field: SerializeField] public AbilityPanelController AbilityController { get; set; }
-
-        //private PauseMenu currentPauseMenu;
-
-        private void Awake()
+        public T ShowSceneUI<T>(string name = null) where T : UIScene
         {
-            if (UIRoot == null)
+            if (string.IsNullOrEmpty(name)) name = typeof(T).Name;
+
+            //TODO 임시
+            var go = HeadManager.Resource.Instantiate(Defines.EObjectID.GameSceneUI);
+            T sceneUI = go.GetComponent<T>();
+            if (sceneUI is UIGameScene sceneView)
             {
-                GameObject uiRoot = GameObject.Find("@UIRoot");
-                if (uiRoot != null)
-                {
-                    GameObject uiRootIn = GameObject.Find("@UIRootInstance");
-                    if (uiRootIn != null)
-                    {
-                        Destroy(uiRoot.gameObject);
-                        return;
-                    }
-
-                    uiRoot.name = "@UIRootInstance";
-                    UIRoot = uiRoot;
-                    UIRoot.layer = LayerMask.NameToLayer("UI");
-                    HUDObject = GameObject.Find("HUD");
-                    MenuObject = GameObject.Find("Menu");
-                    
-                    if (HpEffect == null)
-                        Debug.LogError("There is no HpEffect assigned!");
+                // 인벤토리 등 필요한 모델을 찾아서 주입
+                var player = Object.FindFirstObjectByType<Player>(); 
+                var presenter = new InGameScenePresenter(sceneView, player);
+                presenter.Init(); // 이벤트 구독 시작
                 
-                    HpEffect = Instantiate(HpEffect);
-                    HpEffect.transform.SetParent(HUDObject.transform, false);
-                
-                    if (Hitmarker == null)
-                        Debug.LogError("There is no Hitmarker assigned!");
-                
-                    Hitmarker = Instantiate(Hitmarker);
-                    Hitmarker.transform.SetParent(HUDObject.transform, false);
-                    
-                    HUDObject.SetActive(false);
-                }
-                else
-                {
-                    UIRoot = new GameObject("@UIRootInstance")
-                    {
-                        layer = LayerMask.NameToLayer("UI")
-                    };
-
-                    
-                    MenuObject = new GameObject("@Menu");
-
-                    // Canvas
-                    Canvas canvas = MenuObject.AddComponent<Canvas>();
-                    canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-
-                    // CanvasScaler
-                    var scaler = MenuObject.AddComponent<UnityEngine.UI.CanvasScaler>();
-                    scaler.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;
-                    scaler.referenceResolution = new Vector2(1920, 1080);
-
-                    // GraphicRaycaster
-                    MenuObject.AddComponent<UnityEngine.UI.GraphicRaycaster>();
-                }
-
-                Init();
             }
-        }
 
-        void Init()
-        {
-            var sceneName = SceneManager.GetActiveScene().name;
-            if (sceneName.Contains("Game"))
-            {
-                HUDObject.SetActive(true);
-            }
-            else if (sceneName.Contains("Main"))
-            {
-                //DestroyHUDObject();
-                HeadManager.UI.MenuController.OpenMainMenu();
-                UnlockCursor();
-                HUDObject.SetActive(false);
-            }
+            SceneUI = sceneUI;
+            
+            return sceneUI;
         }
         
-
-        void DestroyHUDObject()
+        public T ShowUI<T>(string name = null) where T : UIBase
         {
-            foreach (var HUD in (FirearmHUDs))
+            if (string.IsNullOrEmpty(name)) name = typeof(T).Name;
+
+            //TODO 임시
+            var go = HeadManager.Resource.Instantiate(Defines.EObjectID.FirearmHUD);
+            T view = go.GetComponent<T>();
+            
+            if (view is FirearmHUD hudView)
             {
-                Destroy(HUD.Value.gameObject);
+                // 인벤토리 등 필요한 모델을 찾아서 주입
+                var inventory = Object.FindFirstObjectByType<InventoryCore>(); 
+                var presenter = new FirearmHUDPresenter(hudView, inventory);
+                presenter.Init(); // 이벤트 구독 시작
             }
             
-            FirearmHUDs.Clear();
-            
-            if (PlayerCardHUDIns != null)
-                Destroy(PlayerCardHUDIns.gameObject);
-            
-            if (Crosshair != null)
-                Destroy(Crosshair.gameObject);
-
-        }
-
-        public void OnSceneLoaded()
-        {
-            //Reconnect();
-            Init();
-        }
-
-        private void Reconnect()
-        {
-            
-        }
-
-        public void AddNewFirearmHUD(FirearmController controller, FirearmHUD preset)
-        {
-            FirearmHUD temp;
-            FirearmHUDs.Add(controller, temp = Instantiate(preset));
-            temp.transform.SetParent(HUDObject.transform, false);
-            temp.Firearm = controller;
-            FirearmHUDs[controller].Firearm = controller;
-        }
-
-        public void AddCrossHair(FirearmController controller, Crosshair preset)
-        {
-            if (Crosshair == null)
-            {
-                Crosshair = Instantiate(preset);
-                Crosshair.transform.SetParent(HUDObject.transform, false);
-            }
-            Crosshair.Firearm = controller;
-        }
-
-        public void AddPlayerCard(Player player)
-        {
-            PlayerCardHUDIns = Instantiate(PlayerCardHUDRef);
-            PlayerCardHUDIns.transform.SetParent(HUDObject.transform, false);
-            PlayerCardHUDIns.Setup(player);
-            PlayerCardHUDIns.UpdateCardHp();
-            PlayerCardHUDIns.Enable();
-        }
-
-        public void OnOffAbilityUI(bool wantOn)
-        {
-            AbilityController.gameObject.SetActive(wantOn);
-        }
-
-        public void TogglePause()
-        {
+            return view;
         }
     }
 }

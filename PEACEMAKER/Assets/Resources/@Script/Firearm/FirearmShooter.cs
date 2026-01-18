@@ -192,10 +192,10 @@ namespace Resources.Script.Firearm
 
                 if (Physics.Raycast(ray, out RaycastHit hit, FireArm.fireArmData.range, mask))
                 {
-                    float calculatedDmg = FireArm.currentAmmo.GetAmmoDmg();
+                    float calculatedDmg = FireArm.ammoItemInInventory.GetAmmoDmg();
                     float finalDmg = FireArm.alwaysApplyFire
                         ? calculatedDmg
-                        : calculatedDmg / FireArm.currentAmmo.ammo.BulletCountOnce;
+                        : calculatedDmg / FireArm.ammoItemInInventory.ammo.BulletCountOnce;
                     UpdateHits(FireArm.fireArmData.defaultDecalPrefab, ray, hit, finalDmg, FireArm.DecalDirection);
                 }
             }

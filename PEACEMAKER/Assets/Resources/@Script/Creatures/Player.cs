@@ -2,6 +2,7 @@
 using Resources.Script.Controller;
 using Resources.Script.InteractiveObject;
 using Resources.Script.Managers;
+using Resources.Script.UI.Scene;
 using UnityEngine;
 using static Resources.Script.Defines;
 namespace Resources.Script.Creatures
@@ -21,6 +22,7 @@ namespace Resources.Script.Creatures
                 currExp = Math.Clamp(value, 0, MaxExp);
                 if (currExp == MaxExp)
                     LevelUp();
+                onExpChange?.Invoke(value, MaxExp);
             }
         }
 
@@ -29,9 +31,18 @@ namespace Resources.Script.Creatures
             get=>maxExp;
             private set => maxExp = value;
         }
+
+        protected override void NotifyHpChanged()
+        {
+            onHpChange?.Invoke(Hp, MaxHp);
+        }
         
         
         public PlayerController PController { get; private set; }
+        
+        public Action<float, float> onExpChange;
+        public Action<float, float> onHpChange;
+        
         protected override void Awake()
         {
             base.Awake();
@@ -45,13 +56,12 @@ namespace Resources.Script.Creatures
 
         protected override void Start()
         {
-            HeadManager.UI.AddPlayerCard(this);
+            
         }
         
         protected override void Update()
         {
-            HeadManager.UI.PlayerCardHUDIns.UpdateCardHp();
-            HeadManager.UI.PlayerCardHUDIns.UpdateCardExp();
+            
         }
 
         public override void OnDeath()
@@ -62,7 +72,11 @@ namespace Resources.Script.Creatures
         public override void OnDamage(float value, Creature attackBy, bool isCrit = false)
         {
             base.OnDamage(value, attackBy ,isCrit);
-            HeadManager.UI.HpEffect.TriggerDamageEffect();
+            if (HeadManager.UI.SceneUI is UIGameScene)
+            {
+                var temp = (UIGameScene)HeadManager.UI.SceneUI;
+                temp.TriggerDamageEffect();
+            }
         }
 
         public override void GetKill()
@@ -74,7 +88,6 @@ namespace Resources.Script.Creatures
         {
             // 0. 경험치통 증가
             // 1. 능력 선택 UI 호출
-            HeadManager.UI.OnOffAbilityUI(true);
             CurrExp = 0;
         }
             
