@@ -63,7 +63,7 @@ namespace Resources.Script.Audio
         private IEnumerator CDisableAfterPlay()
         {
             yield return new WaitForSeconds(_audioSource.clip.length + 0.1f);
-            HeadManager.Audio.ReturnSFXToPool(this);
+            HeadManager.Resource.Destroy(gameObject);
         }
         
         private IEnumerator CDisableAfterPlayPrefab(float time)
@@ -77,7 +77,7 @@ namespace Resources.Script.Audio
             
             yield return new WaitForSeconds(time + offset);
             Target = null;
-            HeadManager.Audio.ReturnSFXToPool(this);
+            HeadManager.Resource.Destroy(gameObject);
         }
 
         public void Mute()

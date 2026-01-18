@@ -13,36 +13,34 @@ internal class Pool
 
     public Transform RootTransform
     {
-        get
-        {
-            if (_rootTransform == null)
-            {
-                GameObject go = new GameObject($"@{_prefab.name}Pool");
-                _rootTransform = go.transform;
-            }
+        get => _rootTransform;
 
-            return _rootTransform;
-        }
-
+        set => _rootTransform = value;
     }
 
-    public Pool(ObjectPreset preset)
+    public Pool(ObjectPreset preset, Transform parent)
     {
         _prefab = preset.prefab;
+        RootTransform = parent;
         // Unity에서 제공하는 Pool
         // createFunc, OnGet, OnRelease, OnDestroy, 중복 반환 여부, 초기사이즈 , 최대사이즈
         _pool = new ObjectPool<GameObject>(OnCreate, OnGet, OnRelease, OnDestroy, true, preset.initialSize);
     }
 
-    public Pool(GameObject prefab)
+    public Pool(GameObject prefab, Transform parent)
     {
         _prefab = prefab;
+        RootTransform = parent;
         _pool = new ObjectPool<GameObject>(OnCreate, OnGet, OnRelease, OnDestroy, true, 10);
     }
 
     private GameObject OnCreate()
     {
-        GameObject go = Object.Instantiate(_prefab, RootTransform, true);
+        GameObject go;
+        if (RootTransform != null)
+            go = Object.Instantiate(_prefab, RootTransform);
+        else
+            go = Object.Instantiate(_prefab);
         go.name = _prefab.name;
         return go;
     }
@@ -95,31 +93,31 @@ public class PoolManager
         return true;
     }
 
-    public GameObject Pop(ObjectPreset objectPreset)
+    public GameObject Pop(ObjectPreset objectPreset, Transform parent = null)
     {
         if (!_pools.ContainsKey(objectPreset.prefab.name))
-            CreatePool(objectPreset);
+            CreatePool(objectPreset, parent);
         
         return  _pools[objectPreset.prefab.name].Pop();
     }
     
-    public GameObject Pop(GameObject prefab)
+    public GameObject Pop(GameObject prefab, Transform parent = null)
     {
         if (!_pools.ContainsKey(prefab.name))
-            CreatePool(prefab);
+            CreatePool(prefab, parent);
         
         return  _pools[prefab.name].Pop();
     }
 
-    private void CreatePool(ObjectPreset objectPreset)
+    private void CreatePool(ObjectPreset objectPreset, Transform parent = null)
     {
-        Pool pool = new Pool(objectPreset);
+        Pool pool = new Pool(objectPreset, parent);
         _pools.Add(objectPreset.prefab.name, pool);
     }
     
-    private void CreatePool(GameObject prefab)
+    private void CreatePool(GameObject prefab, Transform parent = null)
     {
-        Pool pool = new Pool(prefab);
+        Pool pool = new Pool(prefab, parent);
         _pools.Add(prefab.name, pool);
     }
     

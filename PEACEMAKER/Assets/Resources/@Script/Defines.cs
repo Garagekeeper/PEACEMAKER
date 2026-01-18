@@ -127,5 +127,15 @@ namespace Resources.Script
             Enemy,
             ExpGem,
         }
+
+        public enum EObjectID
+        {
+            Player = 0,
+            Enemy = 10,
+            ExpGemNormal = 20,
+            ExpGemRare = 21,
+            ExpGemEpic = 22,
+            SFX=23,
+        }
     }
 }

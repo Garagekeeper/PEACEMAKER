@@ -26,39 +26,35 @@ namespace Resources.Script.Managers
         public Transform PlayersRoot { get { return GetRootTransform("@Players"); } }
         public Transform EnemiesRoot { get { return GetRootTransform("@Enemies"); } }
         public Transform ExpGemsRoot { get { return GetRootTransform("@ExpGems"); } }
-
+        public Transform SoundRoot { get { return GetRootTransform("@Sounds"); } }
         
-        public T Spawn<T>(Vector3 pos) where T : BaseObject
+        public T Spawn<T>(EObjectID id, Vector3 pos) where T : BaseObject
         {
-            string prefabName = typeof(T).Name;
-
-            return Spawn<T>(prefabName, pos);
-        }
-        
-        public T Spawn<T>(string objectName, Vector3 pos) where T : BaseObject
-        {
-            GameObject go = HeadManager.Resource.Instantiate(objectName);
+            GameObject go = HeadManager.Resource.Instantiate(id);
             if (go == null)
             {
-                Debug.LogError($"there's err while Instantiating: {objectName}");
+                Debug.LogError($"there's err while Instantiating: {id}");
                 return go.GetComponent<T>();
             }
             
-            go.name = objectName;
+            //go.name = objectName;
             go.transform.position = pos;
             BaseObject obj = go.GetComponent<BaseObject>();
 
             switch (obj.ObjectType)
             {
                 case EObjectType.Enemy:
+                    go.transform.SetParent(EnemiesRoot);
                     Enemies.Add(go.GetComponent<Enemy>());
                     break;
                 case EObjectType.ExpGem:
                     var gem =  obj.GetComponent<ExpGem>();
+                    go.transform.SetParent(ExpGemsRoot);
                     ExpGems.Add(gem);
-                    gem.Init(pos, objectName[^3..]);
+                    gem.Init(pos, id);
                     break;
                 case EObjectType.Player:
+                    go.transform.SetParent(PlayersRoot);
                     Players.Add(go.GetComponent<Player>());
                     break;
                 default:

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Resources.Script.Audio;
+using static Resources.Script.Defines;
 using UnityEngine;
 
 namespace Resources.Script.Managers
@@ -8,111 +9,47 @@ namespace Resources.Script.Managers
     {
         
         private int _initialPoolSize;
-        private Queue<SFXSource> _sfxPool;
         private GameObject _parent;
-        private SFXSource _sfxPrefab;
+        private string sfxKey;
         public AudioListener MainListener { get; private set; }
 
         public void Init()
         {
-            // GameScene으로 넘어오면서 @SoundPool 오브젝트가 DontDestroyOnLoad에 생성됨
-            _parent = GameObject.Find("@SoundRoot");
-            if (_parent == null)
-            {
-                _parent = new GameObject("@SoundRoot");
-                UnityEngine.Object.DontDestroyOnLoad(_parent);
-            }
-            _initialPoolSize = 30;
-            _sfxPool = new Queue<SFXSource>();
-            _sfxPrefab = UnityEngine.Resources.Load<GameObject>("@Prefabs/sfx").GetComponent<SFXSource>();
-            MainListener = UnityEngine.Object.FindAnyObjectByType<AudioListener>();
-            InitPool();
+            sfxKey = "sfx";
+            MainListener = Object.FindAnyObjectByType<AudioListener>();
         }
 
         public void ReSetting()
         {
-            MainListener = UnityEngine.Object.FindAnyObjectByType<AudioListener>();
+            MainListener = Object.FindAnyObjectByType<AudioListener>();
         }
-
-        public void InitPool()
-        {
-            if (_sfxPool.Count >= _initialPoolSize) return;
-
-            // Pool에 미리 생성
-            for (int i = 0; i < _initialPoolSize; i++)
-                AddNewSFXSource();
-        }
-
-        public void AddNewSFXSource()
-        {
-            //오브젝트 인스턴스화 후에 큐에 집어넣음
-            SFXSource sfxObj = Object.Instantiate(_sfxPrefab, _parent.transform);
-            
-            ReturnSFXToPool(sfxObj);
-        }
-
-        public void ReturnSFXToPool(SFXSource sfx)
-        {
-            // 큐에 넣을때는 active false로
-            if (!sfx) return;
-            _sfxPool.Enqueue(sfx);
-            sfx.gameObject.SetActive(false);
-        }
-
-        public SFXSource GetSFXFromPool()
-        {
-            // 큐에 남아있지 않으면 추가
-            if (_sfxPool.Count == 0)
-                AddNewSFXSource();
-
-            // 큐에서 뽑아내서 반환
-            var sfx = _sfxPool.Dequeue();
-            sfx.gameObject.SetActive(true);
-
-            return sfx;
-        }
-
+        
         // 오디오 클립 재생
         public SFXSource PlaySFX(AudioClip clip, float volume = 1f, float spatialBlend = 1f, bool isLoop = false)
         {
-            var sfx = GetSFXFromPool();
+            var sfx = HeadManager.Resource.Instantiate(EObjectID.SFX, HeadManager.ObjManager.SoundRoot).GetComponent<SFXSource>();
             sfx.Play(clip, volume,spatialBlend, isLoop);
             return sfx;
         }
         
         public SFXSource PlayWithPreset(AudioPreset preset, bool posNeeded = false)
         {
-            var sfx = GetSFXFromPool();
-            if (HeadManager.Game.MainPlayer && posNeeded)
-                sfx.transform.position = HeadManager.Game.MainPlayer.PController.transform.position;
-            sfx.PlayWithPreset(preset);
+             var sfx = HeadManager.Resource.Instantiate(EObjectID.SFX, HeadManager.ObjManager.SoundRoot).GetComponent<SFXSource>();
+             if (HeadManager.Game.MainPlayer && posNeeded)
+                 sfx.transform.position = HeadManager.Game.MainPlayer.PController.transform.position;
+             sfx.PlayWithPreset(preset);
+            // var sfx = GetSFXFromPool();
+            // if (HeadManager.Game.MainPlayer && posNeeded)
+            //     sfx.transform.position = HeadManager.Game.MainPlayer.PController.transform.position;
+            // sfx.PlayWithPreset(preset);
             return sfx;
         }
-
-        public SFXSource PlayWithPreset(AudioPreset preset, Vector3 pos)
-        {
-            var sfx = GetSFXFromPool();
-            sfx.transform.position = pos;
-            sfx.PlayWithPreset(preset);
-            return sfx;
-        }
+        
         public SFXSource PlayWithPreset(AudioPreset preset, Transform target)
         {
-            var sfx = GetSFXFromPool();
+            var sfx = HeadManager.Resource.Instantiate(EObjectID.SFX, HeadManager.ObjManager.SoundRoot).GetComponent<SFXSource>();
             sfx.PlayWithPreset(preset, target);
             return sfx;
-        }
-
-        // 게임 초기화등에 사용
-        public void ReturnSFXToPoolAll()
-        {
-            foreach (Transform childTransform in _parent.transform)
-            {
-                if (_sfxPool.Count <= _initialPoolSize)
-                    ReturnSFXToPool(childTransform.gameObject.GetComponent<SFXSource>());
-                else 
-                    Object.Destroy(childTransform.gameObject);
-            }
         }
     }
 }

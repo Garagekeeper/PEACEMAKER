@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using static Resources.Script.Defines;
 namespace Resources.Script.Managers
 {
     public class ResourceManager
@@ -12,7 +12,7 @@ namespace Resources.Script.Managers
             _sourceCatalog = sourceCatalog;
         }
         
-        public GameObject Instantiate(string key, Transform parent = null)
+        public GameObject Instantiate(EObjectID key, Transform parent = null)
         {
             ObjectPreset preset = _sourceCatalog.GetObjPreset(key);
             if (preset == null)
@@ -22,7 +22,7 @@ namespace Resources.Script.Managers
             }
 
             if (preset.poolable)
-                return HeadManager.Pool.Pop(preset.prefab);
+                return HeadManager.Pool.Pop(preset.prefab, parent);
             
             GameObject go = Object.Instantiate(preset.prefab, parent);
             //TODO 여기서 프리셋 기본값 저장

@@ -43,18 +43,18 @@ namespace Resources.Script.InteractiveObject
         /// 젬 드랍 초기화
         /// </summary>
 
-        public void Init(Vector3 spawnPos, string rarity)
+        public void Init(Vector3 spawnPos, EObjectID rarity)
         {
             ERarity rarityEnum = ERarity.Normal;
             switch (rarity)
             {
-                case "Normal":
+                case EObjectID.ExpGemNormal:
                     rarityEnum = ERarity.Normal;
                     break;
-                case "Rare":
+                case EObjectID.ExpGemRare:
                     rarityEnum = ERarity.Rare;
                     break;
-                case "Epic":
+                case EObjectID.ExpGemEpic:
                     rarityEnum = ERarity.Epic;
                     break;
             }

@@ -9,17 +9,17 @@ namespace Resources.Script
         [SerializeField] private List<ObjectPreset> _soList;
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         
-        private Dictionary<string, ObjectPreset> _soDict = new();
+        private Dictionary<Defines.EObjectID, ObjectPreset> _soDict = new();
 
         void Awake()
         {
             foreach (var so in _soList)
             {
-                _soDict.Add(so.prefab.name, so);
+                _soDict.Add(so.id, so);
             }
         }
 
-        public GameObject GetPrefab(string key)
+        public GameObject GetPrefab(Defines.EObjectID key)
         {
             if (!_soDict.TryGetValue(key, out var value))
             {
@@ -30,7 +30,7 @@ namespace Resources.Script
             return value.prefab;
         }
         
-        public ObjectPreset GetObjPreset(string key)
+        public ObjectPreset GetObjPreset(Defines.EObjectID key)
         {
             if (!_soDict.TryGetValue(key, out var value))
             {

@@ -11,12 +11,14 @@ namespace Resources.Script.Creatures
     {
         public ERarity Rarity { get; set; }
         private EnemyController  _controller;
+        public EObjectID GemID { get; set; }
         protected override void Awake()
         {
             base.Awake();
             CreatureType = ECreatureType.Enemy;
             _controller = GetComponent<EnemyController>();
             Rarity = ERarity.Normal;
+            GemID = EObjectID.ExpGemNormal + (int)Rarity;
             ObjectType = EObjectType.Enemy;
         }
         
@@ -38,7 +40,7 @@ namespace Resources.Script.Creatures
             
             // spawn EXP gem
             
-            HeadManager.ObjManager.Spawn<ExpGem>($"{Rarity}Gem", dropTransform.position);
+            HeadManager.ObjManager.Spawn<ExpGem>(GemID, dropTransform.position);
             
             Destroy(gameObject, 5);
         }
