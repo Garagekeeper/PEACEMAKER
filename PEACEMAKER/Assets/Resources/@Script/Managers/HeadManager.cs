@@ -9,113 +9,132 @@ namespace Resources.Script.Managers
     {
         public static bool Initialized { get; set; } = false;
         private static HeadManager sInstance;
-        public static HeadManager Instance { get { Init(); return sInstance; } }
+
+        public static HeadManager Instance
+        {
+            get
+            {
+                if (sInstance == null)
+                    sInstance = FindFirstObjectByType<HeadManager>();
+                if (sInstance == null)
+                {
+                    Debug.LogError("[HeadManager] Not found. Make sure Manager scene loads first and contains @Managers with HeadManager.");
+                }
+                return sInstance;
+            }
+        }
 
         public UIManager UIInternal { get; private set; }
         public SettingManager SettingInternal { get; private set; }
-        
-        
+
+
         private AudioManager _audio = new AudioManager();
         private GameManager _game = new GameManager();
         private InputManager _input;
         private PoolManager _pool = new PoolManager();
         private ObjectManager _obj = new ObjectManager();
         private ResourceManager _resource;
-        
+
         public static AudioManager Audio => Instance?._audio;
         public static GameManager Game => Instance?._game;
-        public static InputManager Input 
-        { 
+
+        public static InputManager Input
+        {
             get => Instance?._input;
             private set => Instance._input = value;
         }
 
         public static ResourceManager Resource
-        { 
+        {
             get => Instance?._resource;
             private set => Instance._resource = value;
         }
+
         public static ObjectManager ObjManager => Instance._obj;
-        public static PoolManager Pool =>Instance?._pool;
+        public static PoolManager Pool => Instance?._pool;
 
         #region MONO
-        
+
         private LoadingManager _loading;
-        
+
         public static LoadingManager Loading
         {
             get => Instance?._loading;
             private set
             {
-                if (Instance != null) 
+                if (Instance != null)
                     Instance._loading = value;
             }
         }
+
         #endregion
 
 
         public static UIManager UI => Instance.UIInternal;
         public static SettingManager Setting => Instance.SettingInternal;
 
-        public static void Init()
-        {
-            if (sInstance == null && !Initialized)
-            {
-                Initialized = true;
-                GameObject go = GameObject.Find("@Managers");
-                if (go == null)
-                {
-                    go = new GameObject("@Managers");
-                    go.AddComponent<HeadManager>();
-                }
-                
-                DontDestroyOnLoad(go);
-                
-                sInstance = go.GetComponent<HeadManager>();
-            }
-        }
-        
         private void Awake()
         {
+            Debug.Log("[HeadManager] Awake, Initialize Started");
             if (sInstance != null && sInstance != this)
             {
                 Destroy(gameObject);
                 return;
             }
-            
+
+            sInstance = this;
             DontDestroyOnLoad(gameObject);
 
             _audio.Init();
-            var reader = GetComponent<InputReader>();
-            if (reader == null) reader = gameObject.AddComponent<InputReader>();
+
+            var reader = GetComponent<InputReader>() ?? gameObject.AddComponent<InputReader>();
             _input = new InputManager(reader);
 
-            var catalog = GetComponent<ScriptableObjCatalog>();
-            if (catalog == null) catalog = gameObject.AddComponent<ScriptableObjCatalog>();
+            var catalog = GetComponent<ScriptableObjCatalog>() ?? gameObject.AddComponent<ScriptableObjCatalog>();
             _resource = new ResourceManager(catalog);
-            
-            UIInternal = gameObject.GetComponent<UIManager>();
-            SettingInternal =  gameObject.GetComponent<SettingManager>();
-            Loading = gameObject.GetComponent<LoadingManager>();
-            
-            // 씬이 로드되면 호출될 함수 등록
-            //SceneManager.sceneLoaded -= OnSceneLoadedMy;
+
+            UIInternal = GetComponent<UIManager>();
+            SettingInternal = GetComponent<SettingManager>();
+            Loading = GetComponent<LoadingManager>();
+
+            SceneManager.sceneLoaded -= OnSceneLoadedMy;
             SceneManager.sceneLoaded += OnSceneLoadedMy;
-            
-            
         }
+
 
         private void Start()
         {
-            SceneManager.LoadSceneAsync("Main Menu");
+            // 에디터에서는 어떤 씬에서 시작해도 
+            // 매니저 씬을 통과한 다음에 이동
+#if UNITY_EDITOR
+            const string key = "MANAGER_PENDING_SCENE";
+            if (UnityEditor.EditorPrefs.HasKey(key))
+            {
+                string scenePath = UnityEditor.EditorPrefs.GetString(key);
+
+                // path -> scene name 추출
+                string sceneName = System.IO.Path.GetFileNameWithoutExtension(scenePath);
+
+                if (SceneManager.GetActiveScene().name != sceneName)
+                    SceneManager.LoadSceneAsync(sceneName);
+
+                if (sceneName.Contains("Game"))
+                    _game.Init();
+                return;
+            }
+#endif
+
+            // 빌드/일반 실행: 기본 시작 씬
+            if (SceneManager.GetActiveScene().name != "Main Menu")
+                SceneManager.LoadSceneAsync("Main Menu");
         }
 
         private void OnSceneLoadedMy(Scene scene, LoadSceneMode mode)
         {
-            UI?.OnSceneLoaded();  // ADD
-            Audio.ReSetting();
+            UIInternal?.OnSceneLoaded(); // ADD
+            _audio.ReSetting();
         }
-        
+
         private void OnDisable()
         {
             SceneManager.sceneLoaded -= OnSceneLoadedMy;
