@@ -233,7 +233,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 18
+  m_fontSize: 72
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -648,8 +648,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e9ad2d34b8efd4197d39b761dcf8f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Controller.AbilityUIController
-  _upSpeed: 8
-  _downSpeed: 6
-  _minValue: 0
-  _maxValue: 1
   panel: {fileID: 0}
+  upSpeed: 8
+  downSpeed: 6
+  minValue: 0
+  maxValue: 1

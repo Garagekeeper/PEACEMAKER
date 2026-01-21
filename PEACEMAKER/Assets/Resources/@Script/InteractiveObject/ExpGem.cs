@@ -31,6 +31,7 @@ namespace Resources.Script.InteractiveObject
         private Transform _playerTransform;
         private Collider _collider;
         public ERarity Rarity { get; private set; }
+        public int ExpAmount { get; private set; }
 
         private void Awake()
         {
@@ -50,12 +51,15 @@ namespace Resources.Script.InteractiveObject
             {
                 case EObjectID.ExpGemNormal:
                     rarityEnum = ERarity.Normal;
+                    ExpAmount = 10;
                     break;
                 case EObjectID.ExpGemRare:
                     rarityEnum = ERarity.Rare;
+                    ExpAmount = 20;
                     break;
                 case EObjectID.ExpGemEpic:
                     rarityEnum = ERarity.Epic;
+                    ExpAmount = 50;
                     break;
             }
             
@@ -149,11 +153,20 @@ namespace Resources.Script.InteractiveObject
 
         private void UpdateAttracting()
         {
+            var target = HeadManager.Game.MainPlayer;
+            var targetPos = target.transform.position;
             transform.position = Vector3.MoveTowards(
                 transform.position, 
-                HeadManager.Game.MainPlayer.dropTransform.position, 
+                targetPos, 
                 attractSpeed * Time.deltaTime
             );
+
+            if ((transform.position - targetPos).magnitude < 0.1f)
+            {
+                _state = GemState.None;
+                target.Collect(this);
+                OnPickedUp();
+            }
         }
 
         private void UpdateRotate()

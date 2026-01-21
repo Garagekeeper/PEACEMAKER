@@ -23,20 +23,13 @@ namespace Resources.Script.UI.PlayerCard
         private float _currentDamage;
         private float _expTarget;
         private float _currentBarExp;
+        private bool _isLevelUp; // 레벨업 상태인지 확인
 
 
         public void Update()
         {
-            // 하얀바가 줄어든 만큼 빨간 바가 천천히 줄어듬
-            // (빨간 바)
-            _currentDamage = Mathf.Lerp(_currentDamage, playerHealthBar.value, Time.deltaTime * 5 * damageFollowSpeed);
-            playerDamageBar.value = _currentDamage;
-            
-            
-            _expTarget = GetExpRatio();
-            _currentBarExp = Mathf.Lerp(_currentBarExp, _expTarget, Time.deltaTime * 5 * damageFollowSpeed);
-            playerNextExpBar.value = _currentBarExp;
-            
+            UpdateHpBar();
+            UpdateExpBar();
         }
 
         private float GetExpRatio()
@@ -65,6 +58,31 @@ namespace Resources.Script.UI.PlayerCard
         {
             _maxPlayerExp = maxValue;
             _currentPlayerExp = currentValue;
+        }
+
+        public void UpdateLevelUpState(bool state)
+        {
+            _isLevelUp = state;
+        }
+        
+        private void UpdateHpBar()
+        {
+            // 하얀바가 줄어든 만큼 빨간 바가 천천히 줄어듬
+            // (빨간 바)
+            _currentDamage = Mathf.Lerp(_currentDamage, playerHealthBar.value, Time.deltaTime * 5 * damageFollowSpeed);
+            playerDamageBar.value = _currentDamage;
+        }
+
+        private void UpdateExpBar()
+        {
+            // 레벨업 중이라면 목표치를 강제로 1(100%)로 설정
+            float target = _isLevelUp ? 1f : GetExpRatio();
+            
+            // Time.unscaledDeltaTime을 사용해야 Time.timeScale = 0(일시정지)에서도 바가 움직입니다.
+            _currentBarExp = Mathf.Lerp(_currentBarExp, target, Time.unscaledDeltaTime * 5 * damageFollowSpeed);
+            playerNextExpBar.value = _currentBarExp;
+
+            // [연출 핵심] 바가 99% 이상 찼고 레벨업 상태라면, 0으로 즉시 초기화하여 다음 레벨업 준비
         }
 
         public void Show()

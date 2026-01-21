@@ -1,20 +1,21 @@
+using System;
 using System.Collections;
 using ChocDino.UIFX;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 
-namespace Resources.Script.Controller
+namespace Resources.Script.UI.Ability
 {
-    public class AbilityUIController : MonoBehaviour,
+    public class AbilityCard : MonoBehaviour,
         IPointerEnterHandler,
         IPointerExitHandler,
-        IPointerClickHandler
+        IPointerClickHandler, IView
     {
         
         private CanvasGroup _canvasGroup;
         private RectTransform _rect;
-        public AbilityPanelController panel;
+        public AbilityPanel panel;
         
         private GlowFilter _glowFilter;
         [FormerlySerializedAs("_upSpeed")]
@@ -40,9 +41,11 @@ namespace Resources.Script.Controller
             _glowFilter = GetComponent<GlowFilter>();
             _canvasGroup = GetComponent<CanvasGroup>();
             _rect = transform as RectTransform;
-            panel = GetComponentInParent<AbilityPanelController>();
+            panel = GetComponentInParent<AbilityPanel>();
         }
         
+        private Action _onClick;
+        public void Bind(Action onClick) => _onClick = onClick;
 
         private void OnEnable()
         {
@@ -64,12 +67,18 @@ namespace Resources.Script.Controller
             
         }
         
+        /// <summary>
+        /// 이 카드가 사용자의 입력을 받지 않도록 처리하는 함수
+        /// </summary>
         public void DisableInput()
         {
             _canvasGroup.interactable = false;
             _canvasGroup.blocksRaycasts = false;
         }
         
+        /// <summary>
+        /// 이 카드가 사용자의 입력을 받지도록 처리하는 함수
+        /// </summary>
         public void EnableInput()
         {
             _canvasGroup.interactable = true;
@@ -87,11 +96,18 @@ namespace Resources.Script.Controller
             EnableInput();
         }
         
-        // 선택 못받은 카드들을 안보이게 처리하는 코루틴 실행
-        public void PlayDisappearUnselected(System.Action onComplete)
+        /// <summary>
+        ///  선택 못받은 카드들을 안보이게 처리하는 코루틴 실행
+        /// </summary>
+        /// <param name="onComplete"></param>
+        public void PlayDisappearUnselected(System.Action onComplete = null)
         {
             StartCoroutine(DisappearUnselected(onComplete));
         }
+        
+        /// <summary>
+        /// 카드에 마우스를 올리면, 호버링하는 효과를 업데이트 하는 함수
+        /// </summary>
         private void UpdateHoverGlowing()
         {
             if (!_glowFilter || !_glowFilter.isActiveAndEnabled) return;
@@ -108,10 +124,13 @@ namespace Resources.Script.Controller
             //Strength 값을 조절헤 반짝임 정도 조절
             if (Mathf.Abs(_glowFilter.Strength - target) > 0.001f)
             {
-                _glowFilter.Strength = MathUtils.DampTowards(_glowFilter.Strength, target, dampSpeed, Time.deltaTime);
+                _glowFilter.Strength = MathUtils.DampTowards(_glowFilter.Strength, target, dampSpeed, Time.unscaledDeltaTime);
             }
         }
         
+        /*------------------
+         이벤트 함수
+         -----------------*/
         public void OnPointerEnter(PointerEventData eventData)
         {
             _isHover = true;
@@ -127,11 +146,15 @@ namespace Resources.Script.Controller
             StopAllCoroutines();
             StartCoroutine(Ripple());
             StartCoroutine(ClickScale(GetComponent<RectTransform>()));
-            panel.OnAbilitySelected(this);
+            _onClick?.Invoke();
         }
         
 
-        // 선택 못받은 카드들을 안보이게 처리
+        /// <summary>
+        /// 선택받지 못한 카드들을 안보이게 처리하는 함수
+        /// </summary>
+        /// <param name="onComplete"></param>
+        /// <returns></returns>
         IEnumerator DisappearUnselected(System.Action onComplete)
         {
             Vector3 startScale = _rect.localScale;
@@ -142,7 +165,7 @@ namespace Resources.Script.Controller
             while (t < 0.1f)
             {
                 _rect.localScale = Vector3.Lerp(startScale, popScale, t / 0.1f);
-                t += Time.deltaTime;
+                t += Time.unscaledDeltaTime;
                 yield return null;
             }
 
@@ -157,12 +180,12 @@ namespace Resources.Script.Controller
                 _rect.localScale = Vector3.Lerp(popScale, Vector3.zero, lerp);
                 _canvasGroup.alpha = Mathf.Lerp(1f, 0f, lerp);
 
-                t += Time.deltaTime;
+                t += Time.unscaledDeltaTime;
                 yield return null;
             }
             
             // 콜백 호출
-            yield return new WaitForSeconds(0.15f);
+            yield return new WaitForSecondsRealtime(0.15f);
             onComplete?.Invoke();
         }
        
@@ -185,7 +208,7 @@ namespace Resources.Script.Controller
                 // 가장자리만 남게 보이도록 약간 감쇠
                 _glowFilter.ExpFalloffEnergy = Mathf.Lerp(16f, 8f, t);
 
-                time += Time.deltaTime;
+                time += Time.unscaledDeltaTime;
                 _glowFilter.EdgeSide = EdgeSide.Outside;
                 yield return null;
             }
@@ -206,7 +229,7 @@ namespace Resources.Script.Controller
             while (t < 0.06f)
             {
                 rect.localScale = Vector3.Lerp(origin, pressed, t / 0.06f);
-                t += Time.deltaTime;
+                t += Time.unscaledDeltaTime;
                 yield return null;
             }
 
@@ -214,7 +237,7 @@ namespace Resources.Script.Controller
             while (t < 0.08f)
             {
                 rect.localScale = Vector3.Lerp(pressed, origin, t / 0.08f);
-                t += Time.deltaTime;
+                t += Time.unscaledDeltaTime;
                 yield return null;
             }
 
@@ -247,7 +270,7 @@ namespace Resources.Script.Controller
                 while (t < duration)
                 {
                     mask.anchoredPosition = Vector2.Lerp(start, target, t / duration);
-                    t += Time.deltaTime;
+                    t += Time.unscaledDeltaTime;
                     yield return null;
                 }
 
@@ -255,6 +278,15 @@ namespace Resources.Script.Controller
                 index = (index + 1) % path.Length;
             }
         }
-        
+
+        public void Show()
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void Hide()
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

@@ -108,7 +108,7 @@ namespace Resources.Script.Controller
             Inventory = this.FindSelfChild<InventoryCore>();
 
             // 착지소리 등록
-            onLand.AddListener(() => HeadManager.Audio.PlayWithPreset(landSfx, transform));
+            //onLand.AddListener(() => HeadManager.Audio.PlayWithPreset(landSfx, transform));
         }
 
         // Start is called once before the first execution of Update after the MonoBehaviour is created

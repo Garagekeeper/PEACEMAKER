@@ -11,9 +11,11 @@ namespace Resources.Script.UI.Crosshair
         }
 
         public override void Init()
-        {
-            model.onHpChange += UpdateHpValue;
-            model.onExpChange += UpdateExpValue;
+        {   
+            model.onHpChange      += UpdateHpValue;
+            model.onExpChange     += UpdateExpValue;
+            model.OnLevelUp       += UpdateLevelUpStateOn;
+            model.OnLevelUpDone   += UpdateLevelUpStateOff;
         }
 
         private void UpdateHpValue(float value, float maxValue)
@@ -25,11 +27,23 @@ namespace Resources.Script.UI.Crosshair
         {
             view.UpdateExpValue(value, maxValue);
         }
+
+        private void UpdateLevelUpStateOn()
+        {
+            view.UpdateLevelUpState(true);
+        }
+        
+        private void UpdateLevelUpStateOff()
+        {
+            view.UpdateLevelUpState(false);
+        }
         
         public override void Release()
         {
-            model.onHpChange -= UpdateHpValue;
-            model.onExpChange -= UpdateExpValue;
+            model.onHpChange      -= UpdateHpValue;
+            model.onExpChange     -= UpdateExpValue;
+            model.OnLevelUp       -= UpdateLevelUpStateOn;
+            model.OnLevelUpDone   -= UpdateLevelUpStateOff;
         }
     }
 }
