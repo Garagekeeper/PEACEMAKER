@@ -1,4 +1,5 @@
-﻿using Resources.Script.UI;
+﻿using System.Collections.Generic;
+using Resources.Script.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -87,6 +88,5 @@ namespace Resources.Script
 
             return comp;
         }
-
     }
 }

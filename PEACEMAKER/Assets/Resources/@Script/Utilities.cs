@@ -1,4 +1,5 @@
-﻿using Resources.Script.Managers;
+﻿using System.Collections.Generic;
+using Resources.Script.Managers;
 using UnityEngine;
 using static Resources.Script.Defines;
 
@@ -100,6 +101,35 @@ namespace Resources.Script
             Vector3 up = Mathf.Abs(normal.y) > 0.99f ? Vector3.forward : Vector3.up;
 
             return Quaternion.LookRotation(normal, up);
+        }
+        
+        
+        public static void Shuffle<T>(List<T> list)
+        {
+            for (int i = list.Count - 1; i > 0; i--)
+            {
+                int rnd = Random.Range(0, i + 1);
+                (list[i], list[rnd]) = (list[rnd], list[i]);
+            }
+        }
+
+        /// <summary>
+        /// 연산자 타입에 따라서 계산
+        /// </summary>
+        /// <param name="a"></param>
+        /// <param name="op"></param>
+        /// <param name="b"></param>
+        /// <returns></returns>
+        public static float ChangeValue(float a, EOperator op, float b)
+        {
+            return op switch
+            {
+                EOperator.Add => a + b,
+                EOperator.Sub => a - b,
+                EOperator.Mul => a * b,
+                EOperator.Div => Mathf.Approximately(b, 0f) ? a : a / b,
+                _ => a
+            };
         }
     };
 }

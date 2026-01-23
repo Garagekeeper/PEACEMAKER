@@ -192,10 +192,12 @@ namespace Resources.Script.Firearm
 
                 if (Physics.Raycast(ray, out RaycastHit hit, FireArm.fireArmData.range, mask))
                 {
+                    // Apply Damage, 데미지 적용
+                    var playerMultiplier = FireArm.Owner.DamageMultiplier;
                     float calculatedDmg = FireArm.ammoItemInInventory.GetAmmoDmg();
                     float finalDmg = FireArm.alwaysApplyFire
-                        ? calculatedDmg
-                        : calculatedDmg / FireArm.ammoItemInInventory.ammo.BulletCountOnce;
+                        ? calculatedDmg * playerMultiplier
+                        : calculatedDmg * playerMultiplier / FireArm.ammoItemInInventory.ammo.BulletCountOnce;
                     UpdateHits(FireArm.fireArmData.defaultDecalPrefab, ray, hit, finalDmg, FireArm.DecalDirection);
                 }
             }
@@ -220,19 +222,19 @@ namespace Resources.Script.Firearm
         public void UpdateHits(GameObject defaultDecal, Ray ray, RaycastHit hit, float damage,
             Defines.EVector3Direction decalDirection)
         {
-            if (FireArm.Owner.CharacterController == null)
+            if (FireArm.OwnerController.CharacterController == null)
             {
                 Debug.LogError("Character in the firearm is not set.");
                 return;
             }
 
-            var creature = FireArm.Owner.CharacterController.GetComponent<Creature>();
+            var creature = FireArm.OwnerController.CharacterController.GetComponent<Creature>();
 
             // Invoke hit callbacks for the firearm
-            InvokeHitCallbacks(FireArm.Owner.CharacterController.gameObject, ray, hit);
+            InvokeHitCallbacks(FireArm.OwnerController.CharacterController.gameObject, ray, hit);
 
             // Exit if the hit target is the same as the character
-            if (hit.transform == FireArm.Owner.CharacterController.transform) return;
+            if (hit.transform == FireArm.OwnerController.CharacterController.transform) return;
 
             // 부착물 등 내부의 요소에 의해서 결정되는 배수
             float damageMultiplierInternal = 1;
@@ -272,7 +274,7 @@ namespace Resources.Script.Firearm
             }
 
             // Exit if the hit target is the same as the character manager
-            if (FireArm.Owner?.transform == hit.transform) return;
+            if (FireArm.OwnerController?.transform == hit.transform) return;
 
             // Apply default or custom decal
             if (defaultDecal)

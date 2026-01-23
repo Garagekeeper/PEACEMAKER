@@ -15,6 +15,7 @@ namespace Resources.Script.Controller
         public Enemy Owner {get; private set;}
         public float Range { get; private set; }
         public bool ForceIdle;
+        
 
         private void Awake()
         {
@@ -114,7 +115,7 @@ namespace Resources.Script.Controller
             var dirVec =  Target.transform.position - transform.position;
             dirVec.y = 0;
             dirVec.Normalize();
-            Controller.Move(dirVec * (3f * Time.deltaTime));
+            Controller.Move(dirVec * (Owner.Speed * Owner.SpeedMultiplier * Time.deltaTime));
             transform.rotation = Quaternion.LookRotation(dirVec);
             
         }

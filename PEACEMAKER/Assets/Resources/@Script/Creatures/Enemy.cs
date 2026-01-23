@@ -7,8 +7,13 @@ using static Resources.Script.Defines;
 
 namespace Resources.Script.Creatures
 {
-    public class Enemy : DamageableObject
+    public class Enemy : DamageableObject, IMovable
     {
+        
+
+        public float Speed { get; set; } = 3f;
+        public float SpeedMultiplier { get; set; } = 1f;
+        
         public ERarity Rarity { get; set; }
         private EnemyController  _controller;
         public EObjectID GemID { get; set; }
@@ -20,16 +25,6 @@ namespace Resources.Script.Creatures
             Rarity = ERarity.Normal;
             GemID = EObjectID.ExpGemNormal + (int)Rarity;
             ObjectType = EObjectType.Enemy;
-        }
-        
-        public override void OnDamage(float value, Creature attackBy, bool isCrit = false)
-        {
-            
-            if (IsDead) return;
-            //HeadManager.UI.Hitmarker.Show(isCrit);
-            if (IsInvincible) return;
-            Hp = Mathf.Max(0, Hp - value);
-            if (Hp == 0) HandleDeath(attackBy);
         }
 
         public override void OnDeath()
@@ -45,6 +40,5 @@ namespace Resources.Script.Creatures
             Destroy(gameObject, 5);
         }
 
-        
     }
 }

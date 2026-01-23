@@ -82,13 +82,13 @@ namespace Resources.Script.Firearm
                     WalkingWaveAnimationModifier = WalkingAnimation.GetComponent<WaveAnimationModifier>();
 
                 // Set up listeners for character manager events
-                if (FireArm.Owner != null)
+                if (FireArm.OwnerController != null)
                 {
                     if (JumpAnimation)
-                        FireArm.Owner.onJump.AddListener(() => JumpAnimation.Play(0));
+                        FireArm.OwnerController.onJump.AddListener(() => JumpAnimation.Play(0));
 
                     if (LandAnimation)
-                        FireArm.Owner.onLand.AddListener(() => JumpAnimation.Play(0));
+                        FireArm.OwnerController.onLand.AddListener(() => JumpAnimation.Play(0));
                 }
 
                 // TODO 아무리 찾아봐도 이 애니메이션이 없는데
@@ -108,12 +108,12 @@ namespace Resources.Script.Firearm
             if (WalkingWaveAnimationModifier != null)
             {
                 // Update walking wave animation based on character velocity
-                float characterVelocity = FireArm.Owner.CharacterController.velocity.magnitude;
+                float characterVelocity = FireArm.OwnerController.CharacterController.velocity.magnitude;
                 WalkingWaveAnimationModifier.speedMultiplier = Mathf.Lerp(WalkingWaveAnimationModifier.speedMultiplier,
                     characterVelocity, Time.deltaTime * 5);
 
-                if (FireArm.Owner.CharacterController.velocity.magnitude > 1 &&
-                    FireArm.Owner.CharacterController.isGrounded)
+                if (FireArm.OwnerController.CharacterController.velocity.magnitude > 1 &&
+                    FireArm.OwnerController.CharacterController.isGrounded)
                     WalkingWaveAnimationModifier.scaleMultiplier = Mathf.Lerp(
                         WalkingWaveAnimationModifier.scaleMultiplier, characterVelocity, Time.deltaTime * 5);
                 else
@@ -224,9 +224,17 @@ namespace Resources.Script.Firearm
         {
             //condition check
             // 남은 탄약이 없으면 종료
-            if (FireArm.ammoItemInInventory.Count == 0) return;
+            if (FireArm.ammoItemInInventory.Count == 0)
+            {
+                FireArm.FirearmState =  EFirearmStates.None;
+                return;
+            }
             // 이미 탄창에 탄약이 가득찬 경우 종료
-            if (FireArm.AmmoInMagazine >= FireArm.fireArmData.magazineCapacity) return;
+            if (FireArm.AmmoInMagazine >= FireArm.fireArmData.magazineCapacity)
+            {
+                FireArm.FirearmState =  EFirearmStates.None;
+                return;
+            }
             AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
             // 0.이미 재장전 애니메에션을 재생중
             if (_isReloading)

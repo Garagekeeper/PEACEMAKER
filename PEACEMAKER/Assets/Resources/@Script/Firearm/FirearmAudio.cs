@@ -24,7 +24,7 @@ namespace Resources.Script.Firearm
         public void PlayReload()
         {
             _reloadSound = HeadManager.Audio.PlayWithPreset(Firearm.fireArmData.reloadSoundPreset,
-                Firearm.Owner.transform);
+                Firearm.OwnerController.transform);
         }
 
         private void OnDisable()

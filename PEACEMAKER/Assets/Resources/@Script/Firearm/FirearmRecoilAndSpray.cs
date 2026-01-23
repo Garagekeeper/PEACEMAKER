@@ -27,10 +27,6 @@ namespace Resources.Script.Firearm
         public float ADSRampUpTime = 0.10f;
         public float hipRecoveryTime = 0.10f;
         public float ADSRecoveryTime = 0.05f;
-
-        // Spread multipliers
-        private float horizontalMultiplier = 1f;
-        private float verticalMultiplier = 1f;
         
         public void Init(FirearmController fireArm)
         {
@@ -44,9 +40,9 @@ namespace Resources.Script.Firearm
 
         public void UpdateSpray()
         {
-            float moveSpeed = FireArm.Owner.CharacterController.velocity.magnitude;
+            float moveSpeed = FireArm.OwnerController.CharacterController.velocity.magnitude;
             float aimProgress = FireArm.anim.AimingAnimation.Progress;
-            bool grounded = FireArm.Owner.CharacterController.isGrounded;
+            bool grounded = FireArm.OwnerController.CharacterController.isGrounded;
             bool recentlyFired = Time.time - FireArm.shooter.LastFireTime <= fireDecayDelay;
 
             // Hip Fire
@@ -69,7 +65,7 @@ namespace Resources.Script.Firearm
                 // 이동 시 추가 스프레이를 적용
                 if (moveSpeed > 0.1f && aimProgress < 0.99f)
                 {
-                    float normalized = Mathf.InverseLerp(0f, FireArm.Owner.sprintSpeed, moveSpeed);
+                    float normalized = Mathf.InverseLerp(0f, FireArm.OwnerController.sprintSpeed, moveSpeed);
                     float runningSpray = Mathf.Lerp(0.5f, 1f, normalized) * maxHipSpray;
                     currentHipSpray = Mathf.Max(currentHipSpray, runningSpray);
                 }
@@ -102,7 +98,7 @@ namespace Resources.Script.Firearm
             }
             
             // Apply camera recoil adjustments if the character manager is assigned
-            if (FireArm.Owner)
+            if (FireArm.OwnerController)
             {
                 // Calculate the recoil values based on the preset and firearm attachments, considering aiming state
                 //TODO 부착물에 따른 MOD 적용
@@ -111,7 +107,7 @@ namespace Resources.Script.Firearm
                 float hRecoil = FireArm.fireArmData.horizontalRecoil;
                 float camRecoil = FireArm.fireArmData.cameraRecoil;
             
-                FireArm.Owner.AddLookValue(vRecoil, hRecoil);
+                FireArm.OwnerController.AddLookValue(vRecoil, hRecoil);
             
                 // TODO cam 흔들리게
                 // if(characterManager.cameraManager)
@@ -140,8 +136,8 @@ namespace Resources.Script.Firearm
             Vector3 offset = (up * upDown + right * rightLeft);
 
             //TODO 이게 프리셋의 그 값인지 확인.
-            offset.x *= horizontalMultiplier;
-            offset.y *= verticalMultiplier;
+            offset.x *= FireArm.Owner.SprayMultiplier;
+            offset.y *= FireArm.Owner.SprayMultiplier;
             offset *= spray / 180f;
 
             return forward + offset * 2f;

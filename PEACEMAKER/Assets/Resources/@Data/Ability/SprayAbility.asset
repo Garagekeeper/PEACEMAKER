@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 264b8c4d19d34b7398653ff1aab53922, type: 3}
+  m_Name: SprayAbility
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Ability.AbilityDef
+  id: 4
+  icon: {fileID: 21300000, guid: 914f7a1dda73d7b4f84fb8b8e5581585, type: 3}
+  title: "\uBC18\uB3D9 \uAC10\uC18C"
+  description: "\uBC18\uB3D9\uC774 {0}\uBC30\uAC00 \uB429\uB2C8\uB2E4."
+  weight: 10
+  Values:
+  - 0.95
+  - 0.95
+  - 0.95
+  - 0.95
+  - 0.8
+  target: 4
+  op: 3

@@ -142,13 +142,36 @@ namespace Resources.Script
         
         /*-------------------------
         *          Event
-        ------------------------*/
+        -------------------------*/
         public enum EUIEvent
         {
             Click,
             PointerDown,
             PointerUp,
             Drag,
+        }
+        
+        
+        /*-------------------------
+        *          Ability
+        -------------------------*/
+        public enum EAbilityTarget
+        {
+            Ammo = 0,
+            Damage = 1,
+            Hp = 2,
+            Speed = 3,
+            Spray = 4,
+            Special = 5,
+        }
+        
+        public enum EOperator
+        {
+            None = 0,
+            Add = 1,
+            Div = 2,
+            Mul = 3,
+            Sub = 4,
         }
     }
 }

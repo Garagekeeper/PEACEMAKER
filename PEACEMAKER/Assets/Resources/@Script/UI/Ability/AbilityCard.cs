@@ -1,21 +1,23 @@
 using System;
 using System.Collections;
 using ChocDino.UIFX;
+using Resources.Script.Ability;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace Resources.Script.UI.Ability
 {
     public class AbilityCard : MonoBehaviour,
         IPointerEnterHandler,
         IPointerExitHandler,
-        IPointerClickHandler, IView
+        IPointerClickHandler
     {
         
-        private CanvasGroup _canvasGroup;
+        public CanvasGroup canvasGroup;
         private RectTransform _rect;
-        public AbilityPanel panel;
         
         private GlowFilter _glowFilter;
         [FormerlySerializedAs("_upSpeed")]
@@ -36,53 +38,45 @@ namespace Resources.Script.UI.Ability
         private Color _baseColor = Color.cyan;
         private Color _clickColor = Color.cyan;
         
+        [SerializeField]private Image imageArea;
+        [SerializeField]private TextMeshProUGUI textArea;
+        
         private void Awake()
         {
             _glowFilter = GetComponent<GlowFilter>();
-            _canvasGroup = GetComponent<CanvasGroup>();
+            canvasGroup = GetComponent<CanvasGroup>();
+            imageArea = GetComponentInChildren<Image>();
+            textArea =  GetComponentInChildren<TextMeshProUGUI>();
             _rect = transform as RectTransform;
-            panel = GetComponentInParent<AbilityPanel>();
         }
         
-        private Action _onClick;
-        public void Bind(Action onClick) => _onClick = onClick;
+        public Action onClick;
 
         private void OnEnable()
         {
             Init();
         }
-
-        private void Start()
-        {
-
-        }
+        
 
         private void Update()
         {
             UpdateHoverGlowing();
         }
-        
-        public void ApplyAbility()
+
+        public void SetCard(AbilityDef card)
         {
-            
+            SetImageArea(card.icon);
+            SetTextArea(card.GetDescription());
         }
-        
-        /// <summary>
-        /// 이 카드가 사용자의 입력을 받지 않도록 처리하는 함수
-        /// </summary>
-        public void DisableInput()
+
+        private void SetTextArea(string text)
         {
-            _canvasGroup.interactable = false;
-            _canvasGroup.blocksRaycasts = false;
+            textArea.text = text;
         }
-        
-        /// <summary>
-        /// 이 카드가 사용자의 입력을 받지도록 처리하는 함수
-        /// </summary>
-        public void EnableInput()
+
+        private void SetImageArea(Sprite image)
         {
-            _canvasGroup.interactable = true;
-            _canvasGroup.blocksRaycasts = true;
+            imageArea.sprite = image;
         }
 
         public void Init()
@@ -91,9 +85,8 @@ namespace Resources.Script.UI.Ability
             _glowFilter.ExpFalloffEnergy= _baseEnergy;
             _glowFilter.Strength = _baseStrength;
             _glowFilter.Color = _baseColor;
-            _canvasGroup.alpha = 1;
+            canvasGroup.alpha = 1;
             _rect.localScale = Vector3.one;
-            EnableInput();
         }
         
         /// <summary>
@@ -146,7 +139,7 @@ namespace Resources.Script.UI.Ability
             StopAllCoroutines();
             StartCoroutine(Ripple());
             StartCoroutine(ClickScale(GetComponent<RectTransform>()));
-            _onClick?.Invoke();
+            onClick?.Invoke();
         }
         
 
@@ -178,7 +171,7 @@ namespace Resources.Script.UI.Ability
                 float lerp = t / duration;
 
                 _rect.localScale = Vector3.Lerp(popScale, Vector3.zero, lerp);
-                _canvasGroup.alpha = Mathf.Lerp(1f, 0f, lerp);
+                canvasGroup.alpha = Mathf.Lerp(1f, 0f, lerp);
 
                 t += Time.unscaledDeltaTime;
                 yield return null;
@@ -278,15 +271,6 @@ namespace Resources.Script.UI.Ability
                 index = (index + 1) % path.Length;
             }
         }
-
-        public void Show()
-        {
-            gameObject.SetActive(true);
-        }
-
-        public void Hide()
-        {
-            gameObject.SetActive(false);
-        }
+        
     }
 }

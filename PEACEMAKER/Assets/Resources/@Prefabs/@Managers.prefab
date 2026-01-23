@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2415631187212708199}
   - component: {fileID: 899044654808687358}
   - component: {fileID: 90704950821725652}
+  - component: {fileID: 8656025506026836715}
   m_Layer: 0
   m_Name: '@Managers'
   m_TagString: Untagged
@@ -108,6 +109,24 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8753556e00505094c8f965cdbe68afd8, type: 2}
   - {fileID: 11400000, guid: 352dd8c02977e404e9e252f98c155100, type: 2}
   - {fileID: 11400000, guid: 6a126e4379b6a5046b8db2e66402652b, type: 2}
+--- !u!114 &8656025506026836715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4859577966338939141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd7d18278e1047a8b1f2169575ad1ae3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.AbilityPool
+  _abilityList:
+  - {fileID: 11400000, guid: 1bc0ca076dee9174cae1237bd8a2b666, type: 2}
+  - {fileID: 11400000, guid: ef2a95c3b2d806143abb8d0e5cdf0fe3, type: 2}
+  - {fileID: 11400000, guid: 064000a47cab6af4686d8b753d827866, type: 2}
+  - {fileID: 11400000, guid: 2d9999ecb0d5b234784709dfae129b67, type: 2}
+  - {fileID: 11400000, guid: c167834bcdb77f14faf60b2dab48820e, type: 2}
 --- !u!1001 &1657766862206094678
 PrefabInstance:
   m_ObjectHideFlags: 0

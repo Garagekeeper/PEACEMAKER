@@ -70,8 +70,8 @@ namespace Resource.Script.Controller
             //Player and source firearm
             this.source = source;
 
-            if (source && source.Owner != null)
-                this.sourcePlayer = source.Owner.gameObject;
+            if (source && source.OwnerController != null)
+                this.sourcePlayer = source.OwnerController.gameObject;
 
             //Direction and speed
             this.direction = direction;

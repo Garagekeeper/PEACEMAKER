@@ -15,11 +15,11 @@ namespace Resources.Script.Creatures
         
         public int CreatureLevel { get;  protected set; }
    
-        protected long Kills { get; set; }
+        protected long KillCounts { get; set; }
         
         protected virtual void Awake()
         {
-            Kills = 0;
+            KillCounts = 0;
         }
 
         protected virtual void Start()
@@ -34,7 +34,7 @@ namespace Resources.Script.Creatures
         
         public virtual void GetKill()
         {
-            Kills += 1;
+            KillCounts += 1;
         }
 
         protected void OnDestroy()

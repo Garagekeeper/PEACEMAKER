@@ -28,6 +28,7 @@ namespace Resources.Script.Managers
         public SettingManager SettingInternal { get; private set; }
 
 
+        private AbilityManager _abilityPool;
         private AudioManager _audio = new AudioManager();
         private GameManager _game = new GameManager();
         private InputManager _input;
@@ -36,6 +37,7 @@ namespace Resources.Script.Managers
         private ResourceManager _resource;
         private UIManager _ui = new  UIManager();
 
+        public static AbilityManager Ability => Instance?._abilityPool;
         public static AudioManager Audio => Instance?._audio;
         public static GameManager Game => Instance?._game;
 
@@ -91,8 +93,11 @@ namespace Resources.Script.Managers
             var reader = GetComponent<InputReader>() ?? gameObject.AddComponent<InputReader>();
             _input = new InputManager(reader);
 
-            var catalog = GetComponent<ScriptableObjCatalog>() ?? gameObject.AddComponent<ScriptableObjCatalog>();
+            var catalog = GetComponent<ObjCatalog>() ?? gameObject.AddComponent<ObjCatalog>();
             _resource = new ResourceManager(catalog);
+            
+            var abilityPool = GetComponent<AbilityPool>() ?? gameObject.AddComponent<AbilityPool>();
+            _abilityPool = new AbilityManager(abilityPool);
             
             SettingInternal = GetComponent<SettingManager>();
             Loading = GetComponent<LoadingManager>();

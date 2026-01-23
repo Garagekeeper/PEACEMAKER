@@ -72,19 +72,19 @@ namespace Resources.Script.InteractiveObject
 
             // 1. 랜덤 목표 지점 설정
             Vector2 randomCircle = Random.insideUnitCircle * dropRange;
-            Vector3 tempTarget = spawnPos + new Vector3(randomCircle.x, 0, randomCircle.y);
+            Vector3 horizontalTarget  = spawnPos + new Vector3(randomCircle.x, 0, randomCircle.y);
             groundMask = LayerMask.GetMask("Environment");
 
             // 2. 바닥 체크 및 정확한 높이 계산
             if (Physics.Raycast(spawnPos, Vector3.down, out var hit, 10.0f,groundMask))
             {
                 // 최종 목적지
-                _targetPos = CalculateGroundPosition(hit.point + new Vector3(tempTarget.x, 0, tempTarget.z));
+                _targetPos = CalculateGroundPosition(hit.point);
             }
             else
             {
                 // 바닥을 못 찾을 경우 현재 높이 기준 자동 계산
-                _targetPos = CalculateGroundPosition(new Vector3(tempTarget.x, spawnPos.y, tempTarget.z));
+                _targetPos = CalculateGroundPosition(horizontalTarget);
             }
 
             Rarity = rarity;
@@ -148,7 +148,8 @@ namespace Resources.Script.InteractiveObject
 
         public void SetAttract(bool attract)
         {
-            _state = GemState.Attracting;
+            if(attract)
+                _state = GemState.Attracting;
         }
 
         private void UpdateAttracting()

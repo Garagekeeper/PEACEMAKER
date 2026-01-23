@@ -8,7 +8,10 @@ namespace Resources.Script.Creatures
         [SerializeField] protected float maxHp = 100f;
         [SerializeField] protected UnityEvent onDeathEvent;
         private RagdollEffect _ragdollEffect;
-
+        public float DamageMultiplier { get; set; } = 1f;
+        public float SprayMultiplier { get; set; } = 1f;
+        
+        
         private float _hp;
         public float Hp
         {
@@ -21,8 +24,12 @@ namespace Resources.Script.Creatures
                 NotifyHpChanged();
             }
         }
-        
-        protected float MaxHp => maxHp;
+
+        protected float MaxHp
+        {
+            get => maxHp;
+            set =>  maxHp = value;
+        }
         
         protected virtual void NotifyHpChanged()
         {
@@ -67,5 +74,7 @@ namespace Resources.Script.Creatures
             if (IsDead) return;
             Hp = Mathf.Min(maxHp, Hp + amount);
         }
+
+        
     }
 }

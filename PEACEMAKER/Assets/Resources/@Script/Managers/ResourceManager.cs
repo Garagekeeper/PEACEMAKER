@@ -4,10 +4,10 @@ namespace Resources.Script.Managers
 {
     public class ResourceManager
     {
-        private ScriptableObjCatalog _sourceCatalog;
-        public ScriptableObjCatalog SourceCatalog { get; private set; }
+        private ObjCatalog _sourceCatalog;
+        public ObjCatalog SourceCatalog { get => _sourceCatalog; private set => _sourceCatalog = value; }
 
-        public ResourceManager(ScriptableObjCatalog  sourceCatalog)
+        public ResourceManager(ObjCatalog  sourceCatalog)
         {
             _sourceCatalog = sourceCatalog;
         }

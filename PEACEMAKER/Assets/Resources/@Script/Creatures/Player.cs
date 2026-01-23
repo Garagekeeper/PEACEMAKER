@@ -5,9 +5,10 @@ using Resources.Script.Managers;
 using Resources.Script.UI.Scene;
 using UnityEngine;
 using static Resources.Script.Defines;
+using static Resources.Script.Utilities;
 namespace Resources.Script.Creatures
 {
-    public class Player : DamageableObject, IPickupCollector
+    public class Player : DamageableObject, IPickupCollector, IMovable
     {
         [Header("Exp")] [SerializeField] private int maxExp;
         [SerializeField] private int currExp;
@@ -24,11 +25,13 @@ namespace Resources.Script.Creatures
             private set => maxExp = value;
         }
 
+        public float Speed { get; set; } = 5f;
+        public float SpeedMultiplier { get; set; } = 1f;
+
         protected override void NotifyHpChanged()
         {
             onHpChange?.Invoke(Hp, MaxHp);
         }
-
 
         public PlayerController PController { get; private set; }
 
@@ -75,10 +78,10 @@ namespace Resources.Script.Creatures
 
         public override void GetKill()
         {
-
+            base.GetKill();
+            //TODO 킬 관련 로직
         }
-
-
+        
         // private void OnTriggerEnter(Collider other)
         // {
         //     // 상대가 Pickup 아이템이고, 내가 픽업을 수집하면
@@ -141,9 +144,48 @@ namespace Resources.Script.Creatures
             OnLevelUp?.Invoke();
         }
 
-        public void ApplyAbility(int index)
+
+        /// <summary>
+        /// 결정된 능력을 적용하는 함수, special의 경우 별도의 함수 연결
+        /// </summary>
+        /// <param name="target">능력을 적용할 타켓</param>
+        /// <param name="id">능력의 id</param>
+        /// <param name="op">연산자 (스탯 변경시 사용)</param>
+        /// <param name="val">값 (스탯 변경시 사용)</param>
+        public void ApplyAbility(EAbilityTarget target,  int id, EOperator op = EOperator.None, float val = 0)
         {
-            print("TODO : 능력 적용 구현하기");
+            if (target == EAbilityTarget.Special)
+            {
+                //TODO
+                //특별 능력을 위한 함수연결
+                return;
+            }
+
+            //너무 얽혀있음. 그냥 이벤트로 넘기든 뭐든 수정해야할듯
+            switch (target)
+            {
+                case EAbilityTarget.Ammo:
+                    PController.Inventory.GetCurrentItem().AmmoInMagazine =
+                        Mathf.RoundToInt(ChangeValue(PController.Inventory.GetCurrentItem().AmmoInMagazine, op, val));
+                    break;
+                case EAbilityTarget.Damage:
+                    DamageMultiplier = ChangeValue(DamageMultiplier, op, val);
+                    break;
+                case EAbilityTarget.Hp:
+                    if (Mathf.Approximately(Hp, MaxHp))
+                        MaxHp =  ChangeValue(MaxHp, op, val);
+                    Hp = ChangeValue(Hp, op, val);
+                    break;
+                case EAbilityTarget.Speed:
+                    SpeedMultiplier = ChangeValue(SpeedMultiplier, op, val);
+                    break;
+                case EAbilityTarget.Spray:
+                    SprayMultiplier = ChangeValue(SprayMultiplier, op, val);
+                    break;
+            }
+            
+            
+            
         }
 
         public void EndLevelUp()
@@ -151,6 +193,7 @@ namespace Resources.Script.Creatures
             OnLevelUpDone?.Invoke();
             Time.timeScale = 1f;
         }
+
         
     }
 }

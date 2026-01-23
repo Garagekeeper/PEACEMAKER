@@ -24,7 +24,7 @@ namespace Resources.Script.UI.PlayerCard
         private float _expTarget;
         private float _currentBarExp;
         private bool _isLevelUp; // 레벨업 상태인지 확인
-
+        private float _prevPlayerHp;
 
         public void Update()
         {
@@ -43,16 +43,22 @@ namespace Resources.Script.UI.PlayerCard
         // 하얀 바가 줄어들고, 그 만큼 빨간바가 줄어듬
         public void UpdateHpValue(float currentValue, float maxValue)
         {
-           _maxPlayerHp = maxValue;
-           _currentPlayerHp = currentValue;
-           
-           // 하얀 바가 줄어들고, 그 만큼 빨간바가 줄어듬
-           //최대 값 변경 (하얀 바)
-           playerHealthBar.maxValue = _maxPlayerHp;
-           
-           // 실제 체력으로 슬라이더 조정
-           playerHealthBar.value = _currentPlayerHp;
+            _maxPlayerHp = maxValue;
+            _currentPlayerHp = currentValue;
+
+            playerHealthBar.maxValue = _maxPlayerHp;
+            playerHealthBar.value = _currentPlayerHp;
+
+            //회복인 경우: 즉시 맞춰줌
+            if (_currentPlayerHp > _prevPlayerHp)
+            {
+                _currentDamage = _currentPlayerHp;
+                playerDamageBar.value = _currentDamage;
+            }
+
+            _prevPlayerHp = _currentPlayerHp;
         }
+
 
         public void UpdateExpValue(float currentValue, float  maxValue)
         {
@@ -67,11 +73,18 @@ namespace Resources.Script.UI.PlayerCard
         
         private void UpdateHpBar()
         {
-            // 하얀바가 줄어든 만큼 빨간 바가 천천히 줄어듬
-            // (빨간 바)
-            _currentDamage = Mathf.Lerp(_currentDamage, playerHealthBar.value, Time.deltaTime * 5 * damageFollowSpeed);
-            playerDamageBar.value = _currentDamage;
+            // 감소 중일 때만 잔상 연출
+            if (_currentDamage > playerHealthBar.value)
+            {
+                _currentDamage = Mathf.Lerp(
+                    _currentDamage,
+                    playerHealthBar.value,
+                    Time.deltaTime * 5 * damageFollowSpeed
+                );
+                playerDamageBar.value = _currentDamage;
+            }
         }
+
 
         private void UpdateExpBar()
         {

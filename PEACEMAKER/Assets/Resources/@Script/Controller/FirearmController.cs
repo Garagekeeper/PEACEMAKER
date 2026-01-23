@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Resource.Script.Controller;
 using Resources.Script.Ammo;
+using Resources.Script.Creatures;
 using Resources.Script.Firearm;
 using Resources.Script.Managers;
 using Resources.Script.UI;
@@ -50,7 +51,8 @@ namespace Resources.Script.Controller
         public EFirearmAimStates FirearmAimState { get; set; }
         public EVector3Direction DecalDirection { get; set; }
         
-        public PlayerController Owner { get; set; }
+        public PlayerController OwnerController { get; set; }
+        public IDamageable Owner;
         public List<ProjectileController> Projectiles { get; set; }
         
         /*-------------------------
@@ -113,7 +115,8 @@ namespace Resources.Script.Controller
             faudio.Init(this);
             recoilAndSpray.Init(this);
             shooter.Init(this);
-            Owner = GetComponentInParent<PlayerController>();
+            OwnerController = GetComponentInParent<PlayerController>();
+            Owner = OwnerController.GetComponent<IDamageable>();
             
             requiredAmmoType = new AmmoType(EAmmoType.R556, 25, 0);
             ammoItemInInventory = new AmmoItem(requiredAmmoType, fireArmData.initialAmmo - fireArmData.magazineCapacity, 1, 1);
@@ -172,7 +175,7 @@ namespace Resources.Script.Controller
             if (HeadManager.UI.SceneUI is UIGameScene)
             {
                 var temp = (UIGameScene)HeadManager.UI.SceneUI;
-                temp.SetCrossHairProgress(anim.JumpAnimation.Progress);
+                temp.SetCrossHairProgress(anim.AimingAnimation.Progress);
                 temp.SetCrosshairSpray(recoilAndSpray.GetCurrentSpray());
             }
             

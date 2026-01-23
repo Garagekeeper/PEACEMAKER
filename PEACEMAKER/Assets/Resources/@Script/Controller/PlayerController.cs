@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Resources.Script.Audio;
+using Resources.Script.Creatures;
 using Resources.Script.Managers;
 using UnityEngine;
 using UnityEngine.Events;
@@ -67,11 +68,13 @@ namespace Resources.Script.Controller
         public Quaternion PlayerRotation { get; private set; }
 
         public bool IsCrouching { get; private set; } = false;
-        public float SpeedMultiplier { get; private set; } = 1;
 
         public bool PrevGroundInfo { get; private set; }
         private Vector2 _addedLookValue;
         public Transform PhysicalInventory { get; set; }
+        
+        protected IDamageable _ownerCombatStat;
+        protected IMovable _ownerMoveStat;
 
         private void AddLookValue(Vector2 value)
         {
@@ -96,6 +99,8 @@ namespace Resources.Script.Controller
 
         void Awake()
         {
+            _ownerCombatStat = GetComponent<IDamageable>();
+            _ownerMoveStat = GetComponent<IMovable>();
             _finalVelocity = Vector3.zero;
             LookAfterModifySensitivity = Vector3.zero;
             _addedLookValue = Vector2.zero;
@@ -171,17 +176,17 @@ namespace Resources.Script.Controller
                 Vector3 moveDir = (camRootTransform.forward * HeadManager.Input.State.Move.y +
                                    camRootTransform.right * HeadManager.Input.State.Move.x).normalized;
 
-                float moveSpeedMultiplier = walkSpeed;
+                float moveSpeedMultiplier = walkSpeed * _ownerMoveStat.SpeedMultiplier;
 
                 if (HeadManager.Input.State.SprintPressed)
-                    moveSpeedMultiplier = sprintSpeed;
+                    moveSpeedMultiplier = sprintSpeed * _ownerMoveStat.SpeedMultiplier;
 
 
                 if (Inventory.GetCurrentItem()?.FirearmState == EFirearmStates.Fire || HeadManager.Input.State.AimHeld)
-                    moveSpeedMultiplier = walkSpeed;
+                    moveSpeedMultiplier = walkSpeed * _ownerMoveStat.SpeedMultiplier;
 
                 if (IsCrouching)
-                    moveSpeedMultiplier = crouchSpeed;
+                    moveSpeedMultiplier = crouchSpeed * _ownerMoveStat.SpeedMultiplier;
 
                 _finalVelocity.x = moveDir.x * moveSpeedMultiplier;
                 _finalVelocity.z = moveDir.z * moveSpeedMultiplier;
