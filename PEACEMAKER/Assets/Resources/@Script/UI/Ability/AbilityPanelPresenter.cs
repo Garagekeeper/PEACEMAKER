@@ -100,8 +100,9 @@ namespace Resources.Script.UI.Ability
             var val      = _abilities[index].GetFinalValue();
             model.ApplyAbility(target, id, op, val);
 
-            // 2) UI 연출 후 닫기
-            PlayUnselectedDisappear(index, () => { model.EndLevelUp(); });
+            // 2) UI 연출 후 닫고, 연석
+            PlayUnselectedDisappear(index, () => { model.EndLevelUp();
+            });
         }
 
         /// <summary>

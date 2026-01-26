@@ -10,6 +10,7 @@ namespace Resources.Script.Creatures
     {
         public ECreatureType CreatureType { get; protected set; }
         public bool IsInvincible;
+        protected SpriteRenderer _minimapMarkerRenderer;
 
         public Transform dropTransform;
         
@@ -20,6 +21,9 @@ namespace Resources.Script.Creatures
         protected virtual void Awake()
         {
             KillCounts = 0;
+            var temp = this.FindSelfChild<SpriteRenderer>(true);
+            temp = GetComponentInChildren<SpriteRenderer>();
+            _minimapMarkerRenderer = temp;
         }
 
         protected virtual void Start()

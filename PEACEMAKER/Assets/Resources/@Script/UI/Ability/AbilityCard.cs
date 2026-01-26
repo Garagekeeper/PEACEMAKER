@@ -45,7 +45,7 @@ namespace Resources.Script.UI.Ability
         {
             _glowFilter = GetComponent<GlowFilter>();
             canvasGroup = GetComponent<CanvasGroup>();
-            imageArea = GetComponentInChildren<Image>();
+            //imageArea = GetComponentInChildren<Image>();
             textArea =  GetComponentInChildren<TextMeshProUGUI>();
             _rect = transform as RectTransform;
         }

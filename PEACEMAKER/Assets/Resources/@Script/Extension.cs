@@ -77,15 +77,12 @@ namespace Resources.Script
         public static T FindSelfChild<T>(this Component component, bool includeInactive = false, bool skipParent = false)
         {
             if (!component) return default(T);
-
             var comp = component.GetComponent<T>();
-
+            
             if (comp != null) return comp;
-
             var childComp = component.GetComponentInChildren<T>(includeInactive);
-
+            
             if (childComp != null) return childComp;
-
             return comp;
         }
     }

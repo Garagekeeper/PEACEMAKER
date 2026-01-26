@@ -65,7 +65,10 @@ namespace Resources.Script.Creatures
 
         public virtual void OnDeath()
         {
+            // 래그돌 효과 넣기
             _ragdollEffect.Enable();
+            // 미니맵 마커 끄기
+            if (_minimapMarkerRenderer != null) _minimapMarkerRenderer.enabled = false;
             onDeathEvent?.Invoke();
         }
         
