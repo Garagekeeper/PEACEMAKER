@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Resources.Script.Controller;
 using Resources.Script.InteractiveObject;
 using Resources.Script.Managers;
@@ -12,6 +13,8 @@ namespace Resources.Script.Creatures
     {
         [Header("Exp")] [SerializeField] private int maxExp;
         [SerializeField] private int currExp;
+        private int _pendingLevelUps;
+        private bool _isLevelUpUIOpen = false;
 
         public int CurrExp
         {
@@ -121,8 +124,16 @@ namespace Resources.Script.Creatures
         {
             currExp += expAmount;
 
-            // 경험치가 가득 찼을 때 (연속 레벨업 대응을 위해 while 사용)
+            // 레벨업 횟수만 누적 (UI는 한 번만 연다)
             while (currExp >= maxExp)
+            {
+                currExp -= maxExp;
+                maxExp = Mathf.RoundToInt(maxExp * 1.2f);
+                _pendingLevelUps++;
+            }
+            
+            // 아직 UI 안 열려있고, 레벨업 대기분이 있으면 시작
+            if (_pendingLevelUps > 0 && !_isLevelUpUIOpen)
             {
                 LevelUp();
             }
@@ -132,16 +143,20 @@ namespace Resources.Script.Creatures
 
         private void LevelUp()
         {
-            currExp -= maxExp; // 잔여 경험치 보존
-
-            // 0. 경험치통 증가 (예: 기존의 20% 증가)
-            maxExp = Mathf.RoundToInt(maxExp * 1.2f);
-
             // 1. 게임 일시 정지
             Time.timeScale = 0f;
 
+            
             // 2. 카드 UI 호출 알림
+            _isLevelUpUIOpen = true;
             OnLevelUp?.Invoke();
+        }
+
+        private IEnumerator OpenNextFrame()
+        {
+            // timescale=0 이어도 한 프레임 넘기려면 unscaled로 기다려야 함
+            yield return null;
+            LevelUp();
         }
 
 
@@ -192,6 +207,19 @@ namespace Resources.Script.Creatures
         {
             OnLevelUpDone?.Invoke();
             Time.timeScale = 1f;
+            
+            _pendingLevelUps--;
+
+            if (_pendingLevelUps > 0)
+            {
+                // 다음 레벨업을 "다음 프레임"에 열어라 (UI 갱신/애니메이션 안전)
+                StartCoroutine(OpenNextFrame());
+            }
+            else
+            {
+                _isLevelUpUIOpen = false;
+                Time.timeScale = 1f; // 재개
+            }
         }
 
         
