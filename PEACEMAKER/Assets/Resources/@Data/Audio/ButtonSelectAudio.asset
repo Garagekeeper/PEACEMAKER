@@ -32,7 +32,7 @@ MonoBehaviour:
   minDistance: 1
   maxDistance: 500
   simulateAcousticLatency: 1
-  syncPitchWithTimeScale: 1
+  syncPitchWithTimeScale: 0
   useRandomPitchOffset: 1
   randomPitchOffset: 0.1
   forwardFactor: 0

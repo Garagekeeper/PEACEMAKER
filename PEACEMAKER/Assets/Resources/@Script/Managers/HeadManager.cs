@@ -36,6 +36,7 @@ namespace Resources.Script.Managers
         private ObjectManager _obj = new ObjectManager();
         private ResourceManager _resource;
         private UIManager _ui = new  UIManager();
+        private SettingManager _setting = new  SettingManager();
 
         public static AbilityManager Ability => Instance?._abilityPool;
         public static AudioManager Audio => Instance?._audio;
@@ -55,6 +56,8 @@ namespace Resources.Script.Managers
         public static UIManager UI => Instance?._ui;
 
         public static PoolManager Pool => Instance?._pool;
+        
+        public static SettingManager Setting => Instance?._setting;
 
         #region MONO
 
@@ -73,7 +76,6 @@ namespace Resources.Script.Managers
         #endregion
 
 
-        public static SettingManager Setting => Instance.SettingInternal;
 
         private void Awake()
         {
@@ -89,6 +91,7 @@ namespace Resources.Script.Managers
 
             _audio.Init();
             _game.Init();
+            _setting.Init();
 
             var reader = GetComponent<InputReader>() ?? gameObject.AddComponent<InputReader>();
             _input = new InputManager(reader);
@@ -99,7 +102,6 @@ namespace Resources.Script.Managers
             var abilityPool = GetComponent<AbilityPool>() ?? gameObject.AddComponent<AbilityPool>();
             _abilityPool = new AbilityManager(abilityPool);
             
-            SettingInternal = GetComponent<SettingManager>();
             Loading = GetComponent<LoadingManager>();
 
             //SceneManager.sceneLoaded -= OnSceneLoadedMy;

@@ -4,6 +4,7 @@ using Resources.Script.Creatures;
 using Resources.Script.InteractiveObject;
 using UnityEngine;
 using static Resources.Script.Defines;
+using Object = UnityEngine.Object;
 
 namespace Resources.Script.Managers
 {
@@ -19,6 +20,10 @@ namespace Resources.Script.Managers
             GameObject root = GameObject.Find(name);
             if (root == null)
                 root = new GameObject { name = name };
+            
+            //TODO 씬 넘어가면 풀 매니저를 초기화 하는 식으로 바꿀것
+            if (name == "@Sounds")
+                Object.DontDestroyOnLoad(root);
 
             return root.transform;
         }
@@ -27,6 +32,7 @@ namespace Resources.Script.Managers
         public Transform EnemiesRoot { get { return GetRootTransform("@Enemies"); } }
         public Transform ExpGemsRoot { get { return GetRootTransform("@ExpGems"); } }
         public Transform SoundRoot { get { return GetRootTransform("@Sounds"); } }
+        public Transform DmgRoot { get { return GetRootTransform("@Dmg"); } }
         
         public T Spawn<T>(EObjectID id, Vector3 pos) where T : BaseObject
         {
@@ -46,6 +52,7 @@ namespace Resources.Script.Managers
                 case EObjectType.Enemy:
                     go.transform.SetParent(EnemiesRoot);
                     Enemies.Add(go.GetComponent<Enemy>());
+                    BindEvent(go);
                     break;
                 case EObjectType.ExpGem:
                     var gem =  obj.GetComponent<ExpGem>();
@@ -70,6 +77,7 @@ namespace Resources.Script.Managers
             switch (objectType)
             {
                 case EObjectType.Enemy:
+                    UnBindEvent(obj.gameObject);
                     Enemies.Remove(obj.GetComponent<Enemy>());
                     break;
                 case EObjectType.ExpGem:
@@ -83,6 +91,20 @@ namespace Resources.Script.Managers
             }
             
             HeadManager.Resource.Destroy(obj.gameObject);
+        }
+        
+        public void BindEvent(GameObject go)
+        {
+            var type = go.GetComponent<Enemy>();
+            if (type == null) return;
+            type.OnEnemyKilled += HeadManager.Game.AddScore;
+        }
+        
+        public void UnBindEvent(GameObject go)
+        {
+            var type = go.GetComponent<Enemy>();
+            if (type == null) return;
+            type.OnEnemyKilled -= HeadManager.Game.AddScore;
         }
     }
     

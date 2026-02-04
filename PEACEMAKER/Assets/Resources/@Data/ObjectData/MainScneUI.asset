@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6aef058477a62a849a9be2eb45ec9d3a, type: 3}
-  m_Name: Effect
+  m_Name: MainScneUI
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Managers.PoolPreset
-  prefab: {fileID: 0}
+  prefab: {fileID: 6667415092195144898, guid: d13c31685fb32314a9d8aab941a0f4bf, type: 3}
+  id: 54
   poolable: 0
   initialSize: 0

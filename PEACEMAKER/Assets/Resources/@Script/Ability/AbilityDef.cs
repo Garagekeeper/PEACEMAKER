@@ -25,7 +25,9 @@ namespace Resources.Script.Ability
         [Header("Operator")] public EOperator op;
         
         private int _level = 0;
-        private int _maxLevel = 990;
+        public int AbilityLevel => _level;
+        [SerializeField]private int _maxLevel = 990;
+        public int MaxLevel => _maxLevel;
         protected Dictionary<int, float> abilityDict = new Dictionary<int, float>();
 
         private void OnEnable()
@@ -64,6 +66,20 @@ namespace Resources.Script.Ability
         public virtual string GetDescription()
         {
             return string.Format(description, GetNextValue());
+        }
+
+        /// <summary>
+        /// Title영역에 작성될 문자열을 반환
+        /// title {number} LV
+        /// </summary>
+        /// <returns></returns>
+        public virtual string GetTitle()
+        {
+            string res = (_level + 1).ToString();
+            if (_level == _maxLevel - 1)
+                res = "MAX";
+            
+            return title +" "+ res + " LV";
         }
 
         /// <summary>

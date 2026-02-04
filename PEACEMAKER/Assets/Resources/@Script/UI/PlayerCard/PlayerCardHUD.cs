@@ -10,10 +10,13 @@ namespace Resources.Script.UI.PlayerCard
     public class PlayerCardHUD : MonoBehaviour, IView
     {
         public TextMeshProUGUI playerNameText;
+        public TextMeshProUGUI levelText;
         public Slider playerHealthBar;
         public Slider playerDamageBar;
         public Slider playerNextExpBar;
-        public float damageFollowSpeed = 1;
+        public TextMeshProUGUI scoreText;
+        private float damageFollowSpeed = 1;
+        
         
         
         private float _currentPlayerExp;
@@ -73,16 +76,16 @@ namespace Resources.Script.UI.PlayerCard
         
         private void UpdateHpBar()
         {
-            // 감소 중일 때만 잔상 연출
-            if (_currentDamage > playerHealthBar.value)
-            {
-                _currentDamage = Mathf.Lerp(
-                    _currentDamage,
-                    playerHealthBar.value,
-                    Time.deltaTime * 5 * damageFollowSpeed
-                );
-                playerDamageBar.value = _currentDamage;
-            }
+            // // 감소 중일 때만 잔상 연출
+            // if (_currentDamage > playerHealthBar.value)
+            // {
+            //     _currentDamage = Mathf.Lerp(
+            //         _currentDamage,
+            //         playerHealthBar.value,
+            //         Time.unscaledDeltaTime * 5 * damageFollowSpeed
+            //     );
+            //     playerDamageBar.value = _currentDamage;
+            // }
         }
 
 
@@ -96,6 +99,29 @@ namespace Resources.Script.UI.PlayerCard
             playerNextExpBar.value = _currentBarExp;
 
             // [연출 핵심] 바가 99% 이상 찼고 레벨업 상태라면, 0으로 즉시 초기화하여 다음 레벨업 준비
+        }
+
+        /// <summary>
+        /// 플레이어 카드의 이름을 업데이트 하는 함수
+        /// </summary>
+        /// <param name="text"></param>
+        public void UpdatePlayerNameText(string text)
+        {
+            playerNameText.text = text;
+        }
+
+        /// <summary>
+        /// 플레이어 카드에 표시되는 레벨을 업데이트 하는 함수
+        /// </summary>
+        /// <param name="level"></param>
+        public void UpdateLevelText(int level)
+        {
+            levelText.text = level + " Lv";
+        }
+
+        public void UpdateScoreText(float score)
+        {
+            scoreText.text = "Score : " + score.ToString("0");
         }
 
         public void Show()

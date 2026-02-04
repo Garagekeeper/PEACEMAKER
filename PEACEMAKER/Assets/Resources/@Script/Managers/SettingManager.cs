@@ -4,18 +4,18 @@ using UnityEngine;
 
 namespace Resources.Script.Managers
 {
-    public class SettingManager : MonoBehaviour
+    public class SettingManager
     {
         public SettingData Data { get; private set; }
 
         private string filePath;
 
-        private void Awake()
+        public void Init()
         {
             filePath = Path.Combine(Application.persistentDataPath, "settings.json");
 
             LoadSettings();
-            ApplySettings();
+            //ApplySettings();
         }
 
         // ----------------------------
@@ -31,8 +31,8 @@ namespace Resources.Script.Managers
         // ----------------------------
         public void SetMasterVolume(float v)
         {
-            Data.masterVolume = v / 100;
-            AudioListener.volume = v / 100f;
+            Data.masterVolume = v;
+            AudioListener.volume = v;
         }
 
         public void SetMouseSensitivity(float v)
@@ -80,6 +80,10 @@ namespace Resources.Script.Managers
             {
                 string json = File.ReadAllText(filePath);
                 Data = JsonUtility.FromJson<SettingData>(json);
+                SetMasterVolume(Data.masterVolume);
+                SetMouseSensitivity(Data.mouseSensitivity);
+                SetResolution(Data.resolutionIndex);
+                SetFullscreen(Data.fullscreen);
             }
             else
             {

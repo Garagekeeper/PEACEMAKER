@@ -25,3 +25,4 @@ MonoBehaviour:
   - 2
   target: 1
   op: 3
+  _maxLevel: 5

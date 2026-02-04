@@ -563,6 +563,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ability
       objectReference: {fileID: 0}
+    - target: {fileID: 6520891072504362686, guid: 5733b2a2a3b22ba4889879d857e10af4,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 28
+      objectReference: {fileID: 0}
     - target: {fileID: 6987943650534008602, guid: 5733b2a2a3b22ba4889879d857e10af4,
         type: 3}
       propertyPath: m_Pivot.x
@@ -746,6 +751,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ability
+      objectReference: {fileID: 0}
+    - target: {fileID: 6520891072504362686, guid: 5733b2a2a3b22ba4889879d857e10af4,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 6987943650534008602, guid: 5733b2a2a3b22ba4889879d857e10af4,
         type: 3}

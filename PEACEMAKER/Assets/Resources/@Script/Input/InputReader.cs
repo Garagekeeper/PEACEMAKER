@@ -30,13 +30,13 @@ namespace Resources.Script.Input
         {
             if (State == null) return;
             State.ClearFrame();
-            // 움직임, 시야는 Update에서 처리(매순간 입력을 받아야)
-            // 다른 놈들은 이벤트 형식으로 처리
+
             State.Move = _playerInput.Player.Move.ReadValue<Vector2>();
             State.Look = _playerInput.Player.Look.ReadValue<Vector2>();
             State.JumpPressed = _playerInput.Player.Jump.triggered;
             State.ReloadPressed = _playerInput.Player.Reload.triggered;
             State.PauseState = _playerInput.Player.Pause.triggered;
+            State.ESCPressed = _playerInput.Player.Pause.triggered;
 
             if (_playerInput.Player.SelectInventory.triggered)
                 OnSelectInventoryPerformed(_playerInput.Player.SelectInventory.activeControl);

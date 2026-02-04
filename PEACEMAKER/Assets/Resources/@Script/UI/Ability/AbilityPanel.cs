@@ -6,7 +6,7 @@ using static Resources.Script.Utilities;
 
 namespace Resources.Script.UI.Ability
 {
-    public class AbilityPanel : MonoBehaviour, IView
+    public class AbilityPanel : UIPopup, IView
     {
         public AbilityCard[] abilities;
         public CanvasGroup canvasGroup;

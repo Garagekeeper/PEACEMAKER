@@ -39,6 +39,7 @@ namespace Resources.Script.UI.Ability
             UnLockInput();
             UnlockCursor();
             SetThreeCard();
+            HeadManager.UI.OpenPopup(view);
             view.Show();
         }
 
@@ -57,6 +58,7 @@ namespace Resources.Script.UI.Ability
         private void OnLevelUpDone()
         {
             view.Hide();
+            HeadManager.UI.PopPopup();
             HeadManager.Game.IsPaused = false;
             LockCursor();
         }

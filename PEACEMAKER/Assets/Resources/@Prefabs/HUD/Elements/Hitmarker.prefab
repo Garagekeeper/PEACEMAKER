@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1271495044438100579}
   - component: {fileID: 4190802866912343840}
+  - component: {fileID: 408750204300133185}
   m_Layer: 5
   m_Name: Hitmarker
   m_TagString: Untagged
@@ -59,6 +60,29 @@ MonoBehaviour:
   maxSize: 90
   minSize: 70
   rotaionAmount: 12
+--- !u!223 &408750204300133185
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271495044438100578}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &1271495045414051965
 GameObject:
   m_ObjectHideFlags: 0

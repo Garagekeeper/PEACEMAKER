@@ -103,21 +103,6 @@ MonoBehaviour:
   disabledTextColor: {r: 0, g: 0, b: 0, a: 1}
   highlightSound: {fileID: 11400000, guid: 5e0196421b39f5845ab90c2b493e6246, type: 2}
   selectSound: {fileID: 11400000, guid: 29c9c45187d51084fb76bff546e8c0f1, type: 2}
-  onClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5438736877129029139}
-        m_TargetAssemblyTypeName: Resources.Script.UI.PauseMenu, Assembly-CSharp
-        m_MethodName: OnResumeButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1717035567945946453
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,21 +835,6 @@ MonoBehaviour:
   disabledTextColor: {r: 0, g: 0, b: 0, a: 1}
   highlightSound: {fileID: 11400000, guid: 5e0196421b39f5845ab90c2b493e6246, type: 2}
   selectSound: {fileID: 11400000, guid: 29c9c45187d51084fb76bff546e8c0f1, type: 2}
-  onClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 7319269127639054941}
-        m_TargetAssemblyTypeName: Resources.Script.Controller.ButtonController, Assembly-CSharp
-        m_MethodName: OnSettingButtonClicked
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &7542239725950518059
 GameObject:
   m_ObjectHideFlags: 0
@@ -1120,21 +1090,6 @@ MonoBehaviour:
   disabledTextColor: {r: 0, g: 0, b: 0, a: 1}
   highlightSound: {fileID: 11400000, guid: 5e0196421b39f5845ab90c2b493e6246, type: 2}
   selectSound: {fileID: 11400000, guid: 29c9c45187d51084fb76bff546e8c0f1, type: 2}
-  onClick:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5438736877129029139}
-        m_TargetAssemblyTypeName: Resources.Script.UI.PauseMenu, Assembly-CSharp
-        m_MethodName: OnGotoMainMenuButton
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &7679690333413074326
 GameObject:
   m_ObjectHideFlags: 0
@@ -1147,6 +1102,8 @@ GameObject:
   - component: {fileID: 5249401715715807703}
   - component: {fileID: 2511541881565077904}
   - component: {fileID: 5438736877129029139}
+  - component: {fileID: 991695170482572121}
+  - component: {fileID: 6605374571555139067}
   m_Layer: 5
   m_Name: Game Pause Menu
   m_TagString: Untagged
@@ -1206,4 +1163,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b58d8156800d4161b056ebef4a054fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.UI.PauseMenu
-  MenuName: Pause Menu
+  resumeBtn: {fileID: 1332017471417396882}
+  settingsBtn: {fileID: 7319269127639054941}
+  mainMenuBtn: {fileID: 3003165451082853500}
+--- !u!223 &991695170482572121
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7679690333413074326}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 100
+  m_TargetDisplay: 0
+--- !u!114 &6605374571555139067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7679690333413074326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295

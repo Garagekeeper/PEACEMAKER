@@ -38,7 +38,7 @@ namespace Resources.Script.UI.Ability
         private Color _baseColor = Color.cyan;
         private Color _clickColor = Color.cyan;
         
-        [SerializeField]private Image imageArea;
+        [SerializeField]private TextMeshProUGUI titleArea;
         [SerializeField]private TextMeshProUGUI textArea;
         
         private void Awake()
@@ -46,7 +46,7 @@ namespace Resources.Script.UI.Ability
             _glowFilter = GetComponent<GlowFilter>();
             canvasGroup = GetComponent<CanvasGroup>();
             //imageArea = GetComponentInChildren<Image>();
-            textArea =  GetComponentInChildren<TextMeshProUGUI>();
+            //textArea =  GetComponentInChildren<TextMeshProUGUI>();
             _rect = transform as RectTransform;
         }
         
@@ -65,7 +65,7 @@ namespace Resources.Script.UI.Ability
 
         public void SetCard(AbilityDef card)
         {
-            SetImageArea(card.icon);
+            SetTitle(card.GetTitle());
             SetTextArea(card.GetDescription());
         }
 
@@ -74,9 +74,9 @@ namespace Resources.Script.UI.Ability
             textArea.text = text;
         }
 
-        private void SetImageArea(Sprite image)
+        private void SetTitle(string title)
         {
-            imageArea.sprite = image;
+            titleArea.text = title;
         }
 
         public void Init()

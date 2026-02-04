@@ -49,7 +49,7 @@ namespace Resources.Script.Creatures
             Hp = maxHp;
         }
         
-        public virtual void OnDamage(float value, Creature attackBy, bool isCrit = false)
+        public virtual void OnDamage(float value, Creature attackBy, Vector3 hitPos, bool isCrit = false)
         {
             if (IsInvincible) return;
             if (IsDead) return;

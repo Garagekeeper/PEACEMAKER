@@ -1,11 +1,13 @@
-﻿using Resources.Script.Managers;
+﻿using System;
+using System.Collections.Generic;
+using Resources.Script.Controller;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Resources.Script.UI
+namespace Resources.Script.UI.Setting
 {
-    public class SettingsMenu : Menu
+    public class SettingMenu : UIPopup, IView
     {
         [Header("UI References")]
         public Slider volumeSlider;
@@ -13,53 +15,52 @@ namespace Resources.Script.UI
         public TMP_Dropdown resolutionDropdown;
         public TMP_Dropdown fullscreenDropdown;
         
+        [SerializeField] private ButtonController applyBtn;
+        [SerializeField] private ButtonController quitBtn;
+        
         private float _volumeVal;
         private float  _mouseSensitivityVal;
         private int _resIndexVal;
         private int _fullscreenVal;
         private int _screenType;
+
+        public SettingData Data { get; set; }
+        
+        public event Action<SettingData> onApply;
+        public event Action onQuit;
         
 
         private bool initialized = false;
 
-        private void Start()
+
+        private void Awake()
         {
-            InitResolutionDropdown();
+            volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
+            sensitivitySlider.onValueChanged.AddListener(OnSensitivityChanged);
+            resolutionDropdown.onValueChanged.AddListener(OnResolutionChanged);
+            fullscreenDropdown.onValueChanged.AddListener(OnFullscreenChanged);
+
+            applyBtn.onClick += OnApplyButton;
+            quitBtn.onClick += OnQuitButton;
         }
 
-        public override void OnOpen()
-        {
-            base.OnOpen();
-            InitResolutionDropdown();
-            LoadUIValues();
-        }
-        
-
-        private void InitResolutionDropdown()
+        public void UpdateResolution(List<string> options)
         {
             //이건 테스트용
             if (initialized) return;
             if (resolutionDropdown == null) return;
             
-
             resolutionDropdown.ClearOptions();
-            var options = new System.Collections.Generic.List<string>();
-
-            foreach (var res in Screen.resolutions)
-            {
-                options.Add($"{res.width} x {res.height} ({res.refreshRateRatio}Hz)");
-            }
-
             resolutionDropdown.AddOptions(options);
             initialized = true;
         }
 
-        private void LoadUIValues()
+        public void LoadUIValues(SettingData data)
         {
             if (!initialized) return;
 
-            var data = HeadManager.Setting.Data;
-
+            Data = data;
+            
             _volumeVal = data.masterVolume * 100f;
             _resIndexVal = data.resolutionIndex;
             _mouseSensitivityVal = data.mouseSensitivity;
@@ -76,36 +77,53 @@ namespace Resources.Script.UI
         public void OnVolumeChanged(float value)
         {
             _volumeVal = value;
+            Data.masterVolume = value / 100f;
         }
 
         public void OnSensitivityChanged(float value)
         {
             _mouseSensitivityVal = value;
+            Data.mouseSensitivity = value;
         }
 
         public void OnResolutionChanged(int index)
         {
             _resIndexVal = index;
+            Data.resolutionIndex = index;
         }
 
         public void OnFullscreenChanged(int index)
         {
             _screenType = index;
+            Data.fullscreen = index;
         }
 
         public void OnApplyButton()
         {
-            HeadManager.Setting.SetMasterVolume(_volumeVal);
-            HeadManager.Setting.SetMouseSensitivity(_mouseSensitivityVal);
-            HeadManager.Setting.SetResolution(_resIndexVal);
-            HeadManager.Setting.SetFullscreen(_screenType);
-            HeadManager.Setting.ApplySettings();
+            onApply?.Invoke(Data);
+            
             //HeadManager.UI.MenuController.PopMenu();
         }
         
         public void OnQuitButton()
         {
+            onQuit?.Invoke();
             //HeadManager.UI.MenuController.PopMenu();
+        }
+
+        public void Show()
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void Hide()
+        {
+            gameObject.SetActive(false);
+        }
+
+        public override void ClosePopup()
+        {
+            Hide();
         }
     }
 }

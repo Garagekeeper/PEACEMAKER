@@ -229,7 +229,7 @@ namespace Resources.Script.Controller
                     // 소리가 도달하는 순간까지 기다림.
                     while (time < distanceFromListener)
                     {
-                        time += Time.deltaTime;
+                        time += Time.unscaledDeltaTime;
                         if (!Application.isPlaying) return;
                         await Task.Yield();
                     }
@@ -293,19 +293,19 @@ namespace Resources.Script.Controller
                 if (!ValidCheck()) return;
                 if (CustomAudioEvents.Count == 0) return;
 
-                var time = -Time.deltaTime;
+                var time = -Time.unscaledDeltaTime;
                 var currTime = 0f;
                 var prevTime = 0f;
 
                 // 마지막 프레때문에 이렇게 검사
-                while (time < EventsDuration + Time.deltaTime)
+                while (time < EventsDuration + Time.unscaledDeltaTime)
                 {
-                    time += Time.deltaTime;
-                    currTime += Time.deltaTime;
+                    time += Time.unscaledDeltaTime;
+                    currTime += Time.unscaledDeltaTime;
                     if (!Application.isPlaying) return;
                 
                     // 게임 속도에 따라서 pitch 조절
-                    if (_source) _source.pitch = Time.timeScale * Preset.pitch;
+                    if (_source) _source.pitch = 1 * Preset.pitch;
                     foreach (var customAudioEvent in CustomAudioEvents)
                     {
                         // 현재 시간의 구간이 이벤트 발동 시간을 포함하면

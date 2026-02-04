@@ -1,4 +1,5 @@
 ﻿using Resources.Script.Creatures;
+using Resources.Script.Managers;
 using Resources.Script.UI.PlayerCard;
 
 namespace Resources.Script.UI.Crosshair
@@ -16,6 +17,11 @@ namespace Resources.Script.UI.Crosshair
             model.onExpChange     += UpdateExpValue;
             model.OnLevelUp       += UpdateLevelUpStateOn;
             model.OnLevelUpDone   += UpdateLevelUpStateOff;
+            HeadManager.Game.OnScoreChanged += UpdateScoreText;
+            
+            view.UpdateLevelText(model.CreatureLevel);
+            view.UpdatePlayerNameText(model.name);
+            view.UpdateScoreText(0);
         }
 
         private void UpdateHpValue(float value, float maxValue)
@@ -31,11 +37,17 @@ namespace Resources.Script.UI.Crosshair
         private void UpdateLevelUpStateOn()
         {
             view.UpdateLevelUpState(true);
+            view.UpdateLevelText(model.CreatureLevel);
         }
         
         private void UpdateLevelUpStateOff()
         {
             view.UpdateLevelUpState(false);
+        }
+
+        private void UpdateScoreText(float score)
+        {
+            view.UpdateScoreText(score);
         }
         
         public override void Release()
@@ -44,6 +56,8 @@ namespace Resources.Script.UI.Crosshair
             model.onExpChange     -= UpdateExpValue;
             model.OnLevelUp       -= UpdateLevelUpStateOn;
             model.OnLevelUpDone   -= UpdateLevelUpStateOff;
+            
+            HeadManager.Game.OnScoreChanged -= UpdateScoreText;
         }
     }
 }

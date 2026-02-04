@@ -1,7 +1,9 @@
 ﻿using System;
+using Resources.Script.Audio;
 using Resources.Script.Creatures;
 using Resources.Script.Managers;
 using UnityEngine;
+using UnityEngine.Serialization;
 using static Resources.Script.Defines;
 
 namespace Resources.Script.Controller
@@ -16,7 +18,15 @@ namespace Resources.Script.Controller
         public float Range { get; private set; }
         public bool ForceIdle;
         
+        [SerializeField] private float gravity = Physics.gravity.y;
+        private float _verticalVelocity;
+        
+        [SerializeField] private AudioPreset audioPreset; // 소리를 재생할 컴포넌트
+        [SerializeField] private float soundInterval = 0.5f; // 소리 재생 간격 (초)
 
+        private float soundTimer; // 시간을 잴 타이머
+        
+        
         private void Awake()
         {
             CreatureState = ECreatureStates.Idle;
@@ -35,6 +45,9 @@ namespace Resources.Script.Controller
         private void Update()
         {
             Debug.DrawLine(transform.position, transform.position + transform.forward * 2f, Color.red);
+            
+            ApplyGravity();
+            
             if (Target == null)
             {
                 SetTarget();
@@ -48,15 +61,33 @@ namespace Resources.Script.Controller
 
         }
 
+        private void ApplyGravity()
+        {
+            if (CreatureState == ECreatureStates.Dead) return;
+            if (Controller.isGrounded)
+            {
+                // 땅에 붙어있게 살짝 눌러줌
+                if (_verticalVelocity < 0f)
+                    _verticalVelocity = -2f;
+            }
+            else
+            {
+                _verticalVelocity += gravity * Time.deltaTime;
+            }
+
+            Controller.Move(Vector3.up * _verticalVelocity * Time.deltaTime);
+        }
+
         private void UpdateState()
         {
 #if UNITY_EDITOR
-            if (ForceIdle)
+            if (ForceIdle && CreatureState != ECreatureStates.Dead)
             {
                 CreatureState = ECreatureStates.Idle;
                 return;
             }
 #endif
+            
             // 0. 이미 죽은 경우
             if (CreatureState == ECreatureStates.Dead)
                 return;
@@ -118,6 +149,19 @@ namespace Resources.Script.Controller
             Controller.Move(dirVec * (Owner.Speed * Owner.SpeedMultiplier * Time.deltaTime));
             transform.rotation = Quaternion.LookRotation(dirVec);
             
+            // --- 소리 재생 로직 추가 ---
+            soundTimer += Time.deltaTime; // 흐른 시간을 더함
+
+            if (soundTimer >= soundInterval)
+            {
+                PlayMoveSound();
+                soundTimer = 0f; // 타이머 초기화
+            }
+        }
+        
+        private void PlayMoveSound()
+        {
+            HeadManager.Audio.PlayWithPreset(audioPreset, transform);
         }
 
         private void OnSkill()
@@ -154,7 +198,7 @@ namespace Resources.Script.Controller
             if (dist > Range) return;
 
             //1. 여전히 범위 안에 있으면.
-            Target.OnDamage(50, Owner);
+            Target.OnDamage(50, Owner, Target.transform.position);
         }
     }
 }

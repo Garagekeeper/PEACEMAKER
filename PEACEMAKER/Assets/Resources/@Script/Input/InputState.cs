@@ -36,6 +36,8 @@ namespace Resources.Script.Input
         public bool LeanLeftHeld { get; internal set; }
         public bool LeanRightHeld { get; internal set; }
 
+        public bool ESCPressed { get; internal set; }
+        
         public int? InventoryPressed { get; internal set; }
 
         // 1프레임 입력만 유지되어야 하는 변수들 초기화

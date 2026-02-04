@@ -263,7 +263,7 @@ namespace Resources.Script.Firearm
 
                 //if (creature) creatureGo = creature.gameObject;
 
-                damageable.OnDamage(totalDamage, creature ,shouldHighlight);
+                damageable.OnDamage(totalDamage, creature, hit.point ,shouldHighlight);
             }
 
             // 총알 자국 처리

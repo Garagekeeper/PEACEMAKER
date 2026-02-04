@@ -20,6 +20,8 @@ namespace Resources.Script.Audio
             _audioSource = GetComponent<AudioSource>();
             _audioSource.playOnAwake = false;
             _audioSource.spatialBlend = 0f;
+            // timescale이 0이어도 소리가 나오게 하려면
+            _audioSource.ignoreListenerPause = true; // (선택사항) 리스너 자체가 일시정지인 경우
         }
 
         private void Update()
@@ -62,7 +64,7 @@ namespace Resources.Script.Audio
 
         private IEnumerator CDisableAfterPlay()
         {
-            yield return new WaitForSeconds(_audioSource.clip.length + 0.1f);
+            yield return new WaitForSecondsRealtime(_audioSource.clip.length + 0.1f);
             HeadManager.Resource.Destroy(gameObject);
         }
         
@@ -75,7 +77,7 @@ namespace Resources.Script.Audio
             if (time == 0)
                 time = PAudioController.Preset.audioClip.length;
             
-            yield return new WaitForSeconds(time + offset);
+            yield return new WaitForSecondsRealtime(time + offset);
             Target = null;
             HeadManager.Resource.Destroy(gameObject);
         }

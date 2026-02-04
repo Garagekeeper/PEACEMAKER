@@ -38,9 +38,14 @@ internal class Pool
     {
         GameObject go;
         if (RootTransform != null)
+        {
             go = Object.Instantiate(_prefab, RootTransform);
+        }
         else
+        {
+            
             go = Object.Instantiate(_prefab);
+        }
         go.name = _prefab.name;
         return go;
     }

@@ -66,17 +66,16 @@ namespace Resources.Script.Creatures
 
         public override void OnDeath()
         {
-            Debug.Log("Player Death");
+            HeadManager.Game.PlayerDeath();
         }
 
-        public override void OnDamage(float value, Creature attackBy, bool isCrit = false)
+        public override void OnDamage(float value, Creature attackBy, Vector3 hitPos, bool isCrit = false)
         {
-            base.OnDamage(value, attackBy, isCrit);
-            if (HeadManager.UI.SceneUI is UIGameScene)
-            {
-                var temp = (UIGameScene)HeadManager.UI.SceneUI;
-                temp.TriggerDamageEffect();
-            }
+            base.OnDamage(value, attackBy, hitPos, isCrit);
+            if (Hp == 0) return;
+            if (HeadManager.UI.SceneUI is not UIGameScene) return;
+            var temp = (UIGameScene)HeadManager.UI.SceneUI;
+            temp.TriggerDamageEffect();
         }
 
         public override void GetKill()
@@ -146,8 +145,10 @@ namespace Resources.Script.Creatures
             // 1. 게임 일시 정지
             Time.timeScale = 0f;
 
+            // 2. 레벨 증가
+            CreatureLevel++;
             
-            // 2. 카드 UI 호출 알림
+            // 3. 카드 UI 호출 알림
             _isLevelUpUIOpen = true;
             OnLevelUp?.Invoke();
         }

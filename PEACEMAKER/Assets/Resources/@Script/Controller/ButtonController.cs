@@ -33,7 +33,7 @@ namespace Resources.Script.Controller
         public AudioPreset selectSound;
 
         [Space]
-        public UnityEvent onClick;
+        public Action onClick;
 
         private Color currentGraphicsColor;
         private Color currentTextColor;
@@ -57,7 +57,6 @@ namespace Resources.Script.Controller
 
         protected void Update()
         {
-            
             if (targetGraphics == null) return;
 
             if (interactable)

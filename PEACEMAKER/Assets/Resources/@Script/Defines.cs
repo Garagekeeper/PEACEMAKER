@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Resources.Script
 {
@@ -100,6 +101,7 @@ namespace Resources.Script
             Moving = 2,
             Skill = 3,
             Dead = 4,
+            Fall = 5,
         }
 
         public enum ERarity
@@ -136,7 +138,9 @@ namespace Resources.Script
             ExpGemRare = 21,
             ExpGemEpic = 22,
             SFX=23,
+            DMGFX,
             GameSceneUI=53,
+            MainSceneUI=54,
             FirearmHUD,
         }
         
@@ -172,6 +176,13 @@ namespace Resources.Script
             Div = 2,
             Mul = 3,
             Sub = 4,
+        }
+        
+        public struct DamageInfo
+        {
+            public float amount;
+            public Vector3 hitPoint;
+            public bool isCrit;
         }
     }
 }
