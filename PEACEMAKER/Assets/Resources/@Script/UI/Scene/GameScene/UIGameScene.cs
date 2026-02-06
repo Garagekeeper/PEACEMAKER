@@ -82,7 +82,7 @@ namespace Resources.Script.UI.Scene
 
         public void ShowDamageText(DamageInfo info)
         {
-            var go = HeadManager.Resource.Instantiate(EObjectID.DMGFX, HeadManager.ObjManager.DmgRoot);
+            var go = HeadManager.Resource.Instantiate(EObjectID.DMGFX, info.hitPoint, HeadManager.ObjManager.DmgRoot);
             go.GetComponent<DamageText>().Init(info);
         }
 

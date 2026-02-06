@@ -13,7 +13,7 @@ namespace Resources.Script.Managers
             _sourceCatalog = sourceCatalog;
         }
         
-        public GameObject Instantiate(EObjectID key, Transform parent = null)
+        public GameObject Instantiate(EObjectID key, Vector3 pos = default(Vector3), Transform parent = null)
         {
             GameObject go = null;
             ObjectPreset preset = _sourceCatalog.GetObjPreset(key);
@@ -25,11 +25,11 @@ namespace Resources.Script.Managers
 
             if (preset.poolable)
             {
-                go = HeadManager.Pool.Pop(preset.prefab, parent);
+                go = HeadManager.Pool.Pop(preset.prefab, parent, pos);
                 return go;
             }
             
-            go = Object.Instantiate(preset.prefab, parent);
+            go = Object.Instantiate(preset.prefab, pos,new Quaternion(), parent);
             //TODO 여기서 프리셋 기본값 저장
             go.name = preset.prefab.name;
 

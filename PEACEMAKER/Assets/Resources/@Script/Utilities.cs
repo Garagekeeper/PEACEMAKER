@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Resources.Script.Managers;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using static Resources.Script.Defines;
 
 namespace Resources.Script

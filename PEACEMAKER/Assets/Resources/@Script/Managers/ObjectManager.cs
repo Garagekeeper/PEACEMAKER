@@ -20,10 +20,6 @@ namespace Resources.Script.Managers
             GameObject root = GameObject.Find(name);
             if (root == null)
                 root = new GameObject { name = name };
-            
-            //TODO 씬 넘어가면 풀 매니저를 초기화 하는 식으로 바꿀것
-            if (name == "@Sounds")
-                Object.DontDestroyOnLoad(root);
 
             return root.transform;
         }
@@ -34,9 +30,9 @@ namespace Resources.Script.Managers
         public Transform SoundRoot { get { return GetRootTransform("@Sounds"); } }
         public Transform DmgRoot { get { return GetRootTransform("@Dmg"); } }
         
-        public T Spawn<T>(EObjectID id, Vector3 pos) where T : BaseObject
+        public T Spawn<T>(EObjectID id, Vector3 pos = default(Vector3), Transform parent = null) where T : BaseObject
         {
-            GameObject go = HeadManager.Resource.Instantiate(id);
+            GameObject go = HeadManager.Resource.Instantiate(id, pos, parent);
             if (go == null)
             {
                 Debug.LogError($"there's err while Instantiating: {id}");
@@ -44,7 +40,6 @@ namespace Resources.Script.Managers
             }
             
             //go.name = objectName;
-            go.transform.position = pos;
             BaseObject obj = go.GetComponent<BaseObject>();
 
             switch (obj.ObjectType)

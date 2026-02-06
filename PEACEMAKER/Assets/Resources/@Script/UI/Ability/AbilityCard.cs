@@ -41,6 +41,11 @@ namespace Resources.Script.UI.Ability
         [SerializeField]private TextMeshProUGUI titleArea;
         [SerializeField]private TextMeshProUGUI textArea;
         
+        /// <summary>
+        /// 원래 위치를 기록
+        /// </summary>
+        private Vector2 _originalAnchoredPos;
+        
         private void Awake()
         {
             _glowFilter = GetComponent<GlowFilter>();
@@ -48,6 +53,7 @@ namespace Resources.Script.UI.Ability
             //imageArea = GetComponentInChildren<Image>();
             //textArea =  GetComponentInChildren<TextMeshProUGUI>();
             _rect = transform as RectTransform;
+            _originalAnchoredPos = _rect.anchoredPosition;
         }
         
         public Action onClick;
@@ -93,9 +99,9 @@ namespace Resources.Script.UI.Ability
         ///  선택 못받은 카드들을 안보이게 처리하는 코루틴 실행
         /// </summary>
         /// <param name="onComplete"></param>
-        public void PlayDisappearUnselected(System.Action onComplete = null)
+        public Coroutine PlayDisappearUnselected(Action onComplete = null)
         {
-            StartCoroutine(DisappearUnselected(onComplete));
+            return StartCoroutine(DisappearUnselected(onComplete));
         }
         
         /// <summary>
@@ -142,13 +148,59 @@ namespace Resources.Script.UI.Ability
             onClick?.Invoke();
         }
         
+        /// <summary>
+        /// 카드가 아래에서 위로 올라오며 나타나는 연출
+        /// </summary>
+        /// <param name="delay">시작 전 대기 시간</param>
+        public void PlayAppear(float delay)
+        {
+            StopCoroutine(nameof(AppearSequence));
+            StartCoroutine(AppearSequence(delay));
+        }
+        
+        private IEnumerator AppearSequence(float delay)
+        {
+            // 1. 초기 상태 설정
+            canvasGroup.alpha = 0;
+            canvasGroup.interactable = false;
+            canvasGroup.blocksRaycasts = false;
+    
+            // 2. 시작 위치 설정: '원래 위치'에서 아래로 100만큼 떨어진 곳
+            Vector2 startPos = _originalAnchoredPos + new Vector2(0, -100f);
+            _rect.anchoredPosition = startPos;
+
+            yield return new WaitForSecondsRealtime(delay);
+
+            float t = 0f;
+            float duration = 0.4f;
+
+            while (t < duration)
+            {
+                t += Time.unscaledDeltaTime;
+                float progress = t / duration;
+        
+                // Ease Out 효과 (큐빅 베지에와 유사)
+                float ease = 1f - Mathf.Pow(1f - progress, 3f);
+
+                canvasGroup.alpha = progress;
+                // 3. '원래 위치'로 복귀
+                _rect.anchoredPosition = Vector2.Lerp(startPos, _originalAnchoredPos, ease);
+        
+                yield return null;
+            }
+
+            // 최종 위치 확정
+            _rect.anchoredPosition = _originalAnchoredPos;
+            canvasGroup.alpha = 1f;
+        }
+        
 
         /// <summary>
         /// 선택받지 못한 카드들을 안보이게 처리하는 함수
         /// </summary>
         /// <param name="onComplete"></param>
         /// <returns></returns>
-        IEnumerator DisappearUnselected(System.Action onComplete)
+        IEnumerator DisappearUnselected(Action onComplete)
         {
             Vector3 startScale = _rect.localScale;
             Vector3 popScale = startScale * 1.1f;
@@ -164,7 +216,7 @@ namespace Resources.Script.UI.Ability
 
             // 사라짐
             t = 0f;
-            float duration = 0.25f;
+            float duration = 0.1f;
 
             while (t < duration)
             {

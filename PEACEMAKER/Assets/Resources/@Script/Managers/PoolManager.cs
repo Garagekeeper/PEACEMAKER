@@ -43,7 +43,6 @@ internal class Pool
         }
         else
         {
-            
             go = Object.Instantiate(_prefab);
         }
         go.name = _prefab.name;
@@ -106,7 +105,7 @@ public class PoolManager
         return  _pools[objectPreset.prefab.name].Pop();
     }
     
-    public GameObject Pop(GameObject prefab, Transform parent = null)
+    public GameObject Pop(GameObject prefab,Transform parent = null , Vector3 pos = default(Vector3))
     {
         if (!_pools.ContainsKey(prefab.name))
             CreatePool(prefab, parent);
@@ -124,6 +123,11 @@ public class PoolManager
     {
         Pool pool = new Pool(prefab, parent);
         _pools.Add(prefab.name, pool);
+    }
+
+    public void ResetPool()
+    {
+        _pools.Clear();
     }
     
 }

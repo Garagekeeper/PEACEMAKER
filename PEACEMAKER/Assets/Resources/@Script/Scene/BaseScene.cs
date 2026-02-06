@@ -15,6 +15,9 @@ namespace Resources.Script.Scene
             
         }
         
+        /// <summary>
+        /// 씬이 변환될때 초기화등의 동작을 할 때 사용
+        /// </summary>
         public virtual void Init()
         {
             Object obj = GameObject.FindFirstObjectByType<EventSystem>();
@@ -24,6 +27,7 @@ namespace Resources.Script.Scene
                 eventSystem.AddComponent<EventSystem>();
                 eventSystem.AddComponent<StandaloneInputModule>();
             }
+            HeadManager.Pool.ResetPool();
         }
     }
 }

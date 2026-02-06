@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Resources.Script.Ability;
 using Resources.Script.Creatures;
 using Resources.Script.Managers;
+using UnityEngine;
 using static Resources.Script.Utilities;
 namespace Resources.Script.UI.Ability
 {
@@ -36,11 +38,38 @@ namespace Resources.Script.UI.Ability
         {
             HeadManager.Game.IsPaused = true;
             _locked = false;
-            UnLockInput();
+            
+            LockInput(); // 일단 잠금
             UnlockCursor();
             SetThreeCard();
             HeadManager.UI.OpenPopup(view);
             view.Show();
+            CaraAppearAnim();
+        }
+
+        private async void CaraAppearAnim()
+        {
+            try
+            {
+                // 0) 카드마다 delay step 만큼의 간격으로 애니메이션 실행
+                float delayStep = 0.15f;
+                for (int i = 0; i < view.abilities.Length; i++)
+                {
+                    view.abilities[i].PlayAppear(i * delayStep);
+                }
+            
+                // 1) 모든 애니메이션이 끝나기를 기다림
+                // 연출길이 * 3 + @;
+                int totalWaitMs = (int)(((view.abilities.Length - 1) * delayStep + 0.6f) * 1000);
+                await System.Threading.Tasks.Task.Delay(totalWaitMs);
+
+                // 2) 클릭 허용
+                UnLockInput();
+            }
+            catch (Exception e)
+            {
+                Debug.LogException(e);
+            }
         }
 
         private void SetThreeCard()
@@ -102,25 +131,38 @@ namespace Resources.Script.UI.Ability
             var val      = _abilities[index].GetFinalValue();
             model.ApplyAbility(target, id, op, val);
 
-            // 2) UI 연출 후 닫고, 연석
-            PlayUnselectedDisappear(index, () => { model.EndLevelUp();
-            });
+            // 2) UI 연출 후 닫기
+            // 연출이 끝날때까지 대기
+            PlayUnselectedDisappear(index);
+            
+
         }
 
         /// <summary>
         /// 선택받지 못한 카드를 없애는 함수
         /// </summary>
         /// <param name="selectedIndex"></param>
-        /// <param name="onAllDone"></param>
-        private void PlayUnselectedDisappear(int selectedIndex, Action onAllDone)
+        private void PlayUnselectedDisappear(int selectedIndex)
         {
+            List<Coroutine> coroutines = new();
             for (int i = 0; i < view.abilities.Length; i++)
             {
                 if (i == selectedIndex) continue;
 
-                view.abilities[i].PlayDisappearUnselected();
+                coroutines.Add(view.abilities[i].PlayDisappearUnselected());
             }
-            onAllDone?.Invoke();
+
+            // view의 모노를 끌어와서 사용
+            view.StartCoroutine(WaitCardDisappearAnim(coroutines));
+        }
+
+        private IEnumerator WaitCardDisappearAnim(List<Coroutine> coroutines)
+        {
+            foreach (var c in coroutines)
+            {
+                yield return c;
+            }
+            model.EndLevelUp();
         }
         
         public override void Release()
