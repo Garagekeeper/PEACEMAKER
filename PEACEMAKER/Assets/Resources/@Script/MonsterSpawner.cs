@@ -47,10 +47,7 @@ public class MonsterSpawner : MonoBehaviour
             playerTransform.position.y, // 지형 높이에 맞게 조정 필요시 수정
             playerTransform.position.z + randomCircle.y
         );
-
-        print($"playerTransform.position: {playerTransform.position}");
-        print($"spawnPosition: {spawnPos}");
-        print($"distance: {(spawnPos - playerTransform.position).magnitude}");
+        
         // 몬스터 생성
         var mon = HeadManager.ObjManager.Spawn<Enemy>(Defines.EObjectID.Enemy, spawnPos);
     }

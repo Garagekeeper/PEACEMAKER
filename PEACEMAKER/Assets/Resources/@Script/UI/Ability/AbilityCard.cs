@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using ChocDino.UIFX;
 using Resources.Script.Ability;
+using Resources.Script.Audio;
+using Resources.Script.Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -38,8 +40,13 @@ namespace Resources.Script.UI.Ability
         private Color _baseColor = Color.cyan;
         private Color _clickColor = Color.cyan;
         
+        [Header("AbilityText")]
         [SerializeField]private TextMeshProUGUI titleArea;
         [SerializeField]private TextMeshProUGUI textArea;
+        
+        [Header("AbilitySFX")]
+        [SerializeField]private AudioPreset showUpSound;
+        [SerializeField]private AudioPreset selectSound;
         
         /// <summary>
         /// 원래 위치를 기록
@@ -145,6 +152,7 @@ namespace Resources.Script.UI.Ability
             StopAllCoroutines();
             StartCoroutine(Ripple());
             StartCoroutine(ClickScale(GetComponent<RectTransform>()));
+            HeadManager.Audio.PlayWithPreset(selectSound);
             onClick?.Invoke();
         }
         
@@ -160,36 +168,41 @@ namespace Resources.Script.UI.Ability
         
         private IEnumerator AppearSequence(float delay)
         {
-            // 1. 초기 상태 설정
+            // 아래에서 위로 올라오는 효과
             canvasGroup.alpha = 0;
             canvasGroup.interactable = false;
             canvasGroup.blocksRaycasts = false;
     
-            // 2. 시작 위치 설정: '원래 위치'에서 아래로 100만큼 떨어진 곳
+            //0. 기존위치의 아래쪽에서 시작
             Vector2 startPos = _originalAnchoredPos + new Vector2(0, -100f);
             _rect.anchoredPosition = startPos;
 
+            //1. 카드당 대기시간
             yield return new WaitForSecondsRealtime(delay);
 
+            //2. 효과음 재생
+            HeadManager.Audio.PlayWithPreset(showUpSound);
+            
             float t = 0f;
             float duration = 0.4f;
-
+            
+            //2. duration동안 아래에서 위로 올라옴
             while (t < duration)
             {
                 t += Time.unscaledDeltaTime;
                 float progress = t / duration;
         
-                // Ease Out 효과 (큐빅 베지에와 유사)
+                
                 float ease = 1f - Mathf.Pow(1f - progress, 3f);
 
                 canvasGroup.alpha = progress;
-                // 3. '원래 위치'로 복귀
+                
                 _rect.anchoredPosition = Vector2.Lerp(startPos, _originalAnchoredPos, ease);
         
                 yield return null;
             }
 
-            // 최종 위치 확정
+            // 3.최종 위치 확정
             _rect.anchoredPosition = _originalAnchoredPos;
             canvasGroup.alpha = 1f;
         }
