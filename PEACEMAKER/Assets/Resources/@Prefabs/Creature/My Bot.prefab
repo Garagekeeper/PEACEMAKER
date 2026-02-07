@@ -777,7 +777,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.CustomDecal
   decalVFX: {fileID: 733209293663125264, guid: 3e36a22fc4a5e9f4eb48e6fcb8e9ff79, type: 3}
-  lifeTime: 60
+  lifeTime: 1
 --- !u!114 &2414001549197161792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -939,7 +939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.CustomDecal
   decalVFX: {fileID: 733209293663125264, guid: 3e36a22fc4a5e9f4eb48e6fcb8e9ff79, type: 3}
-  lifeTime: 60
+  lifeTime: 1
 --- !u!114 &2004515894963362213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1293,7 +1293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.CustomDecal
   decalVFX: {fileID: 733209293663125264, guid: 3e36a22fc4a5e9f4eb48e6fcb8e9ff79, type: 3}
-  lifeTime: 60
+  lifeTime: 1
 --- !u!114 &8838429629774525649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1507,7 +1507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.CustomDecal
   decalVFX: {fileID: 733209293663125264, guid: 3e36a22fc4a5e9f4eb48e6fcb8e9ff79, type: 3}
-  lifeTime: 60
+  lifeTime: 1
 --- !u!114 &3334642532643367790
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2113,7 +2113,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.CustomDecal
   decalVFX: {fileID: 733209293663125264, guid: 3e36a22fc4a5e9f4eb48e6fcb8e9ff79, type: 3}
-  lifeTime: 60
+  lifeTime: 1
 --- !u!114 &2749827756707633799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2955,7 +2955,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.CustomDecal
   decalVFX: {fileID: 733209293663125264, guid: fcd27e9b64f619746991b41c831fd719, type: 3}
-  lifeTime: 60
+  lifeTime: 1
 --- !u!1 &8068152354063879320
 GameObject:
   m_ObjectHideFlags: 0
@@ -3356,7 +3356,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.CustomDecal
   decalVFX: {fileID: 733209293663125264, guid: 3e36a22fc4a5e9f4eb48e6fcb8e9ff79, type: 3}
-  lifeTime: 60
+  lifeTime: 1
 --- !u!114 &24174259024916096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3653,7 +3653,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.CustomDecal
   decalVFX: {fileID: 733209293663125264, guid: 3e36a22fc4a5e9f4eb48e6fcb8e9ff79, type: 3}
-  lifeTime: 60
+  lifeTime: 1
 --- !u!114 &2982096811369924045
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3847,7 +3847,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.CustomDecal
   decalVFX: {fileID: 733209293663125264, guid: 3e36a22fc4a5e9f4eb48e6fcb8e9ff79, type: 3}
-  lifeTime: 60
+  lifeTime: 1
 --- !u!114 &7160784811927669368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4009,7 +4009,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.CustomDecal
   decalVFX: {fileID: 733209293663125264, guid: 3e36a22fc4a5e9f4eb48e6fcb8e9ff79, type: 3}
-  lifeTime: 60
+  lifeTime: 1
 --- !u!114 &4419446951293910235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4024,7 +4024,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Creature.DamageablePart
   mBone: 10
   mDamageMultiplier: 2.5
-  mIsCritical: 0
+  mIsCritical: 1
 --- !u!1 &9104065567517885192
 GameObject:
   m_ObjectHideFlags: 0

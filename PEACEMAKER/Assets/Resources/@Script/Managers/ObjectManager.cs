@@ -15,6 +15,13 @@ namespace Resources.Script.Managers
         public HashSet<ExpGem> ExpGems { get; private set; } = new();
         public HashSet<Player> Players { get; private set; } = new();
 
+
+        public void Init()
+        {
+            Enemies.Clear();
+            ExpGems.Clear();
+            Players.Clear();
+        }
         
         public Transform GetRootTransform(string name)
         {
@@ -47,8 +54,9 @@ namespace Resources.Script.Managers
             {
                 case EObjectType.Enemy:
                     go.transform.SetParent(EnemiesRoot);
-                    var enemyController = go.GetComponent<EnemyController>();
                     Enemies.Add(go.GetComponent<Enemy>());
+                    var enemyController = go.GetComponent<EnemyController>();
+                    go.GetComponent<Enemy>().InitOnSpawn();
                     enemyController.InitOnSpawn(pos);
                     BindEvent(go);
                     break;

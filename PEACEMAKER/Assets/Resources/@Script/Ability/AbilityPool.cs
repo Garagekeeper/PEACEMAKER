@@ -16,6 +16,12 @@ namespace Resources.Script
         public Dictionary<int, AbilityDef> AbilityDictionary => _abilityDictionary;
         private void Awake()
         {
+            Init();
+        }
+        
+        public void Init()
+        {
+            _abilityDictionary.Clear();
             foreach (var abilityDef in _abilityList)
             {
                 _abilityDictionary.Add(abilityDef.id, Instantiate(abilityDef));

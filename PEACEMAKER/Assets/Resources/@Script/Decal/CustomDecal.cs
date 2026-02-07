@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Resources.Script.Decal
@@ -7,5 +8,11 @@ namespace Resources.Script.Decal
     {
         public GameObject decalVFX;
         public float lifeTime = 60;
+
+        private void Awake()
+        {
+            //StartCoroutine()
+        }
     }
+    
 }

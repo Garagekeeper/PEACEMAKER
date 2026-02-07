@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Resources.Script.Creatures
@@ -7,7 +8,7 @@ namespace Resources.Script.Creatures
     {
         [SerializeField] protected float maxHp = 100f;
         [SerializeField] protected UnityEvent onDeathEvent;
-        private RagdollEffect _ragdollEffect;
+
         public float DamageMultiplier { get; set; } = 1f;
         public float SprayMultiplier { get; set; } = 1f;
         
@@ -38,17 +39,13 @@ namespace Resources.Script.Creatures
         
         public bool IsDead => Hp <= 0;
 
-        protected override void Start()
-        {
-            _ragdollEffect = GetComponent<RagdollEffect>();
-        }
-
         protected override void Awake()
         {
             base.Awake();
             Hp = maxHp;
+            
         }
-        
+
         public virtual void OnDamage(float value, Creature attackBy, Vector3 hitPos, bool isCrit = false)
         {
             if (IsInvincible) return;
@@ -65,8 +62,6 @@ namespace Resources.Script.Creatures
 
         public virtual void OnDeath()
         {
-            // 래그돌 효과 넣기
-            _ragdollEffect.Enable();
             // 미니맵 마커 끄기
             if (_minimapMarkerRenderer != null) _minimapMarkerRenderer.enabled = false;
             onDeathEvent?.Invoke();
@@ -77,6 +72,8 @@ namespace Resources.Script.Creatures
             if (IsDead) return;
             Hp = Mathf.Min(maxHp, Hp + amount);
         }
+
+        
 
         
     }

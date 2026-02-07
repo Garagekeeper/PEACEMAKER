@@ -15,8 +15,7 @@ public class MonsterSpawner : MonoBehaviour
     [SerializeField] private float spawnRadius = 30f;   // 소환 반경
     [SerializeField] private float spawnInterval = 0.5f; // 소환 간격 (초)
     [SerializeField] private int maxMonsterCount = 200;  // 최대 몬스터 수
-
-    private List<GameObject> activeMonsters = new List<GameObject>();
+    
     private float timer;
 
     private void Awake()
@@ -29,7 +28,7 @@ public class MonsterSpawner : MonoBehaviour
         timer += Time.deltaTime;
 
         // 1. 소환 간격 체크 && 2. 최대 개수 체크
-        if (timer >= spawnInterval && activeMonsters.Count < maxMonsterCount)
+        if (timer >= spawnInterval && HeadManager.ObjManager.Enemies.Count < maxMonsterCount)
         {
             SpawnMonster();
             timer = 0f;

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using Resources.Script.Controller;
 using Resources.Script.InteractiveObject;
 using Resources.Script.Managers;
@@ -21,6 +22,18 @@ namespace Resources.Script.Creatures
         
         public Action<ERarity> OnEnemyKilled { get; set; }
         public event Action<DamageInfo> OnDamaged;
+        
+        protected RagdollEffect _ragdollEffect;
+        public RagdollEffect RagdollEffect
+        {
+            get
+            {
+                if (_ragdollEffect == null) _ragdollEffect = GetComponent<RagdollEffect>();
+                return _ragdollEffect;
+            }
+            set => _ragdollEffect = value;
+        }
+        
         protected override void Awake()
         {
             base.Awake();
@@ -29,6 +42,14 @@ namespace Resources.Script.Creatures
             Rarity = ERarity.Normal;
             GemID = EObjectID.ExpGemNormal + (int)Rarity;
             ObjectType = EObjectType.Enemy;
+            RagdollEffect = GetComponent<RagdollEffect>();
+        }
+
+        public void InitOnSpawn()
+        {
+            Hp = maxHp;
+            DisableRagRoll();
+            _minimapMarkerRenderer.enabled = true;
             var SceneUI = (UIGameScene)HeadManager.UI.SceneUI;
             OnDamaged += SceneUI.ShowDamageText;
             OnDamaged += SceneUI.ShowHitmarker;
@@ -38,7 +59,7 @@ namespace Resources.Script.Creatures
         {
             var info = new DamageInfo
             {
-                amount = value,
+                amount = Hp - value <= 0 ? Hp : value,
                 //TODO hitpoint에 따른 위치 조절
                 hitPoint = transform.position + Vector3.up * 1.2f,
                 isCrit = isCrit
@@ -50,6 +71,7 @@ namespace Resources.Script.Creatures
         public override void OnDeath()
         {
             base.OnDeath();
+            EnableRagRoll();
             _controller.OnDead();
             GetComponent<CharacterController>().enabled = false;
             
@@ -64,7 +86,28 @@ namespace Resources.Script.Creatures
             OnDamaged -= SceneUI.ShowDamageText;
             OnDamaged -= SceneUI.ShowHitmarker;
             
-            Destroy(gameObject, 5);
+            StartCoroutine(WaitDelay(gameObject, 5));
+        }
+        
+        public void Destroy(GameObject go)
+        {
+            HeadManager.ObjManager.Despawn(this);
+        }
+
+        private IEnumerator WaitDelay(GameObject go, float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            Destroy(go);
+        }
+        
+        public void EnableRagRoll()
+        {
+            RagdollEffect.Enable();
+        }
+        
+        public void DisableRagRoll()
+        {
+            RagdollEffect.Disable();
         }
     }
 }

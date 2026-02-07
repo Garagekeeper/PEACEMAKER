@@ -30,7 +30,7 @@ MonoBehaviour:
   dopplerLevel: 0
   spread: 60
   minDistance: 1
-  maxDistance: 200
+  maxDistance: 10
   simulateAcousticLatency: 1
   syncPitchWithTimeScale: 1
   useRandomPitchOffset: 1

@@ -107,6 +107,7 @@ namespace Resources.Script.Managers
             //SceneManager.sceneLoaded -= OnSceneLoadedMy;
             //SceneManager.sceneLoaded += OnSceneLoadedMy;
         }
+        
 
 
         private void Start()
@@ -139,6 +140,7 @@ namespace Resources.Script.Managers
             _audio.ReSetting();
             //TODO
         }
+        
         //
         // private void OnDisable()
         // {

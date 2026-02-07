@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee46ef7ca2ff481083ff79d714eb8f2e, type: 3}
   m_Name: CardSelect
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Audio.AudioPreset
-  audioClip: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 94e34e3164637584f8804a10d3d98dfa, type: 3}
   output: {fileID: 0}
   mute: 0
   bypassEffects: 0

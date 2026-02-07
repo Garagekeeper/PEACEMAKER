@@ -1,4 +1,5 @@
-﻿using Resources.Script.Creatures;
+﻿using System.Collections;
+using Resources.Script.Creatures;
 using UnityEngine;
 using static Resources.Script.Defines;
 namespace Resources.Script.Managers
@@ -35,8 +36,6 @@ namespace Resources.Script.Managers
 
             return go;
         }
-
-        
 
         public void Destroy(GameObject go)
         {

@@ -17,7 +17,7 @@ namespace Resources.Script.UI.DamageEffect
         public void Init(DamageInfo info)
         {
             text.text = info.amount.ToString();
-            baseColor = text.color;
+            baseColor = Color.black;
             if (info.isCrit)
                 baseColor =  Color.red;
 

@@ -9,6 +9,10 @@ namespace Resources.Script.Scene
         {
             base.Init();
             HeadManager.UI.ShowSceneUI<UIMainScene>();
+            
+            // INIT AFTER SCENE LOAD
+            HeadManager.ObjManager.Init();
+            HeadManager.Ability.Init();
         }
     }
 }

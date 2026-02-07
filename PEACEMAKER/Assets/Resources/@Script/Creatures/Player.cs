@@ -127,7 +127,7 @@ namespace Resources.Script.Creatures
             while (currExp >= maxExp)
             {
                 currExp -= maxExp;
-                maxExp = Mathf.RoundToInt(maxExp * 1.2f);
+                maxExp = Mathf.RoundToInt(maxExp * 1.5f);
                 _pendingLevelUps++;
             }
             

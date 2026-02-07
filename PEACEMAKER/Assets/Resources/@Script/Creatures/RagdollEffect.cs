@@ -12,7 +12,7 @@ namespace Resources.Script.Creatures
 
         private Rigidbody[] _rigidbodies;
         
-        protected virtual void Start()
+        protected virtual void Awake()
         {
             // 애니메이터와, 자식들의 강체를 모두 들고 있는다.
             if (animator == null)

@@ -28,7 +28,7 @@ namespace Resources.Script.UI.Death
         public override void Release()
         {
             view.onGotoMain -= GotoMainScene;
-            model.OnPlayerDeath += ShowView;
+            model.OnPlayerDeath -= ShowView;
         }
     }
 }

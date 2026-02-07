@@ -76,16 +76,16 @@ namespace Resources.Script.UI.PlayerCard
         
         private void UpdateHpBar()
         {
-            // // 감소 중일 때만 잔상 연출
-            // if (_currentDamage > playerHealthBar.value)
-            // {
-            //     _currentDamage = Mathf.Lerp(
-            //         _currentDamage,
-            //         playerHealthBar.value,
-            //         Time.unscaledDeltaTime * 5 * damageFollowSpeed
-            //     );
-            //     playerDamageBar.value = _currentDamage;
-            // }
+            // 감소 중일 때만 잔상 연출
+            if (_currentDamage > playerHealthBar.value)
+            {
+                _currentDamage = Mathf.Lerp(
+                    _currentDamage,
+                    playerHealthBar.value,
+                    Time.unscaledDeltaTime * 5 * damageFollowSpeed
+                );
+                playerDamageBar.value = _currentDamage;
+            }
         }
 
 

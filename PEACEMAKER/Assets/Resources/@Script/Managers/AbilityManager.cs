@@ -18,6 +18,11 @@ namespace Resources.Script.Managers
             if (_abilityPool.AbilityList.Count == 0) 
                 Debug.LogError("Ability pool contains no abilities");
         }
+
+        public void Init()
+        {
+            AbilityPool.Init();
+        }
         
         public List<AbilityDef> SelectThreeAbilities()
         {

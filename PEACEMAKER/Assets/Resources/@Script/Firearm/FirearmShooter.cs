@@ -229,9 +229,7 @@ namespace Resources.Script.Firearm
             }
 
             var creature = FireArm.OwnerController.CharacterController.GetComponent<Creature>();
-
-            // Invoke hit callbacks for the firearm
-            InvokeHitCallbacks(FireArm.OwnerController.CharacterController.gameObject, ray, hit);
+            
 
             // Exit if the hit target is the same as the character
             if (hit.transform == FireArm.OwnerController.CharacterController.transform) return;
@@ -248,7 +246,6 @@ namespace Resources.Script.Firearm
             {
                 // 뒤에 1 부착물 mod
                 damageMultiplierInternal = damageablePart.DamageMultiplier * 1f;
-                shouldHighlight = damageablePart.DamageMultiplier != 1 ? true : false;
             }
 
             // 데미지를 받는 객체
@@ -263,7 +260,7 @@ namespace Resources.Script.Firearm
 
                 //if (creature) creatureGo = creature.gameObject;
 
-                damageable.OnDamage(totalDamage, creature, hit.point ,shouldHighlight);
+                damageable.OnDamage(totalDamage, creature, hit.point ,damageablePart.IsCriticalPart);
             }
 
             // 총알 자국 처리
@@ -281,12 +278,13 @@ namespace Resources.Script.Firearm
             {
                 Vector3 hitPoint = hit.point;
                 Quaternion decalRotation = GetHitRotation(hit);
+                //TODO 풀에 넣기
                 GameObject decalInstance = Instantiate(defaultDecal, hitPoint, decalRotation);
 
                 decalInstance.transform.localScale *= FireArm.fireArmData.decalSize;
                 decalInstance.transform.SetParent(hit.transform);
 
-                float decalLifetime = customDecal?.lifeTime ?? 60f;
+                float decalLifetime = customDecal?.lifeTime ?? 5f;
                 Destroy(decalInstance, decalLifetime);
             }
 
@@ -300,52 +298,6 @@ namespace Resources.Script.Firearm
             //
             //     hit.rigidbody.AddForceAtPosition(-hit.normal * impact, hit.point, ForceMode.Impulse);
             // }
-        }
-
-        //TODO 무슨 함수인지 잘 알아보기
-        /// <summary>
-        /// Invokes hit-related callbacks on the hit object, as well as its children and parents, if applicable.
-        /// </summary>
-        /// <param name="sourcePlayer">The player responsible for the hit.</param>
-        /// <param name="ray">The ray that caused the hit.</param>
-        /// <param name="hit">Information about the hit.</param>
-        public static void InvokeHitCallbacks(GameObject sourcePlayer, Ray ray, RaycastHit hit)
-        {
-            // if (hit.transform.TryGetComponent<Ignore>(out Ignore _ignore) && _ignore.ignoreHitDetection) return;
-            //
-            // // Create a HitInfo object to store details about the hit
-            // HitInfo hitInfo = new HitInfo(sourcePlayer, hit, ray.origin, ray.direction);
-            //
-            // // Retrieve the GameObject that was hit
-            // GameObject obj = hit.transform.gameObject;
-            //
-            // // Try to get the IOnAnyHit interface implementation on the hit object, its children, and its parent
-            // IOnAnyHit onAnyHit = obj.transform.GetComponent<IOnAnyHit>();
-            // IOnAnyHitInChildren onAnyHitInChildren = obj.transform.GetComponentInParent<IOnAnyHitInChildren>();
-            // IOnAnyHitInParent onAnyHitInParent = obj.transform.GetComponentInChildren<IOnAnyHitInParent>();
-            //
-            // // Try to get the IOnHit interface implementation on the hit object, its children, and its parent
-            // IOnHit onHit = obj.transform.GetComponent<IOnHit>();
-            // IOnHitInChildren onHitInChildren = obj.transform.GetComponentInParent<IOnHitInChildren>();
-            // IOnHitInParent onHitInParent = obj.transform.GetComponentInChildren<IOnHitInParent>();
-            //
-            // // Invoke the OnHit method on the IOnHit interface, if implemented
-            // onHit?.OnHit(hitInfo);
-            //
-            // // Invoke the OnHitInChildren method on the IOnHitInChildren interface, if implemented
-            // onHitInChildren?.OnHitInChildren(hitInfo);
-            //
-            // // Invoke the OnHitInParent method on the IOnHitInParent interface, if implemented
-            // onHitInParent?.OnHitInParent(hitInfo);
-            //
-            // // Invoke the OnAnyHit method on the IOnAnyHit interface, if implemented
-            // onAnyHit?.OnAnyHit(hitInfo);
-            //
-            // // Invoke the OnAnyHitInChildren method on the IOnAnyHitInChildren interface, if implemented
-            // onAnyHitInChildren?.OnAnyHitInChildren(hitInfo);
-            //
-            // // Invoke the OnAnyHitInParent method on the IOnAnyHitInParent interface, if implemented
-            // onAnyHitInParent?.OnAnyHitInParent(hitInfo);
         }
     }
 }
