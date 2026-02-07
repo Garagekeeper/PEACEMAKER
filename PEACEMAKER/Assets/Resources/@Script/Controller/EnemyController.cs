@@ -36,6 +36,24 @@ namespace Resources.Script.Controller
             Owner = GetComponent<Enemy>();
             SetTarget();
         }
+        
+        /// <summary>
+        /// 소환시 호출되는 초기화 함수
+        /// </summary>
+        /// <param name="spawnPos">소환 위치를 조절할 파라미터</param>
+        public void InitOnSpawn(Vector3 spawnPos)
+        {
+            if (Controller == null) Controller = GetComponent<CharacterController>();
+            Controller.enabled = false;
+            
+            _verticalVelocity = 0f;
+            soundTimer = 0f;
+            CreatureState = ECreatureStates.Idle;
+            
+            transform.position = spawnPos;
+            
+            Controller.enabled = true;
+        }
 
         private void Start()
         {

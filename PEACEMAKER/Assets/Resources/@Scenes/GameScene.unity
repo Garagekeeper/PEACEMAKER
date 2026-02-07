@@ -620,9 +620,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterSpawner
   playerTransform: {fileID: 0}
-  spawnRadius: 10
-  spawnInterval: 3
-  maxMonsterCount: 10
+  spawnRadius: 20
+  spawnInterval: 1.5
+  maxMonsterCount: 20
 --- !u!1 &1800251248
 GameObject:
   m_ObjectHideFlags: 0

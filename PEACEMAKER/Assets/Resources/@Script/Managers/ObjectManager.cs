@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Resources.Script.Controller;
 using Resources.Script.Creatures;
 using Resources.Script.InteractiveObject;
 using UnityEngine;
@@ -46,7 +47,9 @@ namespace Resources.Script.Managers
             {
                 case EObjectType.Enemy:
                     go.transform.SetParent(EnemiesRoot);
+                    var enemyController = go.GetComponent<EnemyController>();
                     Enemies.Add(go.GetComponent<Enemy>());
+                    enemyController.InitOnSpawn(pos);
                     BindEvent(go);
                     break;
                 case EObjectType.ExpGem:
@@ -62,7 +65,7 @@ namespace Resources.Script.Managers
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
+            go.transform.position = pos;
             return obj as T;
         }
 

@@ -10,10 +10,11 @@ using Random = UnityEngine.Random;
 public class MonsterSpawner : MonoBehaviour
 {
     [Header("설정")]
+    //TODO 난이도에 따라서 수정할 영역
     [SerializeField] private Transform playerTransform; // 플레이어 위치
-    [SerializeField] private float spawnRadius = 10f;   // 소환 반경
-    [SerializeField] private float spawnInterval = 3f; // 소환 간격 (초)
-    [SerializeField] private int maxMonsterCount = 10;  // 최대 몬스터 수
+    [SerializeField] private float spawnRadius = 30f;   // 소환 반경
+    [SerializeField] private float spawnInterval = 0.5f; // 소환 간격 (초)
+    [SerializeField] private int maxMonsterCount = 200;  // 최대 몬스터 수
 
     private List<GameObject> activeMonsters = new List<GameObject>();
     private float timer;
@@ -47,9 +48,11 @@ public class MonsterSpawner : MonoBehaviour
             playerTransform.position.z + randomCircle.y
         );
 
+        print($"playerTransform.position: {playerTransform.position}");
+        print($"spawnPosition: {spawnPos}");
+        print($"distance: {(spawnPos - playerTransform.position).magnitude}");
         // 몬스터 생성
         var mon = HeadManager.ObjManager.Spawn<Enemy>(Defines.EObjectID.Enemy, spawnPos);
-        mon.transform.position = spawnPos;
     }
 
     // 에디터 뷰에서 소환 범위를 시각적으로 확인

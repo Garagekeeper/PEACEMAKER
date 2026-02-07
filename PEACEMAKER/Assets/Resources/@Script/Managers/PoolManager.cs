@@ -105,12 +105,12 @@ public class PoolManager
         return  _pools[objectPreset.prefab.name].Pop();
     }
     
-    public GameObject Pop(GameObject prefab,Transform parent = null , Vector3 pos = default(Vector3))
+    public GameObject Pop(GameObject prefab,Transform parent = null)
     {
         if (!_pools.ContainsKey(prefab.name))
             CreatePool(prefab, parent);
-        
-        return  _pools[prefab.name].Pop();
+        var go = _pools[prefab.name].Pop();
+        return  go;
     }
 
     private void CreatePool(ObjectPreset objectPreset, Transform parent = null)

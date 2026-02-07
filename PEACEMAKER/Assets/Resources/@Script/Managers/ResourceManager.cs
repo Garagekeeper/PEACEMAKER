@@ -25,7 +25,7 @@ namespace Resources.Script.Managers
 
             if (preset.poolable)
             {
-                go = HeadManager.Pool.Pop(preset.prefab, parent, pos);
+                go = HeadManager.Pool.Pop(preset.prefab, parent);
                 return go;
             }
             
