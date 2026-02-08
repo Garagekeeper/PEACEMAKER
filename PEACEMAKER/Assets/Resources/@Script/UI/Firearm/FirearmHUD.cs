@@ -17,13 +17,12 @@ namespace Resources.Script.UI.Firearm
         public Color normalColor = Color.white;
         public Color alertColor = Color.red;
 
-        public void UpdateAmmoDisplay(int inMagazine, int inInventory, int maxCap)
+        public void UpdateAmmoDisplay(int inMagazine, int inInventory, int maxCap, bool isLow)
         {
             ammoInMagazineText.text = inMagazine.ToString();
             ammoInInventoryText.text = inInventory.ToString();
         
             outOfAmmoAlert.SetActive(inMagazine <= 0);
-            var isLow = inMagazine > 0 && inMagazine <= maxCap / 3;
             lowAmmoAlert.SetActive(isLow);
         
             ammoInMagazineText.color = isLow ? alertColor : normalColor;

@@ -17,8 +17,6 @@ namespace Resources.Script.UI.PlayerCard
         public TextMeshProUGUI scoreText;
         private float damageFollowSpeed = 1;
         
-        
-        
         private float _currentPlayerExp;
         private float _maxPlayerExp;
         private float _maxPlayerHp;
@@ -94,11 +92,8 @@ namespace Resources.Script.UI.PlayerCard
             // 레벨업 중이라면 목표치를 강제로 1(100%)로 설정
             float target = _isLevelUp ? 1f : GetExpRatio();
             
-            // Time.unscaledDeltaTime을 사용해야 Time.timeScale = 0(일시정지)에서도 바가 움직입니다.
             _currentBarExp = Mathf.Lerp(_currentBarExp, target, Time.unscaledDeltaTime * 5 * damageFollowSpeed);
             playerNextExpBar.value = _currentBarExp;
-
-            // [연출 핵심] 바가 99% 이상 찼고 레벨업 상태라면, 0으로 즉시 초기화하여 다음 레벨업 준비
         }
 
         /// <summary>

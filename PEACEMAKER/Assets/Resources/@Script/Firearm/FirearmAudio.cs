@@ -8,23 +8,23 @@ namespace Resources.Script.Firearm
 {
     public class FirearmAudio : MonoBehaviour
     {
-        public FirearmController  Firearm{get; private set;}
+        public FirearmController  FirearmController{get; private set;}
         private SFXSource _reloadSound;
-        public void Init(FirearmController firearm)
+        public void Init(FirearmController firearmController)
         {
-            Firearm = firearm;
+            FirearmController = firearmController;
         }
 
         public void PlayShotFire()
         {
             //SystemManager.Audio.PlaySFX(Firearm.fireArmData.fireSound, 1f, 0, false);
-            HeadManager.Audio.PlayWithPreset(Firearm.preset.presetFireSound);
+            HeadManager.Audio.PlayWithPreset(FirearmController.preset.presetFireSound);
         }
 
         public void PlayReload()
         {
-            _reloadSound = HeadManager.Audio.PlayWithPreset(Firearm.fireArmData.reloadSoundPreset,
-                Firearm.OwnerController.transform);
+            _reloadSound = HeadManager.Audio.PlayWithPreset(FirearmController.fireArmData.reloadSoundPreset,
+                FirearmController.OwnerController.transform);
         }
 
         private void OnDisable()

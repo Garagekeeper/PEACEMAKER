@@ -6,7 +6,7 @@ namespace Resources.Script.Controller
     public class EquipmentController : MonoBehaviour
     {
         private FirearmController _firearmController;
-        public FirearmController CurrentFirearm
+        public FirearmController CurrentFirearmController
         {
             get => _firearmController;
             set

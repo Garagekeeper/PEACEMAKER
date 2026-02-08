@@ -5,7 +5,7 @@ namespace Resources.Script.UI.Firearm
 {
     public class FirearmHUDPresenter : Presenter<FirearmHUD, InventoryCore>
     {
-        private FirearmController _activeFirearm;
+        private FirearmController _activeFirearmController;
         
         public FirearmHUDPresenter(FirearmHUD view, InventoryCore model) : base(view, model)
         {
@@ -20,26 +20,27 @@ namespace Resources.Script.UI.Firearm
         private void HandleWeaponSwap(FirearmController newFirearmController)
         {
             //0. 기존 이벤트 해제
-            if (_activeFirearm != null)
-                _activeFirearm.OnAmmoChanged -= UpdateAmmoUI;
+            if (_activeFirearmController != null)
+                _activeFirearmController.OnAmmoChanged -= UpdateAmmoUI;
             
             //1. 새 무기로 교체
-            _activeFirearm = newFirearmController;
+            _activeFirearmController = newFirearmController;
 
-            if (_activeFirearm != null)
+            if (_activeFirearmController != null)
             {
                 //2. 새 무기의 이벤트 구독
-                _activeFirearm.OnAmmoChanged += UpdateAmmoUI;
+                _activeFirearmController.OnAmmoChanged += UpdateAmmoUI;
                 
                 //3. UI갱신
-                UpdateAmmoUI(_activeFirearm.AmmoInMagazine, _activeFirearm.ammoItemInInventory.Count, _activeFirearm.fireArmData.magazineCapacity);
-                UpdateFirearmNameUI(_activeFirearm.fireArmData.firearmName);
+                UpdateAmmoUI(_activeFirearmController.AmmoInMagazine, _activeFirearmController.ammoItemInInventory.Count, _activeFirearmController.fireArmData.magazineCapacity);
+                UpdateFirearmNameUI(_activeFirearmController.fireArmData.firearmName);
             }
         }
         
         private void UpdateAmmoUI(int mag, int inv, int maxCap)
         {
-            view.UpdateAmmoDisplay(mag, inv, maxCap);
+            var isLow = mag > 0 && mag <= maxCap / 3;
+            view.UpdateAmmoDisplay(mag, inv, maxCap, isLow);
         }
 
         private void UpdateFirearmNameUI(string firearmName)
@@ -50,10 +51,10 @@ namespace Resources.Script.UI.Firearm
         public override void Release()
         {
             model.OnItemSwapped -= HandleWeaponSwap;
-            if (_activeFirearm != null)
+            if (_activeFirearmController != null)
             {
-                _activeFirearm.OnAmmoChanged -= UpdateAmmoUI;
-                _activeFirearm.OnFirearmNameChanged -= UpdateFirearmNameUI;
+                _activeFirearmController.OnAmmoChanged -= UpdateAmmoUI;
+                _activeFirearmController.OnFirearmNameChanged -= UpdateFirearmNameUI;
             }
         }
     }
