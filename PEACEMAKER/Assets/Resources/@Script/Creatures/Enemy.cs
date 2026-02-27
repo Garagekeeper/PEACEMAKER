@@ -82,7 +82,7 @@ namespace Resources.Script.Creatures
             OnEnemyKilled?.Invoke(Rarity);
             
             // 연결되어있던 이벤트 언바인딩
-            var SceneUI = (UIGameScene)HeadManager.UI.SceneUI;
+            UIGameScene SceneUI = HeadManager.UI.SceneUI as UIGameScene;
             OnDamaged -= SceneUI.ShowDamageText;
             OnDamaged -= SceneUI.ShowHitmarker;
             

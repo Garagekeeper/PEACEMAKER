@@ -20,6 +20,11 @@ public class MonsterSpawner : MonoBehaviour
 
     private void Awake()
     {
+        
+    }
+
+    private void Start()
+    {
         playerTransform = HeadManager.Game.MainPlayer.transform;
     }
 

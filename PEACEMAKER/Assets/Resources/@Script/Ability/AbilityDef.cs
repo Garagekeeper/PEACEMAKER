@@ -41,7 +41,6 @@ namespace Resources.Script.Ability
         /// <summary>
         /// 상한선에 도달했는지 확인
         /// </summary>
-        /// <param name="player"></param>
         /// <returns></returns>
         public bool IsCapped()
         {
@@ -51,7 +50,6 @@ namespace Resources.Script.Ability
         /// <summary>
         /// 기본 값에다 레벨에 따른 배율을 더해서 적용할 값 산출
         /// </summary>
-        /// <param name="player"></param>
         /// <returns></returns>
         public float GetNextValue()
         {
@@ -61,7 +59,6 @@ namespace Resources.Script.Ability
         /// <summary>
         /// 산출한 값을 설명칸에 작성
         /// </summary>
-        /// <param name="player"></param>
         /// <returns></returns>
         public virtual string GetDescription()
         {
@@ -85,7 +82,6 @@ namespace Resources.Script.Ability
         /// <summary>
         /// 실제 값 적용
         /// </summary>
-        /// <param name="player"></param>
         public virtual float GetFinalValue()
         {
             // 캡이면 적용 안 함(원하면 다른 처리)

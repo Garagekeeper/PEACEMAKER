@@ -26,11 +26,11 @@ namespace Resources.Script.Managers
 
             if (preset.poolable)
             {
-                go = HeadManager.Pool.Pop(preset.prefab, parent);
+                go = HeadManager.Pool.Pop(preset, parent);
                 return go;
             }
             
-            go = Object.Instantiate(preset.prefab, pos,new Quaternion(), parent);
+            go = Object.Instantiate(preset.prefab, pos, Quaternion.identity, parent);
             //TODO 여기서 프리셋 기본값 저장
             go.name = preset.prefab.name;
 

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Resources.Script.Managers;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace Resources.Script
         // Start is called once before the first execution of Update after the MonoBehaviour is created
         
         private Dictionary<Defines.EObjectID, ObjectPreset> _soDict = new();
+        public Dictionary<Defines.EObjectID, ObjectPreset> SoDict => _soDict;
 
         void Awake()
         {
@@ -40,5 +42,6 @@ namespace Resources.Script
 
             return value;
         }
+        
     }
 }

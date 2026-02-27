@@ -62,8 +62,9 @@ namespace Resources.Script.Controller
 
         private void Update()
         {
+#if UNITY_EDITOR
             Debug.DrawLine(transform.position, transform.position + transform.forward * 2f, Color.red);
-            
+#endif            
             ApplyGravity();
             
             if (Target == null)

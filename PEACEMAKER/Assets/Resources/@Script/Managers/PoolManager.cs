@@ -18,6 +18,14 @@ internal class Pool
         set => _rootTransform = value;
     }
 
+    public Pool(GameObject prefab, Transform parent)
+    {
+        _prefab = prefab;
+        RootTransform = parent;
+        var initialSize = 10;
+        _pool = new ObjectPool<GameObject>(OnCreate, OnGet, OnRelease, OnDestroy, true, initialSize);
+    }
+    
     public Pool(ObjectPreset preset, Transform parent)
     {
         _prefab = preset.prefab;
@@ -25,13 +33,6 @@ internal class Pool
         // Unity에서 제공하는 Pool
         // createFunc, OnGet, OnRelease, OnDestroy, 중복 반환 여부, 초기사이즈 , 최대사이즈
         _pool = new ObjectPool<GameObject>(OnCreate, OnGet, OnRelease, OnDestroy, true, preset.initialSize);
-    }
-
-    public Pool(GameObject prefab, Transform parent)
-    {
-        _prefab = prefab;
-        RootTransform = parent;
-        _pool = new ObjectPool<GameObject>(OnCreate, OnGet, OnRelease, OnDestroy, true, 10);
     }
 
     private GameObject OnCreate()
@@ -97,6 +98,12 @@ public class PoolManager
         return true;
     }
 
+    /// <summary>
+    /// 프리셋 기반풀링 Pop
+    /// </summary>
+    /// <param name="objectPreset"></param>
+    /// <param name="parent"></param>
+    /// <returns></returns>
     public GameObject Pop(ObjectPreset objectPreset, Transform parent = null)
     {
         if (!_pools.ContainsKey(objectPreset.prefab.name))
@@ -105,6 +112,12 @@ public class PoolManager
         return  _pools[objectPreset.prefab.name].Pop();
     }
     
+    /// <summary>
+    /// 프리팹 기반 풀링 Pop
+    /// </summary>
+    /// <param name="prefab"></param>
+    /// <param name="parent"></param>
+    /// <returns></returns>
     public GameObject Pop(GameObject prefab,Transform parent = null)
     {
         if (!_pools.ContainsKey(prefab.name))
@@ -123,6 +136,12 @@ public class PoolManager
     {
         Pool pool = new Pool(prefab, parent);
         _pools.Add(prefab.name, pool);
+    }
+
+    public void CreatePoolExternal(ObjectPreset objectPreset, Transform parent = null)
+    {
+        Pool pool = new Pool(objectPreset, parent);
+        _pools.Add(objectPreset.prefab.name, pool);
     }
 
     public void ResetPool()

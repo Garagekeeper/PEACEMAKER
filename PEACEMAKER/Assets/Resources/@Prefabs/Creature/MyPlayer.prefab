@@ -586,7 +586,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ba75a22da3f4f6bac5c4a4a8df18209, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Resources.Script.Creature.Player
-  IsInvincible: 0
+  IsInvincible: 1
   dropTransform: {fileID: 4556436908628191323}
   maxHp: 100
   onDeathEvent:

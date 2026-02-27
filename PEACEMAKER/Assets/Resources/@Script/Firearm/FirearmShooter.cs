@@ -241,7 +241,7 @@ namespace Resources.Script.Firearm
 
             // Handle damageable groups
             // 데미지를 받을 수 있는 부위
-            bool shouldHighlight = false;
+            //bool shouldHighlight = false;
             if (hit.transform.TryGetComponent(out IDamageablePart damageablePart))
             {
                 // 뒤에 1 부착물 mod

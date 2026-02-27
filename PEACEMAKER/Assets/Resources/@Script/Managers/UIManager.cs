@@ -17,7 +17,7 @@ namespace Resources.Script.Managers
 {
     public class UIManager
     {
-        private int _order = 10;
+        //private int _order = 10;
         private Stack<UIPopup> _popupStack = new();
         private InGameScenePresenter _IGpresenter;
         private UIMainScenePresenter _Mainpresenter;
